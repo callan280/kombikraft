@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kombikraft"
-version = "0.1.0a5"
+version = "0.1.0a6"
 description = "Offline BMW cluster research, source-graphics previews and original-controller fixtures"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -24,4 +24,4 @@ kombikraft = "kombikraft.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-kombikraft = ["layout_routes.json", "web/**/*.html", "web/**/*.js", "web/**/*.css", "web/*.html", "web/*.js", "web/*.css", "factory/README.md"]
+kombikraft = ["layout_routes.json", "web/**/*.html", "web/**/*.js", "web/**/*.css", "web/*.html", "web/*.js", "web/*.css", "factory/README.md", "factory/*.json"]

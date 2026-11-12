@@ -1,0 +1,946 @@
+{
+  "schema": "gss-to-canvas-cc-asset-contract-v1",
+  "sourceProfile": "gss-5c58-160.002.002",
+  "reviewedConfigurations": [
+    {
+      "languageOrdinal": 2,
+      "variantIndex": 0,
+      "collectionBankOrdinal": 0
+    },
+    {
+      "languageOrdinal": 2,
+      "variantIndex": 1,
+      "collectionBankOrdinal": 1
+    }
+  ],
+  "languageIsExplicitFixture": true,
+  "records": [
+    {
+      "ccid": 2051,
+      "textLines": [
+        "Emissions failure.",
+        ""
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050420",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x4064da0",
+        "opaqueWord": 0
+      },
+      "iconSelector": 2,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.7058823704719543,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:2051",
+        "ccid": 2051,
+        "text": "Emissions failure.",
+        "originalLines": [
+          "Emissions failure.",
+          ""
+        ],
+        "iconKey": "sourceCC-2051",
+        "iconRgb": [
+          255,
+          180,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 2,
+        "file": "assets/4050800-049.png",
+        "pngSha256": "2eab9d276bcd3d3c32535826b5168c91e6f6320d78578fad382c98517a86468d",
+        "rgbaSha256": "b34bf08a9afc4a920215acecffa40d4c265c9fbab96882b7569c9d982030e2cf",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 212,
+      "textLines": [
+        "Stop carefully.",
+        "Switch off engine."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050270",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x4058b20",
+        "opaqueWord": 0
+      },
+      "iconSelector": 3,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:212",
+        "ccid": 212,
+        "text": "Stop carefully.\nSwitch off engine.",
+        "originalLines": [
+          "Stop carefully.",
+          "Switch off engine."
+        ],
+        "iconKey": "sourceCC-212",
+        "iconRgb": [
+          255,
+          0,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 3,
+        "file": "assets/4050800-022.png",
+        "pngSha256": "8eac0b99f68bdddb4d235acdef9208cce1f030d58d6d76338e8c8b1af3094da2",
+        "rgbaSha256": "dc319829a07ec3c54d22740175f26b109196fdb7e946aed45d5515e02c3c78f6",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 427,
+      "textLines": [
+        "Engine oil pressure.",
+        "Drive moderately."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x40505b0",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x406c1e0",
+        "opaqueWord": 0
+      },
+      "iconSelector": 2,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.7058823704719543,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:427",
+        "ccid": 427,
+        "text": "Engine oil pressure.\nDrive moderately.",
+        "originalLines": [
+          "Engine oil pressure.",
+          "Drive moderately."
+        ],
+        "iconKey": "sourceCC-427",
+        "iconRgb": [
+          255,
+          180,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 2,
+        "file": "assets/4050800-080.png",
+        "pngSha256": "6ec225f0a43689e7e4add4685d0ce97fa0a4f5de9ec5cad4143db5e062afba84",
+        "rgbaSha256": "6036bbfd4a1e39adfd817e538475e4db0dbd21b7732df53f942297e43ce2296a",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 166,
+      "textLines": [
+        "Add coolant.",
+        "Risk of scalding."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x40504f0",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x4068fe0",
+        "opaqueWord": 0
+      },
+      "iconSelector": 2,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.7058823704719543,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:166",
+        "ccid": 166,
+        "text": "Add coolant.\nRisk of scalding.",
+        "originalLines": [
+          "Add coolant.",
+          "Risk of scalding."
+        ],
+        "iconKey": "sourceCC-166",
+        "iconRgb": [
+          255,
+          180,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 2,
+        "file": "assets/4050800-068.png",
+        "pngSha256": "a10605b5847c9ecc622b37b4f313629d0af183f7b3ebd1eb0522ab2bd4b38590",
+        "rgbaSha256": "ec376ed43d3efdfb1a2715b7584acb8626896db0a6ef6007d75c4745fe354c33",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 91,
+      "textLines": [
+        "Fasten seat belt.",
+        ""
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050300",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x405cd60",
+        "opaqueWord": 0
+      },
+      "iconSelector": 3,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:91",
+        "ccid": 91,
+        "text": "Fasten seat belt.",
+        "originalLines": [
+          "Fasten seat belt.",
+          ""
+        ],
+        "iconKey": "sourceCC-91",
+        "iconRgb": [
+          255,
+          0,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 3,
+        "file": "assets/4050800-031.png",
+        "pngSha256": "5210f08fd4f2aecba2676ae0289526448fcb32094c67c827db000ef42213d299",
+        "rgbaSha256": "f86a35c49f294560c3d1668f7b145fd67b4ad8c6ac443190fec0e8acf1780abe",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 444,
+      "textLines": [
+        "Fasten rear",
+        "seat belt."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050300",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x405cd60",
+        "opaqueWord": 0
+      },
+      "iconSelector": 3,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:444",
+        "ccid": 444,
+        "text": "Fasten rear\nseat belt.",
+        "originalLines": [
+          "Fasten rear",
+          "seat belt."
+        ],
+        "iconKey": "sourceCC-444",
+        "iconRgb": [
+          255,
+          0,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 3,
+        "file": "assets/4050800-031.png",
+        "pngSha256": "5210f08fd4f2aecba2676ae0289526448fcb32094c67c827db000ef42213d299",
+        "rgbaSha256": "f86a35c49f294560c3d1668f7b145fd67b4ad8c6ac443190fec0e8acf1780abe",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 63,
+      "textLines": [
+        "Tyre pressure low.",
+        ""
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x40504d0",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x4068440",
+        "opaqueWord": 0
+      },
+      "iconSelector": 2,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.7058823704719543,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:63",
+        "ccid": 63,
+        "text": "Tyre pressure low.",
+        "originalLines": [
+          "Tyre pressure low.",
+          ""
+        ],
+        "iconKey": "sourceCC-63",
+        "iconRgb": [
+          255,
+          180,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 2,
+        "file": "assets/4050800-066.png",
+        "pngSha256": "156fa252a457c42681aeb31dcd30980a5a3d78843a7affec168921392b332d50",
+        "rgbaSha256": "853429335e2547a63b300ec268496614cb80db5e23b5fe95193b861c42874e95",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 88,
+      "textLines": [
+        "Dipped beam left",
+        "failure."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x40505d0",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x406cc00",
+        "opaqueWord": 0
+      },
+      "iconSelector": 2,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.7058823704719543,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:88",
+        "ccid": 88,
+        "text": "Dipped beam left\nfailure.",
+        "originalLines": [
+          "Dipped beam left",
+          "failure."
+        ],
+        "iconKey": "sourceCC-88",
+        "iconRgb": [
+          255,
+          180,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 2,
+        "file": "assets/4050800-082.png",
+        "pngSha256": "3b93d5f930052f8e3bf42e6d3dc0d91cf93b80f5da0e1863f60e2fb3b4fc6a06",
+        "rgbaSha256": "adaa717ec1e355b3d8d50f7c3494c0262abe5d01581a14b1e1554de3c3301630",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 128,
+      "textLines": [
+        "High-beam head-",
+        "light left failure."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050560",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x406af00",
+        "opaqueWord": 0
+      },
+      "iconSelector": 2,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.7058823704719543,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:128",
+        "ccid": 128,
+        "text": "High-beam head-\nlight left failure.",
+        "originalLines": [
+          "High-beam head-",
+          "light left failure."
+        ],
+        "iconKey": "sourceCC-128",
+        "iconRgb": [
+          255,
+          180,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 2,
+        "file": "assets/4050800-075.png",
+        "pngSha256": "75b6bc5d6b91484e51965bfcf728e89514c8ca7aa865f46623f219b76bb4aa56",
+        "rgbaSha256": "fb7a65f1d9f29a678914e239837dc36ed9bb2f36044a29249b1b4a35d072250b",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 134,
+      "textLines": [
+        "Brake light right",
+        "failure."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050480",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x4066620",
+        "opaqueWord": 0
+      },
+      "iconSelector": 2,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.7058823704719543,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:134",
+        "ccid": 134,
+        "text": "Brake light right\nfailure.",
+        "originalLines": [
+          "Brake light right",
+          "failure."
+        ],
+        "iconKey": "sourceCC-134",
+        "iconRgb": [
+          255,
+          180,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 2,
+        "file": "assets/4050800-061.png",
+        "pngSha256": "a48642842b763b3b33905212fc892908a5c0dbfd3b13bcda0b55944702b9ab43",
+        "rgbaSha256": "a7969e55c51ce9783a0e7cbd5d86bd3bc02877b6d51749efff07b7b6d0cee710",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 184,
+      "textLines": [
+        "Dynamic Traction",
+        "Control activated."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050330",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x405d620",
+        "opaqueWord": 0
+      },
+      "iconSelector": 5,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:184",
+        "ccid": 184,
+        "text": "Dynamic Traction\nControl activated.",
+        "originalLines": [
+          "Dynamic Traction",
+          "Control activated."
+        ],
+        "iconKey": "sourceCC-184",
+        "iconRgb": [
+          255,
+          255,
+          255
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 5,
+        "file": "assets/4050800-034.png",
+        "pngSha256": "3f007bcf158255230d209c964963ee0614f7abcf629c2dfbd7d5f9b57724de17",
+        "rgbaSha256": "e550c5b433b1ce72e838d23c58dec527f219d51a05d8b18c9acb5666235a3c19",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 240,
+      "textLines": [
+        "Parking brake",
+        "failure."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050500",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x4069380",
+        "opaqueWord": 0
+      },
+      "iconSelector": 5,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:240",
+        "ccid": 240,
+        "text": "Parking brake\nfailure.",
+        "originalLines": [
+          "Parking brake",
+          "failure."
+        ],
+        "iconKey": "sourceCC-240",
+        "iconRgb": [
+          255,
+          255,
+          255
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 5,
+        "file": "assets/4050800-069.png",
+        "pngSha256": "bd6b7e0667a40e6aa5448d1765e8d14b8f338034df26db9da71af47d938e0b0d",
+        "rgbaSha256": "1b2c05e3214a622e9a4f37ad02871684afa95cd46bd3a252d839b27fb08728c7",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 632,
+      "textLines": [
+        "Cruise Control",
+        "activated."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050140",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x4054340",
+        "opaqueWord": 0
+      },
+      "iconSelector": 5,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:632",
+        "ccid": 632,
+        "text": "Cruise Control\nactivated.",
+        "originalLines": [
+          "Cruise Control",
+          "activated."
+        ],
+        "iconKey": "sourceCC-632",
+        "iconRgb": [
+          255,
+          255,
+          255
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 5,
+        "file": "assets/4050800-003.png",
+        "pngSha256": "a4a27859806ec6bd7f112d4c55875ea93de2eaf22e48e8e535451808c7a852e6",
+        "rgbaSha256": "47e3ae63317c0da34feb7a81d8fbf6b33a8ebc04eb8281f09cf8d50e83e73baf",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 785,
+      "textLines": [
+        "High-beam assistant.",
+        ""
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050180",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x40551e0",
+        "opaqueWord": 0
+      },
+      "iconSelector": 5,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:785",
+        "ccid": 785,
+        "text": "High-beam assistant.",
+        "originalLines": [
+          "High-beam assistant.",
+          ""
+        ],
+        "iconKey": "sourceCC-785",
+        "iconRgb": [
+          255,
+          255,
+          255
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 5,
+        "file": "assets/4050800-007.png",
+        "pngSha256": "0cc62971a93e3ce73800740824b4489750f57832f9e23eac55bdb01e2414450e",
+        "rgbaSha256": "568aab31349bb94f8da015bfc37240480b3c118b55971cc247997cd95d6c8f5a",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 961,
+      "textLines": [
+        "Check",
+        "engine oil level."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x4050590",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x406bd20",
+        "opaqueWord": 0
+      },
+      "iconSelector": 5,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:961",
+        "ccid": 961,
+        "text": "Check\nengine oil level.",
+        "originalLines": [
+          "Check",
+          "engine oil level."
+        ],
+        "iconKey": "sourceCC-961",
+        "iconRgb": [
+          255,
+          255,
+          255
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 5,
+        "file": "assets/4050800-078.png",
+        "pngSha256": "acf5260b050912772a5bc3552246b860ab76544b6a8a3fb358484801a592a508",
+        "rgbaSha256": "c83bbcf9784aa4d3b6fe815cf898f10f9d0cb776d7c615963b9c66e7a4675208",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    },
+    {
+      "ccid": 2064,
+      "textLines": [
+        "Engine oil",
+        "service required."
+      ],
+      "primaryIcon": {
+        "descriptorVa": "0x40504f0",
+        "width": 64,
+        "height": 64,
+        "format": 32,
+        "sourcePayloadVa": "0x4068fe0",
+        "opaqueWord": 0
+      },
+      "iconSelector": 2,
+      "textSelector": 5,
+      "iconSelectorHelperRGBA": [
+        1.0,
+        0.7058823704719543,
+        0.0,
+        1.0
+      ],
+      "textSelectorHelperRGBA": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "popup": {
+        "id": "source-cc:2064",
+        "ccid": 2064,
+        "text": "Engine oil\nservice required.",
+        "originalLines": [
+          "Engine oil",
+          "service required."
+        ],
+        "iconKey": "sourceCC-2064",
+        "iconRgb": [
+          255,
+          180,
+          0
+        ],
+        "textRgb": [
+          255,
+          255,
+          255
+        ],
+        "sourceFormat": 32,
+        "sourceColorSelectorBits": 2,
+        "file": "assets/4050800-068.png",
+        "pngSha256": "a10605b5847c9ecc622b37b4f313629d0af183f7b3ebd1eb0522ab2bd4b38590",
+        "rgbaSha256": "ec376ed43d3efdfb1a2715b7584acb8626896db0a6ef6007d75c4745fe354c33",
+        "inspectionVerticalFlip": true,
+        "preserveDecodedRgb": false
+      }
+    }
+  ],
+  "assetRoutes": {
+    "/design/fonts/BMWTARG.ttf": "32751a2ed9c2e579b6a3e545bb13b11cc6dd4d7873abb4774594204d4d1a5958",
+    "/design/original-cc/assets/4050800-003.png": "a4a27859806ec6bd7f112d4c55875ea93de2eaf22e48e8e535451808c7a852e6",
+    "/design/original-cc/assets/4050800-007.png": "0cc62971a93e3ce73800740824b4489750f57832f9e23eac55bdb01e2414450e",
+    "/design/original-cc/assets/4050800-022.png": "8eac0b99f68bdddb4d235acdef9208cce1f030d58d6d76338e8c8b1af3094da2",
+    "/design/original-cc/assets/4050800-031.png": "5210f08fd4f2aecba2676ae0289526448fcb32094c67c827db000ef42213d299",
+    "/design/original-cc/assets/4050800-034.png": "3f007bcf158255230d209c964963ee0614f7abcf629c2dfbd7d5f9b57724de17",
+    "/design/original-cc/assets/4050800-049.png": "2eab9d276bcd3d3c32535826b5168c91e6f6320d78578fad382c98517a86468d",
+    "/design/original-cc/assets/4050800-061.png": "a48642842b763b3b33905212fc892908a5c0dbfd3b13bcda0b55944702b9ab43",
+    "/design/original-cc/assets/4050800-066.png": "156fa252a457c42681aeb31dcd30980a5a3d78843a7affec168921392b332d50",
+    "/design/original-cc/assets/4050800-068.png": "a10605b5847c9ecc622b37b4f313629d0af183f7b3ebd1eb0522ab2bd4b38590",
+    "/design/original-cc/assets/4050800-069.png": "bd6b7e0667a40e6aa5448d1765e8d14b8f338034df26db9da71af47d938e0b0d",
+    "/design/original-cc/assets/4050800-075.png": "75b6bc5d6b91484e51965bfcf728e89514c8ca7aa865f46623f219b76bb4aa56",
+    "/design/original-cc/assets/4050800-078.png": "acf5260b050912772a5bc3552246b860ab76544b6a8a3fb358484801a592a508",
+    "/design/original-cc/assets/4050800-080.png": "6ec225f0a43689e7e4add4685d0ce97fa0a4f5de9ec5cad4143db5e062afba84",
+    "/design/original-cc/assets/4050800-082.png": "3b93d5f930052f8e3bf42e6d3dc0d91cf93b80f5da0e1863f60e2fb3b4fc6a06",
+    "/design/original-cc/manifest.json": "013752b5bb20ce0ff5679942885df0a71fc7971413bb5c3e81778522b8662b88",
+    "/factory-cc/render-package/7bc38120041e861f6ebada0c7b5f0251.png": "7e2b270a21c35576652d88ba35200ae67ccdf7c6c09662a726ed7a634ca6a75c",
+    "/factory-cc/render-package/factory-cc-package.json": "b5589f9f4b1329f11b78d408c1281b95b134b14b0a97f66a196042ff92530f70"
+  },
+  "evidenceDigests": {
+    "bank0SourceAssetContract": "d47717982e8e8c0ada5e9d845dbfe59075541832c9891c9ec0ffc7bbff78077a",
+    "bank1SourceAssetContract": "6418133c14ced2dbab10b7c965a9c2b93716a752eeea279744391f3468f23a7a",
+    "nativeSourceIntegration": "3f21392cbf5899d3595c15d05ae8f8c9938041e32d164fada206ee64371ac13b"
+  },
+  "sourceActiveAndClearCasesPerConfiguration": 64,
+  "nativeActiveAndClearCases": 32,
+  "customComposition": true,
+  "factoryWarningArbitrationVerified": false,
+  "vehicleCompatibilityVerified": false,
+  "installationAllowed": false
+}

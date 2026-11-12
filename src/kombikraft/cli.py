@@ -30,6 +30,7 @@ def main(argv=None):
     serve.add_argument("--library", help="Offline gallery directory, for example assets/library")
     serve.add_argument("--firmware-manifest", help="Exact supported source-bank manifest")
     serve.add_argument("--firmware-root", help="Directory containing locally supplied banks")
+    serve.add_argument("--check-control", action="store_true", help="Opt in to the exact 14-bank original Check Control fixture")
     args = parser.parse_args(argv)
     try:
         if args.command == "doctor":
@@ -46,21 +47,26 @@ def main(argv=None):
             parser.error("Port must be between 0 and 65535")
         if bool(args.firmware_manifest) != bool(args.firmware_root):
             parser.error("Supply both --firmware-manifest and --firmware-root")
+        if args.check_control and not args.firmware_manifest:
+            parser.error("--check-control requires --firmware-manifest and --firmware-root")
         pack = AssetPack(args.assets) if args.assets else None
         factory = None
         if args.firmware_manifest:
-            from .factory.inputs import load_banks
-            from .factory.backend import OriginalControllerBackend
-            factory = OriginalControllerBackend(load_banks(args.firmware_manifest, args.firmware_root))
-            factory.initialize()
+            from .factory.worker import SourceControllerProcess
+            factory = SourceControllerProcess(args.firmware_manifest, args.firmware_root,
+                                              check_control=args.check_control)
         from .server import ViewerServer
-        with ViewerServer(args.port, pack, factory, args.library) as server:
-            print(f"KombiKraft: {server.origin}/", flush=True)
-            print("Offline only. Factory graphics startup and vehicle deployment remain unfinished.", flush=True)
-            try:
-                server.serve_forever()
-            except KeyboardInterrupt:
-                pass
+        try:
+            with ViewerServer(args.port, pack, factory, args.library, check_control=args.check_control) as server:
+                print(f"KombiKraft: {server.origin}/", flush=True)
+                print("Offline only. Factory graphics startup and vehicle deployment remain unfinished.", flush=True)
+                try:
+                    server.serve_forever()
+                except KeyboardInterrupt:
+                    pass
+        finally:
+            if factory is not None:
+                factory.close()
         return 0
     except (AssetError, OSError, ValueError, RuntimeError) as exc:
         parser.exit(1, f"KombiKraft: {exc}\n")

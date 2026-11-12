@@ -48,7 +48,8 @@ tests skip; admission and platform tests still run using ordinary test data.
 `check_control.py` adds the original registered Check Control supplier/consumer
 beside the existing BC and lamp inputs. Its separate local import requires the
 same exact profile plus hash-admitted bank `18-203d0000.bin`, for 14 banks total.
-The existing 13-bank backend, server routes and replay remain unchanged.
+The existing 13-bank backend and replay remain available. The viewer's existing
+command route adds Check Control only when explicitly enabled at startup.
 
 ```sh
 python -m kombikraft.factory.check_control_cli --manifest-template > cc-inputs.json
@@ -95,3 +96,48 @@ The command session accepts at most 1,000 lines and 2,048 bytes per line and has
 no HTTP or vehicle endpoint. To run its optional source-backed integration test,
 set `KOMBIKRAFT_CC_MANIFEST` to the 14-bank manifest and
 `KOMBIKRAFT_FIRMWARE_ROOT` to the local bank directory. Otherwise it skips.
+
+To use the original controller in the same browser simulator, explicitly enable
+it when starting the viewer:
+
+```sh
+kombikraft serve --check-control --firmware-manifest cc-inputs.json --firmware-root YOUR_BANK_DIRECTORY --assets assets/viewer-pack
+```
+
+The simulator's **Original controller** section submits the same bounded
+`signal`/`raw` envelope used by the local CLI. It keeps the requested authored
+fixture separate from the actual selected source output. BC press/release and
+left/right lamp buttons compute original input events; they do not automatically
+cycle an authored centre page. Existing source-pair placement controls remain
+inspection fixtures until explicitly submitted to the original controller.
+
+The HTTP route requires the exact loopback Host and same Origin, limits requests
+to 256 bytes, validates all fixture fields before execution and serializes
+inputs/status through one backend lock. It exposes no upload, filesystem-import,
+vehicle or native-process-control route. Source banks are loaded only through
+the startup arguments.
+
+The separately admitted preview contract connects the reviewed 16 original
+source outputs and actual clear to the same simulator's canvas. Enable the
+**Original controller** panel, submit a selected source pair or enter a CCID,
+and inspect the actual computed selection. **Return to visual fixtures** releases
+the computed preview; changing a visual placement fixture also releases it.
+Source warnings hide BC content while displayed; original clear returns to the
+retained custom centre page. This composition uses the original selected
+graphics/font/colours with authored text placement and is not a factory renderer.
+Missing or changed
+visual assets, unreviewed selections and collection warnings remain unsupported;
+original computation is still available. A preview plan does not establish
+factory graphics startup, physical bus mapping or warning-master arbitration.
+An original execution failure makes that source machine unavailable until the
+viewer restarts; the browser invalidates its previous computed popup. Invalid
+authored input is rejected before execution and does not fault the source machine.
+The viewer owns a separate emulator process: source construction, initialization,
+execution and readback all stay on that process's main thread. HTTP threads
+exchange local messages with it. A native-emulator exit therefore invalidates
+the source worker while the viewer can still report the failure. Directly
+sharing `OriginalControllerBackend` between HTTP request threads is rejected.
+This is crash containment, not a security sandbox or complete firmware boot.
+Standalone low-level replay remains available for single-thread experiments.
+Set `KOMBIKRAFT_ASSET_PACK` along with the source-test environment variables to
+exercise the actual source-to-HTTP-to-preview-plan integration test.

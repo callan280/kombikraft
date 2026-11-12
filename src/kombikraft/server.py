@@ -12,9 +12,21 @@ from .assets import AssetError, confined_file
 class ViewerServer(ThreadingHTTPServer):
     daemon_threads = True
     request_queue_size = 128
-    def __init__(self, port=8084, assets=None, factory=None, library=None):
+    def __init__(self, port=8084, assets=None, factory=None, library=None, check_control=False):
+        from .factory.backend import OriginalControllerBackend
+        if isinstance(factory, OriginalControllerBackend):
+            raise ValueError('HTTP requires SourceControllerProcess; do not share a native emulator across request threads')
         self.assets = assets
         self.factory = factory
+        self.factory_faulted = False
+        self.factory_check_control = check_control is True
+        self.factory_last_request = None
+        self.factory_last_result = None
+        self.factory_preview_plan = None
+        self.factory_preview_adapter = None
+        if self.factory_check_control:
+            from .factory.preview_contract import SourceCcPreviewContract
+            self.factory_preview_adapter = SourceCcPreviewContract(assets)
         self.library = Path(library).resolve() if library else None
         if self.library:
             confined_file(self.library, 'index.html')
@@ -23,12 +35,33 @@ class ViewerServer(ThreadingHTTPServer):
         super().__init__(("127.0.0.1", port), ViewerHandler)
         self.origin = f"http://127.0.0.1:{self.server_address[1]}"
 
+    def server_close(self):
+        super().server_close()
+        from .factory.worker import SourceControllerProcess
+        if isinstance(self.factory, SourceControllerProcess):
+            self.factory.close()
+
 def factory_status(backend):
     if backend is None:
         return {"available": False, "backend": "not-loaded", "fullFactoryStartup": False,
                 "factoryGraphics": False, "physicalTransport": False,
                 "message": "Matching local firmware banks have not been supplied."}
     return {"available": True, **backend.status()}
+
+def validate_factory_input(value):
+    """Validate authored internal fixtures before invoking an original backend."""
+    if not isinstance(value, dict) or set(value) != {"signal", "raw"} or not isinstance(value["signal"], str):
+        raise ValueError("Expected a signal/raw fixture")
+    if value["signal"] == "checkControl":
+        from .factory.check_control import cc_fixture
+        from .factory.backend import FactoryExecutionError
+        try:
+            cc_fixture(value["raw"])
+        except FactoryExecutionError as exc:
+            raise ValueError("Invalid internal Check Control fixture") from exc
+    elif value["signal"] not in ("bc", "leftLamp", "rightLamp") or type(value["raw"]) is not int or value["raw"] not in (0, 1, 2, 255):
+        raise ValueError("Only bounded offline controller fixtures are supported")
+    return value
 
 class ViewerHandler(BaseHTTPRequestHandler):
     def log_message(self, message, *args):
@@ -52,7 +85,25 @@ class ViewerHandler(BaseHTTPRequestHandler):
     def factory_snapshot(self):
         # Unicorn state is read only while the same lock excludes emulation.
         with self.server.factory_lock:
-            return factory_status(self.server.factory)
+            result = ({"available": False, "backend": "execution-failed", "fullFactoryStartup": False,
+                       "factoryGraphics": False, "physicalTransport": False,
+                       "message": "Original controller execution failed; restart the viewer for a fresh source machine."}
+                      if self.server.factory_faulted else factory_status(self.server.factory))
+            if self.server.factory is not None and result.get("available") is False:
+                self.server.factory_faulted = True
+                self.server.factory_preview_plan = None
+            result["checkControl"] = {
+                "available": result.get("available") is True and self.server.factory_check_control and not self.server.factory_faulted,
+                "sourceStateUnavailable": self.server.factory_faulted,
+                "inputBoundary": "Authored internal record fixture; not CAN or SOME/IP",
+                "graphicsAttached": False,
+                "lastRequest": self.server.factory_last_request,
+                "lastResult": self.server.factory_last_result,
+                "previewPlan": self.server.factory_preview_plan,
+                "previewAdapter": self.server.factory_preview_adapter.status() if self.server.factory_preview_adapter else {"available": False, "reason": "Original Check Control is not enabled"},
+                "masterArbitrationVerified": False, "vehicleConnected": False,
+            }
+            return result
 
     def do_GET(self):
         if not self.host_ok():
@@ -124,15 +175,31 @@ class ViewerHandler(BaseHTTPRequestHandler):
             length = int(self.headers.get("Content-Length", "0"))
             if not 0 < length <= 256:
                 raise ValueError("Expected a bounded fixture request")
-            value = json.loads(self.rfile.read(length))
-            if not isinstance(value, dict) or set(value) != {"signal", "raw"} or value["signal"] not in ("bc", "leftLamp", "rightLamp") or type(value["raw"]) is not int or value["raw"] not in (0, 1, 2, 255):
-                raise ValueError("Only fixed offline BC/indicator fixtures are supported")
+            value = validate_factory_input(json.loads(self.rfile.read(length)))
+            if value["signal"] == "checkControl" and not self.server.factory_check_control:
+                return self.send({"error": "Original Check Control is not enabled; start the local viewer with --check-control"}, status=503)
             if self.server.factory is None:
                 return self.send({"error": "Local factory backend is unavailable"}, status=503)
             with self.server.factory_lock:
-                result = self.server.factory.receive(value["signal"], value["raw"])
-            return self.send({"result": result, "fullFactoryStartup": False, "physicalTransport": False})
+                if self.server.factory_faulted:
+                    return self.send({"error": "Original controller execution failed; restart the viewer for a fresh source machine",
+                                      "sourceStateUnavailable": True}, status=503)
+                try:
+                    result = self.server.factory.receive(value["signal"], value["raw"])
+                except Exception as exc:
+                    self.server.factory_faulted = True
+                    self.server.factory_preview_plan = None
+                    raise RuntimeError("Original controller execution failed") from exc
+                if value["signal"] == "checkControl":
+                    self.server.factory_last_request = value
+                    self.server.factory_last_result = result
+                    self.server.factory_preview_plan = self.server.factory_preview_adapter.plan(result.get("selected"))
+                preview_plan = self.server.factory_preview_plan if value["signal"] == "checkControl" else None
+            return self.send({"result": result, "requestedInput": value, "previewPlan": preview_plan,
+                              "graphicsAttached": False, "fullFactoryStartup": False,
+                              "physicalTransport": False, "vehicleConnected": False})
         except (ValueError, TypeError, KeyError):
             return self.send({"error": "Invalid offline fixture input"}, status=400)
         except Exception:
-            return self.send({"error": "Original-controller fixture failed; inspect the local CLI replay"}, status=503)
+            return self.send({"error": "Original-controller fixture failed; restart the viewer for a fresh source machine",
+                              "sourceStateUnavailable": self.server.factory_faulted}, status=503)

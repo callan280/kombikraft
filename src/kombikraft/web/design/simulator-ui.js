@@ -5,7 +5,7 @@ const signalLabels={turnLeft:'Left indicator',turnRight:'Right indicator',hazard
 const mainSignalKeys=new Set(['turnLeft','turnRight','hazards','lowBeam','highBeam','sideLights','frontFog','rearFog','parkingLightLeft','parkingLightRight','autoHighBeamEnabled','parkingBrake']);
 let lastWalkthroughScenario=null,placementCycling=false,placementNextAt=0,placementEntries=[],originalCcEntries=[];
 const authoredLamps=[],expandedFamilyBindings={};let telltaleRowState=null;
-function placementProjection(state){const original=originalCcEntries.find(m=>m.id===$('original-cc-popup')?.value);if(original)return ClusterOriginalCc.project(state,original);const selected=$('placement-popup')?.value;return ClusterPlacement.project(state,placementEntries.find(m=>m.id===selected));}
+function placementProjection(state){if(window.KombiKraftComputedCcPreview?.snapshot().active)return window.KombiKraftComputedCcPreview.project(state,originalCcEntries);const original=originalCcEntries.find(m=>m.id===$('original-cc-popup')?.value);if(original)return ClusterOriginalCc.project(state,original);const selected=$('placement-popup')?.value;return ClusterPlacement.project(state,placementEntries.find(m=>m.id===selected));}
 function simulationAction(action){try{action();simSnapshot=simulator.snapshot();updateSimulationInputs();draw();updateSimulationReadout();$('sim-feedback').textContent='Local fixture updated.';if(typeof syncFactoryCommands==='function')syncFactoryCommands();}catch(error){$('sim-feedback').textContent=error.message;updateSimulationInputs();}}
 function updateSimulationInputs(){
  if(!simulator)return;const s=simulator.snapshot().signals;
@@ -14,7 +14,7 @@ function updateSimulationInputs(){
  const selectedFuel=Array.from($('sim-fuel').options).some(o=>Number(o.value)===s.fuelPercent);if(!selectedFuel){const option=document.createElement('option');option.value=s.fuelPercent;option.textContent=s.fuelPercent+'%';$('sim-fuel').append(option);}$('sim-fuel').value=s.fuelPercent;
 }
 function updateSimulationReadout(){
- if(!simSnapshot)return;const state=simSnapshot;
+ if(!simSnapshot)return;const state=visibleSimulationState();
  if(state.walkthrough.running&&state.walkthrough.id!==lastWalkthroughScenario){lastWalkthroughScenario=state.walkthrough.id;$('scenario').value=state.walkthrough.id;adoptScenarioReadings();updateSimulationInputs();}
  $('sim-coverage').textContent=(telltaleRowState?.lampTest?'Lamp test icons lit: '+telltaleRowState.litIcons:'Active telltales: '+(telltaleRowState?.activeFamilies??0)+' · Icons lit now: '+(telltaleRowState?.litIcons??0))+' · Fixtures exercised: '+state.coverage.exercised+'/'+state.coverage.total+(state.walkthrough.running?' · Scenario '+(state.walkthrough.index+1)+'/'+state.walkthrough.total:'');
  $('sim-active').textContent='Active: '+(state.indicators.filter(x=>x.id!=='gear').map(x=>x.label).join(' · ')||'No telltales')+(state.popup?' | Popup: '+state.popup.text:'')+(state.queue.length?' | Queued: '+state.queue.map(x=>x.label).join(', '):'')+(missingFactoryIcons.size?' | Factory glyph pending: '+Array.from(missingFactoryIcons).join(', '):'');
@@ -40,12 +40,12 @@ function initialiseSimulation(){
  simSnapshot=simulator.snapshot();
  placementEntries=ClusterSimulation.inventory.filter(m=>m.kind==='fault'||m.kind==='popup');
  for(const m of placementEntries){const o=document.createElement('option');o.value=m.id;o.textContent=m.label;$('placement-popup').append(o);}
- const nextPopup=()=>{$('original-cc-popup').value='';const options=$('placement-popup').options;$('placement-popup').selectedIndex=($('placement-popup').selectedIndex%(options.length-1))+1;draw();};
- $('lamp-test').onchange=()=>draw();$('placement-popup').onchange=()=>{placementCycling=false;$('original-cc-popup').value='';draw();};
- $('original-cc-popup').onchange=()=>{placementCycling=false;$('placement-popup').value='';if(typeof nativeCustomActive==='function'&&nativeCustomActive()){nativeCustomAction([{type:'cc',ccid:Number($('original-cc-popup').value.split(':')[1]||0)}]);return;}draw();};
+ const nextPopup=()=>{window.KombiKraftComputedCcPreview?.release();$('original-cc-popup').value='';const options=$('placement-popup').options;$('placement-popup').selectedIndex=($('placement-popup').selectedIndex%(options.length-1))+1;draw();};
+ $('lamp-test').onchange=()=>draw();$('placement-popup').onchange=()=>{window.KombiKraftComputedCcPreview?.release();placementCycling=false;$('original-cc-popup').value='';draw();};
+ $('original-cc-popup').onchange=()=>{window.KombiKraftComputedCcPreview?.release();placementCycling=false;$('placement-popup').value='';if(typeof nativeCustomActive==='function'&&nativeCustomActive()){nativeCustomAction([{type:'cc',ccid:Number($('original-cc-popup').value.split(':')[1]||0)}]);return;}draw();};
  $('placement-next').onclick=()=>{placementCycling=false;nextPopup();};
  $('placement-run').onclick=()=>{placementCycling=true;placementNextAt=performance.now()+3500;nextPopup();};
- $('placement-stop').onclick=()=>{placementCycling=false;$('placement-popup').value='';$('original-cc-popup').value='';$('lamp-test').checked=false;if(typeof nativeCustomActive==='function'&&nativeCustomActive()){nativeCustomAction([{type:'cc',ccid:0}]);return;}draw();};
+ $('placement-stop').onclick=()=>{window.KombiKraftComputedCcPreview?.release();placementCycling=false;$('placement-popup').value='';$('original-cc-popup').value='';$('lamp-test').checked=false;if(typeof nativeCustomActive==='function'&&nativeCustomActive()){nativeCustomAction([{type:'cc',ccid:0}]);return;}draw();};
  for(const scenario of ClusterSimulation.scenarios){const option=document.createElement('option');option.value=scenario.id;option.textContent=scenario.label;$('scenario').append(option);}
  for(const [key,value] of Object.entries(ClusterSimulation.defaults)){
   if(typeof value!=='boolean')continue;
@@ -143,7 +143,8 @@ function renderSimulatedStatus(c,state){
  $('placement-status').dataset.loadedFactoryIconKeys=JSON.stringify(Object.keys(simulatedIcons).filter(key=>popupIconProfile(key)).sort());
  $('placement-status').textContent='Grouped cluster placement · '+telltaleRowState.litIcons+' mapped icons lit · popup '+$('placement-popup').selectedIndex+'/'+placementEntries.length+'. This is an offline fixture, not verified factory warning control.';
  const message=state.popup;delete $('placement-status').dataset.popupLayout;if(!message)return;
- if(message.originalCcFixture)$('placement-status').textContent='Original BMW CC '+message.ccid+' · source text and icon pairing · custom placement; no live warning input binding.';
+ if(message.originalControllerComputed)$('placement-status').textContent='Original controller CC '+message.ccid+' · computed supplier text/icon/colour · custom composition; offline source input.';
+ else if(message.originalCcFixture)$('placement-status').textContent='Original BMW CC '+message.ccid+' · source text and icon pairing · custom placement; no live warning input binding.';
  const {x,y,width,height}=ClusterLayoutGeometry.popup;const color=simulationColours[message.color]||'#dce6f2';
  // Recovered original CC anchors; exact factory mesh bounds remain under study.
  c.save();FactoryCc.render(c,'popup');
@@ -151,7 +152,7 @@ function renderSimulatedStatus(c,state){
  drawPopupPictogram(c,{...message,iconKey:popupIconKey},layout.icon,color,iconProfile);
  c.fillStyle=message.originalCcFixture?'rgb('+message.textRgb.join(',')+')':'#f1f4f8';c.textAlign='left';c.textBaseline='alphabetic';
  for(const row of layout.lines)c.fillText(row.text,row.x,row.baseline);
- $('placement-status').dataset.popupLayout=JSON.stringify({id:message.id,originalCcFixture:message.originalCcFixture===true,sourceTextLines:message.originalCcFixture?message.originalLines:undefined,iconAvailable:!!iconProfile,...layout});
+ $('placement-status').dataset.popupLayout=JSON.stringify({id:message.id,originalCcFixture:message.originalCcFixture===true,originalControllerComputed:message.originalControllerComputed===true,sourceTextLines:message.originalCcFixture?message.originalLines:undefined,iconAvailable:!!iconProfile,...layout});
 
  c.restore();
 }

@@ -36,3 +36,14 @@ claimed. Those remain prerequisites for a replacement-cluster live test.
 The subsequent 0.1.0a3 source correction separates inclusive record length
 from payload length in the F97 structural reader. Synthetic adjacent-record
 regressions and the same 210 firmware-backed cases cover that correction.
+
+The0.1.0a6 source update adds a versioned correction for uniform string-pool
+origin and native C-string lookup. The earlier66 numeric uniform outputs stay
+byte-identical, but V1's `nativeName+8` interpretation did not prove a genuine
+name lookup. V2 uses the correct caller pool origin, calls the original lookup
+with a separate query string, and adds four multi-name/origin regressions for214
+total executions. [Details and retained historical scope](f97-uniform-names-v2.md).
+
+The same update connects opt-in original Check Control output to the existing
+custom simulator and places emulation in a dedicated process/main thread. It
+does not change the MGU app's activation capabilities or vehicle deployment gates.

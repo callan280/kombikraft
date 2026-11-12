@@ -112,20 +112,23 @@ def run(bank, scene, nor):
         if hashlib.sha256(data).hexdigest() != PROFILE[role]:
             raise ValueError(f"{role}: unsupported source hash")
     pool,rows = scene_bindings(bank,scene,nor)
-    from ._uniform_loader import observe as uniforms
+    from ._uniform_loader_v2 import observe as uniforms, name_regressions
     from ._asset_identifier import observe as identifiers
     from ._texture_cache import observe as textures
     uniform_cases = [uniforms(bank,scene,nor,pool,row,fill,value)
         for row in rows for fill in (0,0xa5) for value in (1,0,0.375)]
+    uniform_name_cases = name_regressions(bank,scene,nor,pool)
     identifier_cases = [identifiers(bank,scene,t,fill)
         for row in rows for t in row['textures'] for fill in (0,0xa5)]
     texture_cases = [textures(bank,scene,nor,pool,t,fill,flag)
         for row in rows for t in row['textures'] for fill in (0,0xa5) for flag in (0,1)]
-    return {'schema':'kombikraft-f97-material-checks-v1','profile':PROFILE['id'],
+    return {'schema':'kombikraft-f97-material-checks-v2','profile':PROFILE['id'],
         'passed':True,'inputSha256':{role:hashlib.sha256(data).hexdigest()
             for role,data in (('bank',bank),('scene',scene),('nor',nor))},
-        'cases':{'uniforms':uniform_cases,'identifiers':identifier_cases,'textureCacheBoundary':texture_cases},
-        'counts':{'uniforms':len(uniform_cases),'identifiers':len(identifier_cases),'textureCacheBoundary':len(texture_cases)},
+        'cases':{'uniforms':uniform_cases,'uniformNameRegressions':uniform_name_cases,'identifiers':identifier_cases,'textureCacheBoundary':texture_cases},
+        'counts':{'uniforms':len(uniform_cases),'uniformNameRegressions':len(uniform_name_cases),'identifiers':len(identifier_cases),'textureCacheBoundary':len(texture_cases)},
         'limits':{'hostAllocationAndFreeAdapters':True,'providerVtableCallerFixture':True,
-            'referenceOriginAdjustment':-12,'wholeSceneLoaded':False,'cacheFactoryExecuted':False,
+            'referenceOriginAdjustment':-12,'uniformStringPoolOriginAdjustment':8,
+            'originalUniformNameLookupExecuted':True,'historicalRawPoolNameInferenceSuperseded':True,
+            'wholeSceneLoaded':False,'cacheFactoryExecuted':False,
             'graphicsExecuted':False,'vehicleCompatibilityVerified':False,'installationAllowed':False}}

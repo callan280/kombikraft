@@ -6,7 +6,7 @@
 | Factory graphics | The reviewed visual library and viewer pack have hashes and separate attribution. Vehicle applicability and material interpretation are recorded independently. |
 | Original code execution | Public matching-bank controller fixtures and newer original material-reader/registration tools are available. Each admits a specific source profile and declares its host adapters. Neither is a complete firmware loader. |
 | BC/indicator inputs | Bounded original receiver-to-event fixtures have passed. Physical bus sender and current-car route remain unverified. |
-| Check Control inputs | The optional 14-bank command session runs the original receiver, registered supplier and widget consumer alongside BC/lamp fixtures. It exposes selected source text/icon/colour data. Full warning arbitration, physical transport and factory graphics remain unverified. |
+| Check Control inputs | The optional 14-bank backend runs the original receiver, registered supplier and widget consumer alongside BC/lamp fixtures. Opt-in simulator controls expose computed output and admit16 reviewed warnings/clear to the existing custom canvas. Full warning arbitration, physical transport and factory graphics remain unverified. |
 | Native custom scene | Private M Round and Touring rendering, selected decoded-input replay, and save/reload experiments have passed. The active private M Round preview also has the 40px strip. The native runtime is not bundled; production identity, display ownership and warning arbitration are not established. |
 | Factory startup | Partial. Original SEM startup and source-named operating-state fixtures now reach factory calm transitions and gauge-controller callbacks. Other activation gates remain absent; those callbacks alone do not show an active custom scene. The all-state authoring frame is not a normal operating cluster. |
 | Whole-system emulation | Not demonstrated. GSS application/graphics code is x86-64 with INTEGRITY; KSS companion reset code is ARM. Board devices/reset chain remain unresolved. |
@@ -33,7 +33,7 @@ current-car signal correlation, and a reversible deployment/recovery route.
 The optional `python -m kombikraft.research.f97.extended` command adds228
 original-code image/attachment/controller fixtures and a40-widget structural
 inventory for the exact older-F97 profile. All results match the reviewed local
-receipts. Added in0.1.0a4; the older210-case command is unchanged.
+receipts. This extended command was added in0.1.0a4 and retains its228 cases.
 These experiments do not change the viewer, Store app or deployment gates.
 
 Source0.1.0a5 adds an optional original Check Control backend and local JSON-lines
@@ -46,9 +46,24 @@ frames or confirmed current-car coding. The new session does not render graphics
 change the viewer or activate MGU/KOMBI features. See the
 [command guide](../src/kombikraft/factory/README.md#optional-check-control-command-fixture).
 
+Source0.1.0a6 adds explicit `serve --check-control` startup and an
+original-controller panel in the existing simulator. Its portable asset contract
+checks the selected source text, descriptors, palette and verified local visuals
+before custom canvas composition. Unreviewed/collection output is reported as
+unsupported. BC/lamp buttons still compute original events only; qualified BC
+selection requests are handled through the HU in the original source, and factory
+page order has not been established. No vehicle or native-runtime control route
+is introduced.
+
+The original material command now emits its V2 report with214 executions. It
+corrects the caller's uniform string-pool origin, verifies genuine native name
+lookup, and adds four multi-name/origin regressions. The66 earlier numeric
+uniform results remain byte-identical; V1's native-name interpretation is
+superseded. See the [versioned correction](f97-uniform-names-v2.md).
+
 - Original older-F97 material constructors/readers now load the named opacity
   parameter, parse Bitmap identifiers and reach the original image-cache call
-  boundary. The public command runs 210 scoped cases with exact local inputs.
+  boundary. The current public command runs214 scoped cases with exact local inputs.
   It does not fetch a complete scene or execute the original GPU program.
 - Source work joins factory calm selection to original gauge callbacks. A
   concrete MGU SOME/IP proxy has operation51 and a source registration path.

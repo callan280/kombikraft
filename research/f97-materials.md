@@ -41,11 +41,15 @@ step. The [CE51 reader](../tools/extract_ce51.py) can extract the `ki_3d_high`
 scene payload from the admitted NOR container. Never use the table target
 field or successful decompression as proof of a runtime address or zero-fill.
 
-## What the 210 cases establish
+## What the current214 executions establish
 
 - 66 cases execute the original UniformSetter constructor and complete record
   reader for eleven appearances, two heap fills and three input values. Original
   list/callback management and memcpy run; the source default is `oparam0=1.0`.
+  V2 also verifies the real native C-string lookup with a distinct query pointer.
+- 4 uniform-name regressions exercise one genuine four-entry ECO record under
+  both heap fills: the correct caller origin preserves distinct source names
+  and values; the raw-origin cases are retained as rejected caller witnesses.
 - 48 cases run original Bitmap identifier parsing, type/name resolution and
   release. Each source path resolves as Bitmap type7 and the exact resource name.
 - 96 cases run the original Texture constructor and reader prefix, through an
@@ -78,7 +82,9 @@ installation. The normal viewer retains its separately tested layout renderer.
 ## Optional image, controller and widget suites
 
 New source-only experiments are available through a separate command. The
-original210-case command above is unchanged. Inspect the extended hashes and
+original material command above has a separately versioned214-case report. Its
+native uniform-name correction is documented [here](../docs/f97-uniform-names-v2.md).
+The extended suites remain unchanged. Inspect the extended hashes and
 suite names without Unicorn or firmware:
 
 ```sh

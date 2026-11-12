@@ -29,6 +29,12 @@ current-car signal correlation, and a reversible deployment/recovery route.
 
 ## Research snapshot: 12 November 2026
 
+The optional `python -m kombikraft.research.f97.extended` command adds228
+original-code image/attachment/controller fixtures and a40-widget structural
+inventory for the exact older-F97 profile. All results match the reviewed local
+receipts. This source update is0.1.0a4; the older210-case command is unchanged.
+These experiments do not change the viewer, Store app or deployment gates.
+
 - Original older-F97 material constructors/readers now load the named opacity
   parameter, parse Bitmap identifiers and reach the original image-cache call
   boundary. The public command runs 210 scoped cases with exact local inputs.

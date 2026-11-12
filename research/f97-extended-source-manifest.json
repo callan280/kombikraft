@@ -1,0 +1,54 @@
+{
+  "schema": "authored-f97-extended-observer-export-v1",
+  "files": [
+    {
+      "source": "probe_bitmap_image_sampling.py",
+      "destination": "_image_sampling.py",
+      "privateSourceSha256": "6c5811d89c0c4a9e59ab4a994ec3ac8e9e90722cde405fbe1680e5da16980482",
+      "exportSha256": "ba99e99e632ec9f45a0cbfe87603340c918517e91c15ad03fdcddb612b40e176",
+      "unchangedFunctions": [
+        {
+          "name": "observe",
+          "bodySha256": "f835ab752d6668d42da2dce3e49f780f98e75f622210c6fe5f2588896cf06500"
+        }
+      ]
+    },
+    {
+      "source": "probe_loaded_bitmap_image.py",
+      "destination": "_loaded_image.py",
+      "privateSourceSha256": "687f31b293c1755db2d6bcca336c6a6e9c4ab8256fee381a1f4a9ba7f53cc7be",
+      "exportSha256": "21413ad724df61964be352eb7775537d64dc71275a2aa94627e45247bd8c0c71",
+      "unchangedFunctions": [
+        {
+          "name": "observe",
+          "bodySha256": "e99419fec2ea60f5b6e24a1d6b642e2ba71ba6e7dbff568cd26117bc1e309111"
+        }
+      ]
+    },
+    {
+      "source": "probe_speedometer_parameter_inputs.py",
+      "destination": "_speedometer_inputs.py",
+      "privateSourceSha256": "7248f2de0b5baf9edb0981e9aee3ce67c4c1d2d55ea7d243fcffc6bd538a1776",
+      "exportSha256": "77c7946ee687eb87e7483237a637bb33d86615bfb9b94c902189399eb4199654",
+      "unchangedFunctions": [
+        {
+          "name": "observe",
+          "bodySha256": "d9be62b97eea134327a66e2e2a6fbfa87b0b68b082a80f61ce445882217873f8"
+        }
+      ]
+    },
+    {
+      "source": "extract_widget_bindings.py",
+      "destination": "_widget_bindings.py",
+      "privateSourceSha256": "bf4ae6ce84a5b3aca4e12e84c276997584b5f72c93b087a510276f2537124eb2",
+      "exportSha256": "f0480bf99f9834d9ea33812ab5335b787918befd2f31fe3d945ac89c36674dd0",
+      "unchangedFunctions": [
+        {
+          "name": "extract",
+          "bodySha256": "85558d454db540b4add46b061beacd374ef119c8823f54286b8682af9e07c48e"
+        }
+      ]
+    }
+  ],
+  "limits": "Observer bodies are original authored harnesses, not OEM source or binary bytes. Private mains/paths are excluded."
+}

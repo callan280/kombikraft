@@ -8,6 +8,7 @@ receipts and runtime images stay outside Git.
 | Tool | Input and tested scope | Important boundary |
 | --- | --- | --- |
 | [F97 material readers](f97-materials.md) | Exact older-F97 source bank, scene and NOR; 66 parameter-reader, 48 identifier-parser and 96 image-cache-boundary cases | Declared heap/provider inputs; complete image fetch, scene loading and original GPU execution remain false |
+| [F97 extended image/controller/widget suites](f97-materials.md#optional-image-controller-and-widget-suites) | Optional bank14 and19 decoded bitmap inputs;228 additional original-code fixtures plus40 structural widget records | Fresh globals/caller state are explicit; no provider/cache boot, widget lifecycle, CAN mapping, shader application or original pixels |
 | [MGU proxy registration](proxy-registration/README.md) | Exact x86-64 library; original loader callbacks with import capture adapters | Actual registries, backend/network dispatch and custom layout activation remain unproved |
 | [DMA address geometry](kss-dma/README.md) | Explicit register/address values; authored synthetic tests | No payload access, transfer, interrupt or device emulation |
 | [QEMU exact-memory guard](gss-guard/README.md) | User-owned QEMU build and reviewed input layout; authored reset bridge | Explicit architectural fixture; no OEM loader, complete board model or MSR admission in this stable export |

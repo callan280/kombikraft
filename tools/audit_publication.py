@@ -51,7 +51,7 @@ def main():
         if data.startswith((b'\x7fELF',b'\xcf\xfa\xed\xfe',b'QFI\xfb',b'MZ')):failures.append((name,'executable/disk image'))
         if file.suffix in ('.img','.qcow2','.ramscene','.ramres','.ncd','.pem','.key'):
             failures.append((name,'unreviewed runtime/vehicle payload extension'))
-        is_text=file.suffix in TEXT or file.name.startswith(('LICENSE','NOTICE','COPYING')) or file.name=='.gitignore'
+        is_text=file.suffix in TEXT or file.name.startswith(('LICENSE','NOTICE','COPYING')) or file.name in ('.gitignore','.gitattributes')
         if is_text:
             try:data.decode('utf-8')
             except UnicodeError:failures.append((name,'invalid text encoding'))

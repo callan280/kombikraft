@@ -1,13 +1,18 @@
 {
   "schema": "kombikraft-expanded-publication-v1",
   "passed": true,
-  "fileCount": 17462,
-  "bytes": 577902833,
+  "fileCount": 17463,
+  "bytes": 577903146,
   "manifestAdmittedInputs": 17279,
   "visualResourcesSeparatelyAttributed": true,
   "fullFirmwareOrRuntimeImagesIncluded": false,
   "vehicleValidatedRelease": false,
   "files": [
+    {
+      "file": ".gitattributes",
+      "bytes": 292,
+      "sha256": "b080f72f9c1e0a2292907e8eaeb2034f27ba2fe7ad0c665d0cff69bb7183df72"
+    },
     {
       "file": ".github/workflows/check.yml",
       "bytes": 843,
@@ -87300,8 +87305,8 @@
     },
     {
       "file": "tools/audit_publication.py",
-      "bytes": 5081,
-      "sha256": "c2e3654a12f9a490d04f96968c73dc56aabfd7b8ef43d29ef37560dd63e4023e"
+      "bytes": 5102,
+      "sha256": "075d2512cf7eece088af4cac23f909231050d97c7d1f7e7794a378a1751a6c20"
     },
     {
       "file": "tools/export_graphics_library.py",

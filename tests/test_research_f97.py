@@ -7,7 +7,7 @@ import struct
 import tempfile
 import unittest
 from unittest.mock import patch
-from kombikraft.research.f97 import PROFILE,read_input,run
+from kombikraft.research.f97 import PROFILE,read_input,run,typed_record
 from kombikraft.research.f97.__main__ import main
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -16,6 +16,19 @@ norboot=importlib.util.module_from_spec(spec);spec.loader.exec_module(norboot)
 
 
 class MaterialAdmission(unittest.TestCase):
+    def test_record_extent_stops_at_next_header(self):
+        record=struct.pack('<4I',16,0xa46,1,123)
+        scene=record+struct.pack('<4I',16,0xa46,2,456)
+        actual=typed_record(scene,12,0xa46,{0xa46:'Texture'},lambda n:str(n))
+        self.assertEqual((actual['endOffset'],actual['payloadBytes'],actual['recordBytes']),(16,4,16))
+        following=typed_record(scene,28,0xa46,{0xa46:'Texture'},lambda n:str(n))
+        self.assertEqual(following['endOffset'],len(scene))
+
+    def test_record_length_includes_header_and_rejects_truncation(self):
+        for size in (8,32):
+            with self.assertRaises(ValueError):
+                typed_record(struct.pack('<4I',size,0xa46,1,123),12,0xa46,{0xa46:'Texture'},str)
+
     def test_profile_does_not_claim_arbitrary_firmware_support(self):
         self.assertEqual(set(PROFILE),{'id','bank','scene','nor'})
         for role in ('bank','scene','nor'):self.assertEqual(len(PROFILE[role]),64)

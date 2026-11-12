@@ -2,7 +2,7 @@
   "schema": "kombikraft-expanded-publication-v1",
   "passed": true,
   "fileCount": 17494,
-  "bytes": 578024003,
+  "bytes": 578025646,
   "manifestAdmittedInputs": 17279,
   "visualResourcesSeparatelyAttributed": true,
   "fullFirmwareOrRuntimeImagesIncluded": false,
@@ -84510,8 +84510,8 @@
     },
     {
       "file": "docs/research-update-2026-11-12.md",
-      "bytes": 1928,
-      "sha256": "768b238d3c37ab623b95a3858adcd6fd1981c0c3983730a0a68ee967aeebedd2"
+      "bytes": 2154,
+      "sha256": "310c76651c554f44be426da6ce1306bd596146469343e0c798b0a28a8e9ea8b8"
     },
     {
       "file": "docs/status.md",
@@ -87076,7 +87076,7 @@
     {
       "file": "pyproject.toml",
       "bytes": 891,
-      "sha256": "bcb5493cc740b5b1f64b26d6dfa1a4dc1625cac7436f3becde6b64c420442fe3"
+      "sha256": "c8d0e0f178f3eb6e7f582aa5b89fe822e973bab37e32398ab52835d1acf2de5f"
     },
     {
       "file": "research/README.md",
@@ -87085,8 +87085,8 @@
     },
     {
       "file": "research/f97-materials.md",
-      "bytes": 3395,
-      "sha256": "6e65f7077ef5cb6d4ce0377caa175f5993c2256878941438fa5444a4b3df352b"
+      "bytes": 3769,
+      "sha256": "ef683ade67b9eb6790c3fb87c945bf5785e8648eeec3cdeb51d4f75386aa3b90"
     },
     {
       "file": "research/gss-guard/.gitignore",
@@ -87255,8 +87255,8 @@
     },
     {
       "file": "src/kombikraft/research/f97/__init__.py",
-      "bytes": 6327,
-      "sha256": "abaac6a8beb7af7facc45a399c88782fda683c1f73259d447889fb9b1f874b21"
+      "bytes": 6628,
+      "sha256": "c86605d0e4a6027357114bd7214ec02c62e451b7947aa17596c964373b579b57"
     },
     {
       "file": "src/kombikraft/research/f97/__main__.py",
@@ -87445,8 +87445,8 @@
     },
     {
       "file": "tests/test_research_f97.py",
-      "bytes": 3926,
-      "sha256": "337e73e299c6d49f91af5b8ce7e9a0a8db2a011db8369ad49b092ed6b64c49d2"
+      "bytes": 4668,
+      "sha256": "8444a82b81a619ce408fe79a86575db1d7af52e2ef2365f2783e070b7e801bb2"
     },
     {
       "file": "tests/test_server.py",

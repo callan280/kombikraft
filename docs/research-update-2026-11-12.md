@@ -32,3 +32,7 @@ source update. The included visual library keeps its existing separate terms.
 No whole-system boot, current-car CAN compatibility, complete factory warning
 coverage, custom native activation or validated reversible ECU deployment is
 claimed. Those remain prerequisites for a replacement-cluster live test.
+
+The subsequent 0.1.0a3 source correction separates inclusive record length
+from payload length in the F97 structural reader. Synthetic adjacent-record
+regressions and the same 210 firmware-backed cases cover that correction.

@@ -65,6 +65,12 @@ payload start and selected payload coordinates instead of typed headers. The
 published tool uses the corrected origin. Original linked analysis coordinates
 do not establish a physical target mapping.
 
+The record length word also includes its 12-byte header. Adjacent Texture
+records provide thirteen exact source boundaries confirming this convention.
+The structural reader reports `recordBytes` separately from `payloadBytes`,
+and stops each record before the following header. This metadata correction
+does not alter the source headers passed to the original-code probes.
+
 These checks do not boot firmware, initialize the real heap/kernel, load the
 complete scene, execute the original GPU code, change the viewer or permit
 installation. The normal viewer retains its separately tested layout renderer.

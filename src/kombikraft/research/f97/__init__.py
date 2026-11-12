@@ -12,6 +12,19 @@ PROFILE = {
 PROGRAM = "Global_Import#Global#fx_mdm_ring_msportShaderProgram"
 
 
+def typed_record(scene, payload, kind, classes, name):
+    """Read a record whose length word includes its twelve-byte header."""
+    header=payload-12
+    if not 0 <= header <= len(scene)-12:
+        raise ValueError("Typed source header outside its buffer")
+    size,actual_kind,name_ref=struct.unpack_from('<3I',scene,header)
+    if actual_kind!=kind or size<12 or header+size>len(scene):
+        raise ValueError("Invalid typed source record")
+    return {'headerOffset':header,'payloadOffset':payload,'endOffset':header+size,
+            'recordBytes':size,'payloadBytes':size-12,'classId':kind,
+            'className':classes[kind],'name':name(name_ref)}
+
+
 def read_input(path, role):
     """Admit the exact source profile before importing or executing Unicorn."""
     path = Path(path)
@@ -55,13 +68,7 @@ def scene_bindings(bank, scene, nor):
             raise ValueError("Original class/name table mismatch")
 
     def record(payload, kind):
-        header = payload-12
-        size = word(scene, header)
-        if word(scene, header+4) != kind or size <= 0 or payload+size > len(scene):
-            raise ValueError("Invalid typed source record")
-        return {'headerOffset':header,'payloadOffset':payload,'endOffset':payload+size,
-                'payloadBytes':size,'classId':kind,'className':classes[kind],
-                'name':name(word(scene,header+8))}
+        return typed_record(scene,payload,kind,classes,name)
 
     rows = []
     for header in range(0,len(scene)-40,4):

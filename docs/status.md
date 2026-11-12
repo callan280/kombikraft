@@ -61,6 +61,20 @@ lookup, and adds four multi-name/origin regressions. The66 earlier numeric
 uniform results remain byte-identical; V1's native-name interpretation is
 superseded. See the [versioned correction](f97-uniform-names-v2.md).
 
+Source 0.1.0a7 adds two contributor experiments:
+
+- The [original node/camera command](f97-source-scene.md) constructs all 492
+  recovered older-F97 nodes in two heap fills. Original attachments, property
+  suffixes, inherited gates/factors and camera matrices are observed. The source
+  traces and matrix bytes agree across fills; this is not a full scene loader or
+  a rendered normal factory cluster.
+- The [Check Control inventory command](original-warning-inventory.md) runs
+  recovered IDs through the existing original backend and records actual select
+  and clear output. It preserves text templates separately from original runtime
+  placeholder output. The simulator's 16-popup graphics contract is unchanged.
+
+These additions do not enable any vehicle or MGU/KOMBI deployment route.
+
 - Original older-F97 material constructors/readers now load the named opacity
   parameter, parse Bitmap identifiers and reach the original image-cache call
   boundary. The current public command runs214 scoped cases with exact local inputs.

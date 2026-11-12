@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kombikraft"
-version = "0.1.0a6"
+version = "0.1.0a7"
 description = "Offline BMW cluster research, source-graphics previews and original-controller fixtures"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -19,6 +19,9 @@ native = ["Pillow==13.0.0"]
 
 [project.scripts]
 kombikraft = "kombikraft.cli:main"
+
+[tool.setuptools]
+license-files = ["LICENSE", "ASSET-NOTICE.md"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

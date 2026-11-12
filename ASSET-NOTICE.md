@@ -6,7 +6,10 @@ remain with the respective rights holders, including BMW and its suppliers.
 KombiKraft does not claim authorship of these resources.
 
 The MIT licence for our original tooling does **not** apply to `assets/` or
-the original graphics-derived tables in `native/data/`. Inclusion here does
+the original graphics-derived tables in `native/data/`, or the original BMW
+warning text templates in `src/kombikraft/factory/cc_inventory_profile.json`.
+The authored catalogue reader and execution tooling remain MIT-licensed.
+Inclusion here does
 not create an additional patent, trademark, commercial-use or sublicensing
 grant. Consult the applicable permission and original terms before reuse
 beyond this project. The maintainer is the contact for permission details.

@@ -1,0 +1,43 @@
+{
+  "schema": "kombikraft-f97-scene-source-export-v1",
+  "files": [
+    {
+      "destination": "scene.py",
+      "exportSha256": "5e8c85a9f34b3fcfea68b19f8b7a31612bf013733d7d820c60e61bf31ba53bac",
+      "authoredSourceOnly": true,
+      "firmwareBytesEmbedded": false
+    },
+    {
+      "destination": "_scene_profile.py",
+      "exportSha256": "9480f4ef6187d37fff647b4ca101c839809a61e80176312a2c8aa4b8945e1a9a",
+      "authoredSourceOnly": true,
+      "firmwareBytesEmbedded": false
+    },
+    {
+      "destination": "_scene_tree.py",
+      "exportSha256": "6a2222301d0452fee7076027b8d27499f8b832ef0da75a90de6c997aa22fbea2",
+      "authoredSourceOnly": true,
+      "firmwareBytesEmbedded": false,
+      "derivedFromCompletedObserver": "probe_source_policy.py",
+      "completedObserverSha256": "f7b67ee770b7ff33662aa9173d93248167ec2d3bfdce0c0f61a9d8429fa9a150"
+    },
+    {
+      "destination": "_scene_cameras.py",
+      "exportSha256": "58aacae2b00e2f1db64572086553221ce101a7abaad00cbdfcb51dfecf89a8ce",
+      "authoredSourceOnly": true,
+      "firmwareBytesEmbedded": false,
+      "derivedFromCompletedObserver": "probe_projection.py",
+      "completedObserverSha256": "9008cce9ae006010440ea06613f49aafa3cbf77acb4c9baf5f9dac3b387787d7"
+    }
+  ],
+  "dependencies": [
+    "Python>=3.11",
+    "optionalunicorn==2.1.4",
+    "fourmatchinglocallysuppliedsourceinputs"
+  ],
+  "originalFirmwareRedistributed": false,
+  "privateWorkspacePathsIncluded": false,
+  "normalFactoryStateProved": false,
+  "vehicleCompatibilityVerified": false,
+  "installationAllowed": false
+}

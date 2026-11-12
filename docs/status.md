@@ -6,6 +6,7 @@
 | Factory graphics | The reviewed visual library and viewer pack have hashes and separate attribution. Vehicle applicability and material interpretation are recorded independently. |
 | Original code execution | Public matching-bank controller fixtures and newer original material-reader/registration tools are available. Each admits a specific source profile and declares its host adapters. Neither is a complete firmware loader. |
 | BC/indicator inputs | Bounded original receiver-to-event fixtures have passed. Physical bus sender and current-car route remain unverified. |
+| Check Control inputs | The optional 14-bank command session runs the original receiver, registered supplier and widget consumer alongside BC/lamp fixtures. It exposes selected source text/icon/colour data. Full warning arbitration, physical transport and factory graphics remain unverified. |
 | Native custom scene | Private M Round and Touring rendering, selected decoded-input replay, and save/reload experiments have passed. The active private M Round preview also has the 40px strip. The native runtime is not bundled; production identity, display ownership and warning arbitration are not established. |
 | Factory startup | Partial. Original SEM startup and source-named operating-state fixtures now reach factory calm transitions and gauge-controller callbacks. Other activation gates remain absent; those callbacks alone do not show an active custom scene. The all-state authoring frame is not a normal operating cluster. |
 | Whole-system emulation | Not demonstrated. GSS application/graphics code is x86-64 with INTEGRITY; KSS companion reset code is ARM. Board devices/reset chain remain unresolved. |
@@ -32,8 +33,18 @@ current-car signal correlation, and a reversible deployment/recovery route.
 The optional `python -m kombikraft.research.f97.extended` command adds228
 original-code image/attachment/controller fixtures and a40-widget structural
 inventory for the exact older-F97 profile. All results match the reviewed local
-receipts. This source update is0.1.0a4; the older210-case command is unchanged.
+receipts. Added in0.1.0a4; the older210-case command is unchanged.
 These experiments do not change the viewer, Store app or deployment gates.
+
+Source0.1.0a5 adds an optional original Check Control backend and local JSON-lines
+session. Its exact 14-bank import extends the supported GSS profile; no firmware
+bytes are distributed. Interleaved source checks cover warning selection/clear,
+BC/lamp transitions, duplicate requests and counter/checksum-only refreshes.
+Source variant1/bank1 coding defaults are retained; language2 is an explicit
+reviewed source input fixture. These are internal source fixtures, not raw CAN
+frames or confirmed current-car coding. The new session does not render graphics,
+change the viewer or activate MGU/KOMBI features. See the
+[command guide](../src/kombikraft/factory/README.md#optional-check-control-command-fixture).
 
 - Original older-F97 material constructors/readers now load the named opacity
   parameter, parse Bitmap identifiers and reach the original image-cache call

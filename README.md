@@ -78,6 +78,11 @@ The native renderer and controller loader are separate runtimes; neither
 demonstrates a whole-system KOMBI boot. The optional Python `native` extra
 supplies image utilities, not QEMU or a BMW operating system.
 
+An [optional Check Control command session](src/kombikraft/factory/README.md#optional-check-control-command-fixture)
+executes the original warning supplier/consumer alongside BC and lamp fixtures.
+It needs a separate 14-bank local import and reports source text, icon references
+and colours. It has no vehicle or graphics endpoint.
+
 ## Contribute
 
 Help with matching-firmware extraction, original startup, warning/signal routes,
@@ -85,10 +90,11 @@ native composition, MGU integration, layouts and reproducible tests. See
 [status](docs/status.md), [roadmap](ROADMAP.md) and [contributing](CONTRIBUTING.md).
 Keep unknown signals unavailable and document failure cases alongside success.
 
-The latest source update adds reproducible research commands; it does not change
-the MGU Store app's activation capabilities. The viewer/layout sources were
-already current. See the [November research update](docs/research-update-2026-11-12.md)
-for the tested scope and remaining gaps.
+Current source includes reproducible research commands and an optional original
+Check Control session. The MGU Store app's activation capabilities remain
+experimental. See [status](docs/status.md) and the
+[November research update](docs/research-update-2026-11-12.md) for tested scope
+and remaining gaps.
 
 MIT covers our original code only. Upstream components keep their licences,
 and visual resources have separate permission/attribution. See

@@ -1,8 +1,8 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.ClusterLayoutGeometry=factory();})(typeof globalThis==='object'?globalThis:this,function(){
  'use strict';
- const round={left:{x:330,y:350,radius:264},right:{x:1590,y:350,radius:264},status:{x:0,y:672,width:1920,height:48},fuel:{x:150,y:690,width:360,height:30},gear:{x:1550,y:444,width:80,height:44},speedLimit:{x:41+78/92,y:720-89*78/92,width:89*78/92,height:89*78/92},branding:{x:1460,y:231,width:260,height:74}};
+ const round={left:{x:330,y:350,radius:264},right:{x:1590,y:350,radius:264},status:{x:0,y:680,width:1920,height:40},fuel:{x:150,y:690,width:360,height:30},gear:{x:1550,y:444,width:80,height:44},speedLimit:{x:41+78/92,y:720-89*78/92,width:89*78/92,height:89*78/92},branding:{x:1460,y:231,width:260,height:74}};
  const popup={x:650,y:520,width:650,height:200};
- const profiles={'round':round,'flat-base':{left:{x:330,y:375,radius:330},right:{x:1590,y:375,radius:330},clipY:672,reservedFooter:popup}};
+ const profiles={'round':round,'flat-base':{left:{x:330,y:375,radius:330},right:{x:1590,y:375,radius:330},clipY:round.status.y,reservedFooter:popup}};
  const touring={speed:{x:60,y:576,width:310,height:125},fuel:round.fuel,tacho:{x:1340,y:567,width:420,height:90},gear:{x:375,y:609,width:60,height:32},mode:{x:1320,y:701,width:142,height:19},speedLimit:round.speedLimit};
  const intersects=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
  const dialBounds=d=>({x:d.x-d.radius,y:d.y-d.radius,width:d.radius*2,height:d.radius*2});

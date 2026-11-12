@@ -14,7 +14,9 @@ and can be tested through a validated, reversible vehicle route.
 - [ ] Validate current-car indicated speed, RPM, temperatures, gear, lighting, traction and warning routes; internal IDs alone are insufficient.
 - [ ] Establish real BC page availability/order and navigation ownership/feed.
 - [ ] Confirm the physical F40 display mask, source fonts, warning positions and both custom layouts on a parked test.
-- [ ] Prove an accepted replacement-scene route, warning ownership, fresh independent backups, rollback and recovery before enabling installation.
+- [ ] Find and validate the MGU HMI entry method and its bridge to KOMBI factory scene ownership; MGU app/SSH access and a separately published scene do not provide that bridge.
+- [ ] Find and validate a KOMBI entry method for an edited factory-owned scene, including programming/asset signatures, cached bytes and controller binding. See [current findings](docs/f40-factory-theme-entry-method.md).
+- [ ] Prove warning ownership, fresh independent backups, rollback and recovery before enabling installation.
 
 Offline fixtures and private experiments contribute evidence to these tasks;
 they do not automatically complete the vehicle requirements.

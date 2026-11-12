@@ -10,6 +10,7 @@
 | Native custom scene | Private M Round and Touring rendering, selected decoded-input replay, and save/reload experiments have passed. The active private M Round preview also has the 40px strip. The native runtime is not bundled; production identity, display ownership and warning arbitration are not established. |
 | Factory startup | Partial. Original SEM startup and source-named operating-state fixtures now reach factory calm transitions and gauge-controller callbacks. Other activation gates remain absent; those callbacks alone do not show an active custom scene. The all-state authoring frame is not a normal operating cluster. |
 | Whole-system emulation | Not demonstrated. GSS application/graphics code is x86-64 with INTEGRITY; KSS companion reset code is ARM. Board devices/reset chain remain unresolved. |
+| Factory theme entry method | Unresolved. The MGU companion app saves preferences, while its cluster renderer can publish a separately owned scene. Neither reaches the KOMBI's original owner or proves acceptance of an edited signed asset. See [F40 findings](f40-factory-theme-entry-method.md). |
 | Car deployment | Disabled. Requires current identity, passive signal validation, complete warning behaviour, fresh backups and a proven reversible route. |
 
 The source archive is a developer preview, not replacement KOMBI firmware.

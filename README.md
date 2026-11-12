@@ -51,6 +51,10 @@ Installing an app or saving a preference does not itself inject a factory menu
 or activate a KOMBI skin. These paths remain experimental and need hardware
 validation.
 
+The [F40 factory theme entry-method findings](docs/f40-factory-theme-entry-method.md)
+describe why the parked visual preview, MGU access and existing signed BMW
+themes have not yet become a factory-bound custom layout.
+
 ## Work with your own firmware
 
 Read [firmware setup](docs/firmware-setup.md) first. Record actual MGU/KOMBI

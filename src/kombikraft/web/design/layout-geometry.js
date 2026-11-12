@@ -1,9 +1,9 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.ClusterLayoutGeometry=factory();})(typeof globalThis==='object'?globalThis:this,function(){
  'use strict';
- const round={left:{x:330,y:350,radius:264},right:{x:1590,y:350,radius:264},status:{x:0,y:624,width:1920,height:96},fuel:{x:150,y:651,width:360,height:44},gear:{x:1550,y:444,width:80,height:44},speedLimit:{x:41,y:637,width:78,height:78},branding:{x:1460,y:231,width:260,height:74}};
+ const round={left:{x:330,y:350,radius:264},right:{x:1590,y:350,radius:264},status:{x:0,y:672,width:1920,height:48},fuel:{x:150,y:690,width:360,height:30},gear:{x:1550,y:444,width:80,height:44},speedLimit:{x:41+78/92,y:720-89*78/92,width:89*78/92,height:89*78/92},branding:{x:1460,y:231,width:260,height:74}};
  const popup={x:650,y:520,width:650,height:200};
- const profiles={'round':round,'flat-base':{left:{x:330,y:375,radius:330},right:{x:1590,y:375,radius:330},clipY:624,reservedFooter:popup}};
- const touring={speed:{x:60,y:576,width:310,height:125},fuel:{x:150,y:651,width:360,height:44},tacho:{x:1340,y:567,width:420,height:90},gear:{x:375,y:609,width:60,height:32},mode:{x:354,y:663,width:102,height:24},speedLimit:{x:41,y:637,width:78,height:78}};
+ const profiles={'round':round,'flat-base':{left:{x:330,y:375,radius:330},right:{x:1590,y:375,radius:330},clipY:672,reservedFooter:popup}};
+ const touring={speed:{x:60,y:576,width:310,height:125},fuel:round.fuel,tacho:{x:1340,y:567,width:420,height:90},gear:{x:375,y:609,width:60,height:32},mode:{x:1320,y:701,width:142,height:19},speedLimit:round.speedLimit};
  const intersects=(a,b)=>a.x<b.x+b.width&&a.x+a.width>b.x&&a.y<b.y+b.height&&a.y+a.height>b.y;
  const dialBounds=d=>({x:d.x-d.radius,y:d.y-d.radius,width:d.radius*2,height:d.radius*2});
  function circleHitsBox(d,box,clipY=720){
@@ -16,7 +16,9 @@
   const circles=[selected.left,selected.right],clipY=selected.clipY||720;
   const errors=[],dials=circles.map(d=>{const box=dialBounds(d);box.height=Math.min(box.height,clipY-box.y);return box;}),statusItems=[round.fuel,round.speedLimit];
   for(const dial of circles){if(circleHitsBox(dial,round.status,clipY))errors.push('Dial enters reserved status band');if(selected.reservedFooter!==popup&&circleHitsBox(dial,popup,clipY))errors.push('Popup covers dial');}
-  for(const item of statusItems){if(item.y<round.status.y||item.y+item.height>720)errors.push('Status item outside reserved band');if(intersects(item,popup))errors.push('Popup covers status item');}
+  for(const item of statusItems){if((item!==round.speedLimit&&item.y<round.status.y)||item.y+item.height>720)errors.push('Status item outside reserved band');if(intersects(item,popup))errors.push('Popup covers status item');}
+  // The circular speed sign straddles the thin strip like the reference cluster.
+  for(const dial of circles)if(circleHitsBox(dial,round.speedLimit,clipY))errors.push('Speed-limit sign covers dial');
   for(let a=0;a<statusItems.length;a++)for(let b=a+1;b<statusItems.length;b++)if(intersects(statusItems[a],statusItems[b]))errors.push('Status items overlap');
   if(intersects(round.gear,popup))errors.push('Popup covers round gear');
   if(intersects(round.branding,popup))errors.push('Popup covers model badge');

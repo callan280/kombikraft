@@ -57,7 +57,7 @@
   if(helpers&&typeof helpers.text==='function'){
    for(const [value,y,size,color] of [[metadata.title,276,30,'#ffffff'],[metadata.artist,321,25,'#ababab']]){
     c.save();c.beginPath();c.rect(990,y-22,185,44);c.clip();
-    c.font=`${size}px BMWTA,sans-serif`;
+    c.font=`${size}px BMWTA`;
     const width=c.measureText(value).width;
     const dx=root.ClusterMediaMarquee?root.ClusterMediaMarquee.offset(timeline?.elapsed()||0,width,185):0;
     helpers.text(c,value,990+dx,y,size,color);c.restore();

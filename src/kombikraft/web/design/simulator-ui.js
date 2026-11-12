@@ -113,7 +113,7 @@ function previewIcon(c,id,x,y,size,color,iconKey){
 }
 
 function wrapSimulationText(c,value,x,y,maxWidth,size,color){
- c.save();c.font=`${size}px BMWTA,sans-serif`;const words=value.split(/\s+/);let lineText='',row=0;
+ c.save();c.font=`${size}px BMWTA`;const words=value.split(/\s+/);let lineText='',row=0;
  for(const word of words){const next=lineText?lineText+' '+word:word;if(c.measureText(next).width>maxWidth&&lineText){text(c,lineText,x,y+row*36,size,color);row++;lineText=word;if(row>=2)break;}else lineText=next;}
  if(row<3&&lineText)text(c,lineText,x,y+row*36,size,color);c.restore();
 }

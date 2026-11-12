@@ -18,8 +18,8 @@
     },
     {
       "file": "src/kombikraft/web/design/factory-fuel.js",
-      "sha256": "ef025ddc45aa4f5604ce8ee4a67c2c7e61d6806c8a265d0ffcfb6e6cdccbcc45",
-      "authoredSourceSha256": "ef025ddc45aa4f5604ce8ee4a67c2c7e61d6806c8a265d0ffcfb6e6cdccbcc45"
+      "sha256": "d542ad2ff0876f016cc87251a26ab5aeee04e546543ebfcfa7151685decfe222",
+      "authoredSourceSha256": "d542ad2ff0876f016cc87251a26ab5aeee04e546543ebfcfa7151685decfe222"
     },
     {
       "file": "src/kombikraft/web/design/factory-gear.js",
@@ -28,8 +28,8 @@
     },
     {
       "file": "src/kombikraft/web/design/factory-media.js",
-      "sha256": "b703700a706c60b7020fdba8804066c18435ea41f83ad8a0d0f827b527e7cb3c",
-      "authoredSourceSha256": "b703700a706c60b7020fdba8804066c18435ea41f83ad8a0d0f827b527e7cb3c"
+      "sha256": "3fa2cb177fd90e663850a1c93a7fd3f24ff1cccef889920536ad2ccc141ed635",
+      "authoredSourceSha256": "3fa2cb177fd90e663850a1c93a7fd3f24ff1cccef889920536ad2ccc141ed635"
     },
     {
       "file": "src/kombikraft/web/design/factory-mini-gauges.js",
@@ -58,18 +58,18 @@
     },
     {
       "file": "src/kombikraft/web/design/factory-stats.js",
-      "sha256": "f1c3fd33dd7a97ada077a27ef891d1f3c3279e2126fd0f19f9ef83f2198c5f64",
-      "authoredSourceSha256": "f1c3fd33dd7a97ada077a27ef891d1f3c3279e2126fd0f19f9ef83f2198c5f64"
+      "sha256": "82b1192e41086553d281b9ebb3090672bc4387476e1a4e36470799a626170445",
+      "authoredSourceSha256": "82b1192e41086553d281b9ebb3090672bc4387476e1a4e36470799a626170445"
     },
     {
       "file": "src/kombikraft/web/design/index.html",
-      "sha256": "f75eacc45829b75aa2b14bfe3848c7f293457bc25ca1e21745d3cf27397f8ab5",
-      "authoredSourceSha256": "5aa7d2788f2b7d77d1f2f3a9ee5344c55154c7ad164ebac284564866f6525665"
+      "sha256": "57239ad11feb2069a35f0dabf0494d886e9ce50eaf4aabefed52d15f86297d92",
+      "authoredSourceSha256": "4123943be0995bc4b87fe704d7f8d6868e12ffb30a42739b4d71ae6195695819"
     },
     {
       "file": "src/kombikraft/web/design/layout-geometry.js",
-      "sha256": "213c7ed719187a32aef33a3b7d18b29177b5236774354078b23afef3e2431b91",
-      "authoredSourceSha256": "213c7ed719187a32aef33a3b7d18b29177b5236774354078b23afef3e2431b91"
+      "sha256": "b11c5e7e2a9d35292d591f595bbcc8fc5a901c8c2e68d0ad570de9eb3e70d1f9",
+      "authoredSourceSha256": "b11c5e7e2a9d35292d591f595bbcc8fc5a901c8c2e68d0ad570de9eb3e70d1f9"
     },
     {
       "file": "src/kombikraft/web/design/media-marquee.js",
@@ -98,13 +98,13 @@
     },
     {
       "file": "src/kombikraft/web/design/simulator-ui.js",
-      "sha256": "6978d33e22da7e3aea55c25fb72dd9358dd3093b3ebef60a31ef061bc07871bc",
-      "authoredSourceSha256": "6978d33e22da7e3aea55c25fb72dd9358dd3093b3ebef60a31ef061bc07871bc"
+      "sha256": "bb1c3cd60f47e05dec34a07eeb08098c9d0328009e0d2de0b419cc26d6ccbfc3",
+      "authoredSourceSha256": "bb1c3cd60f47e05dec34a07eeb08098c9d0328009e0d2de0b419cc26d6ccbfc3"
     },
     {
       "file": "src/kombikraft/web/design/telltale-row.js",
-      "sha256": "602a9dea5f87e406ae539aeb21f0c108f05505e6ccf57e2c44a2d8202e27daf4",
-      "authoredSourceSha256": "602a9dea5f87e406ae539aeb21f0c108f05505e6ccf57e2c44a2d8202e27daf4"
+      "sha256": "b3279c0e0418700987cb2d074b64f7b59a1290b47718bb45cd7b6580dbd4e8cc",
+      "authoredSourceSha256": "b3279c0e0418700987cb2d074b64f7b59a1290b47718bb45cd7b6580dbd4e8cc"
     },
     {
       "file": "src/kombikraft/web/simulation/catalog.js",

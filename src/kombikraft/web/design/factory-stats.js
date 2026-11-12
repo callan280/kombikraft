@@ -22,7 +22,7 @@
  });}
  function safeText(c,helpers,value,x,y,size,color,align){
   if(typeof c.fillText==='function'&&typeof c.save==='function'){
-   c.save();c.font=`${size}px BMWTA,sans-serif`;c.fillStyle=color;c.textAlign=align||'left';
+   c.save();c.font=`${size}px BMWTA`;c.fillStyle=color;c.textAlign=align||'left';
    c.textBaseline='alphabetic';c.fillText(String(value),x,y);c.restore();
   }else if(helpers&&typeof helpers.text==='function')helpers.text(c,String(value),x,y,size,color,align||'left');
  }
@@ -47,7 +47,7 @@
    // Native Preferred width comes from the actual shaped text, followed by
    // the captured unitGapW_ID7=9. Do not assume an invented digit width.
    if(typeof c.measureText==='function'){
-    c.save();c.font='38px BMWTA,sans-serif';const width=c.measureText(value).width;c.restore();
+    c.save();c.font='38px BMWTA';const width=c.measureText(value).width;c.restore();
     t(unit,x+width+9,y,29,'#ababab');
    }
   }

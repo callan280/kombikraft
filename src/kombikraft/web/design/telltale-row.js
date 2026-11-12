@@ -16,7 +16,7 @@ const placement={
  'coolant':[1220,420,36,'coolant'],'oil-level':[1220,465,36,'oil-level'],'oil-pressure':[1220,510,36,'oil-pressure'],
  'cruise-standby':[630,575,40,'cruise'],'cruise-active':[630,575,40,'cruise'],
  'assistance-active':[1290,575,40,'assistance'],'assistance-warning':[1290,575,40,'assistance'],
- 'fuel-reserve':[168,672,30,'fuel'],'seatbelt':[610,672,36,'front-belt'],
+ 'fuel-reserve':[168,705,30,'fuel'],'seatbelt':[610,702,36,'front-belt'],
  'traction-dtc':[1590,587,130,'traction'],'traction-off':[1590,587,130,'traction']
 };
 const tractionVariants=[{id:'traction-dtc',familyId:'dsc',label:'Sport traction',kind:'indicator',source:'tractionMode',color:'white',priority:0,iconKey:'tractionDtc',pairedIconKey:'dscOffLamp'},{id:'traction-off',familyId:'dsc',label:'Traction off',kind:'indicator',source:'tractionMode',color:'white',priority:0,iconKey:'tractionOff',pairedIconKey:'dscOffLamp'}];

@@ -34,7 +34,7 @@ their simulation is not live vehicle data.
 |Virtual machine|IDEmu's patched QEMU x86-64 build based on 11.1.2, including `idemu-shm` and the SDHCI PCI fix|
 |Disk assembly|e2fsprogs `mke2fs`, creating a separate asset disk from a local stage directory|
 |Guest OS|User-supplied matching captured Linux kernel and HU root filesystem with native dependencies; not the KOMBI INTEGRITY OS|
-|Controller execution|The separate Python >=3.9 factory loader, standard library and optional `unicorn==2.1.4`; it does not replace the native graphics requirements above|
+|Controller execution|The separate Python >=3.11 factory loader, standard library and optional `unicorn==2.1.4`; it does not replace the native graphics requirements above|
 
 The current private scene prototype is built from authored C plus generated
 resource arrays. The arrays include firmware-derived content. A public build

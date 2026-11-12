@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.o
+*.bin
+build-receipt.json
+bridge-receipt.json
+*resolved*layout*.json

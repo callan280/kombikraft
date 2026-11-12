@@ -4,10 +4,10 @@
 | --- | --- |
 | M Round and Map Touring | Browser layout implementations using locally supplied source graphics. Both use a 40px bottom strip with bottom-aligned readouts. Data and map are illustrative fixtures. |
 | Factory graphics | The reviewed visual library and viewer pack have hashes and separate attribution. Vehicle applicability and material interpretation are recorded independently. |
-| Original code execution | Private matching-bank experiments execute original constructors, input callbacks, scheduler phases and selected graphics updates. A reusable loader is being integrated. |
+| Original code execution | Public matching-bank controller fixtures and newer original material-reader/registration tools are available. Each admits a specific source profile and declares its host adapters. Neither is a complete firmware loader. |
 | BC/indicator inputs | Bounded original receiver-to-event fixtures have passed. Physical bus sender and current-car route remain unverified. |
 | Native custom scene | Private M Round and Touring rendering, selected decoded-input replay, and save/reload experiments have passed. The active private M Round preview also has the 40px strip. The native runtime is not bundled; production identity, display ownership and warning arbitration are not established. |
-| Factory startup | Partial. Original graphics initialization reaches thread creation, which fails because the isolated fixture has no initialized current POSIX thread context. Genuine runtime bootstrap remains required; the all-state authoring frame is not a normal operating cluster. |
+| Factory startup | Partial. Original SEM startup and source-named operating-state fixtures now reach factory calm transitions and gauge-controller callbacks. Other activation gates remain absent; those callbacks alone do not show an active custom scene. The all-state authoring frame is not a normal operating cluster. |
 | Whole-system emulation | Not demonstrated. GSS application/graphics code is x86-64 with INTEGRITY; KSS companion reset code is ARM. Board devices/reset chain remain unresolved. |
 | Car deployment | Disabled. Requires current identity, passive signal validation, complete warning behaviour, fresh backups and a proven reversible route. |
 
@@ -26,3 +26,25 @@ need a matching local import.
 Current contributor priorities are a reproducible local extraction workflow,
 genuine runtime initialization, original warning/controller integration,
 current-car signal correlation, and a reversible deployment/recovery route.
+
+## Research snapshot: 12 November 2026
+
+- Original older-F97 material constructors/readers now load the named opacity
+  parameter, parse Bitmap identifiers and reach the original image-cache call
+  boundary. The public command runs 210 scoped cases with exact local inputs.
+  It does not fetch a complete scene or execute the original GPU program.
+- Source work joins factory calm selection to original gauge callbacks. A
+  concrete MGU SOME/IP proxy has operation51 and a source registration path.
+  The public registration probe captures imported registry calls; it does not
+  prove successful runtime backend selection or remote KOMBI transport399.
+- A guarded original GSS-kernel experiment passes its CPU predicate and executes
+  original paging initialization before stopping on missing loader-provided
+  boot information. Source Multiboot admission has been investigated separately.
+  The published QEMU guard/bridge are authored tools, not a BMW bootloader or
+  an emulated physical board.
+- KSS research links original DMA protection code, a programmed NMI handler and
+  source FIQ enable. Hardware timing, alias support and causal exception delivery
+  remain incomplete. The public DMA tool calculates address geometry only.
+
+The [research tools](../research/README.md) separate synthetic admission tests,
+original-code execution with local inputs and unresolved vehicle behaviour.

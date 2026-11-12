@@ -1,0 +1,28 @@
+{
+  "schema": "kombikraft-research-source-snapshot-v1",
+  "files": [
+    {
+      "experiment": "probe_uniform_loader.py",
+      "authoredSourceSha256": "941f6cb4d39de5e515637d568ac621a380b582dd1e8c42b691a1b33aaacac362",
+      "file": "src/kombikraft/research/f97/_uniform_loader.py",
+      "sha256": "5aa0fe03228183144227a20a434559bc03b097a859cdaa1ed3caf65c09440c7a",
+      "adaptation": "Retained original observe routine and constants; removed private workspace main/receipt writer. Public CLI supplies validated local inputs."
+    },
+    {
+      "experiment": "probe_asset_identifier.py",
+      "authoredSourceSha256": "f665d706cf6ccddb5205910f6bd566c09509fad4b4a8bbb7943992f3d06f9476",
+      "file": "src/kombikraft/research/f97/_asset_identifier.py",
+      "sha256": "c4f3f2003c2199e68354f46ef24397a8f5e96982fcb247c8d4be2d55bda835b8",
+      "adaptation": "Retained original observe routine and constants; removed private workspace main/receipt writer. Public CLI supplies validated local inputs."
+    },
+    {
+      "experiment": "probe_texture_cache_boundary.py",
+      "authoredSourceSha256": "46ca6233976d20de9eef8c88dd320ff391617200b4c641198fe673e5b52c2003",
+      "file": "src/kombikraft/research/f97/_texture_cache.py",
+      "sha256": "5b71d6354890ee5555e42f5ac75f7825819fcb5a0fd10ee4f7ffd92c4c9e73be",
+      "adaptation": "Retained original observe routine and constants; removed private workspace main/receipt writer. Public CLI supplies validated local inputs."
+    }
+  ],
+  "firmwareIncluded": false,
+  "vehicleValidated": false
+}

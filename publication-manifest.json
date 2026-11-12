@@ -1,8 +1,8 @@
 {
   "schema": "kombikraft-expanded-publication-v1",
   "passed": true,
-  "fileCount": 17463,
-  "bytes": 577903146,
+  "fileCount": 17494,
+  "bytes": 578024003,
   "manifestAdmittedInputs": 17279,
   "visualResourcesSeparatelyAttributed": true,
   "fullFirmwareOrRuntimeImagesIncluded": false,
@@ -15,8 +15,8 @@
     },
     {
       "file": ".github/workflows/check.yml",
-      "bytes": 843,
-      "sha256": "c2e826062268c881a5260ea5337352efcf73fbc175091ad3d7d5ed3d1fbc779a"
+      "bytes": 1084,
+      "sha256": "07561d2e5cb97bb263fc95958235dd9aec480f493fb34dfb18ef2cf55a712f9a"
     },
     {
       "file": ".gitignore",
@@ -40,8 +40,8 @@
     },
     {
       "file": "README.md",
-      "bytes": 4688,
-      "sha256": "9dda83334f60b98244d1e72631b23283e398a1e06cc1f53ab81388d5bef15c81"
+      "bytes": 5155,
+      "sha256": "2b1a912c55a881ca8aea57aedc9362259ac7e4bf4c5c09f9f0757ebcc3689f2c"
     },
     {
       "file": "ROADMAP.md",
@@ -50,8 +50,8 @@
     },
     {
       "file": "THIRD_PARTY.md",
-      "bytes": 1186,
-      "sha256": "c1e597b1206db244f53b794424669a57126718c9eb451ad2af53e1734823ac7b"
+      "bytes": 1489,
+      "sha256": "2427cdae10487ee80e7bf90d43120d69bac5a88bffe3a7092215f2c11b4c578e"
     },
     {
       "file": "assets/library/FONT-LICENSES.md",
@@ -84509,9 +84509,14 @@
       "sha256": "a6c11be4093864fe01e280a415aa6182a18760a2eab32a5e176716207563d577"
     },
     {
+      "file": "docs/research-update-2026-11-12.md",
+      "bytes": 1928,
+      "sha256": "768b238d3c37ab623b95a3858adcd6fd1981c0c3983730a0a68ee967aeebedd2"
+    },
+    {
       "file": "docs/status.md",
-      "bytes": 2556,
-      "sha256": "204fb946fb01b42a072704bca7dcb0057ed20536354452c9523474aa761e4785"
+      "bytes": 4033,
+      "sha256": "b8b8a52b9674cf9dfdfe2c7a9f2a2e6fb0d78529332ec3c51d74e21b8dbfa124"
     },
     {
       "file": "mgu/.gitignore",
@@ -87071,7 +87076,117 @@
     {
       "file": "pyproject.toml",
       "bytes": 891,
-      "sha256": "ee7c9c99793eac49d022dbd76267d8810c51a705545f26a3d62bb143b8338f5b"
+      "sha256": "bcb5493cc740b5b1f64b26d6dfa1a4dc1625cac7436f3becde6b64c420442fe3"
+    },
+    {
+      "file": "research/README.md",
+      "bytes": 2193,
+      "sha256": "dcbcb4ed2d50feff1b9d02175f12b20f438e7a9ab5ffeac490fc648258c21943"
+    },
+    {
+      "file": "research/f97-materials.md",
+      "bytes": 3395,
+      "sha256": "6e65f7077ef5cb6d4ce0377caa175f5993c2256878941438fa5444a4b3df352b"
+    },
+    {
+      "file": "research/gss-guard/.gitignore",
+      "bytes": 91,
+      "sha256": "8f230142cd26f9057d721cc4262752ae7e83248b3e53984968254dd05ee9f815"
+    },
+    {
+      "file": "research/gss-guard/COPYING",
+      "bytes": 17880,
+      "sha256": "dd3ce02338c3a48abb6ba59b48809f7108a8bd242cb0cc8be90daafa30707c28"
+    },
+    {
+      "file": "research/gss-guard/PROVENANCE.md",
+      "bytes": 1364,
+      "sha256": "3ff3ce56fbf19ea81af32eac3f9f8e57340c51fd92beebf2f33e3d6986d9bb9f"
+    },
+    {
+      "file": "research/gss-guard/README.md",
+      "bytes": 3983,
+      "sha256": "12b7cf9597ea0065a86d6c3464870cbeb856475b31e1160dc1be15dec5e534a7"
+    },
+    {
+      "file": "research/gss-guard/build_guard.py",
+      "bytes": 2611,
+      "sha256": "8f24caaca61c4e876325977fdea1c33fe108e9c8c57a361c2d575fb18bccc319"
+    },
+    {
+      "file": "research/gss-guard/guarded-memory.c",
+      "bytes": 10746,
+      "sha256": "b6d0b3463eebb2e207284fde5427eb2432ba337064257729559e2c0a47f04f74"
+    },
+    {
+      "file": "research/gss-guard/make_bridge.py",
+      "bytes": 2283,
+      "sha256": "008df227da18ac79b13c11623b296f9e08e833da3f7a26891190e0b1dfa2fcf0"
+    },
+    {
+      "file": "research/gss-guard/reset_bridge.S",
+      "bytes": 738,
+      "sha256": "77e1a3d46e847721ae2c4cb4960c72786fdc09b6d9ce828f55ae2d2b4e1010b6"
+    },
+    {
+      "file": "research/gss-guard/test_portable.py",
+      "bytes": 2382,
+      "sha256": "e8af68e1d512f353a817b4292424e57a611aea52f622b1aab08c87b6a7b13bfd"
+    },
+    {
+      "file": "research/gss-guard/validate_layout.py",
+      "bytes": 2553,
+      "sha256": "90a19834a24ddbb083332f2428974bcb7c613f1cedd02a206ba55378cd5d3579"
+    },
+    {
+      "file": "research/kss-dma/README.md",
+      "bytes": 2137,
+      "sha256": "121822593b92a99ad2648c82a2b4cb3f80737dcd21c7beb1d668e3550586c56a"
+    },
+    {
+      "file": "research/kss-dma/dma_geometry.py",
+      "bytes": 6053,
+      "sha256": "2c67dc60c3f4e26103feceda6c2d6ab840c21f9246bdf5e9dc6c05414cb2138a"
+    },
+    {
+      "file": "research/kss-dma/test_dma_geometry.py",
+      "bytes": 4669,
+      "sha256": "e5fbc66e2c96697c1d3fa743a8fdb9eee21f25723f5ba2d9ff00b8b63b2557ec"
+    },
+    {
+      "file": "research/proxy-registration/README.md",
+      "bytes": 3282,
+      "sha256": "753e0cd385a6a4af28536ea2a75511888f2a928bb0543e400534ad800b381681"
+    },
+    {
+      "file": "research/proxy-registration/make_carrier.py",
+      "bytes": 4757,
+      "sha256": "1da22a3c4fdd84b3835dd1c8884060f97a30d0b211c07f19ac22ae9033d26c9d"
+    },
+    {
+      "file": "research/proxy-registration/probe_registration.py",
+      "bytes": 5400,
+      "sha256": "6be678ebfda53a74dfbf1d004542d06db87954c8e2a3e13e9a139c871f58cf49"
+    },
+    {
+      "file": "research/proxy-registration/requirements.txt",
+      "bytes": 15,
+      "sha256": "56bce36af734e3b9aeff2be4301bbc2a2c2b58ea1ea1e6ee6e792db84f96fbd4"
+    },
+    {
+      "file": "research/proxy-registration/source_profile.py",
+      "bytes": 1249,
+      "sha256": "0f067aadceab1830fb0efc827cde54df268986617d6f4088425bb715af5e535b"
+    },
+    {
+      "file": "research/proxy-registration/test_admission.py",
+      "bytes": 2744,
+      "sha256": "8c2dc961c737473ae5d29f50761001c994374396d347b9f904ea948fbdd9c5e7"
+    },
+    {
+      "file": "research-source-manifest.json",
+      "bytes": 1547,
+      "sha256": "71d40d6068c831932c4dc99aa7f0bd8188a70c7064a6b84342db2f82303ad011"
     },
     {
       "file": "src/kombikraft/__init__.py",
@@ -87132,6 +87247,36 @@
       "file": "src/kombikraft/layout_routes.json",
       "bytes": 32023,
       "sha256": "87fbef645d00bcff8f0b74ec4917143878a332d9c84622a8cda26b1ccc5fad24"
+    },
+    {
+      "file": "src/kombikraft/research/__init__.py",
+      "bytes": 68,
+      "sha256": "de6f9e29d15b9793d7bce153b565bbfb8d90c3f447cda979f4c30b6861f95b41"
+    },
+    {
+      "file": "src/kombikraft/research/f97/__init__.py",
+      "bytes": 6327,
+      "sha256": "abaac6a8beb7af7facc45a399c88782fda683c1f73259d447889fb9b1f874b21"
+    },
+    {
+      "file": "src/kombikraft/research/f97/__main__.py",
+      "bytes": 1584,
+      "sha256": "d98ea960365c8cb76a421d474fcb1de0572f5fc62eee1c3ea25efb22b2d273f9"
+    },
+    {
+      "file": "src/kombikraft/research/f97/_asset_identifier.py",
+      "bytes": 4570,
+      "sha256": "c4f3f2003c2199e68354f46ef24397a8f5e96982fcb247c8d4be2d55bda835b8"
+    },
+    {
+      "file": "src/kombikraft/research/f97/_texture_cache.py",
+      "bytes": 7284,
+      "sha256": "5b71d6354890ee5555e42f5ac75f7825819fcb5a0fd10ee4f7ffd92c4c9e73be"
+    },
+    {
+      "file": "src/kombikraft/research/f97/_uniform_loader.py",
+      "bytes": 6763,
+      "sha256": "5aa0fe03228183144227a20a434559bc03b097a859cdaa1ed3caf65c09440c7a"
     },
     {
       "file": "src/kombikraft/server.py",
@@ -87299,14 +87444,19 @@
       "sha256": "badaeb818aab97c609b77e2ed3d09e0ab07e77260d54996fc83eb6ff7db9d6ca"
     },
     {
+      "file": "tests/test_research_f97.py",
+      "bytes": 3926,
+      "sha256": "337e73e299c6d49f91af5b8ce7e9a0a8db2a011db8369ad49b092ed6b64c49d2"
+    },
+    {
       "file": "tests/test_server.py",
       "bytes": 2124,
       "sha256": "5a4d39b0b87c32f7e3123ba2e3fad6d1a74f619734991a39d0d1a7ffa29c7cc3"
     },
     {
       "file": "tools/audit_publication.py",
-      "bytes": 5102,
-      "sha256": "075d2512cf7eece088af4cac23f909231050d97c7d1f7e7794a378a1751a6c20"
+      "bytes": 5107,
+      "sha256": "1e17ddd474fc9c066813bbc35e518025b075dd905b414118c9a328093d0804dc"
     },
     {
       "file": "tools/export_graphics_library.py",
@@ -87322,6 +87472,11 @@
       "file": "tools/extract_ce51.py",
       "bytes": 6019,
       "sha256": "136eec7b92da735aa1204171ccf2d2c2b24954af96e1e4765195570f9ffa80c7"
+    },
+    {
+      "file": "tools/extract_norboot_bank.py",
+      "bytes": 3842,
+      "sha256": "eb7bff25cb92da37f46b833c73dbd36076bad9bbed88f3e589c025ffb9e54130"
     }
   ],
   "scope": "Exact declared visual-input hashes, source/private-marker checks and SDK-free package inspection; not image OCR or a general legal/secret guarantee."

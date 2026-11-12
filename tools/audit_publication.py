@@ -5,7 +5,7 @@ import argparse,hashlib,json,re,tarfile
 
 ROOT=Path(__file__).resolve().parents[1]
 SKIP={'.git','.venv','__pycache__','build','dist','private','local'}
-TEXT={'.py','.js','.json','.html','.css','.md','.txt','.toml','.yml','.yaml','.c','.h','.inc','.sh','.patch','.xml','.svg','.cjs','.tsv'}
+TEXT={'.py','.js','.json','.html','.css','.md','.txt','.toml','.yml','.yaml','.c','.h','.inc','.sh','.patch','.xml','.svg','.cjs','.tsv','.S'}
 MACHINE=re.compile(rb'/(?:Users|Volumes|var/folders)/[A-Za-z0-9_.@-][A-Za-z0-9_.@ -]{0,127}/',re.I)
 SECRET=re.compile(rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY|gh[pousr]_[A-Za-z0-9_]{20,}|\bsk-[A-Za-z0-9_-]{24,}')
 VIN=re.compile(rb'\bWB[ASY][A-HJ-NPR-Z0-9]{14}\b')

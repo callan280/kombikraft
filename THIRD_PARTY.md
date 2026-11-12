@@ -21,3 +21,9 @@ required contributor notice. QEMU-derived parts are GPL-2.0-or-later. Arm
 astcenc is Apache 2.0. Community MGU app-kit derivatives retain their MIT
 notices. Consult each subtree's notices; the root MIT licence does not replace
 the upstream terms.
+# QEMU research guard
+
+`research/gss-guard/` contains authored GPL-2.0-or-later code intended to integrate
+with QEMU. Its local COPYING and PROVENANCE.md apply instead of the root MIT
+licence. QEMU itself and its build dependencies are user-supplied and are not
+distributed as binaries by this project.

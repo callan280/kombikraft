@@ -1,0 +1,25 @@
+{
+  "schema": 2,
+  "components": [
+    {
+      "id": "kombikraft",
+      "kind": "app",
+      "title": "KombiKraft Lab \u00b7 Offline prototype",
+      "description": "Experimental native preferences app. No vehicle-validated release; factory menu injection, HUD rendering and KOMBI skin activation remain unavailable.",
+      "version": "0.1.0",
+      "artifact": {
+        "name": "kombikraft@0.1.0.tgz",
+        "size": 9981,
+        "sha256": "a0f8ba03c893c1e4b216030cea6a8d05e9e8efea2b79c233b263bbf5f8bf85f7",
+        "url": "https://github.com/callan280/kombikraft/releases/download/catalog/kombikraft@0.1.0.tgz"
+      },
+      "requires": {
+        "mgu-deploy": "0.2.0"
+      },
+      "uninstallable": true,
+      "mguHmi": [
+        "ID7"
+      ]
+    }
+  ]
+}

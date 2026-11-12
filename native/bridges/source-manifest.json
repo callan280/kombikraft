@@ -1,0 +1,48 @@
+{
+  "schema": "kombikraft-native-bridge-sources-v1",
+  "idemuRepository": "https://github.com/herrbimmer/IDEmu",
+  "idemuCommit": "7c18b368e92ea3c2f0542de9bf7b8b06d5eacb5c",
+  "idemuLicence": "PolyForm-Noncommercial-1.0.0 except separately licensed QEMU-derived files",
+  "qemuBase": "11.1.2",
+  "qemuFilesLicence": "GPL-2.0-or-later",
+  "qemuBinaryIncluded": false,
+  "completeQemuSourceIncluded": false,
+  "files": [
+    {
+      "file": "idemu/glhost-cluster.c",
+      "sha256": "96aa367a5e6948b8f22fa252da8ba8a4b7bdf1d96a70601d0741ddc353ed84d9",
+      "origin": "IDEmu src/mgu/glhost7.c",
+      "modified": true
+    },
+    {
+      "file": "idemu/gles-cluster.c",
+      "sha256": "2874eaf317d17faddb453f6b241e9d60b4d869a889d1e85d785a97d38e06affa",
+      "origin": "IDEmu src/mgu/gles_guest.c",
+      "modified": true
+    },
+    {
+      "file": "idemu/proto.h",
+      "sha256": "f4b190cc04552a87b0755e5c01ba49ba8e43d1381066536b446d6c93da566185",
+      "origin": "IDEmu src/mgu/proto.h",
+      "modified": false
+    },
+    {
+      "file": "idemu/gl_ids.h",
+      "sha256": "a506f01b54b019160b13afc0ca4d792531d46fdb7cbfc614cf70a42442fe87a1",
+      "origin": "IDEmu src/mgu/gl_ids.h",
+      "modified": false
+    },
+    {
+      "file": "idemu/gl_stubs.inc",
+      "sha256": "b2db3d7a269351951be8eec432482d75f58dfd6c2d168b8884832fa398f0f06d",
+      "origin": "IDEmu src/mgu/gl_stubs.inc",
+      "modified": false
+    },
+    {
+      "file": "idemu/gen_gl.py",
+      "sha256": "e503c5479ef3ef30c5e577144c1acbd84201a0bd6f4bf2d33c4e5e0d706653d8",
+      "origin": "IDEmu src/mgu/gen_gl.py",
+      "modified": false
+    }
+  ]
+}

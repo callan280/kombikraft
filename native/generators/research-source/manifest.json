@@ -1,0 +1,77 @@
+{
+  "schema": "kombikraft-native-generator-references-v1",
+  "runnablePortableCli": false,
+  "sourceTextsNotPrivateReceipts": true,
+  "files": [
+    {
+      "file": "prepare_assets.py.txt",
+      "originProfile": "composition-v12",
+      "sourceSha256": "91a3ba125435c8c7aa555ec4df2561f67ce05680c31435cd8e710e4036f044ef"
+    },
+    {
+      "file": "prepare_composition.py.txt",
+      "originProfile": "composition-v12",
+      "sourceSha256": "f3c31cec49e2ea6f2cc7ad7045e056127ccaac66bfb08c0ba708bfa6ac2af481"
+    },
+    {
+      "file": "prepare_footer.py.txt",
+      "originProfile": "composition-v12",
+      "sourceSha256": "4306e66f30bbddfe6c3f6f7d775fab89bc472b878adccfcd12595cc1c60c7c8c"
+    },
+    {
+      "file": "prepare_fuel.py.txt",
+      "originProfile": "composition-v12",
+      "sourceSha256": "86f6c9e53d9a88ad12edb0b63f05709d5943462baa739b5b860f9d74bfacb5fa"
+    },
+    {
+      "file": "prepare_gear.py.txt",
+      "originProfile": "composition-v12",
+      "sourceSha256": "054d7947f502cdf483772b33751d9fbc543812f8df47a5f7e515f78af176502f"
+    },
+    {
+      "file": "prepare_bc_sprites.py.txt",
+      "originProfile": "composition-v12",
+      "sourceSha256": "53120249331adc0664fe5377fb82d17973be7f41e1cc3a69988bf2cf7f3860eb"
+    },
+    {
+      "file": "prepare_bc_shaders.py.txt",
+      "originProfile": "composition-v12",
+      "sourceSha256": "6eb04bfa75fbfd9f20ba8e721f8c037137e16ef6cf92c580263139da0a40d2b2"
+    },
+    {
+      "file": "prepare_cc.py.txt",
+      "originProfile": "composition-v12",
+      "sourceSha256": "70cd39ba2ee0f63a8905aefa227dfad83ff775eaec65aac940aab24bb55349ff"
+    },
+    {
+      "file": "prepare_semantic.py.txt",
+      "originProfile": "composition-v12",
+      "sourceSha256": "5144a13bbd42b5a7368ee339995ebb1836ddda9d7149b46bd1a772514e0f71e9"
+    },
+    {
+      "file": "measure_axis_geometry.py.txt",
+      "originProfile": "composition-v12",
+      "sourceSha256": "6a6b455ac526b994f32965b37b13416c845b34566e4f12cca014a07a41f69555"
+    },
+    {
+      "file": "prepare_touring.py.txt",
+      "originProfile": "composition-v11",
+      "sourceSha256": "f0277860e6df3c784dde87a449c804123cea125e45f2e114e771f6dcbfc3d147"
+    },
+    {
+      "file": "prepare_touring_rpm.py.txt",
+      "originProfile": "composition-v11",
+      "sourceSha256": "038762c91eed0ddf269886aaf203998f23056a7620d2749b84e4c979bbad8345"
+    },
+    {
+      "file": "measure_speed_axis.py.txt",
+      "originProfile": "composition-v11",
+      "sourceSha256": "254859cbb5af080297dfe4122499806b0d64839597f8764e741c86347f37ec76"
+    },
+    {
+      "file": "graphics_examples.py.txt",
+      "originProfile": "composition-v11",
+      "sourceSha256": "aa06cdb3d9e1efdc5e8a21def5b2a5be7ec60310c68a3fd1b5e93f2d34468bf0"
+    }
+  ]
+}

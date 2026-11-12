@@ -1,0 +1,83 @@
+{
+  "schema": "kombikraft-visual-library-final-v1",
+  "files": [
+    {
+      "file": "index.html",
+      "bytes": 4361,
+      "sha256": "60065e8fb52b0731e74c88966c201be15825e7b6b9b3a128e1ae075f93e99d53"
+    },
+    {
+      "file": "gallery.js",
+      "bytes": 5113,
+      "sha256": "efe499dfb3b0683ecabf8cd94d7fd1e8a70b5e40445076ab927ed8f76f6a70e7"
+    },
+    {
+      "file": "catalog.js",
+      "bytes": 5040872,
+      "sha256": "eeaaab15feb4b59e0cf964f8d946ee102de43385a824983a53e1b81a546fdf40"
+    },
+    {
+      "file": "export-receipt.json",
+      "bytes": 2824333,
+      "sha256": "2875aed3b6ac73101695ff0f06728710a82d1638d63137ff3d22b3c5cbe00c90"
+    },
+    {
+      "file": "FONT-LICENSES.md",
+      "bytes": 6611,
+      "sha256": "563046da50af6917a6e77213d7d4fa26740446e9ff19bf1783bf19b8eb02aed8"
+    },
+    {
+      "file": "NOTICE.md",
+      "bytes": 1977,
+      "sha256": "b0582ec6f306492584093c8e379d58296daf3df52467124e20670287eda8c918"
+    },
+    {
+      "file": "privacy-readback.json",
+      "bytes": 639,
+      "sha256": "12b6d1c3b1b92d30ba8d9173a2eca566334da607703b40952e48c87005cbcddd"
+    },
+    {
+      "file": "verify_gallery.cjs",
+      "bytes": 2961,
+      "sha256": "a7df63dddd3db6dc251192dc2598b12feb4d09eff03995d1cc09345cec7c8da7"
+    },
+    {
+      "file": "gallery-fixture-verification.json",
+      "bytes": 261,
+      "sha256": "262fbae9e2e6ffb84c7fa9f6e12952dacd4af9fd3a58c43decf58ea0a684bd9e"
+    },
+    {
+      "file": "../../tools/export_graphics_library.py",
+      "bytes": 10333,
+      "sha256": "484545a51f6d6a804dfa21349f13fdd3d933105cc87a207213c1190eb99ebea5"
+    },
+    {
+      "file": "../../docs/asset-library.md",
+      "bytes": 3877,
+      "sha256": "8c28773c6905632558d4fa400a1918806073843c150ca3e68a1db12ded8a50f1"
+    }
+  ],
+  "exportedRecords": 16490,
+  "imageRecords": 9509,
+  "uniquePngObjects": 9212,
+  "uniqueObjects": 16193,
+  "objectBytes": 479098404,
+  "sourceRecordsChecked": 19467,
+  "allObjectHashReadbacksPassed": true,
+  "offlineDomFixtureActionsPassed": 7,
+  "browserReview": {
+    "reviewedBy": "parent agent",
+    "F97SearchAndImageDetail": "passed",
+    "lazyProvenanceAndDownloadLinks": "passed",
+    "BMWTAFontFaceSpecimen": "passed",
+    "integratedPath": "/library/",
+    "screenshots": "Private review evidence; not distributed"
+  },
+  "temporaryStandaloneServerStopped": true,
+  "activeIntegratedServerChangedByExporter": false,
+  "sourceMachinePathsExported": false,
+  "originalFirmwareOrBackupsExported": false,
+  "vehicleRecordsExported": false,
+  "assetRightsSeparateFromCodeLicense": true,
+  "nativeControllerBindingVerified": false
+}

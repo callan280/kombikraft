@@ -1,0 +1,11 @@
+{
+  "schema": "kombikraft-native-runtime-import-v1",
+  "files": {
+    "ramses19": {"file": "your-local-capture/libramses-shared-lib-wayland-ivi-egl-es-3-0.so.19.0", "sha256": "1e87e852dde8b70aa86f3c928bd482454e83e6824a7f27ab7496c515a6726479"},
+    "glesTransport": {"file": "../build/bridges/libGLESv2.so.2", "sha256": "REPLACE_WITH_LOCAL_BUILD_HASH"},
+    "kernel": {"file": "your-local-capture/bzImage", "sha256": "6a0ffde4cde7c91b4e5ead26e9a0747964b94c37d1263638248fe61f8b78273a"},
+    "qemu": {"file": "your-local-IDEmu/bin/qemu-system-x86_64", "sha256": "REPLACE_WITH_LOCAL_QEMU_HASH"},
+    "glHost": {"file": "../build/bridges/glhost-cluster", "sha256": "REPLACE_WITH_LOCAL_BUILD_HASH"}
+  },
+  "qemuShare": {"directory": "your-local-IDEmu/bin/qemu-share", "sha256": {"REPLACE_WITH_EACH_REQUIRED_RELATIVE_FILE": "REPLACE_WITH_LOCAL_FILE_HASH"}}
+}

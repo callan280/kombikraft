@@ -1,7 +1,7 @@
 /* Exact captured PowerGauge geometry, textures and GLSL; normalized IC test inputs. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.FactorySport=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
  'use strict';
- const packageSha256='f70ad3a1365cad03dccc0c68388ee192581114a79c55a3ad68fca6a8468a4032';
+ const packageSha256='bd17426894351f8461e6bb284992ee6b97ea41bced66e334e88efff5222b2bfb';
  const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(v=>v.toString(16).padStart(2,'0')).join('');
  const identity=()=>[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];
  function value(v){if(v===undefined)return undefined;if(v.Numeric)return value(v.Numeric);if(v.Identifier)return v.Identifier.value;if(v.Color!==undefined){const n=v.Color;return [(n>>>24)/255,((n>>>16)&255)/255,((n>>>8)&255)/255,(n&255)/255];}for(const k of ['Float','Int','UInt','Bool','AsciiString','HmiString','Utf32String'])if(v[k]!==undefined)return v[k];for(const k of ['Vec2f','Vec3f','Vec4f'])if(v[k])return ['x','y','z','w'].slice(0,Number(k[3])).map(x=>v[k][x]||0);if(v.FloatMatrix4)return Array.from({length:16},(_,i)=>v.FloatMatrix4['m'+(i%4+1)+(Math.floor(i/4)+1)]||0);if(v.ScrollAreaDirection==='TEScrollAreaDirection_Disabled')return 0;throw Error('Unsupported original variant '+Object.keys(v).join(','));}

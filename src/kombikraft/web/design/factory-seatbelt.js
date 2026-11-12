@@ -1,7 +1,7 @@
 /* Original compact rear-seat meshes/material and original Show/Hide output contract.
  * Explicit raw-state fixture only: occupancy, timing and live F40 coding are unbound. */
 (function(root){'use strict';
-const packageHash='6c536b49921cf8528c472190c45726406e5c1ca028bd522d363cf4fa48c6be5d',contractHash='461969fee63b02583e2ead1d670e79041592cfa52d5cd181ced863eb6a6ac278';
+const packageHash='167c845794cccab99a381bba49e6a48d54d7f38cc878e6db6a9c34bb4368e682',contractHash='1763e6978db351a3375dd1c50dcea407200f4628459b7ba0f3d3a9ab5276aa5d';
 const hash=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(x=>x.toString(16).padStart(2,'0')).join('');
 let gl,canvas,program,parts=[],states=[],proof=null,error=null,available=false;
 async function checked(url,expected){const r=await fetch(url);if(!r.ok)throw Error('Missing seatbelt source: '+url);const b=await r.arrayBuffer();if(await hash(b)!==expected)throw Error('Seatbelt source hash mismatch');return b;}

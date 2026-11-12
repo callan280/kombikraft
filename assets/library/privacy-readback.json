@@ -1,0 +1,17 @@
+{
+  "schema": "kombikraft-visual-privacy-readback-v1",
+  "objectCount": 16193,
+  "objectBytesScanned": 479098404,
+  "localMachineAndPrivateKeyMarkersFound": 0,
+  "uniquePngCount": 9212,
+  "pngChunks": {
+    "IHDR": 9212,
+    "IDAT": 14651,
+    "IEND": 9212,
+    "iCCP": 618
+  },
+  "scope": "Known local-machine path/email/host/private-key markers across exact exported object bytes; metadata exporter uses an explicit allowlist. This is not image OCR or a claim about arbitrary unknown secret patterns.",
+  "firmwareAndExecutableMagicRejectedAtExport": true,
+  "sourcePathMetadataExcluded": true,
+  "actualVehicleRecordsIncluded": false
+}

@@ -1,0 +1,118 @@
+{
+  "schema": "kombikraft-native-source-provenance-v1",
+  "profile": "m-round-compact40-v12",
+  "frozenSourceManifestSha256": "3b1f8fe2cb11b75fd087a3bc27d248cc3a833d01f903de11becafd9d36ba06dc",
+  "privateReceiptsIncluded": false,
+  "absoluteSourcePathsIncluded": false,
+  "files": [
+    {
+      "file": "source/native_helpers.inc",
+      "origin": "composition-v12/native_helpers.inc",
+      "sourceSha256": "c0184ed31b277cfb2284802e56b3e44bb5c19f6362697c28116ff3cf17a30276",
+      "sha256": "c0184ed31b277cfb2284802e56b3e44bb5c19f6362697c28116ff3cf17a30276",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/prototype_body.c",
+      "origin": "composition-v12/prototype_body.c",
+      "sourceSha256": "ef93a7aeccd6bd9b51be9b4a3e9171ac9f4d5894f07fa1e82ae5ef1b24424312",
+      "sha256": "ef93a7aeccd6bd9b51be9b4a3e9171ac9f4d5894f07fa1e82ae5ef1b24424312",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/footer_runtime.inc",
+      "origin": "composition-v12/footer_runtime.inc",
+      "sourceSha256": "7fc2097b29e699ec2d154e97ecb2bb6b61be1ce2fd0add5298aa150e3b547f8f",
+      "sha256": "7fc2097b29e699ec2d154e97ecb2bb6b61be1ce2fd0add5298aa150e3b547f8f",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/fuel_runtime.inc",
+      "origin": "composition-v12/fuel_runtime.inc",
+      "sourceSha256": "6342fd956722abda2ee008b01a19891f7d63c6f1ed7cb4f04e221287abd7b3b5",
+      "sha256": "6342fd956722abda2ee008b01a19891f7d63c6f1ed7cb4f04e221287abd7b3b5",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/gear_runtime.inc",
+      "origin": "composition-v12/gear_runtime.inc",
+      "sourceSha256": "5cf38aa019d27fb2239d487b3b5a4346368168424c22aaae887987f7733e01e1",
+      "sha256": "5cf38aa019d27fb2239d487b3b5a4346368168424c22aaae887987f7733e01e1",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/bc_runtime.inc",
+      "origin": "composition-v12/bc_runtime.inc",
+      "sourceSha256": "520e917e0e37346d019a37891ab84eec2ebc6fded66e99a95efb537030d947cc",
+      "sha256": "520e917e0e37346d019a37891ab84eec2ebc6fded66e99a95efb537030d947cc",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/bc_source_runtime.inc",
+      "origin": "composition-v12/bc_source_runtime.inc",
+      "sourceSha256": "be1c1164f36bbc5598a4bee8a22d8ff2c3b1a64e1d7438909fb7ac2dcdfa0754",
+      "sha256": "be1c1164f36bbc5598a4bee8a22d8ff2c3b1a64e1d7438909fb7ac2dcdfa0754",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/bc_shader_types.inc",
+      "origin": "composition-v12/bc_shader_types.inc",
+      "sourceSha256": "7ec861ab928e380c3f5311af753c2672eb02175a48ebc337b2a0d7e54c29de5b",
+      "sha256": "7ec861ab928e380c3f5311af753c2672eb02175a48ebc337b2a0d7e54c29de5b",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/cc_runtime.inc",
+      "origin": "composition-v12/cc_runtime.inc",
+      "sourceSha256": "b845d745c974f4082fbf273948d919318991f2755be5d2d91efb79c96d8591cf",
+      "sha256": "b845d745c974f4082fbf273948d919318991f2755be5d2d91efb79c96d8591cf",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/semantic_runtime.inc",
+      "origin": "composition-v12/semantic_runtime.inc",
+      "sourceSha256": "f70c734e01556776686042373d58274da235accc71c2784110d4d5464e878cd4",
+      "sha256": "f70c734e01556776686042373d58274da235accc71c2784110d4d5464e878cd4",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/axis_probe_runtime.inc",
+      "origin": "composition-v12/axis_probe_runtime.inc",
+      "sourceSha256": "c337a3431903cd6b1736cb0d7e4472cab85e6df0aadac7fc7664be677c3831f5",
+      "sha256": "c337a3431903cd6b1736cb0d7e4472cab85e6df0aadac7fc7664be677c3831f5",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/status_v10_runtime.inc",
+      "origin": "composition-v12/status_v10_runtime.inc",
+      "sourceSha256": "d09c1aaaaf969201d8b5b97dd1618bfb355acd9d10d6a05f4c9ca53c8bc6f8a6",
+      "sha256": "d09c1aaaaf969201d8b5b97dd1618bfb355acd9d10d6a05f4c9ca53c8bc6f8a6",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate"
+    },
+    {
+      "file": "source/semantic_adapter.py",
+      "origin": "composition-v12/semantic_adapter.py",
+      "sourceSha256": "e129e0e50574d62c81f60a4ccf0e636aba9e794acaf386fd7dabfffc634a71ff",
+      "sha256": "3120f9d7bf90b0432c1b4821fbe2c613bd10da593d2d17fd3b888f94fea69d39",
+      "classification": "KombiKraft-authored runtime/interface adapter; BMW visual data is separate",
+      "adaptation": "Public API requires explicit source_pins mapping; no private source-pin file lookup"
+    },
+    {
+      "file": "source/abi.h",
+      "origin": "composition-v12/prototype.c authored ABI prefix",
+      "sha256": "88afb65f22f74378c4b5309f50a2b9df8abce8d8d3c0d5abc313f1c9fc23b6f7",
+      "classification": "Authored opaque C facade declarations and exported symbol loader"
+    },
+    {
+      "file": "source/main.c",
+      "origin": "Authored relative include assembly",
+      "sha256": "855732a4f46357299b321ebe9a18bdf79ee7b05ca33afeff15f56c1c6b5061dc",
+      "classification": "Authored build entrypoint"
+    }
+  ],
+  "runtimeSourceProfile": "composition-v12",
+  "visualRevisions": [
+    12,
+    13
+  ]
+}

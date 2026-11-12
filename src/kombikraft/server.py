@@ -1,20 +1,24 @@
 """Loopback-only viewer for local graphics and explicit original-code fixtures."""
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from importlib import resources
-from pathlib import PurePosixPath
+from pathlib import Path, PurePosixPath
 import json
 import mimetypes
 import os
 import threading
 from urllib.parse import unquote, urlsplit
-from .assets import AssetError
+from .assets import AssetError, confined_file
 
 class ViewerServer(ThreadingHTTPServer):
     daemon_threads = True
     request_queue_size = 128
-    def __init__(self, port=8084, assets=None, factory=None):
+    def __init__(self, port=8084, assets=None, factory=None, library=None):
         self.assets = assets
         self.factory = factory
+        self.library = Path(library).resolve() if library else None
+        if self.library:
+            confined_file(self.library, 'index.html')
+            confined_file(self.library, 'catalog.js')
         self.factory_lock = threading.Lock()
         super().__init__(("127.0.0.1", port), ViewerHandler)
         self.origin = f"http://127.0.0.1:{self.server_address[1]}"
@@ -57,7 +61,20 @@ class ViewerHandler(BaseHTTPRequestHandler):
         if route == "/api/toolkit/status":
             return self.send({"project": "KombiKraft", "assets": self.server.assets.status() if self.server.assets else {"available": False},
                               "factory": self.factory_snapshot(), "vehicleConnected": False,
-                              "installationAllowed": False, "wholeSystemBoot": False})
+                              "installationAllowed": False, "wholeSystemBoot": False,
+                              "visualLibraryAvailable": self.server.library is not None})
+        if route in ('/library', '/library/') or route.startswith('/library/'):
+            if self.server.library is None:
+                return self.send({'error': 'Visual library has not been supplied'}, status=404)
+            relative = route.removeprefix('/library').lstrip('/') or 'index.html'
+            try:
+                file = confined_file(self.server.library, relative)
+                if file.suffix not in ('.html','.js','.json','.md','.png','.ttf','.otf','.bin','.pixels'):
+                    raise AssetError('Unsupported visual library file type')
+                mime = mimetypes.guess_type(file.name)[0] or 'application/octet-stream'
+                return self.send(file.read_bytes(), mime)
+            except (AssetError, OSError):
+                return self.send({'error':'Visual library file is unavailable'}, status=404)
         if route == "/api/factory-controller/status":
             return self.send(self.factory_snapshot())
         if route in ("/api/status", "/api/native-custom/status", "/api/factory-inputs"):

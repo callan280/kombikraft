@@ -1,6 +1,6 @@
 /* Original BMW horizontal PowerGauge artwork reused for a CUSTOM fuel meter. Not a native Fuel branch. */
 (function(root,factory){const api=factory(root);if(typeof module==='object'&&module.exports)module.exports=api;else root.FactoryFuel=api;})(typeof globalThis!=='undefined'?globalThis:this,function(root){'use strict';
- const sourcePackageSha256='f70ad3a1365cad03dccc0c68388ee192581114a79c55a3ad68fca6a8468a4032';
+ const sourcePackageSha256='bd17426894351f8461e6bb284992ee6b97ea41bced66e334e88efff5222b2bfb';
  const crop=Object.freeze({x:44,y:68,width:432,height:48,sourceWidth:520,sourceHeight:345,backingScale:3});
  let source=null,buffer=null,error=null,proof=null,diagnostic=null,loaded=false,lastInput=null,inkTile=null,lastInkBounds=null;
  const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(v=>v.toString(16).padStart(2,'0')).join('');

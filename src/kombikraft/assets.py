@@ -1,4 +1,4 @@
-"""Admit private local graphics without adding them to source distributions."""
+"""Admit hash-verified local visual packs with confined resource routes."""
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 import hashlib
@@ -96,4 +96,4 @@ class AssetPack:
         missing = sorted(REQUIRED_LAYOUT_ROUTES - self.entries.keys())
         return {"available": True, "layoutAvailable": not missing,
                 "missingLayoutRoutes": missing, "files": len(self.entries), "bytes": self.bytes,
-                "source": "user-supplied local assets", "vehicleCompatibilityVerified": False}
+                "source": "verified local visual pack", "vehicleCompatibilityVerified": False}

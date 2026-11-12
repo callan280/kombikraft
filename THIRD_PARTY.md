@@ -1,8 +1,9 @@
 # Third-party components
 
 The public source contains original project tooling and browser adapters.
-Locally imported firmware, resources and runtime images are excluded from the
-MIT grant and from distributions.
+Reviewed visual resources are separately attributed; see ASSET-NOTICE.md.
+Full firmware and runtime images remain user-local inputs and are excluded
+from the MIT grant and distributions.
 
 Optional packages are installed from their normal package registries:
 
@@ -14,3 +15,9 @@ Optional packages are installed from their normal package registries:
 QEMU and native graphics build dependencies are external tools, not bundled
 copies. Record their versions with each native test. Additional upstream source
 must retain its own licence and attribution before it is added here.
+
+IDEmu-derived graphics transport is PolyForm Noncommercial 1.0.0, including its
+required contributor notice. QEMU-derived parts are GPL-2.0-or-later. Arm
+astcenc is Apache 2.0. Community MGU app-kit derivatives retain their MIT
+notices. Consult each subtree's notices; the root MIT licence does not replace
+the upstream terms.

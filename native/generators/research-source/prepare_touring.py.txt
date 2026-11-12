@@ -1,0 +1,25 @@
+from pathlib import Path
+import json,hashlib,math
+from PIL import Image,ImageFont,ImageDraw,ImageOps
+H=Path(__file__).resolve().parent;C=H.parents[1];O=H/'stage/f97';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();textures=[];parts=[];arrays=[];calls=[]
+def nums(v):return ','.join(format(float(x),'.9g')+('f'if'.'in format(float(x),'.9g')or'e'in format(float(x),'.9g')else'.0f')for x in v)
+def tex(key,im,source):
+ im=im.convert('RGBA');p=O/(key+'.rgba');p.write_bytes(im.tobytes());textures.append({'key':key,'file':p.name,'width':im.width,'height':im.height,'rgbaSha256':sha(p),'source':source})
+def quad(name,key,x,y,w,h,role,selection=-1):
+ pos=[x,0,-y,x+w,0,-y,x+w,0,-(y+h),x,0,-y,x+w,0,-(y+h),x,0,-(y+h)];uv=[0,0,1,0,1,1,0,0,1,1,0,1];arrays.append('static float '+name+'_positions[]={'+nums(pos)+'};');arrays.append('static float '+name+'_uv[]={'+nums(uv)+'};');calls.append(' TOURING_PART('+name+',"'+key+'",'+str(role)+','+str(selection)+');');parts.append({'name':name,'texture':key,'role':role,'selection':selection,'bounds':[x,y,x+w,y+h]})
+def label(name,value,cx,cy,size,role,color=(1,1,1,1)):
+ p=C/'typography/BMWTARG.ttf';f=ImageFont.truetype(str(p),round(size*3));b=f.getbbox(value,anchor='ls');im=Image.new('RGBA',(b[2]-b[0],b[3]-b[1]));ImageDraw.Draw(im).text((-b[0],-b[1]),value,font=f,anchor='ls',fill='white');tex(name,im,{'kind':'Unavailable-status label using recovered BMWTA; not OEM controller output','text':value,'font':str(p),'fontSha256':sha(p),'size':size});quad(name,name,cx-im.width/6,cy-im.height/6,im.width/3,im.height/3,role)
+label('touringSpeedUnknown','—',212,585,88,0)
+p=C.parent/'cluster-theme-research-20261111/textures/BMW_AG_Combustion_MPA/KI7_tex_digit_DCC_MSPORT_bitmap__DCCDigits_MSPORT.png';source=ImageOps.flip(Image.open(p).convert('RGBA'));assert source.size==(46,528);glyphs={}
+for n in range(10):
+ cell=source.crop((0,n*48,46,n*48+48));mask=Image.new('L',cell.size);mask.putdata([255 if a>40 and r+g+b>120 else 0 for r,g,b,a in cell.getdata()]);box=mask.getbbox();assert box;im=cell.crop(box);key='touringDccDigit'+str(n);tex(key,im,{'kind':'Exact accepted DCC MSPORT numeral atlas crop','source':str(p),'sourceSha256':sha(p),'fullAtlasVerticalFlip':True,'cell':[0,n*48,46,n*48+48],'inkThreshold':'A>40 and R+G+B>120','crop':list(box)});glyphs[str(n)]=(key,im.width,im.height)
+widths=[88*glyphs[c][1]/glyphs[c][2]for c in '72'];left=212-(sum(widths)+88*.14)/2
+for i,(ch,w)in enumerate(zip('72',widths)):quad('touringSpeed72_'+str(i),glyphs[ch][0],left,541,w,88,1);left+=w+88*.14
+quad('touringSpeedUnit','v3SpeedUnit',298,600,60,28.3,2);quad('touringM','v3M',71-77/2,113-77*28/90/2,77,77*28/90,3)
+label('touringRpmUnknown','—',1535,600,26,4);label('touringMapUnavailable','Navigation unavailable',960,300,26,5)
+m=json.loads((C/'design/factory-gear/assets/manifest.json').read_text());assert m['sourceSha256']=='8cc68c323fc0e4f719c08adcf39a6de98e80644081adb13aaa68144522db3011'
+f=json.loads((H/'footer-asset-manifest.json').read_text());old=next(x for x in f['parts']if x['name']=='v3SpeedUnknown');t=next(x for x in f['textures']if x['key']==old['texture']);im=Image.frombytes('RGBA',(t['width'],t['height']),(O/t['file']).read_bytes());b=im.getchannel('A').getbbox();scale=48/im.width;y=585-(b[1]+b[3])*scale/2;quad('touringGearUnknown',old['texture'],405-24,y,48,im.height*scale,6,0)
+for select,readout in enumerate(['P','R','N','D','S']+['M'+str(i)for i in range(1,9)],1):
+ widths=[48*m['glyphs'][ch]['width']/m['glyphs'][ch]['height']for ch in readout];left=405-(sum(widths)+4.8*(len(readout)-1))/2
+ for ch,w in zip(readout,widths):quad('touringGear'+readout+'_'+ch,'v8GearGlyph'+ch,left,561,w,48,6,select);left+=w+4.8
+arrays.append('static const F97Texture touring_textures[]={'+','.join('{"'+t['key']+'","'+t['file']+'",'+str(t['width'])+','+str(t['height'])+'}'for t in textures)+'};');(H/'touring_arrays.inc').write_text('\n'.join(arrays)+'\n');(H/'touring_parts.inc').write_text('\n'.join(calls)+'\n');(H/'touring-asset-manifest.json').write_text(json.dumps({'scope':'Accepted Map Touring positions with exact source art; navigation feed and physical HUD RPM normalization unavailable','sourceAcceptedDesignSha256':sha(H/'source-snapshots/v11-accepted-index.html'),'textures':textures,'parts':parts,'mapFeedAvailable':False,'staticScreenshotUsedAsMapRenderer':False,'defaultMOnlyBrandingImplemented':True,'explicitModelBrandingImplemented':False,'physicalRpmToSweepMappingVerified':False,'vehicleCompatibilityVerified':False,'installationAllowed':False},indent=2)+'\n');print('Prepared Touring',len(parts),'native parts,',len(textures),'source textures')

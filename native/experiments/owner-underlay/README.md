@@ -1,0 +1,7 @@
+# Same-owner composition source experiment
+
+Authored source of the bounded same-Scene100 underlay experiment. It uses actual captured Ramses19 ABI constructors/getters and matching user-local original scenes. Generated original-controller/warning target tables and original scene/runtime files must be obtained locally; they are not embedded as firmware here. This directory is a research source reference, not a public app or deployable hook.
+
+The executed private experiment added custom geometry to the same original scene, before main group0 at pass order-1 and also nested at808 before the earliest reviewed warning809. The original881-pixel Auto_H support mask remained; an intentionally opaque above-main2 control covered it. All1302 old endpoint identities,1128 nonwarning values,174 source-warning expected values and117warning-plus1overlay identities/orders were checked. Whole-frame restoration passed. No private logs/screenshots/receipts are redistributed with this source; the numbers describe the prior bounded experiment, not a test automatically performed by this public checkout.
+
+Auto_H's vehicle meaning is unconfirmed. Original application cold boot, full warning lifecycle, public owner-side entry, production resource/signature acceptance and installation are unproved. The diagnostic rectangle is an authored order/occlusion probe, not OEM artwork or a map. A separate external app scene does not inherit the stock controller object identities.

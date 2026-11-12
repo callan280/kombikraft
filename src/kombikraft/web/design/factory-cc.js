@@ -1,6 +1,6 @@
 /* Original BMW CCPanel mesh, UVs, shader and texture; browser graphics port only. */
 (function(root){'use strict';
-const packageSha256='4974e322b6dae5be4e94a41778371d8a50ce0f759d34732692e7d77a4c78f75b';
+const packageSha256='b5589f9f4b1329f11b78d408c1281b95b134b14b0a97f66a196042ff92530f70';
 const digest=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b))).map(v=>v.toString(16).padStart(2,'0')).join('');
 let gl,canvas,program,mesh,texture,indexBuffer,attributes=[],uniforms={},loaded=false,error=null,proof=null;
 function draw(parentZ,opacity){

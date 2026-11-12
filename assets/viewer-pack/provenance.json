@@ -1,0 +1,2547 @@
+{
+  "schema": "kombikraft-published-visual-pack-v1",
+  "permissionBasis": "Maintainer confirmed redistribution permission; original rights retained.",
+  "license": "See ../../ASSET-NOTICE.md; the project MIT grant does not cover these visual resources.",
+  "firmwareImagesIncluded": false,
+  "vehicleTested": false,
+  "entries": [
+    {
+      "route": "/design/assets/digits.png",
+      "sourceSha256": "f2340903d8716e069f728f00b6f7797cae5b3c3dd99a1a5345592f0fb6b032db",
+      "publishedSha256": "f2340903d8716e069f728f00b6f7797cae5b3c3dd99a1a5345592f0fb6b032db",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/assets/fuel.png",
+      "sourceSha256": "5034732b037fcb042300fc5c2939f131b7d91f96ddec94279273996450327a1f",
+      "publishedSha256": "5034732b037fcb042300fc5c2939f131b7d91f96ddec94279273996450327a1f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/assets/m-logo.png",
+      "sourceSha256": "25745ed85ff8fc09940d8dc6a49073c8c4cc66e4f2a6c335b1ae80aaf5f06ebf",
+      "publishedSha256": "25745ed85ff8fc09940d8dc6a49073c8c4cc66e4f2a6c335b1ae80aaf5f06ebf",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/assets/model.png",
+      "sourceSha256": "aa2d9a887e99a38fbe546598bbf68d80511ba26d275ca1dd2a9eec7f2ec2d1b2",
+      "publishedSha256": "aa2d9a887e99a38fbe546598bbf68d80511ba26d275ca1dd2a9eec7f2ec2d1b2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/assets/rpm-unit.png",
+      "sourceSha256": "ccb7e6fb421efa007c3aa0f5d6bd49cae39bf35ccc0ce509863f00a5713f478e",
+      "publishedSha256": "ccb7e6fb421efa007c3aa0f5d6bd49cae39bf35ccc0ce509863f00a5713f478e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/assets/speed-limit-digits.png",
+      "sourceSha256": "29f4d6d9b47d079a693bb5fdc15f01912c844f49a9bf75d906ed2a61a2148806",
+      "publishedSha256": "29f4d6d9b47d079a693bb5fdc15f01912c844f49a9bf75d906ed2a61a2148806",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/assets/speed-limit-sign.png",
+      "sourceSha256": "b5a2594849230407c2a1f9d216cc6e2445fcf92a15fbdd7c31706b2d35d92d1c",
+      "publishedSha256": "b5a2594849230407c2a1f9d216cc6e2445fcf92a15fbdd7c31706b2d35d92d1c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/assets/speed-unit.png",
+      "sourceSha256": "9104ca18e9e5398608c9c316de70a4c61800b290cdae27a41a1761645c97f008",
+      "publishedSha256": "9104ca18e9e5398608c9c316de70a4c61800b290cdae27a41a1761645c97f008",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption.js",
+      "sourceSha256": "d72b8adf3c127c45a6de461397367040c19a18328a0c7c0123ff761280f5afae",
+      "publishedSha256": "d72b8adf3c127c45a6de461397367040c19a18328a0c7c0123ff761280f5afae",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bar-tex_bar_backdrop_bitmap.png",
+      "sourceSha256": "343ac297f423f8d9227cf0f468128aa4f3732ad896dc600d1b39ba53e9074c6e",
+      "publishedSha256": "343ac297f423f8d9227cf0f468128aa4f3732ad896dc600d1b39ba53e9074c6e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bar-tex_bar_below_bitmap.png",
+      "sourceSha256": "bf0ccaf4faf6f328710c10d694a087afc9cbc04e578fe3b0592c0fdcdc1f41f0",
+      "publishedSha256": "bf0ccaf4faf6f328710c10d694a087afc9cbc04e578fe3b0592c0fdcdc1f41f0",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bar-tex_bar_bitmap.png",
+      "sourceSha256": "685f2f93e76c388535e21e58196216f47450f13f7ab621338c9fada079a9f125",
+      "publishedSha256": "685f2f93e76c388535e21e58196216f47450f13f7ab621338c9fada079a9f125",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bar-tex_bar_factory_bitmap.png",
+      "sourceSha256": "685f2f93e76c388535e21e58196216f47450f13f7ab621338c9fada079a9f125",
+      "publishedSha256": "685f2f93e76c388535e21e58196216f47450f13f7ab621338c9fada079a9f125",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bar-tex_bar_rfl_bitmap.png",
+      "sourceSha256": "a33d10cad7516f8b37a2589e6f41b42122f7a5486d30184c6252c33023138e8b",
+      "publishedSha256": "a33d10cad7516f8b37a2589e6f41b42122f7a5486d30184c6252c33023138e8b",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bar-tex_frame_bitmap.png",
+      "sourceSha256": "fd909eed366b31bfc766b141da4401c87f0fda1ebeab6e50f46cd92fa272542d",
+      "publishedSha256": "fd909eed366b31bfc766b141da4401c87f0fda1ebeab6e50f46cd92fa272542d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bar-tex_groundlight_bitmap.png",
+      "sourceSha256": "42eb38efc04df6f625f27a5d0547ee3448c08a17eb522b38dfd26be0e274435a",
+      "publishedSha256": "42eb38efc04df6f625f27a5d0547ee3448c08a17eb522b38dfd26be0e274435a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bar-tex_highlight_bitmap.png",
+      "sourceSha256": "239e02d0779c6bbea6ca67dfd2332d5ff3c3d8bfcf38c6e3da747e8253257441",
+      "publishedSha256": "239e02d0779c6bbea6ca67dfd2332d5ff3c3d8bfcf38c6e3da747e8253257441",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bar-tex_lid_bitmap.png",
+      "sourceSha256": "27d690895ef8a85ff8f495fa98da4e9b74cae1202ea63cf2da8a1f797ed4cd9c",
+      "publishedSha256": "27d690895ef8a85ff8f495fa98da4e9b74cae1202ea63cf2da8a1f797ed4cd9c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bg-MD.png",
+      "sourceSha256": "494c1a90ee117b84f6a3a3fe5ab7bdfaa74eafffff5d9f60587a9441cbedc5a4",
+      "publishedSha256": "494c1a90ee117b84f6a3a3fe5ab7bdfaa74eafffff5d9f60587a9441cbedc5a4",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bg-PMA_average_rgb.png",
+      "sourceSha256": "25f0ee68601871c663cf2a78768b6fd4b417ed1a1ed9121740cb1ab3354f9b8d",
+      "publishedSha256": "25f0ee68601871c663cf2a78768b6fd4b417ed1a1ed9121740cb1ab3354f9b8d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bg-file_pointer.png",
+      "sourceSha256": "777efab8bbc72c8085bd9db78ee499754192e69f1680284c8bc5a65b5c620f40",
+      "publishedSha256": "777efab8bbc72c8085bd9db78ee499754192e69f1680284c8bc5a65b5c620f40",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bg-multiplyDivide1.png",
+      "sourceSha256": "2e83339bda478b3a5ec34a145a785450ba6ab1260cc4a989de032ea0604466da",
+      "publishedSha256": "2e83339bda478b3a5ec34a145a785450ba6ab1260cc4a989de032ea0604466da",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bg-multiplyDivide2.png",
+      "sourceSha256": "3d27c1d23d332782a8afddb606d60a36263d66d5a50070560fd5f0d1d1dbdb1d",
+      "publishedSha256": "3d27c1d23d332782a8afddb606d60a36263d66d5a50070560fd5f0d1d1dbdb1d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bg-plusMinusAverage1.png",
+      "sourceSha256": "6f40e5cd2278ce2523564e949c87c35f8ae5b65305137a8bf8515b4012b2479f",
+      "publishedSha256": "6f40e5cd2278ce2523564e949c87c35f8ae5b65305137a8bf8515b4012b2479f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bg-ramp_bg.png",
+      "sourceSha256": "c6f005fd485ba0bfb2a1cafb36887ddfd2e3ce716652b760b5e74d54b78ef2c1",
+      "publishedSha256": "c6f005fd485ba0bfb2a1cafb36887ddfd2e3ce716652b760b5e74d54b78ef2c1",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/bg-ramp_bg_refl.png",
+      "sourceSha256": "c6f005fd485ba0bfb2a1cafb36887ddfd2e3ce716652b760b5e74d54b78ef2c1",
+      "publishedSha256": "c6f005fd485ba0bfb2a1cafb36887ddfd2e3ce716652b760b5e74d54b78ef2c1",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/factory-consumption-package.json",
+      "sourceSha256": "ce1d7fc13b8c385d6cf16009d99a61f9f29819f3d64781afa6cd625f5b563e1f",
+      "publishedSha256": "ce1d7fc13b8c385d6cf16009d99a61f9f29819f3d64781afa6cd625f5b563e1f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-consumption/assets/provenance.json",
+      "sourceSha256": "f3e755ca1e90a3572e00c86ca0a00318169ff9cbafae017063dd30f7c742f4bd",
+      "publishedSha256": "3dba15d085ce9c1751b2d539ecfb083da22b6d1319a16184362aa531450c7a39",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/factory-gear/assets/1.png",
+      "sourceSha256": "14f4d4919a5ab895aaa80d3898eca2a22bb09f0897ee471fd970c19cb4d4cc07",
+      "publishedSha256": "14f4d4919a5ab895aaa80d3898eca2a22bb09f0897ee471fd970c19cb4d4cc07",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/2.png",
+      "sourceSha256": "30e59f5d5f6f025cd660eb20d7bf415aa46c2abae45d5a83451bfbd693ebfa9c",
+      "publishedSha256": "30e59f5d5f6f025cd660eb20d7bf415aa46c2abae45d5a83451bfbd693ebfa9c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/3.png",
+      "sourceSha256": "89eff1f439a0f7e7a20f4a7b599effa27b6fb9ed8f39d7a39161b876b0b1c4ed",
+      "publishedSha256": "89eff1f439a0f7e7a20f4a7b599effa27b6fb9ed8f39d7a39161b876b0b1c4ed",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/4.png",
+      "sourceSha256": "9189a0bb975c288077ab0b3b36470f2437c98218621e6c391608b0983ea9c5db",
+      "publishedSha256": "9189a0bb975c288077ab0b3b36470f2437c98218621e6c391608b0983ea9c5db",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/5.png",
+      "sourceSha256": "2954734c5ebd81867e477dcab60cc7d6f034acb3f4216d5a2da6dc248ca5c80a",
+      "publishedSha256": "2954734c5ebd81867e477dcab60cc7d6f034acb3f4216d5a2da6dc248ca5c80a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/6.png",
+      "sourceSha256": "62390dede711225b033373cdbf4df527e2dc2e2ccf65f6804584426929c619e6",
+      "publishedSha256": "62390dede711225b033373cdbf4df527e2dc2e2ccf65f6804584426929c619e6",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/7.png",
+      "sourceSha256": "2d660f2ccd76a34702d26a7c3f30950bb8ea46afb05ef4108845957eff373d77",
+      "publishedSha256": "2d660f2ccd76a34702d26a7c3f30950bb8ea46afb05ef4108845957eff373d77",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/8.png",
+      "sourceSha256": "b1d6c5ced0c4d049d3b1b2d35dfca5f2fb9c472799d97802bc3b58f847c6f0d6",
+      "publishedSha256": "b1d6c5ced0c4d049d3b1b2d35dfca5f2fb9c472799d97802bc3b58f847c6f0d6",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/D.png",
+      "sourceSha256": "7ee883ba35e24a41306b008aa5f997884138a4110fa38b32ec4b44e9793cd13c",
+      "publishedSha256": "7ee883ba35e24a41306b008aa5f997884138a4110fa38b32ec4b44e9793cd13c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/M.png",
+      "sourceSha256": "21e562fdb96dbfb4215ed4de8af69555550518af3c27478537a5dea100b7c699",
+      "publishedSha256": "21e562fdb96dbfb4215ed4de8af69555550518af3c27478537a5dea100b7c699",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/N.png",
+      "sourceSha256": "2be00c00992db8c4bdb97359da4359cfe4ac6c0ca35ba932b374ce07ebae3d37",
+      "publishedSha256": "2be00c00992db8c4bdb97359da4359cfe4ac6c0ca35ba932b374ce07ebae3d37",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/P.png",
+      "sourceSha256": "7116e8e0b88db3779450ab9f5c1ef28c5de8a5e77c33f8c9d012b20f70d77656",
+      "publishedSha256": "7116e8e0b88db3779450ab9f5c1ef28c5de8a5e77c33f8c9d012b20f70d77656",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/R.png",
+      "sourceSha256": "bb7d69bdaf03b9d4efe4f9e2c050e57ad326147d461805077dcf7476f9b4214d",
+      "publishedSha256": "bb7d69bdaf03b9d4efe4f9e2c050e57ad326147d461805077dcf7476f9b4214d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/S.png",
+      "sourceSha256": "7e6292decffe76c4a588621a4d4235655ad9f5a6b0e665f68472e8a17eab337a",
+      "publishedSha256": "7e6292decffe76c4a588621a4d4235655ad9f5a6b0e665f68472e8a17eab337a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-gear/assets/manifest.json",
+      "sourceSha256": "473a542030a223e44cfe6ce83a58887f0af67b7b575225c9cbbf321841bd35ea",
+      "publishedSha256": "864c3399d06446ce6251ba20bfce14f0470394460025bf26f580c1aa05421cef",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/factory-graphics/gear-letter-inspection.png",
+      "sourceSha256": "0983bfdafbc037b7ffa07beb882d0c380def3f567f3defbe12ad03ff9fb36b8e",
+      "publishedSha256": "0983bfdafbc037b7ffa07beb882d0c380def3f567f3defbe12ad03ff9fb36b8e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init-texture-manifest.json",
+      "sourceSha256": "b86e032fe5bb8e53631f06d7cbaacb556435e61e37d4b2926b03406be05bd932",
+      "publishedSha256": "0f02ffcfb7fba7d9ff10a55a631c6899d25e26eb9308925bfb9fe8574db503b9",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/factory-graphics/init/ChargeBracketShape_bitmap__RevScalesPower_ICE.png",
+      "sourceSha256": "98a89fbc9e5f484a23338079c9782674829231532da48065b5deb11df89fad00",
+      "publishedSha256": "98a89fbc9e5f484a23338079c9782674829231532da48065b5deb11df89fad00",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/GearMain_MPA330_KI7_tex_digitSPA_MPA330_bitmap__GearMain_MPA330.png",
+      "sourceSha256": "9a363f82f7e8cf059f2a25e2e47fccf515695caa918dc9373cd7488479867b8a",
+      "publishedSha256": "9a363f82f7e8cf059f2a25e2e47fccf515695caa918dc9373cd7488479867b8a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/GearMain_MPA330_KI7_tex_gearSPA_MPA330_bitmap__GearMain_MPA330.png",
+      "sourceSha256": "41fd43ccee4c882eb513bebd5230f43b47ffa9baed2bb9cf36f4541ac06605c6",
+      "publishedSha256": "41fd43ccee4c882eb513bebd5230f43b47ffa9baed2bb9cf36f4541ac06605c6",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/GearMain_MPA330_KI_tex_geardigit_shadow_MPA330_bitmap__GearMain_MPA330.png",
+      "sourceSha256": "b82a409b1785c426d1ab83b2cbbef4d18012af977b73c2eb34010c85e9180df6",
+      "publishedSha256": "b82a409b1785c426d1ab83b2cbbef4d18012af977b73c2eb34010c85e9180df6",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/GearMain_MPA330_KI_tex_gearletter_shadow_MPA330_bitmap__GearMain_MPA330.png",
+      "sourceSha256": "894fdbbf96b08889bbbdacd8abf65266ae4107fd98ce68d46627d09f2feddec6",
+      "publishedSha256": "894fdbbf96b08889bbbdacd8abf65266ae4107fd98ce68d46627d09f2feddec6",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/ID7_FPK_CCM_Icon64x64Shape_bitmap__KI_2D_CC_Icon.png",
+      "sourceSha256": "b5948cb3503a0a6e1f933a8b6cfa6524b41bfda8a73032f4c6e0f4c4f2133ab1",
+      "publishedSha256": "b5948cb3503a0a6e1f933a8b6cfa6524b41bfda8a73032f4c6e0f4c4f2133ab1",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/ID7_tex_bmw_logo_bitmap__WelcomeLogo.png",
+      "sourceSha256": "8a8c672d757eaaaa1d56cb88c3dce7641eb7e52b0ffb8f8028a41c9f289a27ec",
+      "publishedSha256": "8a8c672d757eaaaa1d56cb88c3dce7641eb7e52b0ffb8f8028a41c9f289a27ec",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/ID7_tex_numbers_KMH2_bitmap__SpeedoNumbers_MSP.png",
+      "sourceSha256": "e8193e2b76a3a66e429f5495d1c4600944d5f365e7b8d5157946c6e90c28548a",
+      "publishedSha256": "e8193e2b76a3a66e429f5495d1c4600944d5f365e7b8d5157946c6e90c28548a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/ID7_tex_numbers_KMH3_bitmap__SpeedoNumbers_MPA.png",
+      "sourceSha256": "aa80527551def6ee5a203a11eae40ca90e173743e65e1dd579e5f182250cf5d0",
+      "publishedSha256": "aa80527551def6ee5a203a11eae40ca90e173743e65e1dd579e5f182250cf5d0",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/ID7_tex_numbers_MPH200_bitmap__SpeedoNumbers_MPA.png",
+      "sourceSha256": "4ac9ea22ccdc1bb61f576a1c4aa2b4a9f1824463186b05e5d004b135e67f6193",
+      "publishedSha256": "4ac9ea22ccdc1bb61f576a1c4aa2b4a9f1824463186b05e5d004b135e67f6193",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/ID7_tex_numbers_MPH_MSP160_bitmap__SpeedoNumbers_MSP.png",
+      "sourceSha256": "30a5b987d85eace2e0dfcb58d9f9e4ed551fc085d481bb1e38a9c87da765acf7",
+      "publishedSha256": "30a5b987d85eace2e0dfcb58d9f9e4ed551fc085d481bb1e38a9c87da765acf7",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/ID7_tex_numbers_POWER_MPA_bitmap__PowerNumbers_ICE_MPA.png",
+      "sourceSha256": "73722c1507cf5c2d12a394da6aa1284e02e49bcd43cfa4ae8514f02e0ab47fb5",
+      "publishedSha256": "73722c1507cf5c2d12a394da6aa1284e02e49bcd43cfa4ae8514f02e0ab47fb5",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_gearletter_MPA330_bitmap__GearMain_MPA330.png",
+      "sourceSha256": "c0261ec3388813032cfbe264e3d86e8c769008b67f3efb2845ca7b4416c61043",
+      "publishedSha256": "c0261ec3388813032cfbe264e3d86e8c769008b67f3efb2845ca7b4416c61043",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_numbers_BENZIN2_bitmap__RevNumbers_MSPMPA.png",
+      "sourceSha256": "9c9e499d1bf9c8ba722a57a3a6ae84b939ac79eccbe92b90d305118b2db5a1a8",
+      "publishedSha256": "9c9e499d1bf9c8ba722a57a3a6ae84b939ac79eccbe92b90d305118b2db5a1a8",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_sail_comfort1_bitmap__WelcomeSail.png",
+      "sourceSha256": "4b7204cb0829dc948fb8f63d940a495528ab2cac0da2dca1e226e7d848fe68ba",
+      "publishedSha256": "4b7204cb0829dc948fb8f63d940a495528ab2cac0da2dca1e226e7d848fe68ba",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_sail_comfort2_bitmap__WelcomeSail.png",
+      "sourceSha256": "2a67783d147ab8a7f3297db52de432e09285e7f9ed9d7798261737df7ca08f39",
+      "publishedSha256": "2a67783d147ab8a7f3297db52de432e09285e7f9ed9d7798261737df7ca08f39",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_scale_PHEV_bitmap__SpeedoScale_PHEV.png",
+      "sourceSha256": "a2e3cba6f348bfd37574edac64a74a1699ae638dcf5924259ffee9695725ac1a",
+      "publishedSha256": "a2e3cba6f348bfd37574edac64a74a1699ae638dcf5924259ffee9695725ac1a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_scale_bitmap__SpeedoScale_ALPINA.png",
+      "sourceSha256": "e6b15b4888ef59ed77bfbaee87f15581943386383cedfd437d174a14bd814dae",
+      "publishedSha256": "e6b15b4888ef59ed77bfbaee87f15581943386383cedfd437d174a14bd814dae",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_tube_band_bitmap__SpeedoTube.png",
+      "sourceSha256": "ecffc95fa9aefe9daa74c1f11f71a3e942ff4bd3a60c1ee2ebdba6d0fff15e03",
+      "publishedSha256": "ecffc95fa9aefe9daa74c1f11f71a3e942ff4bd3a60c1ee2ebdba6d0fff15e03",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_tube_bracket3_bitmap__WelcomeFrame.png",
+      "sourceSha256": "7c8b90185ca8ed584837dcb8c3029e9f1a6666211663601825f701d017119523",
+      "publishedSha256": "7c8b90185ca8ed584837dcb8c3029e9f1a6666211663601825f701d017119523",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_tube_bracket_bitmap__SpeedoFrame.png",
+      "sourceSha256": "0637c0b15e276d2a501a52930d226eafa48b29a43edd2dd05c0ac8422e322365",
+      "publishedSha256": "0637c0b15e276d2a501a52930d226eafa48b29a43edd2dd05c0ac8422e322365",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_tube_bracket_bottomline_bitmap__BottomLine.png",
+      "sourceSha256": "32cb9cbc28f63ddccc592cde5f867d2c4dc66d17b8e75c857b002c8af5f00255",
+      "publishedSha256": "32cb9cbc28f63ddccc592cde5f867d2c4dc66d17b8e75c857b002c8af5f00255",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_tube_bracket_sport_bitmap__WelcomeFrame.png",
+      "sourceSha256": "b4045ece24157142868317d600a0d18469c3830d9e91c2719e0a9f087bc7147a",
+      "publishedSha256": "b4045ece24157142868317d600a0d18469c3830d9e91c2719e0a9f087bc7147a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI7_tex_tube_extrude_PHEV1_bitmap__SpeedoTube.png",
+      "sourceSha256": "92a747a2b518e6ddc395aa30b886ada8998196e8a8738889eef7c7c723907bea",
+      "publishedSha256": "92a747a2b518e6ddc395aa30b886ada8998196e8a8738889eef7c7c723907bea",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_ATemp_CShape_bitmap__KI_2D_ATemp.png",
+      "sourceSha256": "5c2f4b347d8cdd380121507203fc0c3dbfa4d8b3ed18e3fa0c6560d0ed4514d0",
+      "publishedSha256": "5c2f4b347d8cdd380121507203fc0c3dbfa4d8b3ed18e3fa0c6560d0ed4514d0",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_ATemp_FShape_bitmap__KI_2D_ATemp.png",
+      "sourceSha256": "859a3c15c3391ce5a769431b5e4fc9e72794d6a18a9a3189fa4e02cf0fabb76d",
+      "publishedSha256": "859a3c15c3391ce5a769431b5e4fc9e72794d6a18a9a3189fa4e02cf0fabb76d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Fueltube_Icon_Arrow_MPAShape_bitmap__KI_2D_Fueltube_MPA.png",
+      "sourceSha256": "f9b78628723d97ccec12abb69b7ba9a346fe48035164d9b6adf490edb0183838",
+      "publishedSha256": "f9b78628723d97ccec12abb69b7ba9a346fe48035164d9b6adf490edb0183838",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Fueltube_Icon_Diesel_MPAShape_bitmap__KI_2D_Fueltube_MPA.png",
+      "sourceSha256": "85cfacaa5a1d78c5eb76e945ce862fc2c36d066bc92934cb6da6ee67b80eb900",
+      "publishedSha256": "85cfacaa5a1d78c5eb76e945ce862fc2c36d066bc92934cb6da6ee67b80eb900",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Fueltube_Icon_Tank_MPAShape_bitmap__KI_2D_Fueltube_MPA.png",
+      "sourceSha256": "5034732b037fcb042300fc5c2939f131b7d91f96ddec94279273996450327a1f",
+      "publishedSha256": "5034732b037fcb042300fc5c2939f131b7d91f96ddec94279273996450327a1f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Fueltube_Units_05_MPAShape_bitmap__KI_2D_Fueltube_MPA.png",
+      "sourceSha256": "b3346199232bf3a01d1a82bfab78d6b4fffea0aafd36ac6f3d5feec769324a3f",
+      "publishedSha256": "b3346199232bf3a01d1a82bfab78d6b4fffea0aafd36ac6f3d5feec769324a3f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Fueltube_Units_0_MPAShape_bitmap__KI_2D_Fueltube_MPA.png",
+      "sourceSha256": "529bfd861fe1b7f933e95457cdd4e5d1f98dbea6cd8f1dedbf2f876497bd9ba1",
+      "publishedSha256": "529bfd861fe1b7f933e95457cdd4e5d1f98dbea6cd8f1dedbf2f876497bd9ba1",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Fueltube_Units_1_MPAShape_bitmap__KI_2D_Fueltube_MPA.png",
+      "sourceSha256": "102797d2bf3b43c9661218dd1d7ebc4ce26257d7a356f1486da22346f77caa5f",
+      "publishedSha256": "102797d2bf3b43c9661218dd1d7ebc4ce26257d7a356f1486da22346f77caa5f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GWSZ_TotalShape_bitmap__KI_2D_GWSZ.png",
+      "sourceSha256": "4d8226286ab6a849d294616ec1ba9c42cfab3106d115d40a8fb37b0098e2ffb1",
+      "publishedSha256": "4d8226286ab6a849d294616ec1ba9c42cfab3106d115d40a8fb37b0098e2ffb1",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GWSZ_Unit_KmShape_bitmap__KI_2D_GWSZ.png",
+      "sourceSha256": "4604fa79bcc6800eb095ba8b68aefbbb605438a1c5734eb6d143e072310351e1",
+      "publishedSha256": "4604fa79bcc6800eb095ba8b68aefbbb605438a1c5734eb6d143e072310351e1",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GWSZ_Unit_MiShape_bitmap__KI_2D_GWSZ.png",
+      "sourceSha256": "92911524315a2c875c6ba892b788305065ea718fe9d19a20f8b2620a13d029a4",
+      "publishedSha256": "92911524315a2c875c6ba892b788305065ea718fe9d19a20f8b2620a13d029a4",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_1Shape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "b1ddd7ae4062e69bc1af11cfb9774bf26919e456508834f6c0eb494655563712",
+      "publishedSha256": "b1ddd7ae4062e69bc1af11cfb9774bf26919e456508834f6c0eb494655563712",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_2Shape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "9a38a7c4d1989518faa9eaf5f41f01576b419be18ec0e0613ef77b66b9ecec3d",
+      "publishedSha256": "9a38a7c4d1989518faa9eaf5f41f01576b419be18ec0e0613ef77b66b9ecec3d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_3Shape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "e14e60cef28e5ef40b8d877f5fdc210348670153de5d3081aa9f8666f274e523",
+      "publishedSha256": "e14e60cef28e5ef40b8d877f5fdc210348670153de5d3081aa9f8666f274e523",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_4Shape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "d484daa3e42b218412d1e0b7bb6549136bc778aa68c0358125ded907bd8396d1",
+      "publishedSha256": "d484daa3e42b218412d1e0b7bb6549136bc778aa68c0358125ded907bd8396d1",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_5Shape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "a56f46036fb9e44cb00f5cc00960a37f523a94cb540e78c16ab90c02436de068",
+      "publishedSha256": "a56f46036fb9e44cb00f5cc00960a37f523a94cb540e78c16ab90c02436de068",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_6Shape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "1f2e624b4d4f20e55d4fc8eeb365c7ea17ec247492a6488cd1bb36735a861f19",
+      "publishedSha256": "1f2e624b4d4f20e55d4fc8eeb365c7ea17ec247492a6488cd1bb36735a861f19",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_7Shape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "032f385c4fde1c9ce967cdb012a7502403fabe52148c0a68696c0e2e50753511",
+      "publishedSha256": "032f385c4fde1c9ce967cdb012a7502403fabe52148c0a68696c0e2e50753511",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_8Shape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "b14f911fa07ac418917b4547505736c5fa61ed3a0b822f7f509fd7ecc6fd0d35",
+      "publishedSha256": "b14f911fa07ac418917b4547505736c5fa61ed3a0b822f7f509fd7ecc6fd0d35",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_9Shape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "be6c8f88d185551b78698a9386f60b5d9a775ce8d88dbcffceeae7c71c67ca68",
+      "publishedSha256": "be6c8f88d185551b78698a9386f60b5d9a775ce8d88dbcffceeae7c71c67ca68",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_BShape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "42bfc2fc75d13d9e42e981e0b8082244efb33a795fd135f44fcda6c153f51d89",
+      "publishedSha256": "42bfc2fc75d13d9e42e981e0b8082244efb33a795fd135f44fcda6c153f51d89",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_DShape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "5d082588361ec4af04a8f889fc2deb650ccf0fc10e4cf7d07baee95280d92a4e",
+      "publishedSha256": "5d082588361ec4af04a8f889fc2deb650ccf0fc10e4cf7d07baee95280d92a4e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_MShape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "d72e51c549718c8c35059c4e9f1106c28d66cdbf427dfb193f73b430ed3c6fd8",
+      "publishedSha256": "d72e51c549718c8c35059c4e9f1106c28d66cdbf427dfb193f73b430ed3c6fd8",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_NShape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "742725bdd58a81bbba841a0bde9985ec0317e1e71bd5375e138e939d03c7522c",
+      "publishedSha256": "742725bdd58a81bbba841a0bde9985ec0317e1e71bd5375e138e939d03c7522c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_PShape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "246a92456d939597b6402a070968772b472f9aa71d86f99704f0cb1ebc8db784",
+      "publishedSha256": "246a92456d939597b6402a070968772b472f9aa71d86f99704f0cb1ebc8db784",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_RShape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "740b7f8abbb374065b55ffe0e59835f3fe24a0cb0e960db78e0441745973c455",
+      "publishedSha256": "740b7f8abbb374065b55ffe0e59835f3fe24a0cb0e960db78e0441745973c455",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_SShape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "8c0d2a1eeaa3969dba84a882d2c8fe91810360e07b0aa4a744b350caf29bb694",
+      "publishedSha256": "8c0d2a1eeaa3969dba84a882d2c8fe91810360e07b0aa4a744b350caf29bb694",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_Spa_5Shape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "de3fd3727326bd4164674d14b7bb321a0f5be9d13ceb35caed46948faa2c57c7",
+      "publishedSha256": "de3fd3727326bd4164674d14b7bb321a0f5be9d13ceb35caed46948faa2c57c7",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_Spa_ArrowShape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "246b0f7b5b7fbb8f0f3a7d63464d5b611ac4ec65c2d475cf70373a4cc9bbeb89",
+      "publishedSha256": "246b0f7b5b7fbb8f0f3a7d63464d5b611ac4ec65c2d475cf70373a4cc9bbeb89",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_GearSmall_Spa_NShape_bitmap__KI_2D_GearSmall.png",
+      "sourceSha256": "9e5d32cc6976d577fb09126bac7edcb9c3ee83665eee67c7be99cdece8323194",
+      "publishedSha256": "9e5d32cc6976d577fb09126bac7edcb9c3ee83665eee67c7be99cdece8323194",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Manidot_IconShape_bitmap__KI_2D_GWSZ.png",
+      "sourceSha256": "07ac94c9abe50bb441a38ae376262fc5875465db3cc1b525972fe03d0f5a667e",
+      "publishedSha256": "07ac94c9abe50bb441a38ae376262fc5875465db3cc1b525972fe03d0f5a667e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_MotorTemp_IconShape_bitmap__KI_2D_MotorTemp_Icons.png",
+      "sourceSha256": "db2e99ddd47d0ebcd29a40f8d0fbaa3a446565959123bf822fc7ae84767fc88f",
+      "publishedSha256": "db2e99ddd47d0ebcd29a40f8d0fbaa3a446565959123bf822fc7ae84767fc88f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_MotorTemp_Icon_ColdShape_bitmap__KI_2D_MotorTemp_Icons.png",
+      "sourceSha256": "961c4d9e0cd1d55ddf20fb601ff1278e701e4f9ab2abc78b9fec49a54605ab74",
+      "publishedSha256": "961c4d9e0cd1d55ddf20fb601ff1278e701e4f9ab2abc78b9fec49a54605ab74",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_MotorTemp_Icon_HotShape_bitmap__KI_2D_MotorTemp_Icons.png",
+      "sourceSha256": "60dd59caa1c7378c6261f03e75b44bbfdadeffff6b04d2f3cfacadd1a70ed43e",
+      "publishedSha256": "60dd59caa1c7378c6261f03e75b44bbfdadeffff6b04d2f3cfacadd1a70ed43e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_MotorTemp_InvalidShape_bitmap__KI_2D_MotorTemp_Icons.png",
+      "sourceSha256": "4479ae22b879363adece04c436d095e65fdb15b030c2bd29df670994ec064bfc",
+      "publishedSha256": "4479ae22b879363adece04c436d095e65fdb15b030c2bd29df670994ec064bfc",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_NotReady_IconShape_bitmap__KI_2D_Ready.png",
+      "sourceSha256": "9ded037d9427d09085c15d9dd6ca4b3730c27f52b5c27d933e62d655427d88ee",
+      "publishedSha256": "9ded037d9427d09085c15d9dd6ca4b3730c27f52b5c27d933e62d655427d88ee",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Off_IconShape_bitmap__KI_2D_Ready.png",
+      "sourceSha256": "caf2262a495a876f2194769fabbd19e2b755d896ebea0316fb298712c65d2080",
+      "publishedSha256": "caf2262a495a876f2194769fabbd19e2b755d896ebea0316fb298712c65d2080",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Range_IconShape_bitmap__KI_2D_Range.png",
+      "sourceSha256": "782c899088e4bd502e0cb2f5a35a2953032598bc88f22892516ccd57cc0759ab",
+      "publishedSha256": "782c899088e4bd502e0cb2f5a35a2953032598bc88f22892516ccd57cc0759ab",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Range_Icon_CombinedShape_bitmap__KI_2D_Range.png",
+      "sourceSha256": "7f04c00c78d32963761586386f26d0230a9a2fb8196b7b9c3b43b645f5456bbe",
+      "publishedSha256": "7f04c00c78d32963761586386f26d0230a9a2fb8196b7b9c3b43b645f5456bbe",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Range_Unit_KmShape_bitmap__KI_2D_Range.png",
+      "sourceSha256": "3f8d9bf1cd198f66c325cf2e69649f9183efc46fa18dd2915df9dc90a8727a95",
+      "publishedSha256": "3f8d9bf1cd198f66c325cf2e69649f9183efc46fa18dd2915df9dc90a8727a95",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Range_Unit_MiShape_bitmap__KI_2D_Range.png",
+      "sourceSha256": "8f4672dbb6f6f44b64aa4873fd0cb7c57ba01a1938aa3a36940a80e2e67904aa",
+      "publishedSha256": "8f4672dbb6f6f44b64aa4873fd0cb7c57ba01a1938aa3a36940a80e2e67904aa",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Ready_IconShape_bitmap__KI_2D_Ready.png",
+      "sourceSha256": "441f5befeca4eefc262c46449132ae2c32e989a5f42efa5df18f58adb63c77a5",
+      "publishedSha256": "441f5befeca4eefc262c46449132ae2c32e989a5f42efa5df18f58adb63c77a5",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Revmeter_Label_1minx1000Shape_bitmap__KI_2D_Revmeter_Label.png",
+      "sourceSha256": "ccb7e6fb421efa007c3aa0f5d6bd49cae39bf35ccc0ce509863f00a5713f478e",
+      "publishedSha256": "ccb7e6fb421efa007c3aa0f5d6bd49cae39bf35ccc0ce509863f00a5713f478e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Revmeter_Label_PowerShape_bitmap__KI_2D_Revmeter_Label.png",
+      "sourceSha256": "63002ca0be29419611cfc386315373f35d8c69bc7726e7dbca6304bef08e174a",
+      "publishedSha256": "63002ca0be29419611cfc386315373f35d8c69bc7726e7dbca6304bef08e174a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Speedo_Label_kmhShape_bitmap__KI_2D_Speedo_Label.png",
+      "sourceSha256": "9104ca18e9e5398608c9c316de70a4c61800b290cdae27a41a1761645c97f008",
+      "publishedSha256": "9104ca18e9e5398608c9c316de70a4c61800b290cdae27a41a1761645c97f008",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Speedo_Label_mphShape_bitmap__KI_2D_Speedo_Label.png",
+      "sourceSha256": "42d9f4fbf22a8eb33f9842a8ae65362d082573e4656acbeda1aedea3f2df52f9",
+      "publishedSha256": "42d9f4fbf22a8eb33f9842a8ae65362d082573e4656acbeda1aedea3f2df52f9",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_TellTales_China_Ready_ShadowShape_bitmap__KI_2D_Telltales.png",
+      "sourceSha256": "0991b228725105f8db089b8411c727bb68a6ff9d4741ce9e56b5ab39e2a8f4b1",
+      "publishedSha256": "0991b228725105f8db089b8411c727bb68a6ff9d4741ce9e56b5ab39e2a8f4b1",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Telltales_China_SocLow_ShadowShape_bitmap__KI_2D_Telltales.png",
+      "sourceSha256": "bf7a2c8bf7e868ed495eca4efb50c2959adfc2568bb3451378bf11e39bc6ab4a",
+      "publishedSha256": "bf7a2c8bf7e868ed495eca4efb50c2959adfc2568bb3451378bf11e39bc6ab4a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Time_DotsShape_bitmap__KI_2D_Time.png",
+      "sourceSha256": "3306c3fd62cc582f1cdb1deca0b200ba24ad110c6bdbc56b38d6a8ccaef199ce",
+      "publishedSha256": "3306c3fd62cc582f1cdb1deca0b200ba24ad110c6bdbc56b38d6a8ccaef199ce",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Time_Unit_AmShape_bitmap__KI_2D_Time.png",
+      "sourceSha256": "9084c99835b9d1984738ae9b954278f134e7e2c3133176aaed33b824f6d2df3a",
+      "publishedSha256": "9084c99835b9d1984738ae9b954278f134e7e2c3133176aaed33b824f6d2df3a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/KI_2D_Time_Unit_PmShape_bitmap__KI_2D_Time.png",
+      "sourceSha256": "c0c5aca442ee39f49eac46c2edfcc63e31fcf6c938abba053b9261c1eb5a7b6c",
+      "publishedSha256": "c0c5aca442ee39f49eac46c2edfcc63e31fcf6c938abba053b9261c1eb5a7b6c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/OLD_SpeedDigits_MPA330_KI_tex_digit_MPA330_shadow_bitmap__SpeedDigits_MPA330.png",
+      "sourceSha256": "2deb83830e9d07566b2da4fea409536f62396d29b27efb2df942dde3e3ca03a0",
+      "publishedSha256": "2deb83830e9d07566b2da4fea409536f62396d29b27efb2df942dde3e3ca03a0",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/OLD_SpeedDigits_MPA330_SpeedDigits_MPA330_withShadow_KI7_tex_MPA330_bitmap__SpeedDigits_MPA330.png",
+      "sourceSha256": "3e3b6f998c1dd732c371562e4e39966f64f56cdd03a766258c7c70e5f23fdfb6",
+      "publishedSha256": "3e3b6f998c1dd732c371562e4e39966f64f56cdd03a766258c7c70e5f23fdfb6",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/OLD_SpeedDigits_MPA330_SpeedDigits_MPA330_withShadow_KI7_tex_digit_MPA330_bitmap__SpeedDigits_MPA330.png",
+      "sourceSha256": "076a50a6e88e837c26ae0287bd9038ceaf4f63f1f036cbadcba748d3b17e8fc4",
+      "publishedSha256": "076a50a6e88e837c26ae0287bd9038ceaf4f63f1f036cbadcba748d3b17e8fc4",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/TEX_NeedleShadow_bitmap__Needle_MSPORT.png",
+      "sourceSha256": "535f0f7265ba848bde1d0fc3b4fda2f8197cd08ab40f32468397648dfd07a95c",
+      "publishedSha256": "535f0f7265ba848bde1d0fc3b4fda2f8197cd08ab40f32468397648dfd07a95c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/Tex_KI_2D_Telltales_Texture_bitmap__KI_2D_Telltales.png",
+      "sourceSha256": "8e88ced6516a64c863771ae4cbf42df81cb5075edadf9e8125be4c342001a281",
+      "publishedSha256": "8e88ced6516a64c863771ae4cbf42df81cb5075edadf9e8125be4c342001a281",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/Units_Kmh1Shape_bitmap__SpeedUnits.png",
+      "sourceSha256": "6e081ee0b5352f9936fd0959c5601252648926597ed3109dad74837975986635",
+      "publishedSha256": "6e081ee0b5352f9936fd0959c5601252648926597ed3109dad74837975986635",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/Units_Mph1Shape_bitmap__SpeedUnits.png",
+      "sourceSha256": "b9b33b08b46cb29c682815f3ea0c3bf82881e222271582a81c35eca7b7843236",
+      "publishedSha256": "b9b33b08b46cb29c682815f3ea0c3bf82881e222271582a81c35eca7b7843236",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/WI_Texture2d112_bitmap__Lines.png",
+      "sourceSha256": "cf355104ce31b5005062bfc3797d8fc6560db5b73543495cf7b2c94450032bff",
+      "publishedSha256": "cf355104ce31b5005062bfc3797d8fc6560db5b73543495cf7b2c94450032bff",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/WI_Texture2d117_bitmap__RevScalesPower_ICE.png",
+      "sourceSha256": "406b65d29dec11c6e507117ea990e0b8e84c60ec1b833fae394542cf4e350032",
+      "publishedSha256": "406b65d29dec11c6e507117ea990e0b8e84c60ec1b833fae394542cf4e350032",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/WI_Texture2d136_bitmap__CCPanel.png",
+      "sourceSha256": "8a07b178ceb80fddb8aa78a732bf28b74bfa993b3148a5737a26cba52739b336",
+      "publishedSha256": "8a07b178ceb80fddb8aa78a732bf28b74bfa993b3148a5737a26cba52739b336",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/WI_Texture2d138_bitmap__Welcome.png",
+      "sourceSha256": "bb46813695e05ad5765c32fd2e99f2c51618df408ef8b7895643bec2d61d4354",
+      "publishedSha256": "bb46813695e05ad5765c32fd2e99f2c51618df408ef8b7895643bec2d61d4354",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/WI_Texture2d159_bitmap__Needle.png",
+      "sourceSha256": "c69f4d65d6e42169e555144cc9a2d33b0cf0783da7521a6cbfa5f9951299bcea",
+      "publishedSha256": "c69f4d65d6e42169e555144cc9a2d33b0cf0783da7521a6cbfa5f9951299bcea",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/WI_Texture2d161_bitmap__CCPanel.png",
+      "sourceSha256": "7e2b270a21c35576652d88ba35200ae67ccdf7c6c09662a726ed7a634ca6a75c",
+      "publishedSha256": "7e2b270a21c35576652d88ba35200ae67ccdf7c6c09662a726ed7a634ca6a75c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/WI_Texture2d162_bitmap__Needle.png",
+      "sourceSha256": "ceec524b2a84346e3ba73b1489ddc5eaa04e5bbf5dae25818a88a11cd1ff6d7c",
+      "publishedSha256": "ceec524b2a84346e3ba73b1489ddc5eaa04e5bbf5dae25818a88a11cd1ff6d7c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/tex_FES32PxAtlas_bitmap__FESMode32PX.png",
+      "sourceSha256": "c7d04c76a173838b445dcdd238c925aef57c3da3b221b81aa3668430ff08fc17",
+      "publishedSha256": "c7d04c76a173838b445dcdd238c925aef57c3da3b221b81aa3668430ff08fc17",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/tex_FES32PxAtlas_shadow_bitmap__FESMode32PX.png",
+      "sourceSha256": "5fa4d9dc7f0dd5b7e88663aaf5c6f47a5f461465bafb2f6f99b5c26e5ae40096",
+      "publishedSha256": "5fa4d9dc7f0dd5b7e88663aaf5c6f47a5f461465bafb2f6f99b5c26e5ae40096",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/tex_fx_outerfband_sport_fuel1_bitmap__MotorTemp.png",
+      "sourceSha256": "753e210f53c2da4e9641b370f4b78d32751c343969355f500a0da570c93e7754",
+      "publishedSha256": "753e210f53c2da4e9641b370f4b78d32751c343969355f500a0da570c93e7754",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/tex_fx_outerfband_sport_fuel_bitmap__Fuel.png",
+      "sourceSha256": "184fbb91a175be248c8482fbc2383b8956798e242c6b50912aa5a7dec7b98a1a",
+      "publishedSha256": "184fbb91a175be248c8482fbc2383b8956798e242c6b50912aa5a7dec7b98a1a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/tex_masterline1_bitmap__Lines.png",
+      "sourceSha256": "0819ac03f297ba8b9c66444e88183b8c73e31f9c63290902376656b8bfa011e3",
+      "publishedSha256": "0819ac03f297ba8b9c66444e88183b8c73e31f9c63290902376656b8bfa011e3",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/tex_masterline_header_bitmap__Lines.png",
+      "sourceSha256": "074bba0175857e6f44bac2b088f9d2199251e53d15f71fe733dae31fe1b99c62",
+      "publishedSha256": "074bba0175857e6f44bac2b088f9d2199251e53d15f71fe733dae31fe1b99c62",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/tex_outerframe_sport_fuel1_bitmap__Fuel.png",
+      "sourceSha256": "507057003aa047e881be2cb7a7b77a915f7d5477c8d67fbd524f897b681b42bc",
+      "publishedSha256": "507057003aa047e881be2cb7a7b77a915f7d5477c8d67fbd524f897b681b42bc",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/tex_outerframe_sport_fuel2_bitmap__OuterRTube_BEV.png",
+      "sourceSha256": "3b4868d02af8182a57730aa6bdf76f15a10f51f5523e9e032943147cf8b144b5",
+      "publishedSha256": "3b4868d02af8182a57730aa6bdf76f15a10f51f5523e9e032943147cf8b144b5",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/init/tex_tube_bracket_shade_bitmap__SpeedoFrame.png",
+      "sourceSha256": "0e25d9a9e1d4a686b22384e92442532f463e82543fb8032ef15df5f55c31d6d9",
+      "publishedSha256": "0e25d9a9e1d4a686b22384e92442532f463e82543fb8032ef15df5f55c31d6d9",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/speed-limit-manifest.json",
+      "sourceSha256": "0ed4cf36838fadaae99a44dcfe86ca653d9a085c07f3d64c87b0e359cf96cd4f",
+      "publishedSha256": "7b8847f1785fc861b12a614d18bccc77070b1160e66f90ac05f754dee874d887",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/factory-graphics/speed-limit/KI7_fx_SLI_text_round1_bitmap__SLILimitSign.png",
+      "sourceSha256": "29f4d6d9b47d079a693bb5fdc15f01912c844f49a9bf75d906ed2a61a2148806",
+      "publishedSha256": "29f4d6d9b47d079a693bb5fdc15f01912c844f49a9bf75d906ed2a61a2148806",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/speed-limit/KI7_tex_SLI_Limit_bitmap__SLILimitSign.png",
+      "sourceSha256": "b5a2594849230407c2a1f9d216cc6e2445fcf92a15fbdd7c31706b2d35d92d1c",
+      "publishedSha256": "b5a2594849230407c2a1f9d216cc6e2445fcf92a15fbdd7c31706b2d35d92d1c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/speed-limit/KI7_tex_VZASign_ECE_bitmap__VZASign_ECE.png",
+      "sourceSha256": "b1d090269379d7885a2916f30129fe87118d646eece96dcbc3b86cd53863ec2d",
+      "publishedSha256": "b1d090269379d7885a2916f30129fe87118d646eece96dcbc3b86cd53863ec2d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/speed-limit/KI7_tex_VZASign_icon_ECE_bitmap__VZASign_ECE.png",
+      "sourceSha256": "363dbbb706a8f70158c3e31aa70d85e4f68abac31c2e79a865f8651a51db33e1",
+      "publishedSha256": "363dbbb706a8f70158c3e31aa70d85e4f68abac31c2e79a865f8651a51db33e1",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/speed-limit/KI7_tex_fx_VZA_text_ECE_bitmap__VZASign_ECE.png",
+      "sourceSha256": "5c8b02896d938ab1239dbfe6306ee41bfb0f0e07db6767cc97065bebda651d3f",
+      "publishedSha256": "5c8b02896d938ab1239dbfe6306ee41bfb0f0e07db6767cc97065bebda651d3f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2.json",
+      "sourceSha256": "d4782e0f1ae1b71e2ef2a2d1d2e266817aa345402b0982914c6371eafde9a5ed",
+      "publishedSha256": "35e122f9beed827ff14203b8476d6c9aa3f247481a0b9a371fbc1183c68f6d2c",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-407-e3110f6279953440-KI_2D_Telltales_ABSShape.png",
+      "sourceSha256": "a07c5b0c25bd63dbbce80dba041a0b3c621b2e5a3569e5fb0aa9956f8d5cec5b",
+      "publishedSha256": "a07c5b0c25bd63dbbce80dba041a0b3c621b2e5a3569e5fb0aa9956f8d5cec5b",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-413-2cb72fdc376ed479-KI_2D_Telltales_US_ABSShape.png",
+      "sourceSha256": "22e83f09c1d2c728b3e0ff729009552686a73f80b807275bd81b340745eace9e",
+      "publishedSha256": "22e83f09c1d2c728b3e0ff729009552686a73f80b807275bd81b340745eace9e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-420-7bd8f5dfda4c721d-KI_2D_Telltales_TurnIndicator_RightShape.png",
+      "sourceSha256": "6767560274c5beacd2a1a00c8e128e72492db055a2b1dd08d39571bdf2e072b2",
+      "publishedSha256": "6767560274c5beacd2a1a00c8e128e72492db055a2b1dd08d39571bdf2e072b2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-427-a8710771abcf557f-KI_2D_Telltales_TurnIndicator_LeftShape.png",
+      "sourceSha256": "1abc0e29cc889abe03749eb1de993e35cb5daf66a2e6f4d5a575bc262daed42f",
+      "publishedSha256": "1abc0e29cc889abe03749eb1de993e35cb5daf66a2e6f4d5a575bc262daed42f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-433-ddbbf5cdfe8d2948-KI_2D_Telltales_LaneDepartureWarning_YellowShape.png",
+      "sourceSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "publishedSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-436-78345023085c079b-KI_2D_Telltales_LaneDepartureWarning_GreenShape.png",
+      "sourceSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "publishedSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-439-89d7c3fa2a03c6ce-KI_2D_Telltales_LaneDepartureWarning_GreyShape.png",
+      "sourceSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "publishedSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-442-7ed201ee9e60b3a8-KI_2D_Telltales_LaneDepartureWarning_RedShape.png",
+      "sourceSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "publishedSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-448-d3ae73df0ce876b3-KI_2D_Telltales_LaneDepartureWarning_China_RedShape.png",
+      "sourceSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "publishedSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-451-704b257a69746309-KI_2D_Telltales_LaneDepartureWarning_China_YellowShape.png",
+      "sourceSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "publishedSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-454-f3410b42b1868a41-KI_2D_Telltales_LaneDepartureWarning_China_GreyShape.png",
+      "sourceSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "publishedSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-457-91ce71aa83cac244-KI_2D_Telltales_LaneDepartureWarning_China_GreenShape.png",
+      "sourceSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "publishedSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-463-5c28db64ec1d9173-KI_2D_Telltales_EPS_YellowShape.png",
+      "sourceSha256": "2335c089be3ca49677b4979ad436af043c54b729d6c74dc4f20860aabd392d14",
+      "publishedSha256": "2335c089be3ca49677b4979ad436af043c54b729d6c74dc4f20860aabd392d14",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-466-3739449a69e2cb3b-KI_2D_Telltales_EPS_RedShape.png",
+      "sourceSha256": "2335c089be3ca49677b4979ad436af043c54b729d6c74dc4f20860aabd392d14",
+      "publishedSha256": "2335c089be3ca49677b4979ad436af043c54b729d6c74dc4f20860aabd392d14",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-472-00264e5d308b20ac-KI_2D_Telltales_RPAShape.png",
+      "sourceSha256": "9ec943ebe8ee6e538f891d4eb99618b586e44fd045e90d78c249c956f30521cd",
+      "publishedSha256": "9ec943ebe8ee6e538f891d4eb99618b586e44fd045e90d78c249c956f30521cd",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-478-a2ed0ea9d3200115-KI_2D_Telltales_Brake_RedShape.png",
+      "sourceSha256": "a400a37f471e4341e744274b93d2a0ebb9315ef15e60353169736b05b86e3601",
+      "publishedSha256": "a400a37f471e4341e744274b93d2a0ebb9315ef15e60353169736b05b86e3601",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-481-279e48bfa001c713-KI_2D_Telltales_Brake_YellowShape.png",
+      "sourceSha256": "a400a37f471e4341e744274b93d2a0ebb9315ef15e60353169736b05b86e3601",
+      "publishedSha256": "a400a37f471e4341e744274b93d2a0ebb9315ef15e60353169736b05b86e3601",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-487-15e0f1a2d6d6b451-KI_2D_Telltales_US_BrakeShape.png",
+      "sourceSha256": "292cebb96c7367fca081c43aec0e4e9e24525b0df1866d6ca0d62c9846b1f43b",
+      "publishedSha256": "292cebb96c7367fca081c43aec0e4e9e24525b0df1866d6ca0d62c9846b1f43b",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-493-be1307bc74d22bbd-KI_2D_Telltales_DSCShape.png",
+      "sourceSha256": "099a71d5c15a694c5ba9083f8ef99b797ee3c49c1a2b223566bcf441728d1931",
+      "publishedSha256": "099a71d5c15a694c5ba9083f8ef99b797ee3c49c1a2b223566bcf441728d1931",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-499-fae002c0673b2816-KI_2D_Telltales_China_PlugShape.png",
+      "sourceSha256": "01ac6c98611242d9d178e1d104891c59f22cdcd1a525f49a404ba981fece9ebb",
+      "publishedSha256": "01ac6c98611242d9d178e1d104891c59f22cdcd1a525f49a404ba981fece9ebb",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-505-64d9ae3e1f477f00-KI_2D_Telltales_China_ChargeShape.png",
+      "sourceSha256": "0a0eb8cb58ffe3e3780045cbcef63affa0a2563834025b7c61e64fc7d28e293d",
+      "publishedSha256": "0a0eb8cb58ffe3e3780045cbcef63affa0a2563834025b7c61e64fc7d28e293d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-511-a074d4735330ba5f-KI_2D_TellTales_AutoHShape.png",
+      "sourceSha256": "32f7b069517524455db72651873ec35641ca135fe611472ed1a566eefd1d0d9a",
+      "publishedSha256": "32f7b069517524455db72651873ec35641ca135fe611472ed1a566eefd1d0d9a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-517-72b8e16bc4f6ed1b-KI_2D_Telltales_US_ParkingBrake_YellowShape.png",
+      "sourceSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "publishedSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-520-2a59e3263712fff5-KI_2D_Telltales_US_ParkingBrake_RedShape.png",
+      "sourceSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "publishedSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-523-f7608c9a1809da98-KI_2D_Telltales_US_ParkingBrake_GreenShape.png",
+      "sourceSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "publishedSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-529-e78e5c9c62f71e21-KI_2D_Telltales_ParkingBrake_GreenShape.png",
+      "sourceSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "publishedSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-532-50da542d27aa9ca9-KI_2D_Telltales_ParkingBrake_YellowShape.png",
+      "sourceSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "publishedSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-535-bfb46f729d17650e-KI_2D_Telltales_ParkingBrake_RedShape.png",
+      "sourceSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "publishedSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-541-6388aa5412aedc67-KI_2D_Telltales_AllWheelDrive_WhiteShape.png",
+      "sourceSha256": "6f8c4102d9f8ebb10776c116835f9e4df2e09cd8bdeec9a6b6fc22e3615c3f8c",
+      "publishedSha256": "6f8c4102d9f8ebb10776c116835f9e4df2e09cd8bdeec9a6b6fc22e3615c3f8c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-544-5a1c31e5aa706933-KI_2D_Telltales_AllWheelDrive_YellowShape.png",
+      "sourceSha256": "6f8c4102d9f8ebb10776c116835f9e4df2e09cd8bdeec9a6b6fc22e3615c3f8c",
+      "publishedSha256": "6f8c4102d9f8ebb10776c116835f9e4df2e09cd8bdeec9a6b6fc22e3615c3f8c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-550-7699d255cd7feb81-KI_2D_Telltales_AirbagShape.png",
+      "sourceSha256": "912f006fedca87b41e9cffd5b8fb9e2586d0d16f5fd1ae160a56fc5c05a0cf43",
+      "publishedSha256": "912f006fedca87b41e9cffd5b8fb9e2586d0d16f5fd1ae160a56fc5c05a0cf43",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-560-2617355cce0b4751-KI_2D_Telltales_AsdShape.png",
+      "sourceSha256": "c59ff1839cbf97676527ed7ac13910af974a509253a8a01dcc73fb94e97d0274",
+      "publishedSha256": "c59ff1839cbf97676527ed7ac13910af974a509253a8a01dcc73fb94e97d0274",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-566-1b86d76001f1af1e-KI_2D_Telltales_AsdShape.png",
+      "sourceSha256": "1d187ae7bf5fe8e8cb3c6112aa9718dac087e487c277531cde531ece1b1083bb",
+      "publishedSha256": "1d187ae7bf5fe8e8cb3c6112aa9718dac087e487c277531cde531ece1b1083bb",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-572-2c85995aba9a67a9-KI_2D_Telltales_SystemShape.png",
+      "sourceSha256": "7e08854661b7f157c97f68723ccd02cae9355233176f4859d265dc1072a24b5d",
+      "publishedSha256": "7e08854661b7f157c97f68723ccd02cae9355233176f4859d265dc1072a24b5d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-581-0242ff7d06db3b2f-KI_2D_Telltales_AsdShape.png",
+      "sourceSha256": "a3dab0fc4ac0a2f28bb936cbc3a9f3687353f15cb3dc80221e4a34ae73bfd6c8",
+      "publishedSha256": "a3dab0fc4ac0a2f28bb936cbc3a9f3687353f15cb3dc80221e4a34ae73bfd6c8",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-587-4184e227cdc9f6f3-KI_2D_Telltales_TurtleShape.png",
+      "sourceSha256": "dc0807c80a404a7dcb624e3410a3987fed6f7793de1455996a4840f60804a76a",
+      "publishedSha256": "dc0807c80a404a7dcb624e3410a3987fed6f7793de1455996a4840f60804a76a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-590-6c40537967eb7673-KI_2D_Telltales_TurtleShape.png",
+      "sourceSha256": "dc0807c80a404a7dcb624e3410a3987fed6f7793de1455996a4840f60804a76a",
+      "publishedSha256": "dc0807c80a404a7dcb624e3410a3987fed6f7793de1455996a4840f60804a76a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-596-0c76aba12ec50fa8-KI_2D_Telltales_BSDOffShape.png",
+      "sourceSha256": "22fda275e70e2729076b15ae7642c7c2212e54e073c77972543c66b93b852bcb",
+      "publishedSha256": "22fda275e70e2729076b15ae7642c7c2212e54e073c77972543c66b93b852bcb",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-599-e88803528f3ad210-KI_2D_Telltales_BSDOffShape.png",
+      "sourceSha256": "22fda275e70e2729076b15ae7642c7c2212e54e073c77972543c66b93b852bcb",
+      "publishedSha256": "22fda275e70e2729076b15ae7642c7c2212e54e073c77972543c66b93b852bcb",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-605-96f9be9edf46267e-KI_2D_Telltales_BSDWarningLeft_YellowShape.png",
+      "sourceSha256": "04de10bedf47fba08db93204c84cb63894c16211e3a3ac36ce890f58c17eea9a",
+      "publishedSha256": "04de10bedf47fba08db93204c84cb63894c16211e3a3ac36ce890f58c17eea9a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-608-5592b931ef0fe40a-KI_2D_Telltales_BSDWarningLeft_RedShape.png",
+      "sourceSha256": "04de10bedf47fba08db93204c84cb63894c16211e3a3ac36ce890f58c17eea9a",
+      "publishedSha256": "04de10bedf47fba08db93204c84cb63894c16211e3a3ac36ce890f58c17eea9a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-611-1aa3c9070dce3e93-KI_2D_Telltales_BSDWarningLeft_GreyShape.png",
+      "sourceSha256": "04de10bedf47fba08db93204c84cb63894c16211e3a3ac36ce890f58c17eea9a",
+      "publishedSha256": "04de10bedf47fba08db93204c84cb63894c16211e3a3ac36ce890f58c17eea9a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-614-aba0b523267d9ce1-KI_2D_Telltales_BSDWarningLeft_GreenShape.png",
+      "sourceSha256": "04de10bedf47fba08db93204c84cb63894c16211e3a3ac36ce890f58c17eea9a",
+      "publishedSha256": "04de10bedf47fba08db93204c84cb63894c16211e3a3ac36ce890f58c17eea9a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-620-1565cd50b41c9380-KI_2D_Telltales_BSDWarningLeft_YellowShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-623-06f4bf2a64019e8d-KI_2D_Telltales_BSDWarningLeft_RedShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-626-f5dcc7f0dbf58750-KI_2D_Telltales_BSDWarningLeft_GreenShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-629-0dde733616c1713e-KI_2D_Telltales_BSDWarningLeft_GreyShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-635-daa01052a9fb5260-KI_2D_Telltales_BSDInactiveShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-638-52e0cb44d6e1b484-KI_2D_Telltales_BSDActiveShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-650-f67de941beacdea7-KI_2D_Telltales_CollisionWarning_YellowShape.png",
+      "sourceSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "publishedSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-653-7364a3d15fe90c92-KI_2D_Telltales_CollisionWarning_RedShape.png",
+      "sourceSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "publishedSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-656-b0a6ecee51b3262f-KI_2D_Telltales_CollisionWarning_GreyShape.png",
+      "sourceSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "publishedSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-659-390e557458331e31-KI_2D_Telltales_CollisionWarningOffShape.png",
+      "sourceSha256": "cba17deb482436f14e352e8449077e624d83679a3b1f6a04689268754e0831fa",
+      "publishedSha256": "cba17deb482436f14e352e8449077e624d83679a3b1f6a04689268754e0831fa",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-662-8cc526b53c007890-KI_2D_Telltales_VSGShape.png",
+      "sourceSha256": "85908c538aa79aafa56b46086deb6e90f6df5ec2929f6ed8da19355ef7beb296",
+      "publishedSha256": "85908c538aa79aafa56b46086deb6e90f6df5ec2929f6ed8da19355ef7beb296",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales-v2/node-665-271fdb8821cfdae4-KI_2D_Telltales_BSDGrayShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales.json",
+      "sourceSha256": "7cb39ea7124a0d73a802c38b11f23de740a0a41a9ef25259906e873be153b450",
+      "publishedSha256": "cc06d38de5c3acb3fa092e525c31e11361e510ac09383f69b5e7df0fa05ed8d3",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_TellTales_AutoHShape.png",
+      "sourceSha256": "32f7b069517524455db72651873ec35641ca135fe611472ed1a566eefd1d0d9a",
+      "publishedSha256": "32f7b069517524455db72651873ec35641ca135fe611472ed1a566eefd1d0d9a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_ABSShape.png",
+      "sourceSha256": "a07c5b0c25bd63dbbce80dba041a0b3c621b2e5a3569e5fb0aa9956f8d5cec5b",
+      "publishedSha256": "a07c5b0c25bd63dbbce80dba041a0b3c621b2e5a3569e5fb0aa9956f8d5cec5b",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_AirbagShape.png",
+      "sourceSha256": "912f006fedca87b41e9cffd5b8fb9e2586d0d16f5fd1ae160a56fc5c05a0cf43",
+      "publishedSha256": "912f006fedca87b41e9cffd5b8fb9e2586d0d16f5fd1ae160a56fc5c05a0cf43",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_AllWheelDrive_WhiteShape.png",
+      "sourceSha256": "6f8c4102d9f8ebb10776c116835f9e4df2e09cd8bdeec9a6b6fc22e3615c3f8c",
+      "publishedSha256": "6f8c4102d9f8ebb10776c116835f9e4df2e09cd8bdeec9a6b6fc22e3615c3f8c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_AllWheelDrive_YellowShape.png",
+      "sourceSha256": "6f8c4102d9f8ebb10776c116835f9e4df2e09cd8bdeec9a6b6fc22e3615c3f8c",
+      "publishedSha256": "6f8c4102d9f8ebb10776c116835f9e4df2e09cd8bdeec9a6b6fc22e3615c3f8c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_AsdShape.png",
+      "sourceSha256": "c59ff1839cbf97676527ed7ac13910af974a509253a8a01dcc73fb94e97d0274",
+      "publishedSha256": "c59ff1839cbf97676527ed7ac13910af974a509253a8a01dcc73fb94e97d0274",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_BSDActiveShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_BSDGrayShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_BSDInactiveShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_BSDOffShape.png",
+      "sourceSha256": "22fda275e70e2729076b15ae7642c7c2212e54e073c77972543c66b93b852bcb",
+      "publishedSha256": "22fda275e70e2729076b15ae7642c7c2212e54e073c77972543c66b93b852bcb",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_BSDWarningLeft_GreenShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_BSDWarningLeft_GreyShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_BSDWarningLeft_RedShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_BSDWarningLeft_YellowShape.png",
+      "sourceSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "publishedSha256": "a66ccfa5f345837deda3fb356940697a1d43457c2ae9c17208b6cc900cf0f788",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_Brake_RedShape.png",
+      "sourceSha256": "a400a37f471e4341e744274b93d2a0ebb9315ef15e60353169736b05b86e3601",
+      "publishedSha256": "a400a37f471e4341e744274b93d2a0ebb9315ef15e60353169736b05b86e3601",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_Brake_YellowShape.png",
+      "sourceSha256": "a400a37f471e4341e744274b93d2a0ebb9315ef15e60353169736b05b86e3601",
+      "publishedSha256": "a400a37f471e4341e744274b93d2a0ebb9315ef15e60353169736b05b86e3601",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_China_ChargeShape.png",
+      "sourceSha256": "0a0eb8cb58ffe3e3780045cbcef63affa0a2563834025b7c61e64fc7d28e293d",
+      "publishedSha256": "0a0eb8cb58ffe3e3780045cbcef63affa0a2563834025b7c61e64fc7d28e293d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_China_PlugShape.png",
+      "sourceSha256": "01ac6c98611242d9d178e1d104891c59f22cdcd1a525f49a404ba981fece9ebb",
+      "publishedSha256": "01ac6c98611242d9d178e1d104891c59f22cdcd1a525f49a404ba981fece9ebb",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_CollisionWarningOffShape.png",
+      "sourceSha256": "cba17deb482436f14e352e8449077e624d83679a3b1f6a04689268754e0831fa",
+      "publishedSha256": "cba17deb482436f14e352e8449077e624d83679a3b1f6a04689268754e0831fa",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_CollisionWarning_GreyShape.png",
+      "sourceSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "publishedSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_CollisionWarning_RedShape.png",
+      "sourceSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "publishedSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_CollisionWarning_YellowShape.png",
+      "sourceSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "publishedSha256": "9e9a3009553e25db1c9e3217e172007b6eca50f32dec095309c82481589ed79c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_DSCShape.png",
+      "sourceSha256": "099a71d5c15a694c5ba9083f8ef99b797ee3c49c1a2b223566bcf441728d1931",
+      "publishedSha256": "099a71d5c15a694c5ba9083f8ef99b797ee3c49c1a2b223566bcf441728d1931",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_EPS_RedShape.png",
+      "sourceSha256": "2335c089be3ca49677b4979ad436af043c54b729d6c74dc4f20860aabd392d14",
+      "publishedSha256": "2335c089be3ca49677b4979ad436af043c54b729d6c74dc4f20860aabd392d14",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_EPS_YellowShape.png",
+      "sourceSha256": "2335c089be3ca49677b4979ad436af043c54b729d6c74dc4f20860aabd392d14",
+      "publishedSha256": "2335c089be3ca49677b4979ad436af043c54b729d6c74dc4f20860aabd392d14",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_LaneDepartureWarning_China_GreenShape.png",
+      "sourceSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "publishedSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_LaneDepartureWarning_China_GreyShape.png",
+      "sourceSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "publishedSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_LaneDepartureWarning_China_RedShape.png",
+      "sourceSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "publishedSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_LaneDepartureWarning_China_YellowShape.png",
+      "sourceSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "publishedSha256": "e4716ed85615edd0f8a924b3e9e8f497fc4eb2ae8cd3ae1c8b314dc7d41ab73a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_LaneDepartureWarning_GreenShape.png",
+      "sourceSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "publishedSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_LaneDepartureWarning_GreyShape.png",
+      "sourceSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "publishedSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_LaneDepartureWarning_RedShape.png",
+      "sourceSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "publishedSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_LaneDepartureWarning_YellowShape.png",
+      "sourceSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "publishedSha256": "3951d9a5c17ca7c418f087de4178d3073b088398a9acc9d521daeb018aa1191c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_ParkingBrake_GreenShape.png",
+      "sourceSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "publishedSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_ParkingBrake_RedShape.png",
+      "sourceSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "publishedSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_ParkingBrake_YellowShape.png",
+      "sourceSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "publishedSha256": "cd1f7df1b56604d70ef456ecf6236e60e3a71b06bc1e7277b753a7a5377beb07",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_RPAShape.png",
+      "sourceSha256": "9ec943ebe8ee6e538f891d4eb99618b586e44fd045e90d78c249c956f30521cd",
+      "publishedSha256": "9ec943ebe8ee6e538f891d4eb99618b586e44fd045e90d78c249c956f30521cd",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_SystemShape.png",
+      "sourceSha256": "7e08854661b7f157c97f68723ccd02cae9355233176f4859d265dc1072a24b5d",
+      "publishedSha256": "7e08854661b7f157c97f68723ccd02cae9355233176f4859d265dc1072a24b5d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_TurnIndicator_LeftShape.png",
+      "sourceSha256": "1abc0e29cc889abe03749eb1de993e35cb5daf66a2e6f4d5a575bc262daed42f",
+      "publishedSha256": "1abc0e29cc889abe03749eb1de993e35cb5daf66a2e6f4d5a575bc262daed42f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_TurnIndicator_RightShape.png",
+      "sourceSha256": "6767560274c5beacd2a1a00c8e128e72492db055a2b1dd08d39571bdf2e072b2",
+      "publishedSha256": "6767560274c5beacd2a1a00c8e128e72492db055a2b1dd08d39571bdf2e072b2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_TurtleShape.png",
+      "sourceSha256": "dc0807c80a404a7dcb624e3410a3987fed6f7793de1455996a4840f60804a76a",
+      "publishedSha256": "dc0807c80a404a7dcb624e3410a3987fed6f7793de1455996a4840f60804a76a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_US_ABSShape.png",
+      "sourceSha256": "22e83f09c1d2c728b3e0ff729009552686a73f80b807275bd81b340745eace9e",
+      "publishedSha256": "22e83f09c1d2c728b3e0ff729009552686a73f80b807275bd81b340745eace9e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_US_BrakeShape.png",
+      "sourceSha256": "292cebb96c7367fca081c43aec0e4e9e24525b0df1866d6ca0d62c9846b1f43b",
+      "publishedSha256": "292cebb96c7367fca081c43aec0e4e9e24525b0df1866d6ca0d62c9846b1f43b",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_US_ParkingBrake_GreenShape.png",
+      "sourceSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "publishedSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_US_ParkingBrake_RedShape.png",
+      "sourceSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "publishedSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_US_ParkingBrake_YellowShape.png",
+      "sourceSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "publishedSha256": "7601ecac12323ecd511bbde00eb529c79fc9794f8e3847d28a511cdcc65b8d36",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-graphics/telltales/KI_2D_Telltales_VSGShape.png",
+      "sourceSha256": "85908c538aa79aafa56b46086deb6e90f6df5ec2929f6ed8da19355ef7beb296",
+      "publishedSha256": "85908c538aa79aafa56b46086deb6e90f6df5ec2929f6ed8da19355ef7beb296",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-media/assets/cover-frame-138.png",
+      "sourceSha256": "419e78c852c3dc251c3a1b8b5707a49c573bc188934e3b4e997faaf4a25fe71d",
+      "publishedSha256": "419e78c852c3dc251c3a1b8b5707a49c573bc188934e3b4e997faaf4a25fe71d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-media/assets/provenance.json",
+      "sourceSha256": "e3b8b54cae6617d82d90a55170632cacc4691584136c11fad36b4f0994a21cb4",
+      "publishedSha256": "9c31b53936b2d991e27f95e7566417057f1b8c97b053a32f108347199fb3240e",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/factory-media/assets/red-mask.png",
+      "sourceSha256": "0ecc74dc75389f2ef2390f98a1d8d9b0ad5ca35f3a39833fb43034cbb54307cc",
+      "publishedSha256": "0ecc74dc75389f2ef2390f98a1d8d9b0ad5ca35f3a39833fb43034cbb54307cc",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-media/assets/sample-cover.png",
+      "sourceSha256": "8ee19c1e03a2471775260add472ac9338435349b928502968501e3c61c21a9c3",
+      "publishedSha256": "8ee19c1e03a2471775260add472ac9338435349b928502968501e3c61c21a9c3",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-media/assets/sample-gorillaz-demon-days.png",
+      "sourceSha256": "b55fe2fe932cd744638c4b0f38fac0c8d99e517245d8698c9e648894505af168",
+      "publishedSha256": "b55fe2fe932cd744638c4b0f38fac0c8d99e517245d8698c9e648894505af168",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-media/assets/sample-media-provenance.json",
+      "sourceSha256": "7f302f69c7e4886e44da8894e751a1a29cae158cbac9f4eedc6525cfc3994c03",
+      "publishedSha256": "374384ce3e56651b008fd7a5caab7fad8f59831e680b805791fc456918788642",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/factory-stats/assets/gforce-background.png",
+      "sourceSha256": "1e5a2db06a18f8e85c8f4f536bbf898e5b6cc3709d76a3b8516c685e5c758462",
+      "publishedSha256": "1e5a2db06a18f8e85c8f4f536bbf898e5b6cc3709d76a3b8516c685e5c758462",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-stats/assets/gforce-dot-shadow.png",
+      "sourceSha256": "1701765186de2082bbbc87a76ebdb8bd27b49232731f2ea64e7e62b9955a8d89",
+      "publishedSha256": "1701765186de2082bbbc87a76ebdb8bd27b49232731f2ea64e7e62b9955a8d89",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-stats/assets/gforce-dot.png",
+      "sourceSha256": "9fb87b22da180f453e51e9ba77c6c61316a664837a1476c2d137bbc78f273fcc",
+      "publishedSha256": "9fb87b22da180f453e51e9ba77c6c61316a664837a1476c2d137bbc78f273fcc",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-stats/assets/gforce-kombi-ring.png",
+      "sourceSha256": "c0bffae519922569d9e42d9d02db3b4383ce794c840e03bd4bcb613542930970",
+      "publishedSha256": "c0bffae519922569d9e42d9d02db3b4383ce794c840e03bd4bcb613542930970",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-stats/assets/journey-background.png",
+      "sourceSha256": "c0d5307861c5e6c65480843e2a1420ce4291ec9e6477531fff81e8770d881dc2",
+      "publishedSha256": "c0d5307861c5e6c65480843e2a1420ce4291ec9e6477531fff81e8770d881dc2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-stats/assets/journey-masterline.png",
+      "sourceSha256": "758139220ce5f09e3566f72b376e4d6840cf9e32fa7531a449a96e802493d104",
+      "publishedSha256": "758139220ce5f09e3566f72b376e4d6840cf9e32fa7531a449a96e802493d104",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/factory-stats/assets/provenance.json",
+      "sourceSha256": "d6fc700e4342313efddc4ae46901b0b1954102a392cf3376541fd857fe04e1f0",
+      "publishedSha256": "f9af39757d6a75eeed9b7ebaf2b26e46caf52847dafd48f327f1f57167ee6a97",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/fonts/BMWTALG.ttf",
+      "sourceSha256": "d223520ad582957c4723705b9eecf2865b16e5cbbae79d96b2e9ce8964fbe5f2",
+      "publishedSha256": "d223520ad582957c4723705b9eecf2865b16e5cbbae79d96b2e9ce8964fbe5f2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/fonts/BMWTARG.ttf",
+      "sourceSha256": "32751a2ed9c2e579b6a3e545bb13b11cc6dd4d7873abb4774594204d4d1a5958",
+      "publishedSha256": "32751a2ed9c2e579b6a3e545bb13b11cc6dd4d7873abb4774594204d4d1a5958",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-003.png",
+      "sourceSha256": "a4a27859806ec6bd7f112d4c55875ea93de2eaf22e48e8e535451808c7a852e6",
+      "publishedSha256": "a4a27859806ec6bd7f112d4c55875ea93de2eaf22e48e8e535451808c7a852e6",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-007.png",
+      "sourceSha256": "0cc62971a93e3ce73800740824b4489750f57832f9e23eac55bdb01e2414450e",
+      "publishedSha256": "0cc62971a93e3ce73800740824b4489750f57832f9e23eac55bdb01e2414450e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-022.png",
+      "sourceSha256": "8eac0b99f68bdddb4d235acdef9208cce1f030d58d6d76338e8c8b1af3094da2",
+      "publishedSha256": "8eac0b99f68bdddb4d235acdef9208cce1f030d58d6d76338e8c8b1af3094da2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-031.png",
+      "sourceSha256": "5210f08fd4f2aecba2676ae0289526448fcb32094c67c827db000ef42213d299",
+      "publishedSha256": "5210f08fd4f2aecba2676ae0289526448fcb32094c67c827db000ef42213d299",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-034.png",
+      "sourceSha256": "3f007bcf158255230d209c964963ee0614f7abcf629c2dfbd7d5f9b57724de17",
+      "publishedSha256": "3f007bcf158255230d209c964963ee0614f7abcf629c2dfbd7d5f9b57724de17",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-049.png",
+      "sourceSha256": "2eab9d276bcd3d3c32535826b5168c91e6f6320d78578fad382c98517a86468d",
+      "publishedSha256": "2eab9d276bcd3d3c32535826b5168c91e6f6320d78578fad382c98517a86468d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-061.png",
+      "sourceSha256": "a48642842b763b3b33905212fc892908a5c0dbfd3b13bcda0b55944702b9ab43",
+      "publishedSha256": "a48642842b763b3b33905212fc892908a5c0dbfd3b13bcda0b55944702b9ab43",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-066.png",
+      "sourceSha256": "156fa252a457c42681aeb31dcd30980a5a3d78843a7affec168921392b332d50",
+      "publishedSha256": "156fa252a457c42681aeb31dcd30980a5a3d78843a7affec168921392b332d50",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-068.png",
+      "sourceSha256": "a10605b5847c9ecc622b37b4f313629d0af183f7b3ebd1eb0522ab2bd4b38590",
+      "publishedSha256": "a10605b5847c9ecc622b37b4f313629d0af183f7b3ebd1eb0522ab2bd4b38590",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-069.png",
+      "sourceSha256": "bd6b7e0667a40e6aa5448d1765e8d14b8f338034df26db9da71af47d938e0b0d",
+      "publishedSha256": "bd6b7e0667a40e6aa5448d1765e8d14b8f338034df26db9da71af47d938e0b0d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-075.png",
+      "sourceSha256": "75b6bc5d6b91484e51965bfcf728e89514c8ca7aa865f46623f219b76bb4aa56",
+      "publishedSha256": "75b6bc5d6b91484e51965bfcf728e89514c8ca7aa865f46623f219b76bb4aa56",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-078.png",
+      "sourceSha256": "acf5260b050912772a5bc3552246b860ab76544b6a8a3fb358484801a592a508",
+      "publishedSha256": "acf5260b050912772a5bc3552246b860ab76544b6a8a3fb358484801a592a508",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-080.png",
+      "sourceSha256": "6ec225f0a43689e7e4add4685d0ce97fa0a4f5de9ec5cad4143db5e062afba84",
+      "publishedSha256": "6ec225f0a43689e7e4add4685d0ce97fa0a4f5de9ec5cad4143db5e062afba84",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/assets/4050800-082.png",
+      "sourceSha256": "3b93d5f930052f8e3bf42e6d3dc0d91cf93b80f5da0e1863f60e2fb3b4fc6a06",
+      "publishedSha256": "3b93d5f930052f8e3bf42e6d3dc0d91cf93b80f5da0e1863f60e2fb3b4fc6a06",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/original-cc/manifest.json",
+      "sourceSha256": "1145a93cae106ee8f525aa70acc5fd10e1b56ab6c92c3b24f240c8434eae32b6",
+      "publishedSha256": "013752b5bb20ce0ff5679942885df0a71fc7971413bb5c3e81778522b8662b88",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/simulation/expanded-icons/battery-raw.png",
+      "sourceSha256": "8d2c9254f6e3dd303dc747d9780cbd18e5e8f6263c572e1620fb1b3b1983e4bf",
+      "publishedSha256": "8d2c9254f6e3dd303dc747d9780cbd18e5e8f6263c572e1620fb1b3b1983e4bf",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/battery.png",
+      "sourceSha256": "cf17f2273c659ae79821e686bddcf2b1626981dd86a7174e2c8203075a218a04",
+      "publishedSha256": "cf17f2273c659ae79821e686bddcf2b1626981dd86a7174e2c8203075a218a04",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/candidate-rows.json",
+      "sourceSha256": "01ae9f3d81f39b43eb2949b29293bb92dec9a30a2a6146b35f94843aad1ab274",
+      "publishedSha256": "fdfb2acf421cc144d9b387be914d2b69fa7ba909480610c7e77d5cc0780c76ff",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/simulation/expanded-icons/chinaEngineRed.png",
+      "sourceSha256": "e052af647863e0ebc553f28ac3601ca37b2a5142423024d5cf752728f0ae9239",
+      "publishedSha256": "e052af647863e0ebc553f28ac3601ca37b2a5142423024d5cf752728f0ae9239",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/coolantTemperature.png",
+      "sourceSha256": "fc786d6a94d2600fe2767739be3e27645d35b487b3bd6793df2988f41ebbf232",
+      "publishedSha256": "fc786d6a94d2600fe2767739be3e27645d35b487b3bd6793df2988f41ebbf232",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/coverage-map.json",
+      "sourceSha256": "94e07d353cbadfb29eddf93243b9ae810db3763448a24c1cf8c97b1d0a8834c8",
+      "publishedSha256": "309d4e7a7b70bb6b554175cb98fa9fc49706c3ada43d72c84dc1a98821e67512",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/simulation/expanded-icons/door.png",
+      "sourceSha256": "02fd699418e0b54d9418e3974d33da39859c1c6c2a85d1474ed0d7f36f21804e",
+      "publishedSha256": "02fd699418e0b54d9418e3974d33da39859c1c6c2a85d1474ed0d7f36f21804e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/frontSeatbelt-full.png",
+      "sourceSha256": "5adddd1ba9f03ade6b86ee794e71857ef8483b314955a40136881cc9d28c0582",
+      "publishedSha256": "5adddd1ba9f03ade6b86ee794e71857ef8483b314955a40136881cc9d28c0582",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/frontSeatbelt.png",
+      "sourceSha256": "bf3a7f5bad0570936e0ff501e92e264a16a65229b2d329c6e1f055cda7241251",
+      "publishedSha256": "bf3a7f5bad0570936e0ff501e92e264a16a65229b2d329c6e1f055cda7241251",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/fuel-raw.png",
+      "sourceSha256": "a5e401508e50b562b1518f8b94d9c64f7841df61fcfd67d228927ec8bc138cda",
+      "publishedSha256": "a5e401508e50b562b1518f8b94d9c64f7841df61fcfd67d228927ec8bc138cda",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/fuel.png",
+      "sourceSha256": "6d51668378c79489c04fc8fd78b8211fb6c3456361736182d7ea2fcea93858d0",
+      "publishedSha256": "6d51668378c79489c04fc8fd78b8211fb6c3456361736182d7ea2fcea93858d0",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/highBeam.png",
+      "sourceSha256": "262950589413b253a30f21b774986603366c07e737ed43e45b34aacd05d2cce5",
+      "publishedSha256": "262950589413b253a30f21b774986603366c07e737ed43e45b34aacd05d2cce5",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/highBeamAssist.png",
+      "sourceSha256": "b41e15bdf54c463cfd8c959d423ce9a1edea764e79f2a92356f5e1b85f5c81e3",
+      "publishedSha256": "b41e15bdf54c463cfd8c959d423ce9a1edea764e79f2a92356f5e1b85f5c81e3",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/manifest.json",
+      "sourceSha256": "63fa10395bfe77a93d182b299b747f7152b4c8cdf0c07c3885b31ab4e2315e3e",
+      "publishedSha256": "c41616646ae4af1893d285ad85dc2be1c111b89adee1ef5e00bd072e1ee05fed",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/simulation/expanded-icons/media.png",
+      "sourceSha256": "c8ae94fbb31a96ca16ee24d4da9ca31414da6f539167e1235bd416e5f70345a2",
+      "publishedSha256": "c8ae94fbb31a96ca16ee24d4da9ca31414da6f539167e1235bd416e5f70345a2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/navLaneLeft.png",
+      "sourceSha256": "a75d12747e18a1b4ec4ef2abe76e6c15b0adb76991f765b61ec52e3d449c98ac",
+      "publishedSha256": "a75d12747e18a1b4ec4ef2abe76e6c15b0adb76991f765b61ec52e3d449c98ac",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/navLaneRight.png",
+      "sourceSha256": "5824d017b5cc182891d261deae0430c02ea8049e13d6e451822d7a7484ab5678",
+      "publishedSha256": "5824d017b5cc182891d261deae0430c02ea8049e13d6e451822d7a7484ab5678",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/navLaneStraight.png",
+      "sourceSha256": "35f0871921a67123fe4307561b20cab211a9ac5dab86aae042c28112d4c32b5e",
+      "publishedSha256": "35f0871921a67123fe4307561b20cab211a9ac5dab86aae042c28112d4c32b5e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/navigation.png",
+      "sourceSha256": "b13080b71313332439f388328689c66bee05d2742efa7fc33202dd3efa7af0ea",
+      "publishedSha256": "b13080b71313332439f388328689c66bee05d2742efa7fc33202dd3efa7af0ea",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/oilLevel.png",
+      "sourceSha256": "9449631e52dc750ed5dc3e9fd3d7696c9e8e2421e96b35e52367806c22463d46",
+      "publishedSha256": "9449631e52dc750ed5dc3e9fd3d7696c9e8e2421e96b35e52367806c22463d46",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/oilTemperature.png",
+      "sourceSha256": "557884bb08682c969d866f27d0dc4d7420e8554e61bb0b371c3e20b5de6fea1f",
+      "publishedSha256": "557884bb08682c969d866f27d0dc4d7420e8554e61bb0b371c3e20b5de6fea1f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/phone.png",
+      "sourceSha256": "c4396e2cfa869f7629b7d52e8a66d61d477622c9406641f5b600c77c07bb9790",
+      "publishedSha256": "c4396e2cfa869f7629b7d52e8a66d61d477622c9406641f5b600c77c07bb9790",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/phoneIncoming.png",
+      "sourceSha256": "067861603bcc4271f7949d4e7c61db2114dca1ecc27873d95896ef57b5957192",
+      "publishedSha256": "067861603bcc4271f7949d4e7c61db2114dca1ecc27873d95896ef57b5957192",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/expanded-icons/phoneMicrophone.png",
+      "sourceSha256": "ebb71c2c3abb400439a44cf380f9038550bb862a00a5017d0ca8606856516f64",
+      "publishedSha256": "ebb71c2c3abb400439a44cf380f9038550bb862a00a5017d0ca8606856516f64",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icon-manifest.json",
+      "sourceSha256": "ed4ce95f348c1fc2d6aa2c67599d35d348bc7671b64970ad46f3f2dd1d4138a7",
+      "publishedSha256": "e6bd269b5a96e11b69b3350e5d53bcb2116e7fe40dd38dc9ab3ca7101a4e9d1c",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/design/simulation/icons/assistance.png",
+      "sourceSha256": "1e0724227e2cd2fbe7ff4b05a65dcabae5e6ceef7019cd7926ebba8b13e84865",
+      "publishedSha256": "1e0724227e2cd2fbe7ff4b05a65dcabae5e6ceef7019cd7926ebba8b13e84865",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icons/cruise.png",
+      "sourceSha256": "50f5f10d9dd2865521034b574473ecf51efb31c3a3844f785520873e035e8649",
+      "publishedSha256": "50f5f10d9dd2865521034b574473ecf51efb31c3a3844f785520873e035e8649",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icons/frontFog.png",
+      "sourceSha256": "a95866249e6a7f596f5ac3927932716b75c85d9870a078616d22dc8c3ab3b567",
+      "publishedSha256": "a95866249e6a7f596f5ac3927932716b75c85d9870a078616d22dc8c3ab3b567",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icons/lowBeam.png",
+      "sourceSha256": "f8a55cf190ce1c981eba8d971c1fc0e80cd17f91276d03b4e8a2cc49610d43d8",
+      "publishedSha256": "f8a55cf190ce1c981eba8d971c1fc0e80cd17f91276d03b4e8a2cc49610d43d8",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icons/parkingLeft.png",
+      "sourceSha256": "4d5d253374650ac8681b68beb2a86d92c67a195a6e1edcb29f765b5798752381",
+      "publishedSha256": "4d5d253374650ac8681b68beb2a86d92c67a195a6e1edcb29f765b5798752381",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icons/parkingRight.png",
+      "sourceSha256": "927a27a0ecec1e48998dac78dbb980a4001a38b72fad8069c6952cb5fd15c8e5",
+      "publishedSha256": "927a27a0ecec1e48998dac78dbb980a4001a38b72fad8069c6952cb5fd15c8e5",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icons/rearFog.png",
+      "sourceSha256": "75644f1be94ce8ef173d132e4c3545155baf40059f7335ce3a259602a143fb18",
+      "publishedSha256": "75644f1be94ce8ef173d132e4c3545155baf40059f7335ce3a259602a143fb18",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icons/rearSeatBelt.png",
+      "sourceSha256": "6ad8c8bb7322b5046d4894717647e666bef0d79503c8e4ca1e87f99fafb3918f",
+      "publishedSha256": "6ad8c8bb7322b5046d4894717647e666bef0d79503c8e4ca1e87f99fafb3918f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icons/service.png",
+      "sourceSha256": "ef0e180c26b6d77bffb8f430609e28195e171f11b9be959e51f38b5741278289",
+      "publishedSha256": "ef0e180c26b6d77bffb8f430609e28195e171f11b9be959e51f38b5741278289",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icons/sideLights.png",
+      "sourceSha256": "ed9597d42ab2d83cc8ab5e7f6833016de3aa4812b0c9b7cd904f74cf5c106615",
+      "publishedSha256": "ed9597d42ab2d83cc8ab5e7f6833016de3aa4812b0c9b7cd904f74cf5c106615",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/simulation/icons/warning.png",
+      "sourceSha256": "cc9000f6472203607a73c06ccbb3e0a608664879e7701a666ba742b2651aa989",
+      "publishedSha256": "cc9000f6472203607a73c06ccbb3e0a608664879e7701a666ba742b2651aa989",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/warning-pictos/assets/4050800-022.png",
+      "sourceSha256": "8eac0b99f68bdddb4d235acdef9208cce1f030d58d6d76338e8c8b1af3094da2",
+      "publishedSha256": "8eac0b99f68bdddb4d235acdef9208cce1f030d58d6d76338e8c8b1af3094da2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/warning-pictos/assets/4050800-049.png",
+      "sourceSha256": "2eab9d276bcd3d3c32535826b5168c91e6f6320d78578fad382c98517a86468d",
+      "publishedSha256": "2eab9d276bcd3d3c32535826b5168c91e6f6320d78578fad382c98517a86468d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/warning-pictos/assets/4050800-051.png",
+      "sourceSha256": "485a62684287fc510b56fb6a2db11ad230df0c722ecd29d501dd7eac464587bc",
+      "publishedSha256": "485a62684287fc510b56fb6a2db11ad230df0c722ecd29d501dd7eac464587bc",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/warning-pictos/assets/door-variant0-mask01.png",
+      "sourceSha256": "a456637385c04313d27269f572d20bbe259f9abd94876c62607e575b9ec7032d",
+      "publishedSha256": "a456637385c04313d27269f572d20bbe259f9abd94876c62607e575b9ec7032d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/design/warning-pictos/manifest.json",
+      "sourceSha256": "adac4fa998b49dafb9538ac087d0c08ca80e683d7b1e1faa537df06cb627271c",
+      "publishedSha256": "d604b11c2859f807a05b74aeb5ad98833ad43ee94758a1396462718cc868aa99",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/f97-reference/render-package/f97-gauges-package.json",
+      "sourceSha256": "c81132e977a9de407997893fd0a177f1c969ddd8732efbac6058b306d4a05864",
+      "publishedSha256": "45e744af70b46ceac0f96e95b2a1c9b335bc0876bad41636cd6706ee85b79019",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/f97-reference/render-package/mini-boost-icon.pixels",
+      "sourceSha256": "73ec436d1dd0181d1ca4f0eca5b203289f2af6ce8f1a9e773adc718abbde4d7b",
+      "publishedSha256": "73ec436d1dd0181d1ca4f0eca5b203289f2af6ce8f1a9e773adc718abbde4d7b",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/mini-oil-icon.pixels",
+      "sourceSha256": "84e37314a9f7dd5dca7cd7f715412d4b812837db0b9c98f9bd0cd11442d9987c",
+      "publishedSha256": "84e37314a9f7dd5dca7cd7f715412d4b812837db0b9c98f9bd0cd11442d9987c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/mini-water-icon.pixels",
+      "sourceSha256": "8d2235186d9af238471a6caa591649f2fa3cf5e448b3b4ee82465b7ef5443dda",
+      "publishedSha256": "8d2235186d9af238471a6caa591649f2fa3cf5e448b3b4ee82465b7ef5443dda",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/needle.pixels",
+      "sourceSha256": "8eb7ec370b60118bb01c53d32b009b24d7c041f580a8398152ab156306f34ec9",
+      "publishedSha256": "8eb7ec370b60118bb01c53d32b009b24d7c041f580a8398152ab156306f34ec9",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/ring.pixels",
+      "sourceSha256": "ae67ad990ec2ff356144562893db5baee1c85d89b02905e3be388ca0717de698",
+      "publishedSha256": "ae67ad990ec2ff356144562893db5baee1c85d89b02905e3be388ca0717de698",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/rpmInner.pixels",
+      "sourceSha256": "b156bee2878b255004d38cf58afdd2e3a4d3f1edc14d41aeb57597b7bc7d2798",
+      "publishedSha256": "b156bee2878b255004d38cf58afdd2e3a4d3f1edc14d41aeb57597b7bc7d2798",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/rpmNumbers.pixels",
+      "sourceSha256": "8d3cf063c165d2e4a82aeb6c95d74f4c2f612a4836681239f2d09c1bd06ae2dc",
+      "publishedSha256": "8d3cf063c165d2e4a82aeb6c95d74f4c2f612a4836681239f2d09c1bd06ae2dc",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/rpmScale.pixels",
+      "sourceSha256": "d487670093d99bfd09cc0bbebf33e02ddd7277f2f33c8cb07fce3e3f87a4b863",
+      "publishedSha256": "d487670093d99bfd09cc0bbebf33e02ddd7277f2f33c8cb07fce3e3f87a4b863",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/speedInner.pixels",
+      "sourceSha256": "6fdd62ca22ba133e4a4effe787f498f69d60a543e2ddea0ad8e7ac5fc6164c35",
+      "publishedSha256": "6fdd62ca22ba133e4a4effe787f498f69d60a543e2ddea0ad8e7ac5fc6164c35",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/speedNumbers.pixels",
+      "sourceSha256": "c13fb7c90b2f501599778c076a8df7fc0f0b78c5588267081d48644630f30e3f",
+      "publishedSha256": "c13fb7c90b2f501599778c076a8df7fc0f0b78c5588267081d48644630f30e3f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/speedScale.pixels",
+      "sourceSha256": "17111b31656f299a04ed392c85b5e4a22f7d246ec6cc4d8fd8b964947aa2ae21",
+      "publishedSha256": "17111b31656f299a04ed392c85b5e4a22f7d246ec6cc4d8fd8b964947aa2ae21",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/f97-reference/render-package/static-source-proof.json",
+      "sourceSha256": "467f6253d0e38ae0da60219da92c7b7cec0b02a2ece41251d3456b042f43f186",
+      "publishedSha256": "9df8fdb7217a0ad8671eedf43782f3d832da0a5febac9a0c529bd4792d86a6e6",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/factory-cc/render-package/7bc38120041e861f6ebada0c7b5f0251.png",
+      "sourceSha256": "7e2b270a21c35576652d88ba35200ae67ccdf7c6c09662a726ed7a634ca6a75c",
+      "publishedSha256": "7e2b270a21c35576652d88ba35200ae67ccdf7c6c09662a726ed7a634ca6a75c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-cc/render-package/factory-cc-package.json",
+      "sourceSha256": "4974e322b6dae5be4e94a41778371d8a50ce0f759d34732692e7d77a4c78f75b",
+      "publishedSha256": "b5589f9f4b1329f11b78d408c1281b95b134b14b0a97f66a196042ff92530f70",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/factory-mini/render-package/49a72a27f12cf8db5900bed54d3fa1fa.png",
+      "sourceSha256": "3b4868d02af8182a57730aa6bdf76f15a10f51f5523e9e032943147cf8b144b5",
+      "publishedSha256": "3b4868d02af8182a57730aa6bdf76f15a10f51f5523e9e032943147cf8b144b5",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/6e852c8e951dddc169209a5abe066814.png",
+      "sourceSha256": "753e210f53c2da4e9641b370f4b78d32751c343969355f500a0da570c93e7754",
+      "publishedSha256": "753e210f53c2da4e9641b370f4b78d32751c343969355f500a0da570c93e7754",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/factory-mini-package.json",
+      "sourceSha256": "8ed13c5431632b9423ca1a60aac923fefc8478abbc367059cc3c0deed5028723",
+      "publishedSha256": "214553273726d10abe3a717555424d6416ecfe557876776e89751672b305b75a",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/factory-mini/render-package/factory-motor-temp-package.json",
+      "sourceSha256": "f8594d8ba588053680ebe35ce15136baedeb1e35dda633c485e4b6b39bf43842",
+      "publishedSha256": "e4f345a917d5972b56409bc14f0e9093c865104a0e9baa18bdaf73c2dde3d673",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/factory-mini/render-package/tex_anhaenger_bitmap.png",
+      "sourceSha256": "c4b4d20a4732f7479155e847e86442dc06f8596e58024895c7e5ec66ef229128",
+      "publishedSha256": "c4b4d20a4732f7479155e847e86442dc06f8596e58024895c7e5ec66ef229128",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_anhaenger_oilbar_bitmap.png",
+      "sourceSha256": "b5894c6dfc33d280e41233043c092309b1ca0c65168c504037877fb502698202",
+      "publishedSha256": "b5894c6dfc33d280e41233043c092309b1ca0c65168c504037877fb502698202",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_bg_bitmap.png",
+      "sourceSha256": "8026a6620571c133b01f276e96820516f60682202bbafa28d795b6977c4978a2",
+      "publishedSha256": "8026a6620571c133b01f276e96820516f60682202bbafa28d795b6977c4978a2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_bg_front_bitmap.png",
+      "sourceSha256": "fda19261f9323c27b2ef5c2e2be450813d7d4c987fe0b2c691ae58e8bdf3bd0f",
+      "publishedSha256": "fda19261f9323c27b2ef5c2e2be450813d7d4c987fe0b2c691ae58e8bdf3bd0f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_bg_front_boost_bitmap.png",
+      "sourceSha256": "e68fa1c6abe8bb4baa5fce0a5e82ac607245e514dc28fe43c81aba8abf179de6",
+      "publishedSha256": "e68fa1c6abe8bb4baa5fce0a5e82ac607245e514dc28fe43c81aba8abf179de6",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_bg_front_small_bitmap.png",
+      "sourceSha256": "af42f79490d36d30d021766f34583b96d2c21a03b38b2b9f1e2dda16f29ad2d3",
+      "publishedSha256": "af42f79490d36d30d021766f34583b96d2c21a03b38b2b9f1e2dda16f29ad2d3",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_bg_progress_bitmap.png",
+      "sourceSha256": "b06e7d192159932e0d5303500b89e96102e1e86fd16eef28c12dca0030f0b3fe",
+      "publishedSha256": "b06e7d192159932e0d5303500b89e96102e1e86fd16eef28c12dca0030f0b3fe",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_kombi_bg_bitmap.png",
+      "sourceSha256": "44afe53595ee1a7b71faca12eca4953da3175e334ed4257a416e0d2593cce30b",
+      "publishedSha256": "44afe53595ee1a7b71faca12eca4953da3175e334ed4257a416e0d2593cce30b",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_kombi_lines_bitmap.png",
+      "sourceSha256": "68f36be0f947f8820aa2b85972646feeb30a189cacdaf68ab82370780e30b8bd",
+      "publishedSha256": "68f36be0f947f8820aa2b85972646feeb30a189cacdaf68ab82370780e30b8bd",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_kombi_pointer_bitmap.png",
+      "sourceSha256": "e44beb4d0962bdb2a1071ce388f1ec73ea21b84abc0f8a1169bc4534340dd54e",
+      "publishedSha256": "e44beb4d0962bdb2a1071ce388f1ec73ea21b84abc0f8a1169bc4534340dd54e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_kombi_pointer_front_bitmap.png",
+      "sourceSha256": "db03f2b7b9e0678172aeb0993b1b3e39468fddcb234f936ee4f1a968f967b29c",
+      "publishedSha256": "db03f2b7b9e0678172aeb0993b1b3e39468fddcb234f936ee4f1a968f967b29c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_kombi_progress_bitmap.png",
+      "sourceSha256": "1a54e69ef32e09520573ca0c558f4e4ee0282c43e27b571b60d8d5fc68fcace8",
+      "publishedSha256": "1a54e69ef32e09520573ca0c558f4e4ee0282c43e27b571b60d8d5fc68fcace8",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_kombi_shadow_bitmap.png",
+      "sourceSha256": "b6d3181a8cf1a93a0b9c015256e8087f8674b5dfb0692770e6b9475313d6c921",
+      "publishedSha256": "b6d3181a8cf1a93a0b9c015256e8087f8674b5dfb0692770e6b9475313d6c921",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_kombi_zeiger_bitmap.png",
+      "sourceSha256": "f2b58daf85f89387ab8b479cec75e77b99dd8475c0a5cf2a1c360021ae1cdc57",
+      "publishedSha256": "f2b58daf85f89387ab8b479cec75e77b99dd8475c0a5cf2a1c360021ae1cdc57",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_oilbar_cold_bitmap.png",
+      "sourceSha256": "76610c339fef89cbf4236d368062b00e1b8437be59cc56bc3c979abee45325f7",
+      "publishedSha256": "76610c339fef89cbf4236d368062b00e1b8437be59cc56bc3c979abee45325f7",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_oilbar_warm_bitmap.png",
+      "sourceSha256": "7906f266ffc9259192b2601212c5a2714c1fc79624795d7a912d5f58a30e819d",
+      "publishedSha256": "7906f266ffc9259192b2601212c5a2714c1fc79624795d7a912d5f58a30e819d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_peak_bitmap.png",
+      "sourceSha256": "c17f185fb5212aaae62e4d6820608d9d228b22a08280e7d5d27724071a05f1db",
+      "publishedSha256": "c17f185fb5212aaae62e4d6820608d9d228b22a08280e7d5d27724071a05f1db",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_pointer_front_bitmap.png",
+      "sourceSha256": "ed41c06aed79e8047be2a9c82b5c8e1684f94c6682c419f9a4683393df71b942",
+      "publishedSha256": "ed41c06aed79e8047be2a9c82b5c8e1684f94c6682c419f9a4683393df71b942",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_pointer_front_boost_bitmap.png",
+      "sourceSha256": "f23a54da93cf964eda1d6c86f81c45b291a8a08e88d7caf5713bb8a9f9481aff",
+      "publishedSha256": "f23a54da93cf964eda1d6c86f81c45b291a8a08e88d7caf5713bb8a9f9481aff",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-mini/render-package/tex_progressbar_bitmap.png",
+      "sourceSha256": "3df91d527b5751883bc5b1ea8f01b6c024372570bf6358b52105687d3d336820",
+      "publishedSha256": "3df91d527b5751883bc5b1ea8f01b6c024372570bf6358b52105687d3d336820",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-rpm/render-package/38cb2058203171e63f860a95ad98d6fb.png",
+      "sourceSha256": "19b4e4df032f2a6f594550b853c489014f798efde6ebce01d3872f8b1d9be83a",
+      "publishedSha256": "19b4e4df032f2a6f594550b853c489014f798efde6ebce01d3872f8b1d9be83a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-rpm/render-package/7c89da3625081e98157fc34ac2430fd2.png",
+      "sourceSha256": "a7b8bd7c46576d475e7f9e70ed7551596325ec3566d0ce15e49e45a0a8a3f520",
+      "publishedSha256": "a7b8bd7c46576d475e7f9e70ed7551596325ec3566d0ce15e49e45a0a8a3f520",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-rpm/render-package/968526c07cf5846995926acc7ddaf9a5.png",
+      "sourceSha256": "53d8a986e0efd733c8d4b3803fd0e3548f76266e792681cbc38e9a22660de9ea",
+      "publishedSha256": "53d8a986e0efd733c8d4b3803fd0e3548f76266e792681cbc38e9a22660de9ea",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-rpm/render-package/9ed92a218c3f0557218d6e02907575bd.png",
+      "sourceSha256": "b2dbed0aefbada453cc0adf7be5db529e749ab1bcf2f54c49c41290bf8bfc3a2",
+      "publishedSha256": "b2dbed0aefbada453cc0adf7be5db529e749ab1bcf2f54c49c41290bf8bfc3a2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-rpm/render-package/ac571af1b3d212e6c4e85a05e6156927.png",
+      "sourceSha256": "ec10b7d9b4320dd6826f9ba556bc89f65070db992d91a52763bdaf81270e8edc",
+      "publishedSha256": "ec10b7d9b4320dd6826f9ba556bc89f65070db992d91a52763bdaf81270e8edc",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-rpm/render-package/f0284c5b4a46e517c1d41000b82f7c40.png",
+      "sourceSha256": "1b5d9a2b86e575324fed689ffd153b5de109adf8419f07e2ab2aee40f32edd43",
+      "publishedSha256": "1b5d9a2b86e575324fed689ffd153b5de109adf8419f07e2ab2aee40f32edd43",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/factory-rpm/render-package/factory-rpm-package.json",
+      "sourceSha256": "6078dea817a10264ebc189ae15e31b19e46b823519a3af9a8919793dbdde2a72",
+      "publishedSha256": "3542215e55a6d118de70eb233dc552d475a7710fafd98e7eedd44694d2384a03",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/seatbelt-source/controller/state-render-contract-v2.json",
+      "sourceSha256": "461969fee63b02583e2ead1d670e79041592cfa52d5cd181ced863eb6a6ac278",
+      "publishedSha256": "1763e6978db351a3375dd1c50dcea407200f4628459b7ba0f3d3a9ab5276aa5d",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/seatbelt-source/render-package/2692f7ebf642a69e663de25110fc6fe0.png",
+      "sourceSha256": "77f65bee9b55246659e08318a13c577d646ac5799f9ccbf19478dffc441074ec",
+      "publishedSha256": "77f65bee9b55246659e08318a13c577d646ac5799f9ccbf19478dffc441074ec",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/seatbelt-source/render-package/28e84e29faf6a168154332f911e410a9.png",
+      "sourceSha256": "75c5a58e17fbef3306cb77aaaab5ef03fd3a9a86138493f29b0c74e4dd53c953",
+      "publishedSha256": "75c5a58e17fbef3306cb77aaaab5ef03fd3a9a86138493f29b0c74e4dd53c953",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/seatbelt-source/render-package/450fce440619efb9fe40b9e292e1e8e2.png",
+      "sourceSha256": "6ad8c8bb7322b5046d4894717647e666bef0d79503c8e4ca1e87f99fafb3918f",
+      "publishedSha256": "6ad8c8bb7322b5046d4894717647e666bef0d79503c8e4ca1e87f99fafb3918f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/seatbelt-source/render-package/80bf1e46635ae00352d76afd37b1b29f.png",
+      "sourceSha256": "d78ea2e8b77c9e99d2be207bc2b2f63a94f04eeee0c57239b1db9eccd2333d87",
+      "publishedSha256": "d78ea2e8b77c9e99d2be207bc2b2f63a94f04eeee0c57239b1db9eccd2333d87",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/seatbelt-source/render-package/890b657d41d36c671fa2ecccd2ee70f3.png",
+      "sourceSha256": "672f28630269bc26f67d353f07ac0a8a097d299714401823d706f90751d33631",
+      "publishedSha256": "672f28630269bc26f67d353f07ac0a8a097d299714401823d706f90751d33631",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/seatbelt-source/render-package/dfb1cad21a0a50016c41686221d8ea0f.png",
+      "sourceSha256": "ac3c825fa60cc463354abde8f5822e5ba90c7e5dc90a3da54c1614f61a4f2620",
+      "publishedSha256": "ac3c825fa60cc463354abde8f5822e5ba90c7e5dc90a3da54c1614f61a4f2620",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/seatbelt-source/render-package/factory-seatbelt-package.json",
+      "sourceSha256": "6c536b49921cf8528c472190c45726406e5c1ca028bd522d363cf4fa48c6be5d",
+      "publishedSha256": "167c845794cccab99a381bba49e6a48d54d7f38cc878e6db6a9c34bb4368e682",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/sport-factory/render-package/factory-sport-package.json",
+      "sourceSha256": "f70ad3a1365cad03dccc0c68388ee192581114a79c55a3ad68fca6a8468a4032",
+      "publishedSha256": "bd17426894351f8461e6bb284992ee6b97ea41bced66e334e88efff5222b2bfb",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/sport-factory/render-package/tex_anhaenger_bitmap.png",
+      "sourceSha256": "c4b4d20a4732f7479155e847e86442dc06f8596e58024895c7e5ec66ef229128",
+      "publishedSha256": "c4b4d20a4732f7479155e847e86442dc06f8596e58024895c7e5ec66ef229128",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_anhaenger_oilbar_bitmap.png",
+      "sourceSha256": "b5894c6dfc33d280e41233043c092309b1ca0c65168c504037877fb502698202",
+      "publishedSha256": "b5894c6dfc33d280e41233043c092309b1ca0c65168c504037877fb502698202",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_bg_bitmap.png",
+      "sourceSha256": "8026a6620571c133b01f276e96820516f60682202bbafa28d795b6977c4978a2",
+      "publishedSha256": "8026a6620571c133b01f276e96820516f60682202bbafa28d795b6977c4978a2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_bg_front_bitmap.png",
+      "sourceSha256": "fda19261f9323c27b2ef5c2e2be450813d7d4c987fe0b2c691ae58e8bdf3bd0f",
+      "publishedSha256": "fda19261f9323c27b2ef5c2e2be450813d7d4c987fe0b2c691ae58e8bdf3bd0f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_bg_front_boost_bitmap.png",
+      "sourceSha256": "e68fa1c6abe8bb4baa5fce0a5e82ac607245e514dc28fe43c81aba8abf179de6",
+      "publishedSha256": "e68fa1c6abe8bb4baa5fce0a5e82ac607245e514dc28fe43c81aba8abf179de6",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_bg_front_small_bitmap.png",
+      "sourceSha256": "af42f79490d36d30d021766f34583b96d2c21a03b38b2b9f1e2dda16f29ad2d3",
+      "publishedSha256": "af42f79490d36d30d021766f34583b96d2c21a03b38b2b9f1e2dda16f29ad2d3",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_bg_progress_bitmap.png",
+      "sourceSha256": "b06e7d192159932e0d5303500b89e96102e1e86fd16eef28c12dca0030f0b3fe",
+      "publishedSha256": "b06e7d192159932e0d5303500b89e96102e1e86fd16eef28c12dca0030f0b3fe",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_kombi_bg_bitmap.png",
+      "sourceSha256": "44afe53595ee1a7b71faca12eca4953da3175e334ed4257a416e0d2593cce30b",
+      "publishedSha256": "44afe53595ee1a7b71faca12eca4953da3175e334ed4257a416e0d2593cce30b",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_kombi_lines_bitmap.png",
+      "sourceSha256": "68f36be0f947f8820aa2b85972646feeb30a189cacdaf68ab82370780e30b8bd",
+      "publishedSha256": "68f36be0f947f8820aa2b85972646feeb30a189cacdaf68ab82370780e30b8bd",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_kombi_pointer_bitmap.png",
+      "sourceSha256": "e44beb4d0962bdb2a1071ce388f1ec73ea21b84abc0f8a1169bc4534340dd54e",
+      "publishedSha256": "e44beb4d0962bdb2a1071ce388f1ec73ea21b84abc0f8a1169bc4534340dd54e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_kombi_pointer_front_bitmap.png",
+      "sourceSha256": "db03f2b7b9e0678172aeb0993b1b3e39468fddcb234f936ee4f1a968f967b29c",
+      "publishedSha256": "db03f2b7b9e0678172aeb0993b1b3e39468fddcb234f936ee4f1a968f967b29c",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_kombi_progress_bitmap.png",
+      "sourceSha256": "1a54e69ef32e09520573ca0c558f4e4ee0282c43e27b571b60d8d5fc68fcace8",
+      "publishedSha256": "1a54e69ef32e09520573ca0c558f4e4ee0282c43e27b571b60d8d5fc68fcace8",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_kombi_shadow_bitmap.png",
+      "sourceSha256": "b6d3181a8cf1a93a0b9c015256e8087f8674b5dfb0692770e6b9475313d6c921",
+      "publishedSha256": "b6d3181a8cf1a93a0b9c015256e8087f8674b5dfb0692770e6b9475313d6c921",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_kombi_zeiger_bitmap.png",
+      "sourceSha256": "f2b58daf85f89387ab8b479cec75e77b99dd8475c0a5cf2a1c360021ae1cdc57",
+      "publishedSha256": "f2b58daf85f89387ab8b479cec75e77b99dd8475c0a5cf2a1c360021ae1cdc57",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_oilbar_cold_bitmap.png",
+      "sourceSha256": "76610c339fef89cbf4236d368062b00e1b8437be59cc56bc3c979abee45325f7",
+      "publishedSha256": "76610c339fef89cbf4236d368062b00e1b8437be59cc56bc3c979abee45325f7",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_oilbar_warm_bitmap.png",
+      "sourceSha256": "7906f266ffc9259192b2601212c5a2714c1fc79624795d7a912d5f58a30e819d",
+      "publishedSha256": "7906f266ffc9259192b2601212c5a2714c1fc79624795d7a912d5f58a30e819d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_peak_bitmap.png",
+      "sourceSha256": "c17f185fb5212aaae62e4d6820608d9d228b22a08280e7d5d27724071a05f1db",
+      "publishedSha256": "c17f185fb5212aaae62e4d6820608d9d228b22a08280e7d5d27724071a05f1db",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_pointer_front_bitmap.png",
+      "sourceSha256": "ed41c06aed79e8047be2a9c82b5c8e1684f94c6682c419f9a4683393df71b942",
+      "publishedSha256": "ed41c06aed79e8047be2a9c82b5c8e1684f94c6682c419f9a4683393df71b942",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_pointer_front_boost_bitmap.png",
+      "sourceSha256": "f23a54da93cf964eda1d6c86f81c45b291a8a08e88d7caf5713bb8a9f9481aff",
+      "publishedSha256": "f23a54da93cf964eda1d6c86f81c45b291a8a08e88d7caf5713bb8a9f9481aff",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/sport-factory/render-package/tex_progressbar_bitmap.png",
+      "sourceSha256": "3df91d527b5751883bc5b1ea8f01b6c024372570bf6358b52105687d3d336820",
+      "publishedSha256": "3df91d527b5751883bc5b1ea8f01b6c024372570bf6358b52105687d3d336820",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f40-dsc-lamp-stored.png",
+      "sourceSha256": "099a71d5c15a694c5ba9083f8ef99b797ee3c49c1a2b223566bcf441728d1931",
+      "publishedSha256": "099a71d5c15a694c5ba9083f8ef99b797ee3c49c1a2b223566bcf441728d1931",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f40-dsc-lamp.png",
+      "sourceSha256": "aa87fe8897647dd75022cb510cf07bb043c1287aea6e22a123929857d6fe422d",
+      "publishedSha256": "aa87fe8897647dd75022cb510cf07bb043c1287aea6e22a123929857d6fe422d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-dsc-icon-stored-rows.png",
+      "sourceSha256": "2f599a24f05b0877c795c76467834c53e77da7a1ab2badd43afeaa4c0b38aef0",
+      "publishedSha256": "2f599a24f05b0877c795c76467834c53e77da7a1ab2badd43afeaa4c0b38aef0",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-dsc-icon.png",
+      "sourceSha256": "f6edb4cf95b4404d96235e1cdfad913af4f0814546b1b757fd10dde49062606a",
+      "publishedSha256": "f6edb4cf95b4404d96235e1cdfad913af4f0814546b1b757fd10dde49062606a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-dsc-off-icon-stored-rows.png",
+      "sourceSha256": "0dab4542c487533c175d7d2bd6707967a00db5f4838afb16d7fc948fc87b9b86",
+      "publishedSha256": "0dab4542c487533c175d7d2bd6707967a00db5f4838afb16d7fc948fc87b9b86",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-dsc-off-icon.png",
+      "sourceSha256": "6e1a321219b45a10344b3b430f2549091bc347deae1fd807fb7a4112e86fc9c2",
+      "publishedSha256": "6e1a321219b45a10344b3b430f2549091bc347deae1fd807fb7a4112e86fc9c2",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-dsc-off-text-stored-rows.png",
+      "sourceSha256": "7746e6da754fc4871d5ab0eb01980f8b1f887a0f4880142156e8658324092436",
+      "publishedSha256": "7746e6da754fc4871d5ab0eb01980f8b1f887a0f4880142156e8658324092436",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-dsc-off-text.png",
+      "sourceSha256": "d02245d1ade42c93c8f342e9985f61fd63287d7be4aadc2c340ff5a0a21f1e96",
+      "publishedSha256": "d02245d1ade42c93c8f342e9985f61fd63287d7be4aadc2c340ff5a0a21f1e96",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-fes-dsc-off-text-stored-rows.png",
+      "sourceSha256": "7466dcea3ffa17f75880520b5c23fec4adc85d961f88c0278e7a4e833efc726a",
+      "publishedSha256": "7466dcea3ffa17f75880520b5c23fec4adc85d961f88c0278e7a4e833efc726a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-fes-dsc-off-text.png",
+      "sourceSha256": "7466dcea3ffa17f75880520b5c23fec4adc85d961f88c0278e7a4e833efc726a",
+      "publishedSha256": "7466dcea3ffa17f75880520b5c23fec4adc85d961f88c0278e7a4e833efc726a",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-fes-traction-text-stored-rows.png",
+      "sourceSha256": "ec83955f7143cfdfcb52c18fe9105a6011a0e2ed9ca8ee90e34c7667e5988e80",
+      "publishedSha256": "ec83955f7143cfdfcb52c18fe9105a6011a0e2ed9ca8ee90e34c7667e5988e80",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-fes-traction-text.png",
+      "sourceSha256": "ec83955f7143cfdfcb52c18fe9105a6011a0e2ed9ca8ee90e34c7667e5988e80",
+      "publishedSha256": "ec83955f7143cfdfcb52c18fe9105a6011a0e2ed9ca8ee90e34c7667e5988e80",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-four-wheel-drive-text-stored-rows.png",
+      "sourceSha256": "973195e64f760af5eb50a2862d0e681c2bbd9a5e8fba5f3ca22607fc26768efe",
+      "publishedSha256": "973195e64f760af5eb50a2862d0e681c2bbd9a5e8fba5f3ca22607fc26768efe",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-four-wheel-drive-text.png",
+      "sourceSha256": "5dd301e88f4f774ef4f796232aea3069277c4ad6e419818f6481da5abe815686",
+      "publishedSha256": "5dd301e88f4f774ef4f796232aea3069277c4ad6e419818f6481da5abe815686",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-mdm-badge-stored-rows.png",
+      "sourceSha256": "e4f0975635913f12c5f5761539de1eb14df551d8b816192e7eed2c529d22a51e",
+      "publishedSha256": "e4f0975635913f12c5f5761539de1eb14df551d8b816192e7eed2c529d22a51e",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/f97-mdm-badge.png",
+      "sourceSha256": "d420898f6f1b9e547273d259cbc5820f86a4a6e49128dbf8602d23bff17307ea",
+      "publishedSha256": "d420898f6f1b9e547273d259cbc5820f86a4a6e49128dbf8602d23bff17307ea",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/mgu-dsc-off-icon.png",
+      "sourceSha256": "2b7049178cac72f9febc36539d8da2cbbe914308193af74e98dba9264bde461f",
+      "publishedSha256": "2b7049178cac72f9febc36539d8da2cbbe914308193af74e98dba9264bde461f",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/mgu-m-traction-icon.png",
+      "sourceSha256": "dcadd3d6e4c996be37ded26d6e3c3b44bf9bf1a6cdbf48f1776d78e7f263116d",
+      "publishedSha256": "dcadd3d6e4c996be37ded26d6e3c3b44bf9bf1a6cdbf48f1776d78e7f263116d",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/assets/mgu-m-traction-status.png",
+      "sourceSha256": "e40fb0c95893d454325f64077e85b7d891f709d8bda7490ff70c09eb099d21b5",
+      "publishedSha256": "e40fb0c95893d454325f64077e85b7d891f709d8bda7490ff70c09eb099d21b5",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/fes-packed-label-inspection.png",
+      "sourceSha256": "bc8bb9cab453fd236b464949dabe2e7eba189311e676b62dfda7a82007007791",
+      "publishedSha256": "bc8bb9cab453fd236b464949dabe2e7eba189311e676b62dfda7a82007007791",
+      "metadataSanitized": false
+    },
+    {
+      "route": "/traction-research/glyph-manifest.json",
+      "sourceSha256": "a97983f4694e4ec122b43f4b958ff637fe164be49fe7dac305ad2bd77a44b6a3",
+      "publishedSha256": "06bcc1e70f766d0819d67116306e60dfba347b840f7f0e15ef5e9400ab10f2c3",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/traction-research/primary-semantics.json",
+      "sourceSha256": "973f9577f3bc762b863e762a1bb267e5a1c12f25177bef54c494dfb80bdd7217",
+      "publishedSha256": "4b9330183e4cbfbcd84b8d503430d684077eae9d5938c5a53e1b99b87901b19e",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/traction-research/someip-traction-matches.json",
+      "sourceSha256": "b9b23a28d962c993e52fb2428d5ed3744d184b2867a1bf28f328ee92518c97a5",
+      "publishedSha256": "c52b545391858ba5d18335fc5e4d99da7234eaa0a2e5c68d99cc6fc758828ff9",
+      "metadataSanitized": true
+    },
+    {
+      "route": "/traction-research/source-contract.json",
+      "sourceSha256": "c363185c3a24b1638266204a89189273d36e30ed0a29bd183bd5241d545e4716",
+      "publishedSha256": "3d55ed6b25590b026c45338425860315560e001222bae5db609205dda94a314a",
+      "metadataSanitized": true
+    }
+  ]
+}

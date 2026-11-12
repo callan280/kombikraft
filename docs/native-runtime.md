@@ -12,9 +12,10 @@ The existing private research implementation builds a Linux x86-64 C scene
 probe and loads `libramses-shared-lib-wayland-ivi-egl-es-3-0.so.19.0` through its
 actual exported C++ ABI. The matched captured version is Ramses 19.0.14. It loads
 both the matching Main scene/resources and Init resources; Main resources alone
-are insufficient for the shared effects. OEM scenes, resource packs, shaders,
-fonts and the native library must be imported from the user's own matching
-firmware. They are not part of this repository.
+are insufficient for the shared effects. Matching runtime scenes, resources
+and the native library need local imports. Selected visual resources, shaders
+and fonts are included as separately attributed data; they do not provide the
+complete runtime or establish ABI compatibility. See [native source](native-source.md).
 
 For original F97 round-dial source material, the earlier CE51/iDrive6 donor and
 the later Ramses/iDrive7 scene family remain separately identified. An imported
@@ -36,11 +37,10 @@ their simulation is not live vehicle data.
 |Guest OS|User-supplied matching captured Linux kernel and HU root filesystem with native dependencies; not the KOMBI INTEGRITY OS|
 |Controller execution|The separate Python >=3.11 factory loader, standard library and optional `unicorn==2.1.4`; it does not replace the native graphics requirements above|
 
-The current private scene prototype is built from authored C plus generated
-resource arrays. The arrays include firmware-derived content. A public build
-must generate those locally from verified imported assets; generated C/INC,
-shared libraries, kernels, images and source-derived resource packages stay
-outside version control.
+The scene prototype uses authored C plus separately attributed generated
+graphics arrays in `native/data/`. The public native build preserves that
+licence boundary and verifies its inputs. Shared libraries, kernels, complete
+scenes, filesystem images and private runtime captures remain local inputs.
 
 ## Minimal reproducible local package boundary
 
@@ -62,9 +62,9 @@ required ABI symbols. It should then:
    private sockets/shared memory. Keep hashes and cleanup receipts locally.
 
 This is the required packaging boundary derived from the working research
-implementation. It is **not yet a portable native build/launch command supplied
-by this repository**. The private captured root image and machine-specific
-scripts cannot simply be bundled as dependencies. There is no automatic
+implementation. See [native source](native-source.md) for the portable source
+build's current scope. A source build does not supply the private captured root
+image, complete startup or a portable full-system launch. There is no automatic
 firmware acquisition, vehicle connection, flashing or live installation here.
 
 ## Licence and fidelity boundaries

@@ -1,0 +1,3 @@
+# Experimental Touring native source
+
+Authored source of the separately tested V11 Touring branch. This is not selected by the public V12 build and retains its historical48px footer. Generated V11 tables are not duplicated here; source generation references are under native/generators/research-source and the public RPM/F97 render packages are in the visual route pack. The original HUD tube/range shader uses a normalized graphics fixture only. Physical B48 RPM normalization and any navigation frame provider remain unavailable. No map screenshot or simulated cartography is substituted. This source does not imply an installable factory theme.

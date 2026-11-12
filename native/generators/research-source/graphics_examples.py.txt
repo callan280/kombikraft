@@ -1,0 +1,13 @@
+"""Source-grounded higher-level example input. Low-level normalized requests stay raw."""
+from pathlib import Path
+import hashlib,json,math
+H=Path(__file__).resolve().parent
+PROFILE_SHA='b57f41a497b5d746f6f4a771f10911ff42edf7087e821b7f02658fec12264c1b'
+def speed_example(mode,positions):
+ if mode not in ['coherent-72','raw-normalized']or not isinstance(positions,list)or len(positions)!=5 or any(type(v)not in(int,float)or not math.isfinite(v)or not 0<=v<=1 for v in positions):raise ValueError('Invalid reviewed graphics-example input')
+ data=(H/'authored-speed-axis-profile.json').read_bytes();digest=hashlib.sha256(data).hexdigest()
+ if PROFILE_SHA and digest!=PROFILE_SHA:raise ValueError('Source speed-axis profile changed')
+ p=json.loads(data);effective=list(positions)
+ if mode=='coherent-72':effective[0]=p['example72']['coherentRawNormalizedInput']
+ return {'mode':mode,'requestedRawPositions':list(positions),'effectiveNormalizedPositions':effective,'exampleSpeedKmh':72 if mode=='coherent-72'else None,'coherentSpeedRotationRadians':p['example72']['rotationRadians']if mode=='coherent-72'else None,'sourceAxisProfileSha256':digest,'lowLevelNormalizedLaneUnchanged':True,'physicalIndicatedSpeedBindingVerified':False,'installationAllowed':False}
+if __name__=='__main__':print(json.dumps(speed_example('coherent-72',[.25,.45,.35,.65,.5]),indent=2))

@@ -1,0 +1,9 @@
+# Native visual data notice
+
+This directory contains generated BMW graphics-derived vertex/UV tables, original visual GLSL, cropped bitmap/font rasters, authored composition geometry, an explicitly supplied media example and synthetic offline signal fixtures. It contains no firmware executable bank, native runtime library, kernel, filesystem image, diagnostic capture or live vehicle data. Generated C/INC here is input data for the authored renderer; it is deliberately separated from native/source.
+
+The maintainer explicitly confirmed permission to redistribute extracted BMW graphics and fonts. Original copyright and trademark rights remain with their respective owners. These files are excluded from KombiKraft's MIT grant. No additional downstream licence grant beyond the supplied permission statement is invented here. See the repository's BMW asset notices for the permission record and scope. The supplied Demon Days/Gorillaz media artwork is an example fixture, not vehicle metadata or BMW artwork.
+
+Original comments/notices in generated inputs are retained. Source labels produced using the BMWTA font are authored layout labels, not evidence of the original BMW text controller executing. Embedded visual shaders are recovered graphics data; they are not relicensed as authored runtime code. The semantic frames are synthetic test-provider values, not a CAN recording. No production warning, calibration, owner-entry or installation claim follows from this data pack.
+
+Visual revision13 adds authored fixed35–65% complementary taper/bevel textures and scales only the boost pictogram geometry1.68. Original bitmap/UV bytes are retained. These are custom styling data, not an OEM physical normal-range or original shader claim.

@@ -1,0 +1,39 @@
+"""Authored speed-example axis from original scale texels, UVs, labels and optical tip."""
+from pathlib import Path
+from PIL import Image,ImageDraw,ImageOps
+import json,math,hashlib
+H=Path(__file__).resolve().parent;C=H.parents[1];P=C/'f97-reference/render-package/f97-gauges-package.json';d=json.loads(P.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();assert sha(P)=='c81132e977a9de407997893fd0a177f1c969ddd8732efbac6058b306d4a05864';t={x['key']:x for x in json.loads((H/'asset-manifest.json').read_text())['textures']}
+def cross(a,b):return a[0]*b[1]-a[1]*b[0]
+def triangles(mesh,space='position'):
+ out=[];pos=mesh['originalPosition'];uv=mesh['originalUv0']
+ for i in range(0,len(pos),3):
+  p=[(q[0],-q[2])for q in pos[i:i+3]]if space=='position'else uv[i:i+3];v=uv[i:i+3]if space=='position'else[(q[0],-q[2])for q in pos[i:i+3]];a=p[0];b=(p[1][0]-a[0],p[1][1]-a[1]);c=(p[2][0]-a[0],p[2][1]-a[1]);den=cross(b,c);assert abs(den)>1e-10;out.append((a,b,c,den,v,(min(x for x,y in p),min(y for x,y in p),max(x for x,y in p),max(y for x,y in p))))
+ return out
+def mapped(tris,x,y):
+ for a,b,c,den,v,box in tris:
+  if not box[0]-.00001<=x<=box[2]+.00001 or not box[1]-.00001<=y<=box[3]+.00001:continue
+  q=(x-a[0],y-a[1]);u=cross(q,c)/den;w=cross(b,q)/den
+  if u>=-.00001 and w>=-.00001 and u+w<=1.00001:return[v[0][j]+u*(v[1][j]-v[0][j])+w*(v[2][j]-v[0][j])for j in[0,1]]
+ return None
+nt=t['needle'];raw=(H/'stage/f97'/nt['file']).read_bytes();assert hashlib.sha256(raw).hexdigest()=='8eb7ec370b60118bb01c53d32b009b24d7c041f580a8398152ab156306f34ec9';red=[]
+for y in range(nt['height']):
+ for x in range(nt['width']):
+  r,g,b,a=raw[(y*nt['width']+x)*4:(y*nt['width']+x)*4+4]
+  if a>=128 and r>=180 and r-g>=100 and r-b>=100:red.append((x,y))
+last=max(y for x,y in red);tip=[(x,y)for x,y in red if y>=last-1];uv=[sum(x+.5 for x,y in tip)/len(tip)/nt['width'],sum(y+.5 for x,y in tip)/len(tip)/nt['height']];point=mapped(triangles(d['meshes']['speedNeedle'],'uv'),*uv);assert point;base=math.degrees(math.atan2(point[1],point[0]))%360
+st=t['speedScale'];pixels=(H/'stage/f97'/st['file']).read_bytes();sw,sh=st['width'],st['height'];tris=triangles(d['meshes']['speedScale'])
+def intensity(x,y):
+ uv=mapped(tris,x,y)
+ if uv is None:return 0
+ xx=max(0,min(sw-1,uv[0]*sw-.5));yy=max(0,min(sh-1,uv[1]*sh-.5));x0=int(xx);y0=int(yy);x1=min(sw-1,x0+1);y1=min(sh-1,y0+1);fx=xx-x0;fy=yy-y0;out=[0]*4
+ for px,py,w in[(x0,y0,(1-fx)*(1-fy)),(x1,y0,fx*(1-fy)),(x0,y1,(1-fx)*fy),(x1,y1,fx*fy)]:
+  q=(py*sw+px)*4
+  for c in range(4):out[c]+=pixels[q+c]*w
+ return max(out[:3])*out[3]/65025
+knots=[];labels=d['meshes']['speedNumbers'];assert labels['vertexCount']==72;im=Image.frombytes('RGBA',(t['speedNumbers']['width'],t['speedNumbers']['height']),(H/'stage/f97'/t['speedNumbers']['file']).read_bytes());sheet=Image.new('RGBA',(600,240),(25,25,25,255));draw=ImageDraw.Draw(sheet)
+for i in range(12):
+ v=labels['originalPosition'][i*6:i*6+6];x=(min(q[0]for q in v)+max(q[0]for q in v))/2;y=-(min(q[2]for q in v)+max(q[2]for q in v))/2;a=math.degrees(math.atan2(y,x))%360;u=labels['originalUv0'][i*6:i*6+6];box=[round(min(q[0]for q in u)*im.width),round(min(q[1]for q in u)*im.height),round(max(q[0]for q in u)*im.width),round(max(q[1]for q in u)*im.height)];tile=im.crop(box);tile.thumbnail((90,65));col=i%6;row=i//6;sheet.alpha_composite(tile,(col*100+(100-tile.width)//2,row*120+20));draw.text((col*100+5,row*120+93),f'quad{i} / {i*30}',fill='white');samples=[]
+ for step in range(161):
+  theta=a-4+step*.05;r=math.radians(theta);score=sum(intensity(math.cos(r)*rad,math.sin(r)*rad)for rad in range(273,339));samples.append((theta,score))
+ peak=max(v for a,v in samples);assert peak>5;top=[(a,v)for a,v in samples if v>=peak*.90];target=sum(a*v for a,v in top)/sum(v for a,v in top);knots.append({'value':i*30,'sourceQuad':i,'sourceLabelUvCrop':box,'labelAnchorLocal':[x,y],'labelAnchorAngleDegrees':a,'tickAngleDegrees':target,'rotationRadians':math.radians(target-base),'peakRadialInk':peak,'highPeakSupportDegrees':[min(a for a,v in top),max(a for a,v in top)]})
+assert all(a['tickAngleDegrees']<b['tickAngleDegrees']for a,b in zip(knots,knots[1:]));v=72;a,b=knots[2:4];rotation=a['rotationRadians']+(v-a['value'])/(b['value']-a['value'])*(b['rotationRadians']-a['rotationRadians']);norm=rotation/math.radians(234);o=H/'evidence/speed-axis';o.mkdir(exist_ok=True);sheet.save(o/'source-label-quad-contact-sheet.png');profile={'schema':'authored-f97-speed-example-axis-v1','scope':'Source-face geometry example coherence only; no physical F40 indicated-speed binding','sourcePackage':str(P),'sourcePackageSha256':sha(P),'sourceScaleRgbaSha256':hashlib.sha256(pixels).hexdigest(),'sourceNeedleRgbaSha256':hashlib.sha256(raw).hexdigest(),'sourceOpticalTip':{'uv':uv,'localPoint':point,'baseAngleDegrees':base},'sourceLabelContactSheet':str(o/'source-label-quad-contact-sheet.png'),'sourceLabelContactSheetSha256':sha(o/'source-label-quad-contact-sheet.png'),'sourceLabelValuesInterpretation':'Original rendered source face labels0,30,…330, in original quad order; inspect the source-UV contact sheet','unitsOnRecoveredFace':'km/h','knots':knots,'authoredInterpolation':'Monotone piecewise linear between measured original major tick angles','example72':{'valueKmh':72,'rotationRadians':rotation,'opticalAngleDegrees':base+math.degrees(rotation),'existingRawNormalizedSweepDegrees':234,'coherentRawNormalizedInput':norm},'rawNormalizedInputRemainsIndependent':True,'physicalIndicatedSpeedBindingVerified':False,'originalBmwControllerCalibrationVerified':False,'nativePixelProofPassed':False,'vehicleCompatibilityVerified':False,'installationAllowed':False};(H/'authored-speed-axis-profile.json').write_text(json.dumps(profile,indent=2)+'\n');print(json.dumps({'knots':[(k['value'],round(k['tickAngleDegrees'],4))for k in knots],'example72':profile['example72'],'nativePixelProofPending':True}))

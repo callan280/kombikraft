@@ -1,0 +1,52 @@
+"""Original BMW raster components and source-font labels for native BC slice.
+
+Custom source-backed composition; native factory layout/controller not executed.
+"""
+from pathlib import Path
+import json,hashlib,ctypes
+from PIL import Image,ImageFont,ImageDraw,ImageOps,ImageChops
+H=Path(__file__).resolve().parent;C=H.parents[1];OUT=H/'stage/bc';OUT.mkdir(exist_ok=True)
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();fontp=C/'typography/BMWTARG.ttf'
+ft=ctypes.CDLL('/opt/homebrew/opt/freetype/lib/libfreetype.dylib');lib=ctypes.c_void_p();face=ctypes.c_void_p();assert ft.FT_Init_FreeType(ctypes.byref(lib))==0;ft.FT_New_Face.argtypes=[ctypes.c_void_p,ctypes.c_char_p,ctypes.c_long,ctypes.POINTER(ctypes.c_void_p)];assert ft.FT_New_Face(lib,str(fontp).encode(),0,ctypes.byref(face))==0;ft.FT_Get_Char_Index.argtypes=[ctypes.c_void_p,ctypes.c_ulong];ft.FT_Get_Char_Index.restype=ctypes.c_uint
+textures=[];parts=[];arrays=[];calls=[];source_rows=[]
+def texture(name,im,provenance):
+ im=ImageOps.flip(im.convert('RGBA'));raw=im.tobytes();path=OUT/(name+'.rgba');path.write_bytes(raw);textures.append({'key':name,'file':path.name,'width':im.width,'height':im.height,'rgbaSha256':hashlib.sha256(raw).hexdigest(),'provenance':provenance,'pngToNativeRowReversal':True});return name
+def part(name,key,x,y,w,h,page,mask=3,color=(1,1,1,1)):
+ metadata=name.startswith(('bcTrack','bcArtist'));matrix=([1/92.5,0,0,0,0,0,0,0,0,1/50,0,0,-1+(x-990)/92.5,1-(y+h-430)/50,0,1] if metadata else [1/220,0,0,0,0,0,0,0,0,1/127.5,0,0,-1+(x-740)/220,1-(y+h-365)/127.5,0,1])
+ def vals(xs):return ','.join(format(float(v),'.9g')+('f'if'.'in format(float(v),'.9g')or'e'in format(float(v),'.9g')else'.0f')for v in xs)
+ arrays.append('static float '+name+'_matrix[]={'+vals(matrix)+'};');calls.append(' bc_sprite(client,scene,group,fx,"'+name+'","'+key+'",'+str(w)+','+str(h)+','+name+'_matrix,'+','.join(str(v)for v in color)+','+str(page)+','+str(mask)+');');parts.append({'name':name,'page':page,'fixtureMask':mask,'bounds':[x,y,x+w,y+h],'texture':key,'colour':list(color),'sourceProjectionMatrix':matrix})
+def source_image(family,name,key,x,y,w,h,page,mask=3):
+ base=C/f'design/factory-{family}/assets';provenance=base/'provenance.json';j=json.loads(provenance.read_text());record=next(r for r in j['files']if r.get('file',r.get('target'))==name);path=base/name;expected=record.get('sha256',record.get('targetSha256'));assert sha(path)==expected;source_rows.append({'path':str(path),'sha256':expected,'upstreamProvenance':str(provenance),'upstreamProvenanceSha256':sha(provenance),'record':record});im=Image.open(path).convert('RGBA');texture(key,im,source_rows[-1]);part(key,key,x,y,w,h,page,mask);return im
+def text(name,value,x,y,size,page,mask=3,color=(1,1,1,1),align='left',middle=False):
+ glyphs={ch:ft.FT_Get_Char_Index(face,ord(ch))for ch in value};assert all(glyphs.values());font=ImageFont.truetype(str(fontp),round(size*3));anchor='lm'if middle else'ls';box=font.getbbox(value,anchor=anchor);advance=font.getlength(value)/3;left=x-(advance/2 if align=='center'else advance if align=='right'else 0);im=Image.new('RGBA',(box[2]-box[0],box[3]-box[1]));ImageDraw.Draw(im).text((-box[0],-box[1]),value,font=font,anchor=anchor,fill=(255,255,255,255));texture(name,im,{'kind':'Custom label using genuine BMWTA and accepted source field positions; not native factory text engine','text':value,'font':str(fontp),'fontSha256':sha(fontp),'glyphIndices':glyphs,'fontSize':size,'rasterScale':3,'anchor':anchor});part(name,name,left+box[0]/3,y+box[1]/3,im.width/3,im.height/3,page,mask,color)
+grey=(171/255,171/255,171/255,1)
+# Journey source350x304 fields, original background/masterline; baseline translation185.
+source_image('stats','journey-background.png','bcJourneyBg',781,345,358,345,0)
+source_image('stats','journey-masterline.png','bcJourneyLine',785,418,329,4,0)
+text('bcTotal','Total',785,401,22,0,color=grey)
+for value,mask,suffix in[('—',1,'Unknown'),('12,345',2,'Fixture')]:text('bcTotalValue'+suffix,value,913,401,25,0,mask)
+text('bcTotalKm','km',1016,401,22,0,color=grey);text('bcDataSince','Data since',867,466,26,0,color=grey)
+for value,mask,suffix in[('—',1,'Unknown'),('Individual',2,'Fixture')]:text('bcSince'+suffix,value,867,508,32,0,mask)
+for stem,value,unit,y in[('Distance','42.6','km',558),('AverageSpeed','52.4','km/h',608)]:
+ for v,mask,suffix in[('—',1,'Unknown'),(value,2,'Fixture')]:
+  text('bc'+stem+suffix,v,867,y,38,0,mask);width=ImageFont.truetype(str(fontp),114).getlength(v)/3;text('bc'+stem+'Unit'+suffix,unit,867+width+9,y,29,0,mask,grey)
+# Media source cover/frame and exact shared-mask equation. No hand-drawn fade.
+asset=H/'fixture-assets/gorillaz-demon-days.png';user_source=json.loads((H/'fixture-cover-source.json').read_text());assert sha(asset)==user_source['pngSha256'];art=Image.open(asset).convert('RGBA');source_rows.append({'path':str(asset),'sha256':sha(asset),'kind':'User-supplied exact sample cover; not BMW firmware artwork'});texture('bcMediaArt',art,source_rows[-1]);part('bcMediaArt','bcMediaArt',755.3,400.3,205.4,205.4,2,6)
+source_image('media','cover-frame-138.png','bcMediaFrame',740,385,236,236,2,7)
+base=C/'design/factory-media/assets';p=base/'red-mask.png';provenance=json.loads((base/'provenance.json').read_text());record=next(r for r in provenance['files']if r['file']=='red-mask.png');assert sha(p)==record['sha256'];mask=Image.open(p).convert('RGBA').getchannel('A').transpose(Image.Transpose.FLIP_TOP_BOTTOM);cover=ImageOps.fit(art,(854,720),method=Image.Resampling.BILINEAR,centering=(.5,.5));cover.putalpha(ImageChops.multiply(cover.getchannel('A'),mask));texture('bcMediaFade',cover,{'kind':'Actual BMW red-mask alpha equation with user-supplied sample artwork in custom composition','maskSource':str(p),'maskSourceSha256':sha(p),'alphaEquation':'artAlpha * originalMaskRed; opacity1/scrollFade1','sourceMaskAlphaSha256':hashlib.sha256(mask.tobytes()).hexdigest(),'generatedGradientStops':False,'artSource':str(asset),'artSourceSha256':sha(asset)});part('bcMediaFade','bcMediaFade',740,365,440,266,2,6)
+# Background precedes frame/art regardless of texture declaration order.
+parts[-3:]=[parts[-1],parts[-2],parts[-3]];calls[-3:]=[calls[-1],calls[-2],calls[-3]]
+for value,mask,suffix in[('—',1,'Unknown'),('Demon Days',2,'Fixture'),('Marquee test title',4,'MarqueeTest')]:text('bcTrack'+suffix,value,990,461,30,2,mask,middle=True)
+for value,mask,suffix in[('—',1,'Unknown'),('Gorillaz',2,'Fixture'),('Gorillaz',4,'MarqueeTest')]:text('bcArtist'+suffix,value,990,506,25,2,mask,grey,middle=True)
+# G-force: captured source scale and original shader-derived marker/shadow, neutral fixture only.
+source_image('stats','gforce-kombi-ring.png','bcGforceRing',840,379,240,240,4)
+s=240/424;source_image('stats','gforce-dot-shadow.png','bcGforceShadow',960-50*s,499-50*s,100*s,100*s,4,2);source_image('stats','gforce-dot.png','bcGforceDot',960-16*s,499-16*s,32*s,32*s,4,2)
+for y in[435,570]:
+ for value,mask,suffix in[('—',1,'Unknown'),('0.0',2,'Fixture')]:text('bcGforce'+str(y)+suffix,value,936,y,24,4,mask,grey,'right')
+ text('bcGforceUnit'+str(y),'g',945,y,24,4,color=grey)
+# Accepted source horizontal meter labels. Physical numeric values remain unset.
+for label,y in [('Power',407.25),('Torque',494.25)]:
+ text('bcSport'+label,label,798.75,y,19.5,3,middle=True)
+ text('bcSport'+label+'Unknown','—',1121.25,y,19.5,3,align='right',middle=True)
+text('bcConsumptionUnavailable','—',960,490,29,1,1,grey,'center')
+arrays.append('static const F97Texture bc_sprite_textures[]={'+','.join('{"'+t['key']+'","'+t['file']+'",'+str(t['width'])+','+str(t['height'])+'}'for t in textures)+'};');(H/'bc_sprite_arrays.inc').write_text('\n'.join(arrays)+'\n');(H/'bc_sprite_parts.inc').write_text('\n'.join(calls)+'\n');(H/'bc-sprite-manifest.json').write_text(json.dumps({'scope':'Original BMW raster components and source-font fields in accepted custom BC composition','clip':[740,365,440,255],'pages':['stats','consumption','media','sport-instruments','g-force','blank'],'availablePages':['stats','consumption','media','sport-instruments','g-force','blank'],'unimplementedPagesUnavailable':[],'sourceImages':source_rows,'textures':textures,'parts':parts,'fixture0Unavailable':True,'fixture1ExplicitSamples':True,'mediaGradientUsesOriginalMask':True,'physicalBcVerified':False,'nativeControllerExecuted':False,'vehicleIntegrationAllowed':False},indent=2)+'\n');print('BC native source sprites prepared',len(parts),'parts')

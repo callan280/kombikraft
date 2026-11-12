@@ -1,6 +1,6 @@
 /* Captured HUDH35 M sweep graphics. No inferred B48/S58 RPM or redline calibration. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.FactoryRpm=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
- 'use strict';const packageSha256='6078dea817a10264ebc189ae15e31b19e46b823519a3af9a8919793dbdde2a72';
+ 'use strict';const packageSha256='3542215e55a6d118de70eb233dc552d475a7710fafd98e7eedd44694d2384a03';
  const digest=async bytes=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes))).map(v=>v.toString(16).padStart(2,'0')).join('');
  let data=null,gl=null,canvas=null,programs={},textures={},buffers={},loaded=false,error=null,proof=null,lastNormalized=null;
  function status(){return {loaded,error,available:loaded&&!error&&proof?.passed===true,proof,packageSha256,lastNormalized,factoryGraphics:true,originalGlsl:true,originalMeshes:true,sourceFamily:'captured HUDH35_DZM_MSPORT curved M band',physicalRpmMappingVerified:false,b48DisplayRangeVerified:false,olderF97DonorVerified:false,noShiftLights:true,unverifiedScaleLabelsSuppressed:true,unverifiedNeedleMotionSuppressed:true};}

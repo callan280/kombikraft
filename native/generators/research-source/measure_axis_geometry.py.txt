@@ -1,0 +1,68 @@
+"""Derive authored RPM/oil axes from actual source geometry/UVs/texels, not old sweeps."""
+from pathlib import Path
+import json,math,re,hashlib,struct
+from PIL import Image
+H=Path(__file__).resolve().parent;C=H.parents[1];P=C/'f97-reference/render-package/f97-gauges-package.json';d=json.loads(P.read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+def cross(a,b):return a[0]*b[1]-a[1]*b[0]
+def triangles(mesh,space='position'):
+ result=[];pos=mesh['originalPosition'];uv=mesh['originalUv0']
+ for i in range(0,len(pos),3):
+  p=[(q[0],-q[2])for q in pos[i:i+3]]if space=='position'else uv[i:i+3];v=uv[i:i+3]if space=='position'else[(q[0],-q[2])for q in pos[i:i+3]];a=p[0];e1=(p[1][0]-a[0],p[1][1]-a[1]);e2=(p[2][0]-a[0],p[2][1]-a[1]);den=cross(e1,e2);assert abs(den)>1e-10;result.append((a,e1,e2,den,v,(min(x for x,y in p),min(y for x,y in p),max(x for x,y in p),max(y for x,y in p))))
+ return result
+def mapped(tris,x,y):
+ for a,b,c,den,v,box in tris:
+  if x<box[0]-.00001 or y<box[1]-.00001 or x>box[2]+.00001 or y>box[3]+.00001:continue
+  q=(x-a[0],y-a[1]);s=cross(q,c)/den;t=cross(b,q)/den
+  if s>=-.00001 and t>=-.00001 and s+t<=1.00001:return(v[0][0]+s*(v[1][0]-v[0][0])+t*(v[2][0]-v[0][0]),v[0][1]+s*(v[1][1]-v[0][1])+t*(v[2][1]-v[0][1]))
+ return None
+textures={t['key']:t for t in json.loads((H/'asset-manifest.json').read_text())['textures']}
+def texel(key,u,v):
+ t=textures[key];w=t['width'];h=t['height'];data=(H/'stage/f97'/t['file']).read_bytes();return data,w,h
+# Find the actual red optical tip in unchanged RGBA texels and map through each original needle UV triangle.
+t=textures['needle'];raw=(H/'stage/f97'/t['file']).read_bytes();w=t['width'];height=t['height'];red=[]
+for y in range(height):
+ for x in range(w):
+  r,g,b,a=raw[(y*w+x)*4:(y*w+x)*4+4]
+  if a>=128 and r>=180 and r-g>=100 and r-b>=100:red.append((x,y))
+assert red;tiprow=max(y for x,y in red);tip=[(x,y)for x,y in red if y>=tiprow-1];u=sum(x+.5 for x,y in tip)/len(tip)/w;v=sum(y+.5 for x,y in tip)/len(tip)/height;optical={}
+for name in ['rpmNeedle','speedNeedle']:
+ point=mapped(triangles(d['meshes'][name],'uv'),u,v);assert point;optical[name]={'sourceUv':[u,v],'sourceRedTipRows':[tiprow-1,tiprow],'sourceLocalPoint':point,'baseAngleDegrees':math.degrees(math.atan2(point[1],point[0]))%360,'radius':math.hypot(*point)}
+# Sample only the original scale mesh/material with GL bilinear texel addressing.
+scale=triangles(d['meshes']['rpmScale']);st=textures['rpmScale'];data=(H/'stage/f97'/st['file']).read_bytes();sw=st['width'];sh=st['height']
+def intensity(x,y):
+ uv=mapped(scale,x,y)
+ if uv is None:return 0
+ xx=max(0,min(sw-1,uv[0]*sw-.5));yy=max(0,min(sh-1,uv[1]*sh-.5));x0=int(xx);y0=int(yy);x1=min(x0+1,sw-1);y1=min(y0+1,sh-1);fx=xx-x0;fy=yy-y0;out=[0]*4
+ for px,py,weight in[(x0,y0,(1-fx)*(1-fy)),(x1,y0,fx*(1-fy)),(x0,y1,(1-fx)*fy),(x1,y1,fx*fy)]:
+  q=(py*sw+px)*4
+  for k in range(4):out[k]+=data[q+k]*weight
+ return max(out[:3])*out[3]/65025
+labels=[];m=d['meshes']['rpmNumbers']
+for value in range(9):
+ i=8-value;p=m['originalPosition'][i*6:(i+1)*6];x=(min(q[0]for q in p)+max(q[0]for q in p))/2;y=-(min(q[2]for q in p)+max(q[2]for q in p))/2;a=math.degrees(math.atan2(y,x));a=a if a>=170 else a+360;labels.append({'value':value*1000,'sourceQuad':i,'anchorLocal':[x,y],'anchorAngleDegrees':a})
+rpm=[]
+for label in labels:
+ a=label['anchorAngleDegrees'];samples=[]
+ for step in range(161):
+  theta=a-4+step*.05;r=math.radians(theta);score=sum(intensity(math.cos(r)*rad,math.sin(r)*rad)for rad in range(273,339));samples.append((theta,score))
+ peak=max(v for a,v in samples);assert peak>5;group=[(a,v)for a,v in samples if v>=peak*.90];theta=sum(a*v for a,v in group)/sum(v for a,v in group);base=optical['rpmNeedle']['baseAngleDegrees'];angle=(theta-base)*math.pi/180;rpm.append({**label,'tickAngleDegrees':theta,'rotationRadians':angle,'peakRadialInk':peak,'sourceRadiiSampled':[273,338],'searchHalfWidthDegrees':4,'highPeakSupport':[min(a for a,v in group),max(a for a,v in group)]})
+# Recover oil minor-tick angles and rendered label group anchors from actual generated arrays.
+source=(H/'composition_arrays.inc').read_text()
+def array(name):
+ m=re.search(r'static float '+re.escape(name)+r'\[\]=\{([^}]+)',source);assert m;return[float(v.strip().rstrip('f'))for v in m[1].split(',')]
+def points(name):
+ a=array(name+'_positions');return[(a[i],-a[i+2])for i in range(0,len(a),3)]
+tick=points('v2miniTicks0');tickangles=[]
+for i in range(0,len(tick),6):
+ p=tick[i:i+6];x=(min(q[0]for q in p)+max(q[0]for q in p))/2;y=(min(q[1]for q in p)+max(q[1]for q in p))/2;a=math.degrees(math.atan2(y,x))%360;a=a if a>=130 else a+360;tickangles.append(a)
+oil=[]
+for j,value in enumerate([0,90,180]):
+ ps=[]
+ for name in re.findall(r'static float (v2miniDigit0_'+str(j)+r'_\d+)_positions',source):ps+=points(name)
+ x=(min(q[0]for q in ps)+max(q[0]for q in ps))/2;y=(min(q[1]for q in ps)+max(q[1]for q in ps))/2;a=math.degrees(math.atan2(y,x))%360;a=a if a>=130 else a+360
+ # The authored major label and adjacent actual tick grid must agree geometrically.
+ if j==1:target=(tickangles[9]+tickangles[10])/2
+ elif j==0:target=tickangles[0]-(tickangles[1]-tickangles[0])
+ else:target=tickangles[-1]+(tickangles[-1]-tickangles[-2])
+ assert abs(target-a)<.001,(value,target,a);rotation=(target-optical['speedNeedle']['baseAngleDegrees'])*math.pi/180;oil.append({'value':value,'labelAnchorLocal':[x,y],'labelAngleDegrees':a,'tickAngleDegrees':target,'rotationRadians':rotation})
+profile={'schema':'authored-native-rpm-oil-axis-profile-v1','sourcePackage':str(P),'sourcePackageSha256':sha(P),'sourceArrays':{str(H/n):sha(H/n)for n in['f97_arrays.inc','composition_arrays.inc','source-snapshots/axis-prototype-body-at-measurement.c']},'sourceRecipeScope':'Hash-pinned V8 recipe at measurement. V9 adds semantic state; axis knots/geometry below are unchanged.','needleTextureRgbaSha256':sha(H/'stage/f97/needle.rgba'),'sourceOpticalNeedleTips':optical,'rpm':{'units':'rpm','domain':[0,8000],'knots':rpm},'oil':{'units':'°C','domain':[0,180],'knots':oil,'actualMinorTickAnglesDegrees':tickangles},'mapping':'monotone piecewise linear between measured tick knots; saturate only pointer','sourceValuesClamped':False,'actualNativePixelVerificationPassed':False,'originalBmwControllerCalibrationVerified':False,'vehicleCorrelationVerified':False,'installationAllowed':False};(H/'authored-axis-profile.json').write_text(json.dumps(profile,indent=2)+'\n');print(json.dumps({'sourceTipAngles':{k:v['baseAngleDegrees']for k,v in optical.items()},'rpmTicks':[round(k['tickAngleDegrees'],5)for k in rpm],'rpmAngles':[round(k['rotationRadians'],6)for k in rpm],'oilAngles':[round(k['rotationRadians'],6)for k in oil],'nativePixelProofPending':True}))

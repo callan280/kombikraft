@@ -1,0 +1,11 @@
+# Public native package validation scope
+
+The portable public source assembly was compiled with Zig0.13.0 for Linux x86-64/glibc2.27. All202 attributed visual inputs passed their hashes. The six native packaging tests pass, including path/symlink confinement, tamper rejection, route hash rejection and private-path exclusion. F97 geometry/texture regeneration succeeds against the sanitized public viewer-pack route manifest.
+
+The separately licensed public bridge sources were built on Apple Silicon macOS: pinned Arm ASTC decompression source, Linux GLES transport and host CGL process. No executable or runtime dependency is committed.
+
+One fresh local VM run of the public launcher/build produced an actual1920×720 native framebuffer. It reached native render loop1080, selected the explicit unavailable/provider-loss fixture212, verified its ACK(mask0, unavailable speed/gear/clock/traction, source authentication false), and observed a later framebuffer sequence4 after request sequence3. All owned child processes stopped. This used separately imported matching kernel/root/Ramses dependencies; those files and detailed local logs/screenshots/receipts are excluded from the repository. The root wrapper used a separately admitted byte-identical filesystem payload; no source filesystem or active research preview was changed.
+
+This is a new launcher/build smoke, not a new replay of all212 records, a new visual-equivalence test of every page, an original application cold boot, target firmware compilation, real F40 correlation or deployment proof. The separately frozen private V12 proof has broader historical coverage; it is not silently reclassified as a fresh test of this portable launcher. Native/data/v12 is an explicitly versioned historical visual profile; later browser mini-band refinements do not overwrite it.
+
+A separate bounded V13 native comparison uses the same source/runtime and unavailablefixture212:3,726changed pixels per oil/water band and1,087for the boost icon, confined to mini areas; actual boost change bounds are938..982×186..224(44px wide). Outside all three mini boxes and rows260–720 remain pixel-identical. The fixed35–65% meshes/textures come directly from the public helper functions; no shader/ABI change, original bitmap/UV mutation or full212replay is implied. V12 remains immutable.

@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+"""Port accepted custom browser composition using exact recovered icon/numeral pixels.
+No physical calibration, controller emulation, or vendor shader claim.
+"""
+from pathlib import Path
+import json,math,hashlib,struct
+from PIL import Image,ImageOps
+H=Path(__file__).resolve().parent;LAB=H.parents[1];P=LAB/'f97-reference/render-package/f97-gauges-package.json';d=json.loads(P.read_text());OUT=H/'stage/f97';OUT.mkdir(parents=True,exist_ok=True)
+sha=lambda b:hashlib.sha256(b).hexdigest();assert sha(P.read_bytes())=='c81132e977a9de407997893fd0a177f1c969ddd8732efbac6058b306d4a05864'
+source=LAB/'design/f97-gauges.js';atlas=LAB.parent/'cluster-theme-research-20261111/textures/BMW_AG_Combustion_MPA/KI7_tex_digit_DCC_MSPORT_bitmap__DCCDigits_MSPORT.png'
+meshes=[];textures=[];calls=[];audit=[]
+def tex(key,im,provenance):
+ b=im.convert('RGBA').tobytes();f=OUT/(key+'.rgba');f.write_bytes(b);textures.append({'key':key,'file':f.name,'width':im.width,'height':im.height,'sha256':sha(b),'provenance':provenance})
+def mesh(name,points,texture,cx,cy,radius,order,color):
+ pos=[v for p in points for v in p[:3]];uv=[v for p in points for v in p[3:5]];meshes.append((name,pos,uv));calls.append(f' V2PART({name},"{texture}",{cx},{cy},{radius},{order},{color[0]},{color[1]},{color[2]},{color[3]});')
+ audit.append({'name':name,'texture':texture,'vertices':len(points),'center':[cx,cy],'radius':radius,'order':order,'customComposition':True,'positionsSha256':sha(struct.pack('<'+'f'*len(pos),*pos)),'uvSha256':sha(struct.pack('<'+'f'*len(uv),*uv))})
+def put(x,z):return[x,0,z,0,0]
+def disk():
+ points=[]
+ for i in range(96):
+  a=i/96*math.tau;b=(i+1)/96*math.tau;points +=[put(0,0),put(math.cos(a)*340,-math.sin(a)*340),put(math.cos(b)*340,-math.sin(b)*340)]
+ return points
+def band(start,end):
+ points=[];steps=max(8,math.ceil((end-start)*64))
+ for i in range(steps):
+  a=math.radians(140+260*(start+(end-start)*i/steps));b=math.radians(140+260*(start+(end-start)*(i+1)/steps))
+  pts=[put(math.cos(a)*340*.62,-math.sin(a)*340*.62),put(math.cos(a)*340*.80,-math.sin(a)*340*.80),put(math.cos(b)*340*.80,-math.sin(b)*340*.80),put(math.cos(b)*340*.62,-math.sin(b)*340*.62)];points +=[pts[0],pts[1],pts[2],pts[0],pts[2],pts[3]]
+ return points
+def rim(role):
+ values=[0,5,10,15,20,25]if role=='boost'else[0,90,180];angles=[math.radians(140+260*i/(len(values)-1))for i in range(len(values))];unit=340/80;r=340-.85*unit;depth=4*unit;half=2.5/80;contour=[]
+ def p(rad,a):contour.append((math.cos(a)*rad,-math.sin(a)*rad))
+ def arc(a,b,rad):
+  n=max(1,math.ceil((b-a)/math.radians(.8)))
+  for i in range(1,n+1):p(rad,a+(b-a)*i/n)
+ a=math.radians(140);p(r-depth,a);p(r,a)
+ for mid in angles[1:-1]:
+  entry=mid-half;exit=mid+half;arc(a,entry,r);p(r-depth,entry);arc(entry,exit,r-depth);p(r,exit);a=exit
+ arc(a,math.radians(400),r);p(r-depth,math.radians(400));outline=[]
+ for (x,z),(xx,zz)in zip(contour,contour[1:]):
+  dx=xx-x;dz=zz-z;length=math.hypot(dx,dz)
+  if not length:continue
+  nx=-dz/length*(1.7*unit)/2;nz=dx/length*(1.7*unit)/2;v=[put(x-nx,z-nz),put(xx-nx,zz-nz),put(xx+nx,zz+nz),put(x+nx,z+nz)];outline +=[v[0],v[1],v[2],v[0],v[2],v[3]]
+ minor=[]
+ for a,b in zip(angles,angles[1:]):
+  divisions=5 if role=='boost' else 11
+  for j in range(1,divisions):
+   a2=a+(b-a)*j/divisions;inner=r-11*unit;outer=r-5.5*unit;nx=-math.sin(a2)*unit*.5;nz=-math.cos(a2)*unit*.5;v=[put(math.cos(a2)*inner-nx,-math.sin(a2)*inner-nz),put(math.cos(a2)*outer-nx,-math.sin(a2)*outer-nz),put(math.cos(a2)*outer+nx,-math.sin(a2)*outer+nz),put(math.cos(a2)*inner+nx,-math.sin(a2)*inner+nz)];minor +=[v[0],v[1],v[2],v[0],v[2],v[3]]
+ return values,angles,outline,minor
+def quad(x,y,w,h,top=0,bottom=1):
+ u=340/80;left=(x-w/2)*u;right=(x+w/2)*u;ztop=-(y-h/2)*u;zbottom=-(y+h/2)*u
+ a=[left,0,ztop,0,top];b=[right,0,ztop,1,top];c=[right,0,zbottom,1,bottom];dd=[left,0,zbottom,0,bottom];return[a,b,c,a,c,dd]
+tex('v2white',Image.new('RGBA',(1,1),'white'),{'kind':'custom constant material, not OEM artwork'})
+flipped=ImageOps.flip(Image.open(atlas).convert('RGBA'));require=flipped.size==(46,528);assert require;glyphs={}
+for n in range(10):
+ cell=flipped.crop((0,n*48,46,n*48+48));pixels=cell.load();coords=[(x,y)for y in range(48)for x in range(46)if pixels[x,y][3]>40 and sum(pixels[x,y][:3])>120];assert coords
+ box=(min(x for x,y in coords),min(y for x,y in coords),max(x for x,y in coords)+1,max(y for x,y in coords)+1);im=cell.crop(box);key='v2digit'+str(n);tex(key,im,{'kind':'exact BMW DCC numeral crop','source':str(atlas),'sourceSha256':sha(atlas.read_bytes()),'verticalFlip':True,'cell':n,'cropWithinCell':list(box)});glyphs[str(n)]=(key,im.width/im.height)
+for i,(cx,cy,r)in enumerate([(330,375,330),(1590,375,330)]):mesh('v2mainBacking'+str(i),disk(),'v2white',cx,cy,r,0 if i==0 else 10,[.006,.009,.014,1])
+for i,(role,cx)in enumerate(zip(['oil','boost','water'],[740,960,1180])):
+ order=100+i*30;mesh('v2miniBacking'+str(i),disk(),'v2white',cx,160,80,order,[.006,.009,.014,1]);values,angles,outline,minor=rim(role)
+ mesh('v2miniRim'+str(i),outline,'v2white',cx,160,80,order+2,[.84,.86,.89,1]);mesh('v2miniTicks'+str(i),minor,'v2white',cx,160,80,order+3,[.53,.57,.62,1])
+ if role!='boost':
+  mesh('v2miniCold'+str(i),band(0,.35),'v2white',cx,160,80,order+4,[.10,.35,.96,.76]);mesh('v2miniHot'+str(i),band(.7,1),'v2white',cx,160,80,order+5,[.96,.07,.10,.76])
+ icon=d['miniPictograms'][role];t=d['textures'][icon['texture']];mesh('v2miniIcon'+str(i),quad(0,45,44,44*t['height']/t['width'],icon['topV'],1-icon['topV']),icon['texture'],cx,160,80,order+8,[1,1,1,1])
+ for j,(value,angle)in enumerate(zip(values,angles)):
+  chars=str(value);widths=[18*glyphs[c][1]for c in chars];gap=18*.14;width=sum(widths)+gap*(len(chars)-1);dist=80*1.18
+  while math.hypot(max(0,abs(math.cos(angle)*dist)-width/2),max(0,abs(math.sin(angle)*dist)-9))<82 and dist<80*1.18+40:dist+=.25
+  left=math.cos(angle)*dist-width/2;y=math.sin(angle)*dist
+  for k,(char,w)in enumerate(zip(chars,widths)):
+   mesh(f'v2miniDigit{i}_{j}_{k}',quad(left+w/2,y,w,18),glyphs[char][0],cx,160,80,order+9,[1,1,1,1]);left+=w+gap
+assert len(meshes)+16<=96,'Native fixed part capacity exceeded'
+lines=['/* Accepted browser custom composition port. Genuine pixel sources separately pinned. */']
+for name,pos,uv in meshes:
+ for suffix,values in [('positions',pos),('uv',uv)]:lines.append('static float '+name+'_'+suffix+'[]={'+','.join(format(v,'.9g')+('f'if'.'in format(v,'.9g')or'e'in format(v,'.9g')else'.0f')for v in values)+'};')
+lines.append('static const F97Texture v2_textures[]={'+','.join('{"'+t['key']+'","'+t['file']+'",'+str(t['width'])+','+str(t['height'])+'}'for t in textures)+'};')
+(H/'composition_arrays.inc').write_text('\n'.join(lines)+'\n');(H/'composition_parts.inc').write_text('\n'.join(calls)+'\n')
+(H/'composition-asset-manifest.json').write_text(json.dumps({'packageSha256':sha(P.read_bytes()),'browserCompositionSource':str(source),'browserCompositionSourceSha256':sha(source.read_bytes()),'customGeometryIsNotOriginalFactoryMesh':True,'numeralSource':str(atlas),'numeralSourceSha256':sha(atlas.read_bytes()),'textures':textures,'meshParts':audit,'normalizedBands':{'low':.35,'high':.7,'physicalCalibrationVerified':False},'nativeRuntimeVerified':False},indent=2)+'\n');print('Composition prepared:',len(meshes),'parts',len(textures),'extra textures')

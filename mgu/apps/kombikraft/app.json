@@ -1,0 +1,27 @@
+{
+  "id": "kombikraft",
+  "title": "KombiKraft",
+  "version": "0.1.0",
+  "description": "Native iDrive preferences for the KombiKraft display project. Factory skin replacement and vehicle controls are not enabled.",
+  "vendor": "KombiKraft",
+  "loggingId": "KKFT",
+  "screens": [
+    {"name":"MAIN","title":"KombiKraft","items":[["button","OPEN_CLUSTER","Instrument cluster"],["button","OPEN_HUD","Head-up display"],["button","OPEN_FEATURES","Enhancements"],["button","OPEN_ABOUT","About"],["text3","MAIN_STATUS","Preferences only. Factory displays and vehicle controls remain unchanged."]]},
+    {"name":"CLUSTER","title":"Instrument cluster","settings":["clusterTheme","mapSource","units","modelMark"],"items":[["text3","CLUSTER_STATUS","Layout preferences are saved locally. Factory cluster replacement is not enabled."]]},
+    {"name":"HUD","title":"Head-up display","settings":["hudView","hudStyle","hudShiftStrip","hudOverlayEnabled"],"items":[["text3","HUD_STATUS","HUD output is not connected in this release."]]},
+    {"name":"FEATURES","title":"Enhancements","settings":["ambientByMode","exhaustControl"],"items":[["text3","FEATURE_STATUS","Vehicle control adapters are unavailable. Both controls remain off."]]},
+    {"name":"ABOUT","title":"About KombiKraft","items":[["text3","ABOUT_STATUS","Offline display research and native preferences. No firmware flashing or diagnostic writes."],["button","RESET","Reset preferences"]]}
+  ],
+  "settings": [
+    {"key":"clusterTheme","label":"Layout preference","type":"choice","default":"factory","options":[["factory","BMW factory"],["touring","Map Touring"],["m-round","M Round"]]},
+    {"key":"mapSource","label":"Map preference","type":"choice","default":"idrive","options":[["idrive","iDrive navigation"],["carplay","CarPlay navigation"],["none","No map"]]},
+    {"key":"units","label":"Unit preference","type":"choice","default":"vehicle","options":[["vehicle","Follow vehicle"],["metric","Metric"],["imperial","Imperial"]]},
+    {"key":"modelMark","label":"Model mark","type":"choice","default":"compact","options":[["compact","Compact M mark"],["model","Model designation"]]},
+    {"key":"hudView","label":"HUD view preference","type":"choice","default":"drive-data","options":[["drive-data","Drive data only"],["map","Map with drive data"]]},
+    {"key":"hudStyle","label":"HUD style preference","type":"choice","default":"oem","options":[["oem","BMW inspired"],["m","M inspired"]]},
+    {"key":"hudShiftStrip","label":"Full-width HUD shift strip","type":"bool","default":false},
+    {"key":"hudOverlayEnabled","label":"HUD output (unavailable)","type":"bool","default":false,"blocked":"HUD renderer connection is not included."},
+    {"key":"ambientByMode","label":"Ambient lighting by mode (unavailable)","type":"bool","default":false,"blocked":"Vehicle lighting control is not enabled."},
+    {"key":"exhaustControl","label":"Exhaust control (unavailable)","type":"bool","default":false,"blocked":"Exhaust actuation is not enabled."}
+  ]
+}

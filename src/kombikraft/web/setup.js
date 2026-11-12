@@ -3,6 +3,7 @@ async function initialise(){
  const status=await(await fetch('/api/toolkit/status')).json();
  document.querySelector('#status').textContent=status.assets.layoutAvailable?`${status.assets.files} local asset files verified. Required layout entry points are present; the viewer checks dependent graphics while loading.`:status.assets.available?`Local pack verified, but ${status.assets.missingLayoutRoutes.length} required layout routes are missing.`:'No local graphics pack is loaded. Supply --assets to display the existing cluster layouts.';
  document.querySelector('#preview').hidden=!status.assets.layoutAvailable;
+ document.querySelector('#library').hidden=!status.visualLibraryAvailable;
  const available=status.factory.available;
  document.querySelector('#factory-status').textContent=available?'Original partial controller backend initialized. Graphics startup is incomplete.':'Matching local firmware banks are not loaded. Fixture controls are unavailable.';
  for(const button of document.querySelectorAll('[data-signal]')){

@@ -21,12 +21,13 @@ def main(argv=None):
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("doctor", help="Report local tools and explicit coverage limits")
     commands.add_parser("factory-manifest", help="Print metadata-only template for the supported local firmware banks")
-    assets = commands.add_parser("assets", help="Check a private local asset directory")
+    assets = commands.add_parser("assets", help="Check a local visual resource pack")
     assets.add_argument("action", choices=["verify"])
     assets.add_argument("directory")
     serve = commands.add_parser("serve", help="Start the loopback viewer")
     serve.add_argument("--port", type=int, default=8084)
-    serve.add_argument("--assets", help="Private locally prepared source-graphics pack")
+    serve.add_argument("--assets", help="Verified visual pack, for example assets/viewer-pack")
+    serve.add_argument("--library", help="Offline gallery directory, for example assets/library")
     serve.add_argument("--firmware-manifest", help="Exact supported source-bank manifest")
     serve.add_argument("--firmware-root", help="Directory containing locally supplied banks")
     args = parser.parse_args(argv)
@@ -53,7 +54,7 @@ def main(argv=None):
             factory = OriginalControllerBackend(load_banks(args.firmware_manifest, args.firmware_root))
             factory.initialize()
         from .server import ViewerServer
-        with ViewerServer(args.port, pack, factory) as server:
+        with ViewerServer(args.port, pack, factory, args.library) as server:
             print(f"KombiKraft: {server.origin}/", flush=True)
             print("Offline only. Factory graphics startup and vehicle deployment remain unfinished.", flush=True)
             try:

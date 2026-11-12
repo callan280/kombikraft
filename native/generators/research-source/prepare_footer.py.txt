@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+"""Source pixels and source-font fixture text for the accepted native footer composition."""
+from pathlib import Path
+import json,hashlib,math,ctypes
+from PIL import Image,ImageOps,ImageFont,ImageDraw
+H=Path(__file__).resolve().parent;LAB=H.parents[1];OUT=H/'stage/f97';OUT.mkdir(parents=True,exist_ok=True);sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+source=H/'source-snapshots/v10-accepted-index.html';font=LAB/'typography/BMWTARG.ttf';d=json.loads((LAB/'f97-reference/render-package/f97-gauges-package.json').read_text());textures=[];parts=[];arrays=[];calls=[]
+ft=ctypes.CDLL('/opt/homebrew/opt/freetype/lib/libfreetype.dylib');library=ctypes.c_void_p();face=ctypes.c_void_p();assert ft.FT_Init_FreeType(ctypes.byref(library))==0;ft.FT_New_Face.argtypes=[ctypes.c_void_p,ctypes.c_char_p,ctypes.c_long,ctypes.POINTER(ctypes.c_void_p)];assert ft.FT_New_Face(library,str(font).encode(),0,ctypes.byref(face))==0;ft.FT_Get_Char_Index.argtypes=[ctypes.c_void_p,ctypes.c_ulong];ft.FT_Get_Char_Index.restype=ctypes.c_uint
+# Roles are fixed offline presentation switches, never decoded vehicle contracts.
+roles={'static':0,'model':1,'m':2,'speedUnavailable':3,'speedFixture':4,'rangeUnavailable':5,'rangeFixture':6,'tripUnavailable':7,'tripFixture':8,'roadFixture':9,'limitFixture':10,'gearUnavailable':11,'gearFixture':12,'comfort':13,'sport':14,'eco':15,'ccCenterLine':16,'checkerboard':17,'compassUnavailable':18,'compassFixture':19,'outsideUnavailable':20,'outsideFixture':21,'normalPump':22,'reservePump':23,'tractionDtc':24,'tractionOff':25,'tractionLamp':26}
+def tex(key,im,provenance):
+ im=im.convert('RGBA');b=im.tobytes();f=OUT/(key+'.rgba');f.write_bytes(b);textures.append({'key':key,'file':f.name,'width':im.width,'height':im.height,'sha256':hashlib.sha256(b).hexdigest(),'provenance':provenance})
+def quad(name,key,x,y,w,h,role='static',color=(1,1,1,1),order=300):
+ p=[x,0,-y,x+w,0,-y,x+w,0,-(y+h),x,0,-y,x+w,0,-(y+h),x,0,-(y+h)];uv=[0,0,1,0,1,1,0,0,1,1,0,1];arrays.append((name,p,uv));calls.append(f' V3PART({name},"{key}",{order},{roles[role]},{color[0]},{color[1]},{color[2]},{color[3]});');parts.append({'name':name,'texture':key,'bounds':[x,y,x+w,y+h],'role':role,'renderOrder':order,'color':list(color)})
+def original(name,path,x,y,w,h,role='static',crop=None,flip=True,sourceScope='Captured BMW bitmap pixels'):
+ im=Image.open(path).convert('RGBA');im=im.crop(crop)if crop else im
+ if flip:im=ImageOps.flip(im)
+ tex(name,im,{'kind':sourceScope,'source':str(path),'sourceSha256':sha(path),'crop':list(crop)if crop else None,'verticalFlip':flip});quad(name,name,x,y,w,h,role)
+def label(name,text,x,baseline,size,role='static',align='left',color=(1,1,1,1)):
+ glyphs={ch:ft.FT_Get_Char_Index(face,ord(ch))for ch in text};assert all(glyphs.values()),('Source BMW font missing glyph',glyphs)
+ f=ImageFont.truetype(str(font),round(size*3));box=f.getbbox(text,anchor='ls');advance=f.getlength(text)/3;baseline=720-box[3]/3 if baseline==690 else baseline;left=x-(advance/2 if align=='center'else advance if align=='right'else 0);im=Image.new('RGBA',(box[2]-box[0],box[3]-box[1]));ImageDraw.Draw(im).text((-box[0],-box[1]),text,font=f,anchor='ls',fill=(255,255,255,255));tex(name,im,{'kind':'Custom fixture label rasterized from genuine BMWTA font; not captured native text production','text':text,'font':str(font),'fontSha256':sha(font),'fontSize':size,'rasterScale':3,'glyphIndices':glyphs,'fontBboxAtRasterScale':list(box),'advanceAtWorldScale':advance});quad(name,name,left+box[0]/3,baseline+box[1]/3,im.width/3,im.height/3,role,color)
+# Units and branding match accepted no-map M Round positions.
+original('v3SpeedUnit',LAB/'factory-graphics/init/KI_2D_Speedo_Label_kmhShape_bitmap__KI_2D_Speedo_Label.png',300,534,60,28.3)
+original('v3RpmUnit',LAB/'factory-graphics/init/KI_2D_Revmeter_Label_1minx1000Shape_bitmap__KI_2D_Revmeter_Label.png',1565,527,49.5,35)
+original('v3Model',LAB/'layouts/branding/m135i.png',820,325-16.8,280,33.6,'model',(28,29,278,59))
+original('v3M',LAB/'layouts/branding/m-logo.png',905,325-110*28/90/2,110,110*28/90,'m',(28,29,118,57))
+# Unknown display values stay unavailable by default. Explicit fixture bank1 is separately marked.
+label('v3SpeedUnknown','—',330,511,66,'speedUnavailable','center');label('v3GearUnknown','—',1590,479,40,'gearUnavailable','center');label('v3GearP','P',1590,479,40,'gearFixture','center')
+# Actual cropped M numeral pixels for the explicit72km/h display fixture; independent of needle position.
+mini=json.loads((H/'composition-asset-manifest.json').read_text());glyphs={str(i):t for i,t in enumerate(mini['textures'][1:])};widths=[66*glyphs[c]['width']/glyphs[c]['height']for c in'72'];left=330-(sum(widths)+66*.14)/2
+for i,(c,w)in enumerate(zip('72',widths)):quad('v3Speed72_'+str(i),'v2digit'+c,left,487-33,w,66,'speedFixture');left+=w+66*.14
+# Accepted footer baseline and immutable bitmap sign/art.
+original('v3Tank',LAB/'factory-graphics/init/KI_2D_Fueltube_Icon_Tank_MPAShape_bitmap__KI_2D_Fueltube_MPA.png',152,688,32,34,'normalPump')
+label('v3RangeUnknown','—',450,690,36,'rangeUnavailable','right');label('v3RangeFixture','420',450,690,36,'rangeFixture','right');label('v3RangeKm','km',460,690,25,color=(181/255,181/255,185/255,1))
+label('v3TripLabel','TRIP',1580,690,25,color=(181/255,181/255,185/255,1));label('v3TripUnknown','—',1730,690,35,'tripUnavailable','right');label('v3TripFixture','12.3',1730,690,35,'tripFixture','right');label('v3TripKm','km',1750,690,25,color=(181/255,181/255,185/255,1))
+label('v3Road','Queens Road',960,690,29,'roadFixture','center',(226/255,231/255,239/255,1))
+for name,text,role,color in [('v3Comfort','COMFORT','comfort',(243/255,160/255,74/255,1)),('v3Sport','SPORT','sport',(238/255,54/255,76/255,1)),('v3Eco','ECO PRO','eco',(98/255,180/255,235/255,1))]:label(name,text,1320,690,24,role,color=color)
+# User accepted footer additions. These are explicit examples, never live values.
+label('v5CompassUnknown','—',1510,690,26,'compassUnavailable','center',(226/255,231/255,239/255,1))
+label('v5CompassFixture','NW',1510,690,26,'compassFixture','center',(226/255,231/255,239/255,1))
+label('v5OutsideUnknown','—',1880,690,26,'outsideUnavailable','right',(226/255,231/255,239/255,1))
+label('v5OutsideFixture','22.5°C',1880,690,26,'outsideFixture','right',(226/255,231/255,239/255,1))
+for name,box,color,role in [('v3LeftLine',(76,679.5,518,1),(1,1,1,18/255),'static'),('v3RightLine',(1326,679.5,460,1),(1,1,1,18/255),'static'),('v3CenterLine',(650,679.5,650,1),(1,1,1,9/255),'ccCenterLine')]:quad(name,'v2white',*box,role,color,order=290)
+original('v3LimitSign',LAB/'factory-graphics/speed-limit/KI7_tex_SLI_Limit_bitmap__SLILimitSign.png',41,644.695652173913,78,78,'limitFixture')
+# Same source red-mask lookup and original Y flip as accepted speed-limit glyph renderer.
+sli=LAB/'factory-graphics/speed-limit/KI7_fx_SLI_text_round1_bitmap__SLILimitSign.png';raw=Image.open(sli).convert('RGBA');index=80//5-1;crop=((index%12)*60,(8-3*(index//12))*50,(index%12)*60+60,(8-3*(index//12))*50+50);mask=raw.crop(crop).getchannel('R');im=Image.new('RGBA',mask.size,(0,0,0,0));im.putalpha(mask);im=ImageOps.flip(im);tex('v3Limit80',im,{'kind':'Captured BMW SLI glyph red mask with original flip','source':str(sli),'sourceSha256':sha(sli),'rawCrop':list(crop),'maskChannel':'R','verticalFlip':True,'explicitLimitFixtureKmh':80});quad('v3Limit80','v3Limit80',80-60*78/92/2,683.695652173913-50*78/92/2,60*78/92,50*78/92,'limitFixture',order=301)
+# Accepted custom lower blend; no claim that this gradient is a recovered BMW asset.
+gradient=Image.new('RGBA',(1,235));gp=gradient.load()
+for iy in range(235):
+ t=(iy+.5)/235
+ if t<.6:rgba=(35,39,45,round(255*.22*t/.6))
+ else:rgba=(35,39,45,round(255*(.22+(.14-.22)*(t-.6)/.4)))
+ gp[0,iy]=rgba
+tex('v10LowerBlend',gradient,{'kind':'Authored blend matching accepted browser gradient; premultiplied-alpha stop interpolation','source':str(source),'sourceSha256':sha(source),'stops':[[485,[24,27,31,0]],[626,[35,39,45,.22]],[720,[35,39,45,.14]]]});quad('v10LowerBlend','v10LowerBlend',0,485,1920,235,order=-900)
+# Source pump reserve uses exactly the same source bitmap, cropped to visible alpha>16 as the browser.
+pump=LAB/'factory-graphics/init/KI_2D_Fueltube_Icon_Tank_MPAShape_bitmap__KI_2D_Fueltube_MPA.png';im=ImageOps.flip(Image.open(pump).convert('RGBA'));crop=im.getchannel('A').point(lambda v:255 if v>16 else 0).getbbox();im=im.crop(crop);scale=30/max(im.size);tex('v10PumpReserve',im,{'kind':'Same captured source pump; authored amber reserve fixture','source':str(pump),'sourceSha256':sha(pump),'visibleAlphaThreshold':16,'cropAfterOriginalYFlip':list(crop),'samePumpAsNormal':True});quad('v10PumpReserve','v10PumpReserve',168-im.width*scale/2,720-im.height*scale,im.width*scale,im.height*scale,'reservePump',(1,181/255,0,1))
+# Genuine source TRACTION/DSC OFF text plus paired DSC icon, explicit3-state fixture only.
+tm=LAB/'traction-research/glyph-manifest.json';tj=json.loads(tm.read_text())
+for key,name,role,cx,cy,size,color in [('f97-fes-traction-text','v10TractionDtc','tractionDtc',1612,587,130,(1,1,1,1)),('f97-fes-dsc-off-text','v10TractionOff','tractionOff',1612,587,130,(1,1,1,1)),('mgu-dsc-off-icon','v10TractionLamp','tractionLamp',1519,587,32,(1,181/255,0,1))]:
+ row=next(x for x in tj['assets']if x['key']==key);path=Path(row['png']);assert sha(path)==row['pngSha256'];im=Image.open(path).convert('RGBA');crop=im.getchannel('A').point(lambda v:255 if v>16 else 0).getbbox();im=im.crop(crop);scale=size/max(im.size);tex(name,im,{'kind':'Exact recovered source art in accepted custom fixture arrangement','source':str(path),'sourceSha256':sha(path),'upstreamManifest':str(tm),'upstreamManifestSha256':sha(tm),'sourceRecord':row,'alphaThreshold':16,'crop':list(crop),'decodedPngAlreadyUpright':True,'nativeControllerBindingVerified':False,'F40MdmCapabilityImplied':False});quad(name,name,cx-im.width*scale/2,cy-im.height*scale/2,im.width*scale,im.height*scale,role,color,order=400)
+
+# Diagnostic underlay only: tests opacity, never presented as a map.
+checker=Image.new('RGBA',(64,64));px=checker.load()
+for y in range(64):
+ for x in range(64):px[x,y]=(35,95,125,255)if(x//8+y//8)%2 else(100,45,20,255)
+tex('v3Checker',checker,{'kind':'Custom diagnostic checkerboard; not navigation or factory artwork'});quad('v3Checker','v3Checker',0,0,1920,720,'checkerboard',order=-1000)
+lines=['/* Exact source sprite derivatives and BMWTA fixture labels. */']
+for name,p,uv in arrays:
+ for suffix,values in [('positions',p),('uv',uv)]:lines.append('static float '+name+'_'+suffix+'[]={'+','.join(format(v,'.9g')+('f'if'.'in format(v,'.9g')or'e'in format(v,'.9g')else'.0f')for v in values)+'};')
+lines.append('static const F97Texture v3_textures[]={'+','.join('{"'+t['key']+'","'+t['file']+'",'+str(t['width'])+','+str(t['height'])+'}'for t in textures)+'};');(H/'footer_arrays.inc').write_text('\n'.join(lines)+'\n');(H/'footer_parts.inc').write_text('\n'.join(calls)+'\n')
+(H/'footer-asset-manifest.json').write_text(json.dumps({'sourceAcceptedDesign':str(source),'sourceAcceptedDesignSha256':sha(source),'roles':roles,'textures':textures,'parts':parts,'footerInkBottom':720,'sourceFontBoundsPolicy':'Full recovered font bounding box bottom720; matches browser TextMetrics bottom policy','sliFullAlphaBoundsPolicy':{'stored':[1,2,90,91],'afterYFlip':[1,1,90,90],'sourceSize':[92,92],'nominalSize':78,'quadTop':644.695652173913,'browserAlphaBottom':720,'nativeEngineOpticalOffsetY':1,'nativeFullAlphaBoundary':721,'nativeFramebufferVisibleBottom':720},'fixedFixtureBank1':{'speedKmh':72,'gear':'P','rangeKm':420,'tripKm':12.3,'roadName':'Queens Road','speedLimitKmh':80,'liveSignal':False,'compass':'NW','outsideTemperatureC':22.5},'defaultDataAvailable':False,'customTextShapingWithSourceBMWTA':True,'nativeFactoryTextEngineExecuted':False,'checkControlReservation':[650,520,1300,720],'roadAndCenterLineHiddenWhenCcFixtureActive':True,'physicalF40MaskVerified':False},indent=2)+'\n');print('Footer source assets prepared',len(parts),'parts',len(textures),'textures')

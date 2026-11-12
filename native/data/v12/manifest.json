@@ -1,0 +1,1238 @@
+{
+  "schema": "kombikraft-native-visual-inputs-v1",
+  "profile": "m-round-compact40-v12",
+  "wireCompositionVersion": 10,
+  "layoutRevision": 12,
+  "logicalDisplay": [
+    1920,
+    720
+  ],
+  "footerBand": [
+    0,
+    680,
+    1920,
+    720
+  ],
+  "nativeMeshes": 325,
+  "footerReadbacks": 118,
+  "vehicleDataIncluded": false,
+  "semanticReplayIsSyntheticFixture": true,
+  "firmwareBinariesIncluded": false,
+  "runtimeLibrariesIncluded": false,
+  "mitLicenceApplies": false,
+  "permissionBasis": "Maintainer explicitly confirmed redistribution permission for extracted BMW graphics/fonts; original rights retained. User-supplied example artwork remains separately identified.",
+  "files": [
+    {
+      "file": "generated/bc_shader_arrays.inc",
+      "sha256": "24d8ec1342a3b42e80437f8e3f15d2e66d1daa81620c5fe2586ee81a54d1c54e",
+      "bytes": 605194,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/bc_shader_parts.inc",
+      "sha256": "e39c2dc7b4996d6e934e033eef379ccb1bde8d134c8460ac528b4a1be87f743a",
+      "bytes": 29885,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/bc_sprite_arrays.inc",
+      "sha256": "96301d3862a8fd72d9042fc04ce4a3ae6ca6eb70ec5b7cf831152d813f5b1eb4",
+      "bytes": 8363,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/bc_sprite_parts.inc",
+      "sha256": "c9404933456647bc7ea5e3880a072aea069fe914ef12bf05250063c1a25146bc",
+      "bytes": 6206,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/cc_arrays.inc",
+      "sha256": "a203c89ef72dd4a8794eb11819b115cfb4f5c073d04d4ef923d8021ffdf6323b",
+      "bytes": 22273,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/cc_parts.inc",
+      "sha256": "43a61ef5e4cc900cbd41900ea94e73425c2c33ba088a30e68544a7e8f9e34b5e",
+      "bytes": 8062,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/composition_arrays.inc",
+      "sha256": "b587fccb0b59520ddee72887eba374795c01f9942389be26d9f6a3ad288fc2ad",
+      "bytes": 331846,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/composition_parts.inc",
+      "sha256": "bf0d24d7f0fa170c953af2692f8a07fcb2a2ae312dd63778d674c07f624931fa",
+      "bytes": 2537,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/f97_arrays.inc",
+      "sha256": "44ccc638cfc526eab84885e496532272720df518556b1ebb51668e0526780d25",
+      "bytes": 94160,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/footer_arrays.inc",
+      "sha256": "852e44da3890bb0b5d5f3fe548436a26b16ddde76a49fea791fbba06f273a29d",
+      "bytes": 11156,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/footer_parts.inc",
+      "sha256": "a1a6260c9c9e4f3e219926b7422d305632decc4d6723b42bf39a5b90e1cc30ae",
+      "bytes": 2455,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/fuel_arrays.inc",
+      "sha256": "acd1cb9a23e4b26dfe3f5c0ddaf1d2e2ae33f906684e17661d8a3cfb4f1ed41a",
+      "bytes": 673694,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/fuel_parts.inc",
+      "sha256": "567c3df5d6acd40d21d7b32119a626524800ccaf1189f407ee81d1f559d3da58",
+      "bytes": 2733,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/gear_arrays.inc",
+      "sha256": "6c86cb82b603b278ba9a2ab7abeec129931d34635aca3162807b35bbb83acf4f",
+      "bytes": 6839,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/gear_parts.inc",
+      "sha256": "cf448e98db585dcb18c49aa7838b3c2c29ac202d3fe3d4d150d48917d2a49e2d",
+      "bytes": 888,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "generated/semantic_arrays.inc",
+      "sha256": "bc4550a74be576c9953235943cfe598c5c28260bc1b31f9702cc80fddd24d9a9",
+      "bytes": 7282,
+      "kind": "generated-visual-table"
+    },
+    {
+      "file": "stage/bc/bcArtistFixture.rgba",
+      "sha256": "123d8e535d71ba27a2b363c016b98e2da9e8ee5519332c94b421de4214ab9d84",
+      "bytes": 61104,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcArtistMarqueeTest.rgba",
+      "sha256": "123d8e535d71ba27a2b363c016b98e2da9e8ee5519332c94b421de4214ab9d84",
+      "bytes": 61104,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcArtistUnknown.rgba",
+      "sha256": "32e124dd623076ac1c96840b36137ff1abf5d9f58ae805b1cd36a330faec13af",
+      "bytes": 7500,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcAverageSpeedFixture.rgba",
+      "sha256": "7d34b85d1bbffba29c05537b9190c30bdfa300d39df9e460a79fc3195abb85c5",
+      "bytes": 76368,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcAverageSpeedUnitFixture.rgba",
+      "sha256": "d732502fc24bab8d7fde979846f6945ba664cdaab9d752c3eb8a403c8ff3cea6",
+      "bytes": 50904,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcAverageSpeedUnitUnknown.rgba",
+      "sha256": "d732502fc24bab8d7fde979846f6945ba664cdaab9d752c3eb8a403c8ff3cea6",
+      "bytes": 50904,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcAverageSpeedUnknown.rgba",
+      "sha256": "1888e8a33068b1e7131b727375d473e84b28d1bd00aa87aa3f8b58c94b06fac1",
+      "bytes": 17328,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcConsumptionUnavailable.rgba",
+      "sha256": "1d1adc64f743a950a6a6d9df065460f6d7e1504b077d88026658fd374c98b142",
+      "bytes": 10092,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcDataSince.rgba",
+      "sha256": "0b816fedda666d9786684d91cb722468dfac355dab7ff8c05e9cad5aca999684",
+      "bytes": 89552,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcDistanceFixture.rgba",
+      "sha256": "02860df6b927c203ad34b3a42cd1a44e6c6dc70f9ee9a7e48a615f5bc6dacd41",
+      "bytes": 76368,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcDistanceUnitFixture.rgba",
+      "sha256": "d7389f11a1990d247dcabde3c78193e0bed6a265a0b4227eee52d5cdafcaa9f4",
+      "bytes": 31500,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcDistanceUnitUnknown.rgba",
+      "sha256": "d7389f11a1990d247dcabde3c78193e0bed6a265a0b4227eee52d5cdafcaa9f4",
+      "bytes": 31500,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcDistanceUnknown.rgba",
+      "sha256": "1888e8a33068b1e7131b727375d473e84b28d1bd00aa87aa3f8b58c94b06fac1",
+      "bytes": 17328,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcGforce435Fixture.rgba",
+      "sha256": "38808f31fab57f1500afc114047cf99142992d68cdcdc05d7402e59797d9b6c7",
+      "bytes": 22000,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcGforce435Unknown.rgba",
+      "sha256": "d1526ef7b80ac8de7a21224b1b4425701e9111c7ba767709c9e64b8e1e7732f0",
+      "bytes": 6912,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcGforce570Fixture.rgba",
+      "sha256": "38808f31fab57f1500afc114047cf99142992d68cdcdc05d7402e59797d9b6c7",
+      "bytes": 22000,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcGforce570Unknown.rgba",
+      "sha256": "d1526ef7b80ac8de7a21224b1b4425701e9111c7ba767709c9e64b8e1e7732f0",
+      "bytes": 6912,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcGforceDot.rgba",
+      "sha256": "ccb270ef1b767053a6d5a3ebafbf39f57dcbcde12e56f37dfd912f03f52a42a0",
+      "bytes": 65536,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcGforceRing.rgba",
+      "sha256": "68b95c16d0555bf67550eb8e748ebda1ef0203aac4b4d053cfda48a4bd7938d3",
+      "bytes": 719104,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcGforceShadow.rgba",
+      "sha256": "125f75be195862da075f6e0f768918da63a462894791c0b7b2b15f11a365dd19",
+      "bytes": 65536,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcGforceUnit435.rgba",
+      "sha256": "32611623f05a64d3843cc3bbdf5ca5bdcbf6c21a3e1321dfeb098097745b14d3",
+      "bytes": 9680,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcGforceUnit570.rgba",
+      "sha256": "32611623f05a64d3843cc3bbdf5ca5bdcbf6c21a3e1321dfeb098097745b14d3",
+      "bytes": 9680,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcJourneyBg.rgba",
+      "sha256": "e2a1dea542cebbd46790e04e05abeabd6a9b6bbe6e5f5cfcecb745f9594c5cf5",
+      "bytes": 779400,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcJourneyLine.rgba",
+      "sha256": "2208d3233ce55ba0d01b54a9d32bee68e8e28f2b1ebe567643640d93bbb1d6e9",
+      "bytes": 5264,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcMediaArt.rgba",
+      "sha256": "6ede3dd0dbbe64a13ee05edef898f3a2ac4aaf592f931ce037c3fb7a7ba1da3a",
+      "bytes": 4000000,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcMediaFade.rgba",
+      "sha256": "d2d8c40a8f87a258f3a9d0b15f246b11da0022f682846f91dac32460fc9d731a",
+      "bytes": 2459520,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcMediaFrame.rgba",
+      "sha256": "39a9fc774bae3cffc5080820c37816294953762b05ed8e59758fbe0e21efa0a5",
+      "bytes": 94864,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture0.rgba",
+      "sha256": "fe75ce6946ed8e5ffc11b5c725c2a7dba55a0acc3d38b0d41686cd8a2eb0ee01",
+      "bytes": 3880,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture1.rgba",
+      "sha256": "cbda0c600e66336137b2ff8343ac58e7685f21970f915fc2a7155bc80c8a25d1",
+      "bytes": 16,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture10.rgba",
+      "sha256": "c31d1a463483d4f73d54d5713b002649bb0194ee6f6605540c3b6ea7ee42a3c4",
+      "bytes": 131072,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture11.rgba",
+      "sha256": "4ed56077b97b109f33c85fdaf47c482d8e5851cd59012c2af6dc214035cdca44",
+      "bytes": 1048576,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture12.rgba",
+      "sha256": "19201c77d8fed4114f29bc262e46e2ad0446447567c8ac7be207edb83a34698a",
+      "bytes": 131072,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture13.rgba",
+      "sha256": "37f017bb33ab8a478e5ea29d543e7ff03f5021e5e63494fdbe8fcd5b9d6e289a",
+      "bytes": 4096,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture14.rgba",
+      "sha256": "6055ec87087557d7209c9bed63cabf65ac9f4687377b5c93bf8c0e83cc7b9861",
+      "bytes": 131072,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture15.rgba",
+      "sha256": "9a27aca28fe0c530aee235e9771779d7b24196dfccf027fabc04b0cbce5c9772",
+      "bytes": 131072,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture16.rgba",
+      "sha256": "c78f8b9ab3e6fc180e05dccac6270456b09feb613ed080ca31c694a05fe773ee",
+      "bytes": 262144,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture17.rgba",
+      "sha256": "2282402ea8acbcd707347dc55dfb3102818f8da589d7508e07e034acc95ae0bb",
+      "bytes": 65536,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture18.rgba",
+      "sha256": "37825c9e6945fa51c3d4c7dfb0eaeed1ee296be7132cba6b1f5c8238af3a2f19",
+      "bytes": 262144,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture19.rgba",
+      "sha256": "7984b3b661835186136f82ac82f55644ac96cb704a04fc94854fda723e58de6c",
+      "bytes": 262144,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture2.rgba",
+      "sha256": "1d8c7fef87907613c79e7d02d70014244887590f39908c2cff97c24aab6001db",
+      "bytes": 3360,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture20.rgba",
+      "sha256": "ad478f491acc24e5c4cd2b579e195f04f9d8596ce78d1f87f7ae57b0910dc6d8",
+      "bytes": 32768,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture21.rgba",
+      "sha256": "37825c9e6945fa51c3d4c7dfb0eaeed1ee296be7132cba6b1f5c8238af3a2f19",
+      "bytes": 262144,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture22.rgba",
+      "sha256": "46ee52b87dfc863272794511651d66ef031bc2de0e3d1b88d119f3231d46b328",
+      "bytes": 128,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture3.rgba",
+      "sha256": "fb41b7bffaccb3c56d65d5c57dbf01c7a523d18fbeff522092309245f5aed5e0",
+      "bytes": 16,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture4.rgba",
+      "sha256": "8d47d9d4786e4119bc89884f726cf61477d9310a130720cf38e3b0a6ca4f2d11",
+      "bytes": 32,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture5.rgba",
+      "sha256": "d5d3e82e7546b284ce3d2277c0e344022b649d78348da0ae1aa8b6ce6d14f960",
+      "bytes": 6192,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture6.rgba",
+      "sha256": "58df9ba7fde751e65c07ced83a7d8830a8d8c385fb014a15e517f313c53f87b2",
+      "bytes": 2048,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture7.rgba",
+      "sha256": "8fb647e929cd5449b8b4c350abc015791531fd61cd91da382cab8da50fb3b6c6",
+      "bytes": 131072,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture8.rgba",
+      "sha256": "58df9ba7fde751e65c07ced83a7d8830a8d8c385fb014a15e517f313c53f87b2",
+      "bytes": 2048,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcShaderTexture9.rgba",
+      "sha256": "47b0411c67c52b361574577f201a5d025ff3aa1965f40a0f59b070170597af14",
+      "bytes": 131072,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcSinceFixture.rgba",
+      "sha256": "130d56147098c48c7b0ee8e18b96db59b108ee2bcd8886815c1652b6fcbadc01",
+      "bytes": 127008,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcSinceUnknown.rgba",
+      "sha256": "5d50147d64956eaddf01b1b81594f471ed7e56807406d1ddea964211b5576d65",
+      "bytes": 12288,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcSportPower.rgba",
+      "sha256": "dc815d1e59738d8a293bf5062812ecbd87c22a6a7f0dd154fca9e99010656540",
+      "bytes": 30448,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcSportPowerUnknown.rgba",
+      "sha256": "289b9f517a33252bc3de981b0628c6e87a0555876c4dfa01b7530c0db3749bf7",
+      "bytes": 4640,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcSportTorque.rgba",
+      "sha256": "b676a0833283392c4974bf69195ab1de7c5b51d55cf86cdadd224e1878a1f9e4",
+      "bytes": 41976,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcSportTorqueUnknown.rgba",
+      "sha256": "289b9f517a33252bc3de981b0628c6e87a0555876c4dfa01b7530c0db3749bf7",
+      "bytes": 4640,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcTotal.rgba",
+      "sha256": "99c610f0ada15b0f2d4a4953aaa2f96cd0c77c52ea1924c07f163511cfab348f",
+      "bytes": 31360,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcTotalKm.rgba",
+      "sha256": "d7cb2f035c7c5801fd53c6b9ee9456740325cddb59e5b751738cf518af955d20",
+      "bytes": 18240,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcTotalValueFixture.rgba",
+      "sha256": "71111c998caf7691c4fe02c4c1712eb6754a6072b6838d2c6342ba29f107f531",
+      "bytes": 64120,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcTotalValueUnknown.rgba",
+      "sha256": "32e124dd623076ac1c96840b36137ff1abf5d9f58ae805b1cd36a330faec13af",
+      "bytes": 7500,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcTrackFixture.rgba",
+      "sha256": "54cd7a0b35099ed2eca977b3a2e335366bb81d538d28fe54686c8fbe6095942e",
+      "bytes": 177288,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcTrackMarqueeTest.rgba",
+      "sha256": "e2b991372411e416d51b133376f68f9532bca5edf6866c514e35c298e93c67b0",
+      "bytes": 249996,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/bcTrackUnknown.rgba",
+      "sha256": "a061f2332d24f4d30ab73408a2ec4b1dc03a39c762f673011e4879453e11645d",
+      "bytes": 11160,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/semantic25.rgba",
+      "sha256": "fef38845c164147ecfa6ee96a3ae502b4fbbaa20e54e623d9ec0434e0e5ec196",
+      "bytes": 265356,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/semantic28.rgba",
+      "sha256": "9cdbec195dc1a7585cfa2b9cc36b62158e2f3a305cf9e75d91c873f3aafd4e20",
+      "bytes": 327600,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/bc/semantic36.rgba",
+      "sha256": "facf9a2d46741fb5ca623367fbbeb47774bcc606d02fc3fe7ce54bc60e41b412",
+      "bytes": 527592,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText128_0.rgba",
+      "sha256": "60a95416ae89d6440bf4ae5871ef029b410f2c55eee09f8e254d8d336695bf07",
+      "bytes": 226240,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText128_1.rgba",
+      "sha256": "fd8294c29191c186f45cb4ed3a3f5df60b60e1c2182ed101653f0d3ec792d449",
+      "bytes": 210600,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText134_0.rgba",
+      "sha256": "c7d4907b66552ae88377b941faca6983e37d07dd6cfa7746fff33ec3c9b9c45e",
+      "bytes": 209508,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText134_1.rgba",
+      "sha256": "680b64ad9065727f5a37dd75f750026087081cb89fecb6e1618ec1d5f842bc5c",
+      "bytes": 75768,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText166_0.rgba",
+      "sha256": "0be0e597cf8fa8bcc4fb6d09d3217c2b4c4101e9d97a6675e4b5ba2dc70943b8",
+      "bytes": 135200,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText166_1.rgba",
+      "sha256": "5c9612dc17e72c9e17f796fc6faead1e650b02e505590bae2a1c5b9353003ca6",
+      "bytes": 217080,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText184_0.rgba",
+      "sha256": "56648f484c49d4607d132154ad15dee513120b413168be9e85c4198586b35298",
+      "bytes": 230080,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText184_1.rgba",
+      "sha256": "ead4e7bae89967ff794fa94ec947d7396b8bd6df056c3bfc71e41c91531bc23f",
+      "bytes": 191136,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText2051_0.rgba",
+      "sha256": "08eb28b8f22e52f5703ceecdf4704c9c29c7d56270cbb4a6426fea906e2d37d0",
+      "bytes": 191400,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText2064_0.rgba",
+      "sha256": "bcc5a2ebb89f71bc5224cabbc5b6e1e29c2310a7c62b2d346dbfd1cc80331c29",
+      "bytes": 129244,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText2064_1.rgba",
+      "sha256": "be41c8c7f45306a134ce416e279eb170b53e926dd631b0b7b598c3f0b4865dda",
+      "bytes": 220480,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText212_0.rgba",
+      "sha256": "6bbe65a82bab39c0c258b17fe7799001342373410dbd2c6b28a19cf72b46e038",
+      "bytes": 190836,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText212_1.rgba",
+      "sha256": "f1c08e6dfd5f849b6ee55198e298281ea3fae60c34e0a4a76b5d1877a6da96d5",
+      "bytes": 238464,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText240_0.rgba",
+      "sha256": "cb079899833c7146ccc2c54e18f3b9694eb3b235b83b1709b59ca053f44b761e",
+      "bytes": 182400,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText240_1.rgba",
+      "sha256": "680b64ad9065727f5a37dd75f750026087081cb89fecb6e1618ec1d5f842bc5c",
+      "bytes": 75768,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText427_0.rgba",
+      "sha256": "0cd0e11b8858efdc5614b3cfae945ac0364c062d13f7e579c1af611651a852d5",
+      "bytes": 257856,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText427_1.rgba",
+      "sha256": "fe15c82b1a98d635bdb40cedca07dec70cfd07e81426d1d20a1c160a8e394367",
+      "bytes": 231680,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText444_0.rgba",
+      "sha256": "41922c39ec3c1d86fb12709846fba1820665dc326738ce287d9c19a2b705fce8",
+      "bytes": 120120,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText444_1.rgba",
+      "sha256": "ef2db747462435c15d5b9af7ef20de26116d54a80f7326ccbf3c2ea1a63ea1db",
+      "bytes": 98540,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText632_0.rgba",
+      "sha256": "baf65b28c3b64d56d1db6e00d31a7f8fbf1f864b15c620ead13971f32b19838f",
+      "bytes": 153648,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText632_1.rgba",
+      "sha256": "c436614687f025d647365e1934136c5e21041338a4e240b25fdd4893567d5639",
+      "bytes": 104260,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText63_0.rgba",
+      "sha256": "48456f9694ea05f8d8fa5449396215bd50bfc6ec84fcc310003bb3a61d3b1a43",
+      "bytes": 239040,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText785_0.rgba",
+      "sha256": "bb7e627b0352406bc679800ca6b4ff7fbeeffc0f7a800c86fb8eed48e7c1b8b9",
+      "bytes": 277120,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText88_0.rgba",
+      "sha256": "dd0ae7e8676b12ac24974bfba1d63721fdd8bfe8bfd43ebbcb122f76cadc6ab1",
+      "bytes": 228420,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText88_1.rgba",
+      "sha256": "680b64ad9065727f5a37dd75f750026087081cb89fecb6e1618ec1d5f842bc5c",
+      "bytes": 75768,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText91_0.rgba",
+      "sha256": "a3194c5a002d9a61a727feeb3730331cb2f3079e95ac0a66a942a90b8b260e41",
+      "bytes": 175500,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText961_0.rgba",
+      "sha256": "be359533bda8aebcedf24130b490085bb2914a8bf5cfd3d213188a6e84b3cd30",
+      "bytes": 66792,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/ccText961_1.rgba",
+      "sha256": "0dbb48fc7b65f56fc9fc7089762ff3507245a9c6b87dd42b9e0135b212ff8313",
+      "bytes": 203188,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon128.rgba",
+      "sha256": "fb7a65f1d9f29a678914e239837dc36ed9bb2f36044a29249b1b4a35d072250b",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon134.rgba",
+      "sha256": "a7969e55c51ce9783a0e7cbd5d86bd3bc02877b6d51749efff07b7b6d0cee710",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon166.rgba",
+      "sha256": "ec376ed43d3efdfb1a2715b7584acb8626896db0a6ef6007d75c4745fe354c33",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon184.rgba",
+      "sha256": "e550c5b433b1ce72e838d23c58dec527f219d51a05d8b18c9acb5666235a3c19",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon2051.rgba",
+      "sha256": "b34bf08a9afc4a920215acecffa40d4c265c9fbab96882b7569c9d982030e2cf",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon2064.rgba",
+      "sha256": "ec376ed43d3efdfb1a2715b7584acb8626896db0a6ef6007d75c4745fe354c33",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon212.rgba",
+      "sha256": "dc319829a07ec3c54d22740175f26b109196fdb7e946aed45d5515e02c3c78f6",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon240.rgba",
+      "sha256": "1b2c05e3214a622e9a4f37ad02871684afa95cd46bd3a252d839b27fb08728c7",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon427.rgba",
+      "sha256": "6036bbfd4a1e39adfd817e538475e4db0dbd21b7732df53f942297e43ce2296a",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon444.rgba",
+      "sha256": "f86a35c49f294560c3d1668f7b145fd67b4ad8c6ac443190fec0e8acf1780abe",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon63.rgba",
+      "sha256": "853429335e2547a63b300ec268496614cb80db5e23b5fe95193b861c42874e95",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon632.rgba",
+      "sha256": "47e3ae63317c0da34feb7a81d8fbf6b33a8ebc04eb8281f09cf8d50e83e73baf",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon785.rgba",
+      "sha256": "568aab31349bb94f8da015bfc37240480b3c118b55971cc247997cd95d6c8f5a",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon88.rgba",
+      "sha256": "adaa717ec1e355b3d8d50f7c3494c0262abe5d01581a14b1e1554de3c3301630",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon91.rgba",
+      "sha256": "f86a35c49f294560c3d1668f7b145fd67b4ad8c6ac443190fec0e8acf1780abe",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/icon961.rgba",
+      "sha256": "c83bbcf9784aa4d3b6fe815cf898f10f9d0cb776d7c615963b9c66e7a4675208",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/cc/plate.rgba",
+      "sha256": "584640e66e054b70cecc9139d5fa21d31c725873356b050efc2108730dadf130",
+      "bytes": 311328,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/mini-boost-icon.rgba",
+      "sha256": "29b6c5f127a0aac997008f1448bdbef9b3b652295238092614bb8d211c3a10e2",
+      "bytes": 24192,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/mini-oil-icon.rgba",
+      "sha256": "84e37314a9f7dd5dca7cd7f715412d4b812837db0b9c98f9bd0cd11442d9987c",
+      "bytes": 6048,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/mini-water-icon.rgba",
+      "sha256": "8d2235186d9af238471a6caa591649f2fa3cf5e448b3b4ee82465b7ef5443dda",
+      "bytes": 4836,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/needle.rgba",
+      "sha256": "8eb7ec370b60118bb01c53d32b009b24d7c041f580a8398152ab156306f34ec9",
+      "bytes": 196736,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/ring.rgba",
+      "sha256": "ae67ad990ec2ff356144562893db5baee1c85d89b02905e3be388ca0717de698",
+      "bytes": 800,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/rpmInner.rgba",
+      "sha256": "b156bee2878b255004d38cf58afdd2e3a4d3f1edc14d41aeb57597b7bc7d2798",
+      "bytes": 761760,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/rpmNumbers.rgba",
+      "sha256": "8d3cf063c165d2e4a82aeb6c95d74f4c2f612a4836681239f2d09c1bd06ae2dc",
+      "bytes": 252000,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/rpmScale.rgba",
+      "sha256": "d487670093d99bfd09cc0bbebf33e02ddd7277f2f33c8cb07fce3e3f87a4b863",
+      "bytes": 1485264,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/speedInner.rgba",
+      "sha256": "6fdd62ca22ba133e4a4effe787f498f69d60a543e2ddea0ad8e7ac5fc6164c35",
+      "bytes": 761760,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/speedNumbers.rgba",
+      "sha256": "8e9cd6c62393c712f5baa46b5cbd65e084b3d8586937e430f8cf183d64ce0eed",
+      "bytes": 671616,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/speedScale.rgba",
+      "sha256": "17111b31656f299a04ed392c85b5e4a22f7d246ec6cc4d8fd8b964947aa2ae21",
+      "bytes": 1485264,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v10LowerBlend.rgba",
+      "sha256": "f6e8421524cb96c055a9b985dde5ed8b109ee15552033350c4c9d7e79dd4f4a8",
+      "bytes": 940,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v10PumpReserve.rgba",
+      "sha256": "e3b366bd1c0ca8e54857194c171e37540e52a7f9f175218db1a056cfd52669d7",
+      "bytes": 3120,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v10TractionDtc.rgba",
+      "sha256": "364471671b137e897c15921412c91fc45e3971ac5aa2591fcb28277846fd2867",
+      "bytes": 7272,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v10TractionLamp.rgba",
+      "sha256": "85f090d4af2c0901d405b22adb464fd70217e87190c65bd52d7168352c74b6d7",
+      "bytes": 8640,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v10TractionOff.rgba",
+      "sha256": "be96946b55f527932d435ae207819c55a9433e6d842b78f9b5f887599e4554b1",
+      "bytes": 5904,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2digit0.rgba",
+      "sha256": "3d0052daa929f99b34394f86fbf49095c8f861f01d0203148efa5301e4643bd2",
+      "bytes": 1840,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2digit1.rgba",
+      "sha256": "60b29740197492994cc1059f287ff935dbfcc689938fa8a892adf06d52ccdc42",
+      "bytes": 1196,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2digit2.rgba",
+      "sha256": "bafb1439c8a58925dfb967377f4179cecac1f382f400816716b31453609dab41",
+      "bytes": 1840,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2digit3.rgba",
+      "sha256": "0c57153906f3a4b0ae42cd27296b6e3a9d7381f2c657ca719c40afc082657e7d",
+      "bytes": 1932,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2digit4.rgba",
+      "sha256": "46e8b3e830e5ddfb6ba48868a2b31f871885ac72dbb5fbda9721d74cb7cd6666",
+      "bytes": 2208,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2digit5.rgba",
+      "sha256": "40f922ec2f1e7136629614baea47fa5543d22677d9e9e120ca68743e2e2f7ded",
+      "bytes": 1840,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2digit6.rgba",
+      "sha256": "3df7408511ab9717aa6e03eac663b21bdc4bd765295fad0652e40513ddc93719",
+      "bytes": 1932,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2digit7.rgba",
+      "sha256": "2381cd1ec6837fe032c6cadd19110d26f5551f27d62f2c85ecc138762b927b66",
+      "bytes": 2024,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2digit8.rgba",
+      "sha256": "254a4b1ce9978007b1942cb1f2b4cf3be72fba04acc1dee1e8b4786668ee84f9",
+      "bytes": 1840,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2digit9.rgba",
+      "sha256": "b5d67a52e8dcca0fb2327ea007b42c45f128ac17025d79e6eb42ddf75aac1a78",
+      "bytes": 1932,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v2white.rgba",
+      "sha256": "ad95131bc0b799c0b1af477fb14fcf26a6a9f76079e48bf090acb7e8367bfd0e",
+      "bytes": 4,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3Checker.rgba",
+      "sha256": "5a0ef9e88e958122f71af5fce3470c2a5c7f74c2a37ada8d8b81ba4997610d5c",
+      "bytes": 16384,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3Comfort.rgba",
+      "sha256": "c36357b0fe6c538dd158694b96e8cdef9967f3e58264af89e5f4fa9cdc15675a",
+      "bytes": 78100,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3Eco.rgba",
+      "sha256": "5689e34ccc31ea4e973d85ec4317920a04645d007b925e81974a53d45d6b0743",
+      "bytes": 68420,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3GearP.rgba",
+      "sha256": "814ca0e7bde2eba31f694153589560acd93a15cfd785d09596274610a81fbce5",
+      "bytes": 26400,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3GearUnknown.rgba",
+      "sha256": "bcd183fdf252e1da66648c44efa75d77e3611b73d2f8548113207313cda6c623",
+      "bytes": 19200,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3Limit80.rgba",
+      "sha256": "2cf960ae84a909b84a0c41bc3342856a65b8066ccb0f8c635cf09af70f37125a",
+      "bytes": 12000,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3LimitSign.rgba",
+      "sha256": "306e5debbebf967dc61f12bbf99206aa4fc3c18590aa4ba93520ab1808d982fa",
+      "bytes": 33856,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3M.rgba",
+      "sha256": "fa5276fe3a38cc0d7b4217fc77ff8d6078c006acc9ad172e0e813d859d2b13ee",
+      "bytes": 10080,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3Model.rgba",
+      "sha256": "44ba9ebde7945c3131d4a167a0caead77eee14829ebf8249a7af919167036615",
+      "bytes": 30000,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3RangeFixture.rgba",
+      "sha256": "6487a7cca9fa6d31b8895ad0839912a9295965b9c94425c7fe4b1348b4c12a5b",
+      "bytes": 59760,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3RangeKm.rgba",
+      "sha256": "1ca99f21172d43ed22f2f5fb0d75dd43bfde0df2447eb4e530bd72fbf7d13c63",
+      "bytes": 23328,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3RangeUnknown.rgba",
+      "sha256": "189679f2551f7285e2785bc48d1cc4d430426bcedf976d53e3c765f3630fc577",
+      "bytes": 15552,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3Road.rgba",
+      "sha256": "bdb23e71e2f4758524da558f1cd0f78d996786633246376c363636223945c717",
+      "bytes": 167808,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3RpmUnit.rgba",
+      "sha256": "8e017cdd8e42846c1f673049168d8fa1dbd0ec32cecb6aea9040e0bcbfb50373",
+      "bytes": 27720,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3SpeedUnit.rgba",
+      "sha256": "773ff70ea93e28de1a747792ef83f9eff000bb84c298510f5b79bfc02f3ab4c5",
+      "bytes": 14268,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3SpeedUnknown.rgba",
+      "sha256": "df9c7784b785313f85cc2a1c352960b306271a55a432516fc051fe3c664ca902",
+      "bytes": 52272,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3Sport.rgba",
+      "sha256": "6aa58c1865c66a7dcf5251045535968b00dcd986fb51d92c7169579698ae790d",
+      "bytes": 52140,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3Tank.rgba",
+      "sha256": "623dfe401a5317560ba9cba989a2b22adc795a8ba7e39d5cfe92508117013553",
+      "bytes": 4352,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3TripFixture.rgba",
+      "sha256": "143e3e57d2bf3ba5b6e11949f483eb054f87c8d3fd390e065d9ce3311e775751",
+      "bytes": 65280,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3TripKm.rgba",
+      "sha256": "1ca99f21172d43ed22f2f5fb0d75dd43bfde0df2447eb4e530bd72fbf7d13c63",
+      "bytes": 23328,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3TripLabel.rgba",
+      "sha256": "b8ded64d5537e449ce0257bd89dcf93ea10c4193a3658db348f0c58988c75f69",
+      "bytes": 36080,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3TripUnknown.rgba",
+      "sha256": "5a5b43440307d3e2c2377cb8afab0bc54cd14c9c0d5d3635ca6b670b29c0b249",
+      "bytes": 14700,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3fuel_tex_anhaenger_bitmap.rgba",
+      "sha256": "fe75ce6946ed8e5ffc11b5c725c2a7dba55a0acc3d38b0d41686cd8a2eb0ee01",
+      "bytes": 3880,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3fuel_tex_bg_bitmap.rgba",
+      "sha256": "fb41b7bffaccb3c56d65d5c57dbf01c7a523d18fbeff522092309245f5aed5e0",
+      "bytes": 16,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3fuel_tex_bg_front_bitmap.rgba",
+      "sha256": "1d8c7fef87907613c79e7d02d70014244887590f39908c2cff97c24aab6001db",
+      "bytes": 3360,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3fuel_tex_bg_progress_bitmap.rgba",
+      "sha256": "cbda0c600e66336137b2ff8343ac58e7685f21970f915fc2a7155bc80c8a25d1",
+      "bytes": 16,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3fuel_tex_peak_bitmap.rgba",
+      "sha256": "46ee52b87dfc863272794511651d66ef031bc2de0e3d1b88d119f3231d46b328",
+      "bytes": 128,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3fuel_tex_pointer_front_bitmap.rgba",
+      "sha256": "d5d3e82e7546b284ce3d2277c0e344022b649d78348da0ae1aa8b6ce6d14f960",
+      "bytes": 6192,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v3fuel_tex_progressbar_bitmap.rgba",
+      "sha256": "8d47d9d4786e4119bc89884f726cf61477d9310a130720cf38e3b0a6ca4f2d11",
+      "bytes": 32,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v5CompassFixture.rgba",
+      "sha256": "a0c744e88557ee8be58a9047f414553d87c04053ce840332c63fdac53fade8b1",
+      "bytes": 29184,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v5CompassUnknown.rgba",
+      "sha256": "52782f2b414714d36e3141dab817a524f160c0af300d142b01049310b4e3d9ac",
+      "bytes": 8424,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v5OutsideFixture.rgba",
+      "sha256": "024fda670143192ec6de7d673ef6e04b7ef8336307130581fdd04d91b2b86a3e",
+      "bytes": 55680,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v5OutsideUnknown.rgba",
+      "sha256": "52782f2b414714d36e3141dab817a524f160c0af300d142b01049310b4e3d9ac",
+      "bytes": 8424,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyph1.rgba",
+      "sha256": "54bcb7f34d5a0281e3b8f2a9605ab141f0eb32930bbb9494b6758434777d1b28",
+      "bytes": 29400,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyph2.rgba",
+      "sha256": "3f76e7e292127f1ee90d7403375421c52c2cbd6a5ae441efb4ef09176e72c26b",
+      "bytes": 48216,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyph3.rgba",
+      "sha256": "30812aa71117ce93e333ab1d303f6005024c99844e5b34862f1dc5b3dd97d855",
+      "bytes": 48216,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyph4.rgba",
+      "sha256": "faa78711a80324792f703159d8455697cb20e290af7cb940b01bdf306c785ef9",
+      "bytes": 51216,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyph5.rgba",
+      "sha256": "c4a4234c45a91b5855464dda6096d0769c222d9ab85e9a54e95497b33ed54b5f",
+      "bytes": 48608,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyph6.rgba",
+      "sha256": "b911e4e838433131a8ff4ae3dc3414bd06441043597b9513f38176cf1f3907e1",
+      "bytes": 48608,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyph7.rgba",
+      "sha256": "01b3b8a75f28afcbb9a0889eaf47ce2b6e7af65a81a523c1d6721435213b1807",
+      "bytes": 49276,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyph8.rgba",
+      "sha256": "3836f7c03bbc5a092e4427bbc78a41d33b60ad44f14dcf5b944558a797a351e0",
+      "bytes": 48608,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyphD.rgba",
+      "sha256": "a6a1e12abcfc674760461b1db43a6b2f5cec06aea37d461ce8b6be04af3c3fd9",
+      "bytes": 46256,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyphM.rgba",
+      "sha256": "24341d596b1b801df38d84e476e5640105d1f9740916ac43dd7139030d28ad1b",
+      "bytes": 51744,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyphN.rgba",
+      "sha256": "0f17fcc2a726b18334d436b60289383d6dc1a99d7c9f1818a6f0cf03110a88fc",
+      "bytes": 47432,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyphP.rgba",
+      "sha256": "69657029e4c99c03dd9a4eb3a19b5b97f86cf6e576e4f3335bf273703769061d",
+      "bytes": 48608,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyphR.rgba",
+      "sha256": "bebe0d8f37543173a2e137f63332091a2cc12b1c3439ad07149831c717984e8d",
+      "bytes": 50176,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/f97/v8GearGlyphS.rgba",
+      "sha256": "87f097775a25ba1d22d6ef5aaff5ed218a1caccd238b79643be25c0e3946e0ef",
+      "bytes": 48216,
+      "kind": "visual-raster"
+    },
+    {
+      "file": "stage/semantic/frames.txt",
+      "sha256": "49c13ae53ad5955415e72e512ee1eb62125c870177577fd5f679fbc9ff3e9d57",
+      "bytes": 5185,
+      "kind": "synthetic-signal-fixture"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+"""Generate typed native tables from unchanged original BC geometry/GLSL/bindings."""
+from pathlib import Path
+import json,hashlib
+from PIL import Image
+H=Path(__file__).resolve().parent;OUT=H/'stage/bc';d=json.loads((H/'bc-shader-source-export.json').read_text());lines=[];calls=[];textures=[];meshes=[]
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+for s in d['sourceFiles']:assert sha(Path(s['file']))==s['sha256']
+def quote(v):return json.dumps(v)
+def number(v):
+ s=format(float(v),'.9g');return s+('f'if'.'in s or'e'in s else'.0f')
+def array(name,values,typ='float'):lines.append('static const '+typ+' '+name+'[]={'+','.join(number(v)if typ=='float'else str(v)for v in values)+'};')
+program_ids={k:i for i,k in enumerate(d['programs'])};geometry_ids={k:i for i,k in enumerate(d['geometry'])};texture_ids={k:i for i,k in enumerate(d['textures'])}
+for key,index in program_ids.items():
+ p=d['programs'][key];lines.append('static const char*bc_program_'+str(index)+'_vs='+quote(p['vertex'])+';');lines.append('static const char*bc_program_'+str(index)+'_fs='+quote(p['fragment'])+';')
+for key,index in geometry_ids.items():
+ g=d['geometry'][key]
+ for ai,(name,a)in enumerate(g['attributes'].items()):assert a['size']in[2,3,4];array('bc_geometry_'+str(index)+'_attr_'+str(ai),a['values'])
+ array('bc_geometry_'+str(index)+'_indices',g['indices'],'uint16_t');lines.append('static const BcAttribute bc_geometry_'+str(index)+'_attributes[]={'+','.join('{'+quote(name)+','+str(a['size'])+',bc_geometry_'+str(index)+'_attr_'+str(ai)+'}'for ai,(name,a)in enumerate(g['attributes'].items()))+'};')
+for key,index in texture_ids.items():
+ t=d['textures'][key];source=Path(t['sourceBase'])/t['file'];assert sha(source)==t['pngSha256'];im=Image.open(source).convert('RGBA');assert im.size==(t['width'],t['height']);raw=im.tobytes();digest=hashlib.sha256(raw).hexdigest()
+ if t.get('rgbaSha256'):assert digest==t['rgbaSha256']
+ file='bcShaderTexture'+str(index)+'.rgba';(OUT/file).write_bytes(raw);textures.append({'key':key,'index':index,'file':file,'width':im.width,'height':im.height,'rgbaSha256':digest,'source':str(source),'sourcePngSha256':t['pngSha256'],'pngRowsUnchanged':True})
+lines.append('static const BcSourceTexture bc_source_textures[]={'+','.join('{'+quote(t['file'])+','+str(t['width'])+','+str(t['height'])+'}'for t in textures)+'};')
+for index,row in enumerate(d['parts']):
+ uniforms=list(row['uniforms']);des=[];flat=[]
+ for name in uniforms:
+  v=row['uniforms'][name];v=v if isinstance(v,list)else[v];assert len(v)in[1,3,4,16];des.append({'name':name,'count':len(v)})
+ for state in row['states']:
+  assert set(state['uniforms'])==set(uniforms)
+  for name,u in zip(uniforms,des):
+   v=state['uniforms'][name];v=v if isinstance(v,list)else[v];assert len(v)==u['count'];flat+=v+[0]*(16-len(v))
+ array('bc_shader_'+str(index)+'_values',flat);array('bc_shader_'+str(index)+'_visible',[int(s['visible'])for s in row['states']],'unsigned char');lines.append('static const FuelUniformDescriptor bc_shader_'+str(index)+'_uniforms[]={'+','.join('{'+quote(u['name'])+','+str(u['count'])+'}'for u in des)+'};')
+ lines.append('static const BcSourceSampler bc_shader_'+str(index)+'_samplers[]={'+','.join('{'+quote(t['uniform'])+','+str(texture_ids[t['key']])+','+str(t['wrapU'])+','+str(t['wrapV'])+'}'for t in row['textures'])+'};')
+ gi=geometry_ids[row['geometry']];pi=program_ids[row['shader']];g=d['geometry'][row['geometry']];nv=len(g['attributes']['a_Position']['values'])//3
+ calls.append(' bc_source_part(client,scene,group,'+quote(row['key'])+','+str(row['page'])+','+str(pi)+',bc_program_'+str(pi)+'_vs,bc_program_'+str(pi)+'_fs,'+str(nv)+',bc_geometry_'+str(gi)+'_attributes,'+str(len(g['attributes']))+',bc_geometry_'+str(gi)+'_indices,'+str(len(g['indices']))+',bc_shader_'+str(index)+'_samplers,'+str(len(row['textures']))+',bc_shader_'+str(index)+'_uniforms,'+str(len(des))+',bc_shader_'+str(index)+'_values,bc_shader_'+str(index)+'_visible,'+str(100+index)+');')
+ meshes.append({'index':index,'sourceNode':row['node'],'sourceKey':row['key'],'page':row['page'],'geometry':row['geometry'],'program':row['shader'],'uniforms':des,'samplers':row['textures'],'states':6})
+(H/'bc_shader_arrays.inc').write_text('\n'.join(lines)+'\n');(H/'bc_shader_parts.inc').write_text('\n'.join(calls)+'\n');(H/'bc-shader-manifest.json').write_text(json.dumps({'scope':'Original sport/consumption GLSL and geometry with source-evaluated fixed BC fixture/mode states','sourceExportSha256':sha(H/'bc-shader-source-export.json'),'textures':textures,'meshes':meshes,'programs':[{'key':k,'vertexSha256':hashlib.sha256(v['vertex'].encode()).hexdigest(),'fragmentSha256':hashlib.sha256(v['fragment'].encode()).hexdigest()}for k,v in d['programs'].items()],'stateOrder':d['stateOrder'],'unavailableDynamicGraphsHidden':True,'originalLuaControlledBarVisibility':d['consumption']['originalLuaControls'],'physicalValuesUnset':True,'originalControllerExecuted':False,'vehicleIntegrationAllowed':False},indent=2)+'\n');print('Prepared original BC native shaders',len(meshes),'meshes',len(program_ids),'programs',len(textures),'textures')

@@ -8,18 +8,36 @@
     },
     {
       "file": "src/kombikraft/web/design/f97-gauges.js",
-      "sha256": "cc2a1617a58915b9c39c422eab4114866f1d0d76f5e817193c93ab7164f6f7d7",
-      "authoredSourceSha256": "cc2a1617a58915b9c39c422eab4114866f1d0d76f5e817193c93ab7164f6f7d7"
+      "sha256": "0382241e3dab0dd00126f51c00a3f49ccc085b887f3b94906c40c7a0dcb1b60e",
+      "authoredSourceSha256": "2edf24c4dabf2167bf5b4b9ce2f3d5e94aa067fd3b70f100a2fcb539f61aa0fa",
+      "assetDigestRemappings": [
+        {
+          "originalSha256": "c81132e977a9de407997893fd0a177f1c969ddd8732efbac6058b306d4a05864",
+          "publishedSha256": "45e744af70b46ceac0f96e95b2a1c9b335bc0876bad41636cd6706ee85b79019"
+        }
+      ]
     },
     {
       "file": "src/kombikraft/web/design/factory-cc.js",
-      "sha256": "d535709a2b45b4d87007764da1e9bde7c1a6a8cee540462d63a82533b95dd8fd",
-      "authoredSourceSha256": "d535709a2b45b4d87007764da1e9bde7c1a6a8cee540462d63a82533b95dd8fd"
+      "sha256": "ad452b3c1009c448844a11dee365c212518615af9693399a574af766805f91ac",
+      "authoredSourceSha256": "d535709a2b45b4d87007764da1e9bde7c1a6a8cee540462d63a82533b95dd8fd",
+      "assetDigestRemappings": [
+        {
+          "originalSha256": "4974e322b6dae5be4e94a41778371d8a50ce0f759d34732692e7d77a4c78f75b",
+          "publishedSha256": "b5589f9f4b1329f11b78d408c1281b95b134b14b0a97f66a196042ff92530f70"
+        }
+      ]
     },
     {
       "file": "src/kombikraft/web/design/factory-fuel.js",
-      "sha256": "d542ad2ff0876f016cc87251a26ab5aeee04e546543ebfcfa7151685decfe222",
-      "authoredSourceSha256": "d542ad2ff0876f016cc87251a26ab5aeee04e546543ebfcfa7151685decfe222"
+      "sha256": "ba957f958016b75a3d8086493e459d651648b671e312b598ebabb2c060c584e8",
+      "authoredSourceSha256": "d542ad2ff0876f016cc87251a26ab5aeee04e546543ebfcfa7151685decfe222",
+      "assetDigestRemappings": [
+        {
+          "originalSha256": "f70ad3a1365cad03dccc0c68388ee192581114a79c55a3ad68fca6a8468a4032",
+          "publishedSha256": "bd17426894351f8461e6bb284992ee6b97ea41bced66e334e88efff5222b2bfb"
+        }
+      ]
     },
     {
       "file": "src/kombikraft/web/design/factory-gear.js",
@@ -33,8 +51,14 @@
     },
     {
       "file": "src/kombikraft/web/design/factory-mini-gauges.js",
-      "sha256": "9a18e0ece4ccc6aaac2ab44cadebaf3aeb7b8324de65ce9092a901d8c762564d",
-      "authoredSourceSha256": "9a18e0ece4ccc6aaac2ab44cadebaf3aeb7b8324de65ce9092a901d8c762564d"
+      "sha256": "af34878a52ebee758d6f17046bf08e62ece3e25e97580dd2e29f9a1e7661a0a8",
+      "authoredSourceSha256": "9a18e0ece4ccc6aaac2ab44cadebaf3aeb7b8324de65ce9092a901d8c762564d",
+      "assetDigestRemappings": [
+        {
+          "originalSha256": "8ed13c5431632b9423ca1a60aac923fefc8478abbc367059cc3c0deed5028723",
+          "publishedSha256": "214553273726d10abe3a717555424d6416ecfe557876776e89751672b305b75a"
+        }
+      ]
     },
     {
       "file": "src/kombikraft/web/design/factory-mode.js",
@@ -43,18 +67,40 @@
     },
     {
       "file": "src/kombikraft/web/design/factory-rpm.js",
-      "sha256": "f184664986c91f346a59030748397a8f86e31958be950f94451c4116c68fbe9f",
-      "authoredSourceSha256": "f184664986c91f346a59030748397a8f86e31958be950f94451c4116c68fbe9f"
+      "sha256": "3de9870f1422171bb05a3a70d2c60d6908b9e7001e05105a7dcc12894dcdd85c",
+      "authoredSourceSha256": "f184664986c91f346a59030748397a8f86e31958be950f94451c4116c68fbe9f",
+      "assetDigestRemappings": [
+        {
+          "originalSha256": "6078dea817a10264ebc189ae15e31b19e46b823519a3af9a8919793dbdde2a72",
+          "publishedSha256": "3542215e55a6d118de70eb233dc552d475a7710fafd98e7eedd44694d2384a03"
+        }
+      ]
     },
     {
       "file": "src/kombikraft/web/design/factory-seatbelt.js",
-      "sha256": "2584bf480bf016c9afab050d45907cd124fe6655c187fef8c0ac3a6de63bf1ea",
-      "authoredSourceSha256": "2584bf480bf016c9afab050d45907cd124fe6655c187fef8c0ac3a6de63bf1ea"
+      "sha256": "717f0e39dec386c1816724905653f4743eb4904a548d1b6a83b217f298b04b64",
+      "authoredSourceSha256": "2584bf480bf016c9afab050d45907cd124fe6655c187fef8c0ac3a6de63bf1ea",
+      "assetDigestRemappings": [
+        {
+          "originalSha256": "461969fee63b02583e2ead1d670e79041592cfa52d5cd181ced863eb6a6ac278",
+          "publishedSha256": "1763e6978db351a3375dd1c50dcea407200f4628459b7ba0f3d3a9ab5276aa5d"
+        },
+        {
+          "originalSha256": "6c536b49921cf8528c472190c45726406e5c1ca028bd522d363cf4fa48c6be5d",
+          "publishedSha256": "167c845794cccab99a381bba49e6a48d54d7f38cc878e6db6a9c34bb4368e682"
+        }
+      ]
     },
     {
       "file": "src/kombikraft/web/design/factory-sport.js",
-      "sha256": "624e22d8a471d6e7900edf7f18f9e0fd9fdfaf195678a133488236177c7e7813",
-      "authoredSourceSha256": "624e22d8a471d6e7900edf7f18f9e0fd9fdfaf195678a133488236177c7e7813"
+      "sha256": "3e04ac913e7c1bd717ec71cac51889db684ac168b362dae00eecf2bee63489c0",
+      "authoredSourceSha256": "624e22d8a471d6e7900edf7f18f9e0fd9fdfaf195678a133488236177c7e7813",
+      "assetDigestRemappings": [
+        {
+          "originalSha256": "f70ad3a1365cad03dccc0c68388ee192581114a79c55a3ad68fca6a8468a4032",
+          "publishedSha256": "bd17426894351f8461e6bb284992ee6b97ea41bced66e334e88efff5222b2bfb"
+        }
+      ]
     },
     {
       "file": "src/kombikraft/web/design/factory-stats.js",
@@ -63,8 +109,8 @@
     },
     {
       "file": "src/kombikraft/web/design/index.html",
-      "sha256": "57239ad11feb2069a35f0dabf0494d886e9ce50eaf4aabefed52d15f86297d92",
-      "authoredSourceSha256": "4123943be0995bc4b87fe704d7f8d6868e12ffb30a42739b4d71ae6195695819"
+      "sha256": "6331977c405a1fea6f917d35c22b5539bf4a41854e13e9cee3a08e8f5936e999",
+      "authoredSourceSha256": "c87baf9340e8cf29dd1fc82e0c977fb3bc6ce5acd27a4b9d29c37f091d6a6338"
     },
     {
       "file": "src/kombikraft/web/design/layout-geometry.js",
@@ -121,5 +167,6 @@
     "factory-consumption.js: captured Lua translation; local import only"
   ],
   "firmwareAssetsIncluded": false,
-  "extractedProprietarySourceIncluded": false
+  "extractedProprietarySourceIncluded": false,
+  "assetPackDigestRemapping": "Pinned public metadata hashes differ only because private paths/identifiers and serialization are sanitized; visual payload hashes remain exact."
 }

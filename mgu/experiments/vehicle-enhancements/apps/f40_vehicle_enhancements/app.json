@@ -1,0 +1,493 @@
+{
+  "id": "f40_vehicle_enhancements",
+  "title": "Vehicle enhancements",
+  "description": "Private configurable F40 enhancements using native BMW HMI controls. Ambient presets by driving mode and a validation-gated exhaust controller.",
+  "version": "0.1.0",
+  "private": true,
+  "vendor": "Callan",
+  "loggingId": "OAVE",
+  "iconGlyph": "settings",
+  "autostart": true,
+  "memoryKB": 98304,
+  "cpuLimit": 20,
+  "signals": {
+    "de.bmw.infotainment.misc.ComfortFunctionIuK": {
+      "ambientLightInteriorColour": "w",
+      "statusAmbientLightInteriorColour": "rs"
+    },
+    "de.bmw.infotainment.drivingexcitement.FES": {
+      "statusFESVehicleDynamicSwitchHMI": "rs"
+    },
+    "de.bmw.infotainment.vehicle.CDS": {
+      "statusEngineSpeed2": "rs"
+    },
+    "com.harman.infotainment.systemfunctions.tasu.tasu.InternalTasu": {
+      "_optional": "Exhaust identification and control",
+      "_instances": "SystemFunctionsInternalTasuInst1",
+      "_methods": [
+        "sendTasuRequest"
+      ],
+      "_broadcasts": [
+        "sendTasuResponse"
+      ]
+    }
+  },
+  "screens": [
+    {
+      "name": "MAIN",
+      "kind": "menu",
+      "title": "Vehicle enhancements",
+      "items": [
+        [
+          "button",
+          "BTN_SETTINGS",
+          "Choose enhancements"
+        ],
+        [
+          "text3",
+          "LIGHT_STATUS",
+          "Lighting: Off"
+        ],
+        [
+          "text3",
+          "EXHAUST_STATUS",
+          "Exhaust: Off"
+        ],
+        [
+          "button",
+          "BTN_OPEN",
+          "Open exhaust"
+        ],
+        [
+          "button",
+          "BTN_CLOSE",
+          "Close exhaust"
+        ],
+        [
+          "button",
+          "BTN_OEM",
+          "BMW exhaust control"
+        ],
+        [
+          "button",
+          "BTN_ALL_OFF",
+          "Turn all enhancements off"
+        ],
+        [
+          "text3",
+          "FEATURE_INFO",
+          "Colour numbers follow your factory palette. Custom hues and native drive-mode linking are under investigation."
+        ]
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "key": "lightingEnabled",
+      "label": "Enable lighting enhancements",
+      "type": "bool",
+      "default": false,
+      "group": "Ambient lighting"
+    },
+    {
+      "key": "lightingBehaviour",
+      "label": "Lighting behaviour",
+      "type": "choice",
+      "default": "drive",
+      "options": [
+        [
+          "drive",
+          "Follow driving mode"
+        ],
+        [
+          "manual",
+          "Choose a colour"
+        ]
+      ],
+      "when": {
+        "lightingEnabled": true
+      },
+      "group": "Ambient lighting"
+    },
+    {
+      "key": "manualColour",
+      "label": "Colour preset",
+      "type": "choice",
+      "default": 0,
+      "options": [
+        [
+          0,
+          "Leave unchanged"
+        ],
+        [
+          1,
+          "Colour 1"
+        ],
+        [
+          2,
+          "Colour 2"
+        ],
+        [
+          3,
+          "Colour 3"
+        ],
+        [
+          4,
+          "Colour 4"
+        ],
+        [
+          5,
+          "Colour 5"
+        ],
+        [
+          6,
+          "Colour 6"
+        ],
+        [
+          7,
+          "Colour 7"
+        ],
+        [
+          8,
+          "Colour 8"
+        ],
+        [
+          9,
+          "Colour 9"
+        ],
+        [
+          10,
+          "Colour 10"
+        ],
+        [
+          11,
+          "Colour 11"
+        ],
+        [
+          12,
+          "Colour 12"
+        ]
+      ],
+      "when": {
+        "lightingEnabled": true,
+        "lightingBehaviour": "manual"
+      },
+      "group": "Ambient lighting"
+    },
+    {
+      "key": "colour_sport",
+      "label": "Sport colour",
+      "type": "choice",
+      "default": 0,
+      "options": [
+        [
+          0,
+          "Leave unchanged"
+        ],
+        [
+          1,
+          "Colour 1"
+        ],
+        [
+          2,
+          "Colour 2"
+        ],
+        [
+          3,
+          "Colour 3"
+        ],
+        [
+          4,
+          "Colour 4"
+        ],
+        [
+          5,
+          "Colour 5"
+        ],
+        [
+          6,
+          "Colour 6"
+        ],
+        [
+          7,
+          "Colour 7"
+        ],
+        [
+          8,
+          "Colour 8"
+        ],
+        [
+          9,
+          "Colour 9"
+        ],
+        [
+          10,
+          "Colour 10"
+        ],
+        [
+          11,
+          "Colour 11"
+        ],
+        [
+          12,
+          "Colour 12"
+        ]
+      ],
+      "when": {
+        "lightingEnabled": true,
+        "lightingBehaviour": "drive"
+      },
+      "group": "Ambient lighting"
+    },
+    {
+      "key": "colour_comfort",
+      "label": "Comfort / Adaptive colour",
+      "type": "choice",
+      "default": 0,
+      "options": [
+        [
+          0,
+          "Leave unchanged"
+        ],
+        [
+          1,
+          "Colour 1"
+        ],
+        [
+          2,
+          "Colour 2"
+        ],
+        [
+          3,
+          "Colour 3"
+        ],
+        [
+          4,
+          "Colour 4"
+        ],
+        [
+          5,
+          "Colour 5"
+        ],
+        [
+          6,
+          "Colour 6"
+        ],
+        [
+          7,
+          "Colour 7"
+        ],
+        [
+          8,
+          "Colour 8"
+        ],
+        [
+          9,
+          "Colour 9"
+        ],
+        [
+          10,
+          "Colour 10"
+        ],
+        [
+          11,
+          "Colour 11"
+        ],
+        [
+          12,
+          "Colour 12"
+        ]
+      ],
+      "when": {
+        "lightingEnabled": true,
+        "lightingBehaviour": "drive"
+      },
+      "group": "Ambient lighting"
+    },
+    {
+      "key": "colour_eco",
+      "label": "Eco Pro colour",
+      "type": "choice",
+      "default": 0,
+      "options": [
+        [
+          0,
+          "Leave unchanged"
+        ],
+        [
+          1,
+          "Colour 1"
+        ],
+        [
+          2,
+          "Colour 2"
+        ],
+        [
+          3,
+          "Colour 3"
+        ],
+        [
+          4,
+          "Colour 4"
+        ],
+        [
+          5,
+          "Colour 5"
+        ],
+        [
+          6,
+          "Colour 6"
+        ],
+        [
+          7,
+          "Colour 7"
+        ],
+        [
+          8,
+          "Colour 8"
+        ],
+        [
+          9,
+          "Colour 9"
+        ],
+        [
+          10,
+          "Colour 10"
+        ],
+        [
+          11,
+          "Colour 11"
+        ],
+        [
+          12,
+          "Colour 12"
+        ]
+      ],
+      "when": {
+        "lightingEnabled": true,
+        "lightingBehaviour": "drive"
+      },
+      "group": "Ambient lighting"
+    },
+    {
+      "key": "exhaustEnabled",
+      "label": "Enable exhaust control",
+      "type": "bool",
+      "default": false,
+      "group": "Exhaust"
+    },
+    {
+      "key": "exhaustBehaviour",
+      "label": "Exhaust behaviour",
+      "type": "choice",
+      "default": "OEM",
+      "options": [
+        [
+          "OEM",
+          "BMW control"
+        ],
+        [
+          "OPEN",
+          "Open"
+        ],
+        [
+          "CLOSED",
+          "Closed"
+        ],
+        [
+          "DRIVE",
+          "Follow driving mode"
+        ]
+      ],
+      "when": {
+        "exhaustEnabled": true
+      },
+      "group": "Exhaust"
+    },
+    {
+      "key": "exhaustHold",
+      "label": "Maintain exhaust request",
+      "type": "bool",
+      "default": false,
+      "when": {
+        "exhaustEnabled": true
+      },
+      "group": "Exhaust"
+    },
+    {
+      "key": "exhaust_sport",
+      "label": "Sport exhaust",
+      "type": "choice",
+      "default": "OEM",
+      "options": [
+        [
+          "OEM",
+          "BMW control"
+        ],
+        [
+          "OPEN",
+          "Open"
+        ],
+        [
+          "CLOSED",
+          "Closed"
+        ]
+      ],
+      "when": {
+        "exhaustEnabled": true,
+        "exhaustBehaviour": "DRIVE"
+      },
+      "group": "Exhaust"
+    },
+    {
+      "key": "exhaust_comfort",
+      "label": "Comfort / Adaptive exhaust",
+      "type": "choice",
+      "default": "OEM",
+      "options": [
+        [
+          "OEM",
+          "BMW control"
+        ],
+        [
+          "OPEN",
+          "Open"
+        ],
+        [
+          "CLOSED",
+          "Closed"
+        ]
+      ],
+      "when": {
+        "exhaustEnabled": true,
+        "exhaustBehaviour": "DRIVE"
+      },
+      "group": "Exhaust"
+    },
+    {
+      "key": "exhaust_eco",
+      "label": "Eco Pro exhaust",
+      "type": "choice",
+      "default": "OEM",
+      "options": [
+        [
+          "OEM",
+          "BMW control"
+        ],
+        [
+          "OPEN",
+          "Open"
+        ],
+        [
+          "CLOSED",
+          "Closed"
+        ]
+      ],
+      "when": {
+        "exhaustEnabled": true,
+        "exhaustBehaviour": "DRIVE"
+      },
+      "group": "Exhaust"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+from pathlib import Path
+import json,hashlib,struct
+from PIL import Image
+H=Path(__file__).resolve().parent;LAB=H.parents[1];d=json.loads((H/'fuel-source-export.json').read_text());source=Path(d['sourcePackage']);assert hashlib.sha256(source.read_bytes()).hexdigest()==d['sourcePackageSha256'];OUT=H/'stage/f97';lines=[];calls=[];textures=[];meshinfo=[]
+def cfloat(v):
+ s=format(float(v),'.9g');return s+('f'if'.'in s or'e'in s else'.0f')
+def arr(name,values,typ='float'):
+ lines.append('static const '+typ+' '+name+'[]={'+','.join(cfloat(v)if typ=='float'else str(v)for v in values)+'};')
+def quote(s):return json.dumps(s)
+for key,t in d['textures'].items():
+ p=source.parent/t['file'];assert hashlib.sha256(p.read_bytes()).hexdigest()==t['pngSha256'];im=Image.open(p).convert('RGBA');b=im.tobytes();assert hashlib.sha256(b).hexdigest()==t['rgbaSha256'];name='v3fuel_'+key;f=OUT/(name+'.rgba');f.write_bytes(b);textures.append({'key':name,'file':f.name,'width':im.width,'height':im.height,'sha256':hashlib.sha256(b).hexdigest(),'sourcePng':str(p),'sourcePngSha256':t['pngSha256'],'sourceRgbaSha256':t['rgbaSha256']})
+lines.append('typedef struct {const char*name;unsigned count;} FuelUniformDescriptor;')
+for i,row in enumerate(d['states'][0]):
+ g=d['geometry'][row['geometry']];a=g['attributes'];assert set(a)<= {'a_Position','a_TextureCoordinate','a_Color'}
+ for key,attr in a.items():arr(f'fuel_{i}_{key}',attr['values'])
+ arr(f'fuel_{i}_indices',g['indices'],'uint16_t');uniforms=list(row['uniforms']);des=[];states=[]
+ for name in uniforms:
+  v=row['uniforms'][name];v=v if isinstance(v,list)else[v];assert len(v)in[1,2,3,4,16];des.append({'name':name,'count':len(v)})
+ for state in d['states']:
+  r=state[i];assert r['node']==row['node']and list(r['uniforms'])==uniforms
+  values=[]
+  for name,u in zip(uniforms,des):
+   v=r['uniforms'][name];v=v if isinstance(v,list)else[v];assert len(v)==u['count'];values+=v+[0]*(16-len(v))
+  states+=values
+ arr(f'fuel_{i}_values',states);arr(f'fuel_{i}_visible',[int(s[i]['visible'])for s in d['states']],'unsigned char')
+ lines.append('static const FuelUniformDescriptor fuel_'+str(i)+'_uniforms[]={'+','.join('{'+quote(u['name'])+','+str(u['count'])+'}'for u in des)+'};')
+ p=d['programs'][row['shader']];lines.append(f'static const char*fuel_{i}_vs='+quote(p['vertex'])+';');lines.append(f'static const char*fuel_{i}_fs='+quote(p['fragment'])+';')
+ color=f'fuel_{i}_a_Color'if'a_Color'in a else'NULL';nv=len(a['a_Position']['values'])//3;ni=len(g['indices']);calls.append(f' create_fuel_part(client,scene,group,{quote(row["node"])},fuel_{i}_vs,fuel_{i}_fs,{nv},fuel_{i}_a_Position,fuel_{i}_a_TextureCoordinate,{color},{ni},fuel_{i}_indices,{quote("v3fuel_"+row["texture"])},{330+i},fuel_{i}_uniforms,{len(des)},fuel_{i}_values,fuel_{i}_visible);')
+ meshinfo.append({'index':i,'sourceNode':row['node'],'sourceGeometry':row['geometry'],'shader':row['shader'],'vertexShaderSha256':hashlib.sha256(p['vertex'].encode()).hexdigest(),'fragmentShaderSha256':hashlib.sha256(p['fragment'].encode()).hexdigest(),'vertices':nv,'indices':ni,'uniformDescriptors':des})
+lines.append('static const F97Texture fuel_textures[]={'+','.join('{'+quote(t['key'])+','+quote(t['file'])+','+str(t['width'])+','+str(t['height'])+'}'for t in textures)+'};');(H/'fuel_arrays.inc').write_text('\n'.join(lines)+'\n');(H/'fuel_parts.inc').write_text('\n'.join(calls)+'\n');(H/'fuel-asset-manifest.json').write_text(json.dumps({'sourceExportSha256':hashlib.sha256((H/'fuel-source-export.json').read_bytes()).hexdigest(),'sourcePackageSha256':d['sourcePackageSha256'],'sourceEvaluatorSha256':d['sourceEvaluatorSha256'],'states':101,'inputDomain':'Explicit integer normalized graphics fixture0..100; unknown−1 hidesallmeshes; not physical fuel conversion','meshes':meshinfo,'textures':textures,'customFuelSemantics':True,'originalShadersUnmodified':True,'customFitProjection':d['customFuelComposition'],'originalTelemetryControllerExecuted':False,'vehicleDeploymentAllowed':False},indent=2)+'\n');print('Native original-shader fuel assets',len(meshinfo),'meshes',len(textures),'textures')

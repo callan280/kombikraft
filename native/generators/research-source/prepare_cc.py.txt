@@ -1,0 +1,51 @@
+"""Fixed source-backed CC previews. No original text engine or warning arbitration."""
+from pathlib import Path
+import json,hashlib,ctypes
+from PIL import Image,ImageDraw,ImageFont,ImageOps
+H=Path(__file__).resolve().parent;C=H.parents[1];OUT=H/'stage/cc';OUT.mkdir(exist_ok=True)
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+source=H/'source-snapshots/original-cc-manifest.json';original=json.loads(source.read_text());rom=C/'diagnostic-art-research/runtime-cc/rom-symbol-manifest.json';metadata=json.loads(rom.read_text())['metadataRecords'];palette=C/'diagnostic-art-research/cc-gal-backend/original-cc-palette-proof.json';pal=json.loads(palette.read_text());assert pal['passed']
+panelp=C/'factory-cc/render-package/factory-cc-package.json';panel=json.loads(panelp.read_text());plate=next(m for m in panel['meshes']if m['node']==1031)
+iconp=C/'diagnostic-art-research/cc-gal-backend/icon-package/factory-cc-components.json';icon=json.loads(iconp.read_text());symbol=icon['meshes'][0]
+fontp=C/'typography/BMWTARG.ttf';font=ImageFont.truetype(str(fontp),87)
+ft=ctypes.CDLL('/opt/homebrew/opt/freetype/lib/libfreetype.dylib');lib=ctypes.c_void_p();face=ctypes.c_void_p();assert ft.FT_Init_FreeType(ctypes.byref(lib))==0;ft.FT_New_Face.argtypes=[ctypes.c_void_p,ctypes.c_char_p,ctypes.c_long,ctypes.POINTER(ctypes.c_void_p)];assert ft.FT_New_Face(lib,str(fontp).encode(),0,ctypes.byref(face))==0;ft.FT_Get_Char_Index.argtypes=[ctypes.c_void_p,ctypes.c_ulong];ft.FT_Get_Char_Index.restype=ctypes.c_uint
+arrays=[];textures=[];calls=[];records=[];index=0
+def vals(xs):return ','.join(format(float(x),'.9g')+('f'if'.'in format(float(x),'.9g')or'e'in format(float(x),'.9g')else'.0f')for x in xs)
+def array(name,xs,kind='float'):arrays.append('static '+kind+' '+name+'[]={'+(vals(xs)if kind=='float'else','.join(map(str,xs)))+'};')
+def texture(name,im,provenance):
+ im=im.convert('RGBA');raw=im.tobytes();path=OUT/(name+'.rgba');path.write_bytes(raw);textures.append({'key':name,'file':name+'.rgba','width':im.width,'height':im.height,'rgbaSha256':hashlib.sha256(raw).hexdigest(),'provenance':provenance});return name
+def mesh(name,m,program,texture_key,matrix,colour,ccid,uniforms=None):
+ global index
+ for attr,a in m['attributes'].items():array(name+'_'+attr,a['values'])
+ array(name+'_indices',m['indices'],'uint16_t');array(name+'_matrix',matrix)
+ if name=='plate':arrays.append('static const char*cc_panel_vs='+json.dumps(program['vertex'])+';');arrays.append('static const char*cc_panel_fs='+json.dumps(program['fragment'])+';')
+ attrs=m['attributes'];vcount=len(next(iter(attrs.values()))['values'])//next(iter(attrs.values()))['size'];extra=name+'_a_TextureCoordinate1'if'a_TextureCoordinate1'in attrs else'NULL'
+ calls.append(f' cc_add(client,scene,group,{"panel_fx"if name=="plate"else"icon_fx"},"{name}",{vcount},{name}_a_Position,{name}_a_TextureCoordinate,{extra},{len(m["indices"])},{name}_indices,"{texture_key}",{name}_matrix,{colour[0]},{colour[1]},{colour[2]},{colour[3]},{ccid},{index});');index+=1
+def matrix(x,y,sx=1,sy=1):return[sx/960,0,0,0,0,0,0,0,0,sy/360,0,0,x/960-1,1-y/360,0,1]
+t=panel['textures'][plate['textures']['tex0']];path=panelp.parent/t['file'];assert sha(path)==t['pngSha256'];texture('plate',Image.open(path),{'kind':'Decoded original BMW CCPanel texture, unflipped rows','source':str(path),'sha256':sha(path)})
+mesh('plate',plate,panel['programs'][plate['effect']],'plate',matrix(960,603),[1]*4,-1)
+arrays.append('static const char*cc_icon_vs='+json.dumps(icon['programs'][symbol['effect']]['vertex'])+';');arrays.append('static const char*cc_icon_fs='+json.dumps(icon['programs'][symbol['effect']]['fragment'])+';')
+for entry in original['entries']:
+ ccid=entry['ccid'];r=entry['originalSymbolRecord'];raw=Path(r['rgba']).read_bytes();assert hashlib.sha256(raw).hexdigest()==r['rgbaSha256'];im=Image.frombytes('RGBA',(r['width'],r['height']),raw);alpha=im.getchannel('A');ink=alpha.point(lambda v:255 if v>16 else 0).getbbox();assert ink
+ selector=next(m for m in metadata if ccid in m['sourceCCIDs']);byte3=bytes.fromhex(selector['rawHex'])[3];code=byte3>>5;colour=pal['cases'][code]['rgbaFloat']if r['format']==0x20 else[1]*4
+ lines=[line for line in entry['originalLines']if line];assert 1<=len(lines)<=3;metrics=[]
+ for i,line in enumerate(lines):
+  glyphs={ch:ft.FT_Get_Char_Index(face,ord(ch))for ch in line};assert all(glyphs.values())
+  box=font.getbbox(line,anchor='ls');metrics.append({'text':line,'box':box,'width':(box[2]-box[0])/3,'baseline':i*44,'glyphIndices':glyphs})
+ yoff=628-(min(m['baseline']+m['box'][1]/3 for m in metrics)+max(m['baseline']+m['box'][3]/3 for m in metrics))/2
+ fit=48/max(ink[2]-ink[0],ink[3]-ink[1]);iconw=(ink[2]-ink[0])*fit;textw=max(m['width']for m in metrics);assert textw<=440
+ groupw=iconw+18+textw;left=960-groupw/2;iconcx=left+iconw/2;textcx=left+iconw+18+textw/2
+ texture('icon'+str(ccid),im,{'kind':'Original converter RGBA bytes; no vertical flip','source':r['rgba'],'sha256':r['rgbaSha256'],'descriptorVa':r['descriptorVa']})
+ localcx=(ink[0]+ink[2])/2;localcy=(ink[1]+ink[3])/2
+ # Original unmodified64x64 positions+UVs; accepted custom ink-fit transform.
+ mesh('icon'+str(ccid),symbol,icon['programs'][symbol['effect']],'icon'+str(ccid),matrix(iconcx-fit*localcx,628+fit*localcy,fit,fit),colour,ccid)
+ rows=[]
+ for i,m in enumerate(metrics):
+  box=m['box'];glyph=Image.new('RGBA',(box[2]-box[0],box[3]-box[1]));ImageDraw.Draw(glyph).text((-box[0],-box[1]),m['text'],font=font,anchor='ls',fill=(255,255,255,255));name='ccText'+str(ccid)+'_'+str(i);texture(name,ImageOps.flip(glyph),{'kind':'Custom text rasterization using genuine BMWTA; not native factory text engine','font':str(fontp),'fontSha256':sha(fontp),'fontSize':29,'rasterScale':3,'text':m['text'],'sourceTextRecord':entry['originalTextRecords'][i],'glyphIndices':m['glyphIndices'],'verticalFlip':True})
+  w,h=glyph.width/3,glyph.height/3;left=textcx-w/2;top=m['baseline']+yoff+box[1]/3
+  quad={'attributes':{'a_Position':{'size':3,'values':[0,0,0,w,0,0,0,0,h,w,0,h]},'a_TextureCoordinate':{'size':2,'values':[0,0,1,0,0,1,1,1]}},'indices':[0,1,2,1,3,2]}
+  mesh(name,quad,icon['programs'][symbol['effect']],name,matrix(left,top+h),[1]*4,ccid);rows.append({'text':m['text'],'bounds':[left,top,left+w,top+h],'baseline':m['baseline']+yoff})
+ records.append({'ccid':ccid,'sourceLines':lines,'metadataRecordVa':selector['recordVa'],'rawMetadataByte3':byte3,'iconColourSelector':code,'iconColour':colour,'originalBitmapFormat':r['format'],'sourceRgbPreserved':r['format']!=0x20,'textColourSelector':5,'textColour':[1]*4,'customTextRows':rows,'iconInkBoundsRaw':ink,'iconFitScale':fit,'customIconCenter':[iconcx,628],'customGroupWidth':groupw})
+arrays.append('static const F97Texture cc_textures[]={'+','.join('{"'+r['key']+'","'+r['file']+'",'+str(r['width'])+','+str(r['height'])+'}'for r in textures)+'};')
+(H/'cc_arrays.inc').write_text('\n'.join(arrays)+'\n');(H/'cc_parts.inc').write_text('\n'.join(calls)+'\n')
+(H/'cc-asset-manifest.json').write_text(json.dumps({'schema':'native-v4-source-cc-preview-v1','records':records,'textures':textures,'sourceSha256':{str(p):sha(p)for p in[source,rom,palette,panelp,iconp,fontp,H/'source-snapshots/popup-layout.js']},'sourceBank':0,'sourceBankVehicleMatchVerified':False,'originalSourceIconShaderExecuted':True,'originalSourcePanelShaderExecuted':True,'customCenteredTextComposition':True,'nativeFactoryTextEngineExecuted':False,'originalWarningControllerExecuted':False,'BCContentPorted':False,'vehicleIntegrationAllowed':False},indent=2)+'\n');print('prepared',len(records),'CC previews;',index,'meshes')

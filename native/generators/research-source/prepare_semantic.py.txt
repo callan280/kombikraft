@@ -1,0 +1,27 @@
+from pathlib import Path
+from PIL import Image,ImageDraw,ImageFont,ImageOps
+import json,hashlib
+H=Path(__file__).resolve().parent; C=H.parents[1]; font=C/'typography/BMWTARG.ttf'; sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+assert sha(font)=='32751a2ed9c2e579b6a3e545bb13b11cc6dd4d7873abb4774594204d4d1a5958'
+chars='0123456789,—:'; arrays=[]; fonts=[]
+for size in (36,25,28):
+ f=ImageFont.truetype(str(font),size*3); cells=[]
+ for ch in chars:
+  box=f.getbbox(ch,anchor='ls'); cells.append({'char':ch,'box':[v/3 for v in box],'advance':f.getlength(ch)/3,'rasterBox':box})
+ cw=max(x['rasterBox'][2]-x['rasterBox'][0] for x in cells)+6; chh=max(x['rasterBox'][3]-x['rasterBox'][1] for x in cells)+6
+ im=Image.new('RGBA',(cw*len(chars),chh))
+ for i,g in enumerate(cells):
+  b=g['rasterBox']; tile=Image.new('RGBA',(cw,chh));ImageDraw.Draw(tile).text((3-b[0],3-b[1]),g['char'],font=f,anchor='ls',fill='white');im.paste(ImageOps.flip(tile),(i*cw,0))
+  g['uv']=[(i*cw+3)/im.width,(chh-3-(b[3]-b[1]))/chh,(i*cw+3+(b[2]-b[0]))/im.width,(chh-3)/chh]
+ raw=H/f'stage/bc/semantic{size}.rgba';raw.write_bytes(im.tobytes());im.save(H/f'evidence/semantic-atlas-{size}.png')
+ kerning=[[float(f.getlength(a+b)-f.getlength(a)-f.getlength(b))/3 for b in chars] for a in chars]
+ fonts.append({'size':size,'width':im.width,'height':im.height,'cells':cells,'kerning':kerning,'sha256':sha(raw)})
+ def lit(v):return format(float(v),'.9g')+'f' if '.' in format(float(v),'.9g') or 'e' in format(float(v),'.9g') else str(int(v))+'.0f'
+ arrays.append('static const float semanticMetrics%d[13][9]={%s};'%(size,','.join('{'+','.join(lit(x)for x in [*g['box'],g['advance'],*g['uv']])+'}'for g in cells)))
+ arrays.append('static const float semanticKerning%d[13][13]={%s};'%(size,','.join('{'+','.join(lit(x)for x in row)+'}'for row in kerning)))
+arrays.append('static const F97Texture semantic_textures[]={'+','.join('{"semantic%d","semantic%d.rgba",%d,%d}'%(x['size'],x['size'],x['width'],x['height'])for x in fonts)+'};')
+p=json.loads((H/'authored-axis-profile.json').read_text())
+for axis in ('rpm','oil'):
+ arrays.append('static const float semantic_%s_knots[%d][2]={%s};'%(axis,len(p[axis]['knots']),','.join('{%s,%s}'%(lit(k['value']),lit(k['rotationRadians']))for k in p[axis]['knots'])))
+(H/'semantic_arrays.inc').write_text('\n'.join(arrays)+'\n');(H/'semantic-font-manifest.json').write_text(json.dumps({'font':str(font),'fontSha256':sha(font),'rasterScale':3,'glyphSource':'BMWTARG; custom numeric text layout, not original text engine','fonts':fonts,'installationAllowed':False},indent=2)+'\n')
+print('Prepared semantic source-font atlases and source-geometry axis knots')

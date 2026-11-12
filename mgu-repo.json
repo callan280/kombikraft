@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "apps": {
+    "path": "mgu/apps/*",
+    "manifest": "app.json",
+    "mguHmi": [
+      "ID7"
+    ],
+    "build": {
+      "python": "mgu/tools/build.py",
+      "args": [
+        "{id}"
+      ]
+    }
+  }
+}

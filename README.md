@@ -1,77 +1,90 @@
 # KombiKraft
 
-An offline workshop for BMW instrument clusters: source-graphics layout previews,
-simulated signals, and bounded execution of original cluster controller code.
+An offline BMW cluster and MGU workshop: OEM graphics, M Round and Map Touring
+layouts, a viewer, bounded original-controller experiments, native renderer
+sources and an experimental MGU companion app.
 
-The first target is the F40 M135i with iDrive 7. M Round and Map Touring are two
-separate layout experiments. Selected graphics from an older F97 donor are
-used locally to study BMW's round instruments; this does not establish that an
-F97 firmware package can be installed on an F40.
+**Pre-alpha research — no vehicle-validated release.** Custom cluster layouts,
+factory-menu/skin activation and recovery remain in development. Offline tests
+exist, but do not establish live CAN compatibility, complete factory warnings
+or safe deployment. This is not custom KOMBI firmware or a ready-to-flash upgrade.
 
-**Pre-alpha research.** Full KOMBI startup, complete warning arbitration,
-physical CAN compatibility and a reversible replacement-scene deployment route
-are unfinished. This repository contains no vehicle installer or flasher.
+The first target is the F40 M135i with iDrive 7. Older F97 resources provide
+round-dial graphics and rendering research; they are not a compatible F40
+firmware image. Contributions for other cars need their actual firmware
+identifiers and reproducible evidence.
 
-## Start
+## Start with the included viewer
 
-Use Python 3.11 or newer:
+Use Python 3.11 or newer and a browser with WebGL:
 
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install -e '.[factory,native]'
 .venv/bin/kombikraft doctor
-.venv/bin/kombikraft serve
+.venv/bin/kombikraft assets verify assets/viewer-pack
+.venv/bin/kombikraft serve --assets assets/viewer-pack --library assets/library
 ```
 
-Open the loopback address printed by the server. With no local graphics import,
-the viewer explains which inputs are missing. It never substitutes invented
-graphics for an unavailable BMW scene or reports a simulated input as a live
-vehicle signal.
+Open the printed loopback address, then the layout preview. The pack includes
+BMW graphics/fonts with separate attribution; see [asset notices](ASSET-NOTICE.md).
+The larger collection has [its own searchable library](docs/asset-library.md).
+Readouts, maps and signals are offline examples, never live vehicle data.
 
-Firmware, extracted graphics/fonts, vehicle coding, virtual-machine disks and
-album-cover images are **not distributed**. The current graphics pipeline
-imports a separately prepared local asset directory; extraction directly from
-arbitrary PSdZ versions is not yet a one-command public workflow. See
-[local assets](docs/local-assets.md), [status](docs/status.md) and
-[contributing](CONTRIBUTING.md).
+## Project contents
 
-```sh
-kombikraft assets verify /path/to/local/asset-pack
-kombikraft serve --assets /path/to/local/asset-pack
-python -m unittest discover -s tests
-```
+| Area | Starting point | Scope |
+| --- | --- | --- |
+| Viewer and layouts | `src/kombikraft/web/`, `assets/viewer-pack/` | M Round, Map Touring, BC content and simulated conditions |
+| Graphics library | `assets/library/` | Decoded visuals with provenance and interpretation limits |
+| Native renderer | [Source guide](docs/native-source.md), [requirements](docs/native-runtime.md) | Renderer/build sources and separate visual data; local runtime dependencies required |
+| Controller fixtures | `src/kombikraft/factory/` | Bounded original-code execution with specifically matched local banks |
+| MGU companion | `mgu/`, [MGU guide](mgu/README.md) | Experimental preferences and integration research |
+| Your car's firmware | [Firmware setup](docs/firmware-setup.md) | Identification, PSdZData selection, extraction and contribution |
 
-To run the bounded original-controller fixture, generate its metadata-only
-manifest and point it at matching, locally extracted banks:
+Add `callan280/kombikraft` to MGU Store and select **Releases** for the lightweight
+application catalogue. See the [MGU guide](mgu/README.md) for its direct HTTPS
+URL and requirements. The root `mgu-repo.json` also describes the source layout,
+but the full research tree exceeds the head unit's source-build workspace limit.
+Installing an app or saving a preference does not itself inject a factory menu
+or activate a KOMBI skin. These paths remain experimental and need hardware
+validation.
+
+## Work with your own firmware
+
+Read [firmware setup](docs/firmware-setup.md) first. Record actual MGU/KOMBI
+hardware, SWFL/BTLD/CAFD versions and integration level. Use lawfully obtained
+matching full PSdZData where needed; some emulator paths additionally require
+your own compatible runtime capture. Model name alone does not select a
+firmware or bus profile.
+
+Full firmware images, operating-system/runtime captures, coding backups,
+vehicle identifiers, credentials and private logs are not distributed here.
+The visuals do not replace the matching firmware needed to execute original
+code. Arbitrary PSdZData versions are not automatically supported.
+
+For the bounded original-controller fixture against supported local banks:
 
 ```sh
 mkdir -p private
 kombikraft factory-manifest > private/source-banks.json
 python -m kombikraft.factory.replay --manifest private/source-banks.json --root /path/to/banks
-kombikraft serve --assets /path/to/local/asset-pack --firmware-manifest private/source-banks.json --firmware-root /path/to/banks
+kombikraft serve --assets assets/viewer-pack --firmware-manifest private/source-banks.json --firmware-root /path/to/banks
+python -m unittest discover -s tests
 ```
 
-The toolkit page exposes BC and left/right indicator fixture controls when this
-backend is initialized. It reports original event results; those events are not
-yet joined to a completed factory graphics startup. See
-[native runtime requirements](docs/native-runtime.md) for the separate emulator
-work. The `native` Python extra supplies image utilities, **not a bundled QEMU,
-BMW runtime image or complete native emulator**.
-
-The browser layout viewer and original-controller backend are distinct. The
-browser can render locally supplied source graphics without a whole-system
-KOMBI boot. The original-controller backend needs matching local source banks
-and explicit platform adapters; its coverage is reported separately.
-The preview clock uses the host computer's time; a vehicle clock input is not
-yet bound.
+The native renderer and controller loader are separate runtimes; neither
+demonstrates a whole-system KOMBI boot. The optional Python `native` extra
+supplies image utilities, not QEMU or a BMW operating system.
 
 ## Contribute
 
-Useful work includes original startup/lifecycle research, validated signal
-routes, native rendering, local extraction adapters, warning priority tests and
-layout refinement. Include evidence and negative cases with compatibility
-claims. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before adding files.
+Help with matching-firmware extraction, original startup, warning/signal routes,
+native composition, MGU integration, layouts and reproducible tests. See
+[status](docs/status.md), [roadmap](ROADMAP.md) and [contributing](CONTRIBUTING.md).
+Keep unknown signals unavailable and document failure cases alongside success.
 
-MIT applies to our original code. Upstream dependencies retain their own
-licences. BMW firmware, graphics, fonts and trademarks are not covered by this
-repository's licence. This is an independent community project.
+MIT covers our original code only. Upstream components keep their licences,
+and visual resources have separate permission/attribution. See
+[third-party components](THIRD_PARTY.md) and [asset notices](ASSET-NOTICE.md).
+KombiKraft is an independent community project.

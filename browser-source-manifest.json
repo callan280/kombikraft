@@ -1,0 +1,125 @@
+{
+  "schema": "kombikraft-authored-browser-source-v1",
+  "files": [
+    {
+      "file": "src/kombikraft/web/design/bc-content.js",
+      "sha256": "fb26ad5e0fe3661dbebb979d1c4c21b9cae0b45b449797488cc134e14abb192c",
+      "authoredSourceSha256": "fb26ad5e0fe3661dbebb979d1c4c21b9cae0b45b449797488cc134e14abb192c"
+    },
+    {
+      "file": "src/kombikraft/web/design/f97-gauges.js",
+      "sha256": "cc2a1617a58915b9c39c422eab4114866f1d0d76f5e817193c93ab7164f6f7d7",
+      "authoredSourceSha256": "cc2a1617a58915b9c39c422eab4114866f1d0d76f5e817193c93ab7164f6f7d7"
+    },
+    {
+      "file": "src/kombikraft/web/design/factory-cc.js",
+      "sha256": "d535709a2b45b4d87007764da1e9bde7c1a6a8cee540462d63a82533b95dd8fd",
+      "authoredSourceSha256": "d535709a2b45b4d87007764da1e9bde7c1a6a8cee540462d63a82533b95dd8fd"
+    },
+    {
+      "file": "src/kombikraft/web/design/factory-fuel.js",
+      "sha256": "ef025ddc45aa4f5604ce8ee4a67c2c7e61d6806c8a265d0ffcfb6e6cdccbcc45",
+      "authoredSourceSha256": "ef025ddc45aa4f5604ce8ee4a67c2c7e61d6806c8a265d0ffcfb6e6cdccbcc45"
+    },
+    {
+      "file": "src/kombikraft/web/design/factory-gear.js",
+      "sha256": "8981ed16e634cf32e4cdc8c9120a373118b7ab030d7d28fc458c9a9ceb973962",
+      "authoredSourceSha256": "8981ed16e634cf32e4cdc8c9120a373118b7ab030d7d28fc458c9a9ceb973962"
+    },
+    {
+      "file": "src/kombikraft/web/design/factory-media.js",
+      "sha256": "b703700a706c60b7020fdba8804066c18435ea41f83ad8a0d0f827b527e7cb3c",
+      "authoredSourceSha256": "b703700a706c60b7020fdba8804066c18435ea41f83ad8a0d0f827b527e7cb3c"
+    },
+    {
+      "file": "src/kombikraft/web/design/factory-mini-gauges.js",
+      "sha256": "9a18e0ece4ccc6aaac2ab44cadebaf3aeb7b8324de65ce9092a901d8c762564d",
+      "authoredSourceSha256": "9a18e0ece4ccc6aaac2ab44cadebaf3aeb7b8324de65ce9092a901d8c762564d"
+    },
+    {
+      "file": "src/kombikraft/web/design/factory-mode.js",
+      "sha256": "3e30d579f519f9027b1114a5d930d9e944e5d8c6e73686aca9d7453abfe64230",
+      "authoredSourceSha256": "3e30d579f519f9027b1114a5d930d9e944e5d8c6e73686aca9d7453abfe64230"
+    },
+    {
+      "file": "src/kombikraft/web/design/factory-rpm.js",
+      "sha256": "f184664986c91f346a59030748397a8f86e31958be950f94451c4116c68fbe9f",
+      "authoredSourceSha256": "f184664986c91f346a59030748397a8f86e31958be950f94451c4116c68fbe9f"
+    },
+    {
+      "file": "src/kombikraft/web/design/factory-seatbelt.js",
+      "sha256": "2584bf480bf016c9afab050d45907cd124fe6655c187fef8c0ac3a6de63bf1ea",
+      "authoredSourceSha256": "2584bf480bf016c9afab050d45907cd124fe6655c187fef8c0ac3a6de63bf1ea"
+    },
+    {
+      "file": "src/kombikraft/web/design/factory-sport.js",
+      "sha256": "624e22d8a471d6e7900edf7f18f9e0fd9fdfaf195678a133488236177c7e7813",
+      "authoredSourceSha256": "624e22d8a471d6e7900edf7f18f9e0fd9fdfaf195678a133488236177c7e7813"
+    },
+    {
+      "file": "src/kombikraft/web/design/factory-stats.js",
+      "sha256": "f1c3fd33dd7a97ada077a27ef891d1f3c3279e2126fd0f19f9ef83f2198c5f64",
+      "authoredSourceSha256": "f1c3fd33dd7a97ada077a27ef891d1f3c3279e2126fd0f19f9ef83f2198c5f64"
+    },
+    {
+      "file": "src/kombikraft/web/design/index.html",
+      "sha256": "f75eacc45829b75aa2b14bfe3848c7f293457bc25ca1e21745d3cf27397f8ab5",
+      "authoredSourceSha256": "5aa7d2788f2b7d77d1f2f3a9ee5344c55154c7ad164ebac284564866f6525665"
+    },
+    {
+      "file": "src/kombikraft/web/design/layout-geometry.js",
+      "sha256": "213c7ed719187a32aef33a3b7d18b29177b5236774354078b23afef3e2431b91",
+      "authoredSourceSha256": "213c7ed719187a32aef33a3b7d18b29177b5236774354078b23afef3e2431b91"
+    },
+    {
+      "file": "src/kombikraft/web/design/media-marquee.js",
+      "sha256": "43068eb55a5480e503f71dbff6d8ec75a60f1c780a90cc78a264ace22324174f",
+      "authoredSourceSha256": "43068eb55a5480e503f71dbff6d8ec75a60f1c780a90cc78a264ace22324174f"
+    },
+    {
+      "file": "src/kombikraft/web/design/native-custom.js",
+      "sha256": "346624b188bcceb67e3b963c221052e51bc9005098d136eadd6eb9280cb377a1",
+      "authoredSourceSha256": "346624b188bcceb67e3b963c221052e51bc9005098d136eadd6eb9280cb377a1"
+    },
+    {
+      "file": "src/kombikraft/web/design/original-cc.js",
+      "sha256": "8fbb0cc067ce457b33247f68847e994c813b68832646c53becbf21a4476af513",
+      "authoredSourceSha256": "8fbb0cc067ce457b33247f68847e994c813b68832646c53becbf21a4476af513"
+    },
+    {
+      "file": "src/kombikraft/web/design/placement-fixture.js",
+      "sha256": "de77ee532230682612866e1c28cfbe35f5227484a8ea5e909ccea17c4c63119e",
+      "authoredSourceSha256": "de77ee532230682612866e1c28cfbe35f5227484a8ea5e909ccea17c4c63119e"
+    },
+    {
+      "file": "src/kombikraft/web/design/popup-layout.js",
+      "sha256": "a3ecd55f6bbc189fcb862b7641aad3f80dc4a50883c59750e77a9496c5983926",
+      "authoredSourceSha256": "a3ecd55f6bbc189fcb862b7641aad3f80dc4a50883c59750e77a9496c5983926"
+    },
+    {
+      "file": "src/kombikraft/web/design/simulator-ui.js",
+      "sha256": "6978d33e22da7e3aea55c25fb72dd9358dd3093b3ebef60a31ef061bc07871bc",
+      "authoredSourceSha256": "6978d33e22da7e3aea55c25fb72dd9358dd3093b3ebef60a31ef061bc07871bc"
+    },
+    {
+      "file": "src/kombikraft/web/design/telltale-row.js",
+      "sha256": "602a9dea5f87e406ae539aeb21f0c108f05505e6ccf57e2c44a2d8202e27daf4",
+      "authoredSourceSha256": "602a9dea5f87e406ae539aeb21f0c108f05505e6ccf57e2c44a2d8202e27daf4"
+    },
+    {
+      "file": "src/kombikraft/web/simulation/catalog.js",
+      "sha256": "1842bd63b843ded1a592cb5839ece69abd59c7332982aaccd09ebc329e451b37",
+      "authoredSourceSha256": "1842bd63b843ded1a592cb5839ece69abd59c7332982aaccd09ebc329e451b37"
+    },
+    {
+      "file": "src/kombikraft/web/simulation/model.js",
+      "sha256": "d00f81ffa62ff6003788d67bb6c4a7a1b64704403bb32406a3f603477ebdb2b6",
+      "authoredSourceSha256": "d00f81ffa62ff6003788d67bb6c4a7a1b64704403bb32406a3f603477ebdb2b6"
+    }
+  ],
+  "excluded": [
+    "factory-consumption.js: captured Lua translation; local import only"
+  ],
+  "firmwareAssetsIncluded": false,
+  "extractedProprietarySourceIncluded": false
+}

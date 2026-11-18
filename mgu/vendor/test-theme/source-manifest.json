@@ -19,6 +19,24 @@
       "source": "shared/e36.js",
       "license": "MIT, adapted",
       "sha256": "a7e76e914a26925aa47e5e029c524862dc588bdce9d674fb921b5c03cfe1cd81"
+    },
+    {
+      "file": "diag.js",
+      "source": "kit/runtime/diag.js",
+      "license": "MIT",
+      "sha256": "337bec1fed75f5216de2a3ef1fbe5cbb1e183b152a8071142a1009441bcd7cba"
+    },
+    {
+      "file": "readonly-diag.js",
+      "source": "kit/runtime/readonly-diag.js",
+      "license": "MIT",
+      "sha256": "e46d9e54020b7111d38447f8b58dd8af51777f04524d0051893e7e5aa658f733"
+    },
+    {
+      "file": "dids.js",
+      "source": "kit/runtime/dids.js",
+      "license": "MIT",
+      "sha256": "cf6ae106099e64863a7806ad1db36cdd24f161c03a4d97fba1aa2d5b630c73f4"
     }
   ]
 }

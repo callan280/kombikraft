@@ -139,11 +139,18 @@ def package_files(app_id, experimental=False):
         manifest = json.loads(files['manifest.json'])
         for iface, fields in spec.get('readSignals', {}).items():
             manifest['proxies'][iface] = {'instances': '1', 'attributes': {field: 'rs' for field in fields}}
+        manifest['proxies']['com.harman.infotainment.systemfunctions.tasu.tasu.InternalTasu'] = {
+            'instances': 'SystemFunctionsInternalTasuInst1',
+            'methods': ['sendTasuRequest'],
+            'broadcasts': ['sendTasuResponse'],
+        }
         files['manifest.json'] = canonical(manifest)
-        for name in ['session.js', 'worker.js', 'geometry.js', 'shader.js', 'inputs.js', 'touring.js']:
+        for name in ['session.js', 'worker.js', 'geometry.js', 'shader.js', 'inputs.js', 'touring.js', 'factory-mask.js', 'mask-profile.json', 'fuel-gauge.js', 'engine-pressure.js']:
             files['javascript/' + name] = (folder / name).read_bytes()
         for name, dest in [('cluster_render_client.js', 'cluster_render_client.js'), ('needle-math.js', 'needle-math.js'), ('signals.js', 'kit/signals.js')]:
             files['javascript/' + dest] = (ROOT / 'vendor/test-theme' / name).read_bytes()
+        for name in ['diag.js', 'readonly-diag.js', 'dids.js']:
+            files['javascript/kit/' + name] = (ROOT / 'vendor/test-theme' / name).read_bytes()
         art_manifest = json.loads((folder / 'art/manifest.json').read_text())
         if art_manifest.get('vehicleVerified') is not False or art_manifest.get('fixtureNumbersIncluded') is not False:
             raise ValueError('Unexpected art provenance')

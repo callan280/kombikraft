@@ -8,6 +8,11 @@ With the car parked, open the app in iDrive and choose a 20-second test.
 
 - **M Round** uses large aligned BMW dial artwork and oil, coolant and boost
   mini gauges. Missing or stale mini readings hide their needles.
+- **M Round · stay on while parked** holds the display until stopped, while
+  stationary and receiving fresh core signals. Moving or losing data releases it.
+- **M Round · mask comparison** is a short comparison using the photo-based
+  right tachometer mask. It leaves the measured parking-brake, temperature,
+  centre warning and footer regions open.
 - **Map Touring** puts compact live speed and RPM at the lower edges and leaves
   the centre open for the factory view. Live navigation visibility depends on
   the factory display and needs a vehicle check.
@@ -15,11 +20,16 @@ With the car parked, open the app in iDrive and choose a 20-second test.
   releases on timeout, motion, stale core readings or renderer disconnect.
 
 The app uses existing BMW speed, RPM, CDS temperature and FES sport display
-boost readers. It requires fresh speed below 1 km/h and valid RPM to activate.
+boost readers. M Round adds a visual fuel level strip using BMW's KombiIF tank
+litres, scaled to the M135i's 50 L specification. Boost prefers the engine
+pressure minus measured ambient pressure when both are available, with fresh
+FES boost as fallback. The request set is fixed and read-only.
+
+It requires fresh speed below 1 km/h and valid RPM to activate.
 The M Round sweep option is an explicit visual demo. It moves the artwork
 without sending vehicle signals.
 
-Both layouts preserve space for the footer and modelled warning regions.
+The layouts preserve space for the footer and modelled warning regions.
 The M Round warning reservation cuts into the lower tachometer artwork.
 Factory lamp visibility and recovery still need checking on the actual F40.
 Compare the displays before, during and after activation while parked. If the

@@ -5,10 +5,10 @@ const root=process.argv[2],{Session,valid}=require(path.join(root,'javascript/se
 class Client extends EventEmitter{constructor(){super();this.n=0;this.layers=[];this.assets=[];this.uniforms=[];this.closed=false;}asset(o){this.assets.push(o);return ++this.n;}pixels(){return true;}effect(o){this.layers.push(o);return ++this.n;}bind(){}uniform(r,k,v){assert(v.every(Number.isFinite));this.uniforms.push({r,k,v});}connect(){this.connected=true;this.backend='id7';this.targets='map:1088x480,panel:1920x720,hud:800x480';this.emit('ready');}drop(r){this.dropped=(this.dropped||[]).concat(r);}close(){this.closed=true;}}
 let now=1000;const make=()=>{const c=new Client(),messages=[],s=new Session(c,{now:()=>now,art:path.join(root,'javascript/art'),report:t=>messages.push(t)});return{c,s,messages};};
 for(const bad of [null,{}, {speed:null,rpm:0,at:now},{speed:0,rpm:65535,at:now},{speed:2,rpm:900,at:now},{speed:0,rpm:900,at:now-4000},{speed:0,rpm:900,at:now+1}])assert(!valid(bad,now));
-let a=make();assert.throws(()=>a.s.start('live'));assert.equal(a.c.layers.length,0);a.s.update({speed:0,rpm:900,at:now});a.s.start('live');assert.equal(a.c.assets.length,10);assert.equal(a.c.layers.length,7);assert(a.c.layers.every(l=>!l.exclusive&&!l.contend&&!l.guide_hold&&l.time&&!l.time_fps));
+let a=make();assert.throws(()=>a.s.start('live'));assert.equal(a.c.layers.length,0);a.s.update({speed:0,rpm:900,at:now});a.s.start('live');assert.equal(a.c.assets.length,10);assert.equal(a.c.layers.length,8);assert(a.c.layers.every(l=>!l.exclusive&&!l.contend&&!l.guide_hold&&!l.time_fps));
 for(const l of a.c.layers){for(const h of g.holes)assert(!g.intersect(l,h));assert(l.y+l.h<=660);}
 a.s.refs.forEach(l=>a.c.emit('layer',l.ref,'shown'));
-for(let i=0;i<40;i++){now+=33;a.s.update({speed:0,rpm:900+i*100,at:now});a.s.tick();}assert(a.s.active);a.s.update({speed:2,rpm:1000,at:now});assert(!a.s.active&&a.c.closed);assert.equal(a.c.dropped.length,17);assert.throws(()=>a.s.start('live'));
+for(let i=0;i<40;i++){now+=33;a.s.update({speed:0,rpm:900+i*100,at:now});a.s.tick();}assert(a.s.active);a.s.update({speed:2,rpm:1000,at:now});assert(!a.s.active&&a.c.closed);assert.equal(a.c.dropped.length,18);assert.throws(()=>a.s.start('live'));
 a=make();a.s.update({speed:0,rpm:800,at:now});a.s.start('sweep');now+=3501;a.s.tick();assert(!a.s.active&&a.c.closed);
 a=make();a.s.update({speed:0,rpm:800,at:now});a.s.start('live');now+=20000;a.s.update({speed:0,rpm:800,at:now});a.s.tick();assert(!a.s.active&&a.c.closed);
 for(const ev of ['disconnected','refused']){a=make();a.s.update({speed:0,rpm:0,at:now});a.s.start('live');a.c.emit(ev);assert(!a.s.active&&a.c.closed);}
@@ -17,7 +17,7 @@ a=make();a.s.update({speed:0,rpm:0,at:now});a.s.start('live');a.c.emit('layer',a
 for(const d of g.dials){assert(d.x+d.radius*1.002+24<=g.box.x);}
 assert.equal(g.dials[0].y,g.dials[1].y);assert.equal(g.dials[0].radius,g.dials[1].radius);
 a=make();a.c.connect=function(){this.backend='id8';this.targets='panel:1920x720';this.emit('ready');};a.s.update({speed:0,rpm:0,at:now});a.s.start('live');assert(!a.s.active&&a.c.closed);assert.equal(a.c.layers.length,0);
-console.log('PASS 7 layers / 10 assets, reservations, alignment, stationary/fresh guards, timer, disconnect/refusal/suspension release.');
+console.log('PASS 8 layers / 10 assets, reservations, alignment, stationary/fresh guards, timer, disconnect/refusal/suspension release.');
 
 const input=require(path.join(root,'javascript/inputs'));
 assert.equal(input.temperatures({temperatureEngineOilDrive:138,temperatureEngineDrive:148},now).oil.value,90);
@@ -77,3 +77,34 @@ a.s.update({speed:0,rpm:900,at:now});a.s.tick();
 assert(!a.s.active);
 assert.equal(a.messages[a.messages.length-1],'Renderer startup timed out: target acquiring');
 console.log('PASS shared pixel budget, startup stall and attach, runtime loss, and startup timeout.');
+
+const mask=require(path.join(root,'javascript/factory-mask'));
+a=make();
+a.s.update({speed:0,rpm:750,at:now,fuel:input.fuel({fluidLevelFuelTank:17},now)});
+a.s.start('live','round-mask');
+const masked=a.c.layers.filter(layer=>layer.z===5);
+assert.equal(masked.length,mask.pieces.length);
+assert(masked.length>0&&a.c.layers.length<64);
+assert(masked.every(layer=>mask.reserves.every(box=>!g.intersect(layer,box))));
+assert(a.c.uniforms.some(u=>u.k==='u_level'&&u.v[0]===.34));
+a.s.refs.forEach(layer=>a.c.emit('layer',layer.ref,'shown'));
+a.s.tick();
+a.s.stop();
+assert(a.c.dropped.length===a.c.layers.length+a.c.assets.length);
+a=make();
+a.s.update({speed:0,rpm:750,at:now});
+a.s.start('live','round-stay');
+a.s.refs.forEach(layer=>a.c.emit('layer',layer.ref,'shown'));
+now+=50000;
+a.s.update({speed:0,rpm:750,at:now});
+a.s.tick();
+assert(a.s.active);
+a.s.update({speed:1.1,rpm:750,at:now});
+assert(!a.s.active&&a.c.closed);
+assert.equal(input.fuel({fluidLevelFuelTank:255},now).value,null);
+assert.equal(input.fuel({fluidLevelFuelTank:50},now).value,1);
+assert.equal(input.pressureBoost(null,100,now).value,null);
+const measured=input.pressureBoost(150,100,now);
+assert(Math.abs(measured.value-7.2518868865)<1e-9);
+assert.equal(input.selectBoost(measured,{value:0,at:now},now),measured);
+console.log('PASS fuel/boost decoders, mask reservations, continuous mode and restore on movement.');

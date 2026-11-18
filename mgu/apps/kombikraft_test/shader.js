@@ -14,6 +14,17 @@ uniform float u_arcRotation;
 uniform float u_artPerPixel;
 uniform vec2 u_textureSize;
 uniform vec4 u_needleRect;
+#ifdef MAIN_DIAL
+uniform float u_sportMesh;
+float hexMesh(vec2 p){
+ vec2 grid=vec2(1.7320508,1.0);
+ vec2 a=mod(p,grid)-grid*.5;
+ vec2 b=mod(p-grid*.5,grid)-grid*.5;
+ vec2 cell=abs(dot(a,a)<dot(b,b)?a:b);
+ float edge=max(cell.y,dot(cell,vec2(.8660254,.5)));
+ return smoothstep(.395,.455,edge);
+}
+#endif
 uniform float u_valid;
 #ifdef MINI_GAUGE
 uniform float u_visible;
@@ -21,6 +32,7 @@ uniform float u_visible;
 #ifdef F40_DIGITAL_SPEED
 uniform sampler2D u_speedArt;
 uniform float u_speed;
+uniform vec4 u_speedRimCutout;
 vec4 digitalSpeed(vec2 p){
  float speed=floor(clamp(u_speed,0.0,330.0)+.5);
  float digits=speed>=100.0?3.0:speed>=10.0?2.0:1.0;
@@ -88,9 +100,28 @@ void main(){
 #ifdef MINI_GAUGE
  if(u_visible<.5)discard;
 #endif
- vec2 p=(v_uv*u_size+u_origin-u_center)*u_artPerPixel;
+ vec2 panelPixel=v_uv*u_size+u_origin;
+ vec2 p=(panelPixel-u_center)*u_artPerPixel;
  vec2 uv=(p+u_textureSize*.5)/u_textureSize;
  vec4 face=texture2D(u_face,uv);
+#ifdef F40_DIGITAL_SPEED
+ // Mirror the visible end of the tachometer bezel across the paired dials.
+ if(dot(p,p)>=107584.0&&all(greaterThanEqual(panelPixel,u_speedRimCutout.xy))&&
+    all(lessThan(panelPixel,u_speedRimCutout.zw)))face.a=0.0;
+#endif
+#ifdef MAIN_DIAL
+ if(u_sportMesh>.5){
+  float radius2=dot(p,p);
+  // Satin silver in the centre only. Fade near the cap and the scale.
+  if(radius2>3600.0 && radius2<32400.0){
+   float radius=sqrt(radius2);
+   float fade=smoothstep(60.0,83.0,radius)*(1.0-smoothstep(130.0,180.0,radius));
+   float mesh=hexMesh(p/28.0);
+   float light=1.0-clamp((p.y+170.0)/340.0,0.0,1.0);
+   face.rgb=mix(face.rgb,vec3(.24,.27,.30)*(.60+.40*light),mesh*fade*.35);
+  }
+ }
+#endif
  // Only recolour the saturated centre-ring material. Keep the scale,
  // original needle and the mini temperature bands in their source colours.
  if (dot(u_modeTint,u_modeTint)>0.0) {

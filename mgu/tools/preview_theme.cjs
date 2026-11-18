@@ -71,7 +71,11 @@ class Client extends EventEmitter{
  },{comparison,elapsed:(now-session.started)/1000,tach:{...geometry.dials[1],scale:geometry.scale(geometry.dials[1])},assets:client.assets,layers:client.layers,reservations:[{...geometry.box,label:'Black-box clearance'},{...mask.reserves.find(r=>r.id==='parking-lamp'),label:'(P)'},{...geometry.centreWarning,label:'Factory warning opening'}]});
  for(const key of ['raw','guides']){fs.writeFileSync(path.join(out,name+'-'+key+'.png'),Buffer.from(result[key].split(',')[1],'base64'));delete result[key];}return result;
  };
- const fresh=await render('fresh');now+=3001;session.update({...sample,at:now});session.tick();const stale=await render('stale-temperature');
+ const fresh=await render('sport');
+ session.update({...sample,mode:{value:'comfort',at:now}});session.tick();
+ const comfort=await render('comfort');
+ now+=3001;session.update({...sample,at:now});session.tick();
+ const stale=await render('stale-temperature');
  // Compare each illuminated frame with its own lights-off frame at identical RPM.
  const shiftProof={};
  now+=10000;
@@ -80,6 +84,7 @@ class Client extends EventEmitter{
   for(let n=0;n<24;n++){
    now+=33;
    heldSport.at=now;
+   heldSport.speedAt=now;
    for(const key of ['oil','water','boost'])heldSport[key]={...sample[key],at:now};
    session.update({...heldSport,shiftLights:false});session.tick();
   }
@@ -90,11 +95,11 @@ class Client extends EventEmitter{
   if(!on.ringPixelsChanged)throw Error('Shift stage produced no visible change at '+rpm);
   shiftProof[rpm]=on.ringPixelsChanged;
   if(rpm===6500){
-   now+=200;session.update({...heldSport,at:now,shiftLights:true});session.tick();
+   now+=200;session.update({...heldSport,at:now,speedAt:now,shiftLights:true});session.tick();
    const stages=session.refs.filter(l=>l.shiftStage!==undefined);
    if(!stages.length||stages.some(l=>l.shiftStage!==0))throw Error('Flash failed to enter its dark phase');
   }
  }
- const proof={fresh,stale,shiftProof,vehicleValidated:false,minis:geometry.minis.map(d=>({...d,bounds:geometry.bounds(d)}))};fs.writeFileSync(path.join(out,'proof.json'),JSON.stringify(proof,null,2)+'\n');console.log(JSON.stringify(proof));
+ const proof={fresh,comfort,stale,shiftProof,vehicleValidated:false,minis:geometry.minis.map(d=>({...d,bounds:geometry.bounds(d)}))};fs.writeFileSync(path.join(out,'proof.json'),JSON.stringify(proof,null,2)+'\n');console.log(JSON.stringify(proof));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>fs.rmSync(stage,{recursive:true,force:true}));

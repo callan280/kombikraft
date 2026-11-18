@@ -17,7 +17,7 @@ async function start(options={}){
  let worker=null,heartbeat=null,monitor=null,ui=null;
  let speed=null,rpm=null,speedAt=-Infinity,rpmAt=-Infinity,fesBoost=null,dmeBoost=null,stage=null,selection=null;
  const mini={};
- const sample=()=>Object.assign({speed,rpm,at:Math.min(speedAt,rpmAt),
+ const sample=()=>Object.assign({speed,rpm,speedAt,at:Math.min(speedAt,rpmAt),
   boost:selectBoost(dmeBoost,fesBoost,clock()),shiftLights:preferences.get('sportShiftLights'),
   gear:currentGear(stage,clock())?stage:selection},mini);
  const warn=error=>logger.warn('KombiKraft: '+String(error&&error.message||error));

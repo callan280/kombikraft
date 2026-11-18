@@ -61,7 +61,7 @@ for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed
  assert.equal(compressedFaces.length,2);
  assert(compressedFaces.every(asset=>asset.w===688&&asset.h===688));
  assert(client.uniforms.some(entry=>entry.name==='u_speed'&&entry.values[0]===0));
- assert(client.layers.some(layer=>layer.fs.startsWith('#define F40_DIGITAL_SPEED')));
+ assert(client.layers.some(layer=>layer.fs.includes('#define F40_DIGITAL_SPEED')));
  const maskLayers=client.layers.filter(layer=>layer.z===5&&layer.fs===mask.shader);
  assert.equal(maskLayers.length,mask.pieces.length);
  assert(maskLayers.length>0);
@@ -117,22 +117,29 @@ for(const mini of geometry.minis){
  assert(!geometry.intersect(bounds,geometry.box),'Mini overlaps black box');
  assert(!geometry.intersect(bounds,parking),'Mini overlaps parking lamp');
  assert(bounds.y>=0&&bounds.y+bounds.h<=660,'Mini clips footer');
- assert.equal(bounds.h,Math.ceil(mini.y+mini.h*geometry.scale(mini)/2)-Math.floor(mini.y-mini.h*geometry.scale(mini)/2));
+ assert.equal(bounds.h,Math.ceil(mini.y+(mini.artBounds.bottom-mini.h/2)*geometry.scale(mini))-Math.floor(mini.y+(mini.artBounds.top-mini.h/2)*geometry.scale(mini)));
  assert.equal(geometry.pieces(mini).length,1,'Mini gets split by reservation');
- assert.equal(geometry.scale(mini),mini.side==='boost'?1:1.3);
+ assert.equal(geometry.scale(mini),mini.side==='boost'?216/190:1.3);
 }
 for(let i=0;i<geometry.minis.length;i++)for(let j=i+1;j<geometry.minis.length;j++){
  const a=geometry.minis[i],b=geometry.minis[j];
  assert(Math.hypot(a.x-b.x,a.y-b.y)>a.radius+b.radius+30,'Mini dial faces collide');
 }
+const [oilDial,boostDial,waterDial]=geometry.minis;
+assert.equal(oilDial.x,waterDial.x);
+assert(Math.abs(boostDial.y-(oilDial.y+waterDial.y)/2)<1);
 const [speedDial,tachDial]=geometry.dials;
 assert.equal(speedDial.y,tachDial.y);
 assert.equal(speedDial.displaySize,700);
 assert.equal(tachDial.displaySize,700);
 assert(tachDial.x-speedDial.x>tachDial.displaySize);
 const radius=tachDial.displaySize/2;
-for(const endpoint of [180+tachDial.arcRotation,180+tachDial.sweep+tachDial.arcRotation])
- assert(tachDial.y+radius*Math.sin(endpoint*Math.PI/180)<geometry.centreWarning.y,'A tach endpoint crosses the warning opening');
+const speedStart=126+speedDial.arcRotation;
+const tachStart=180+tachDial.arcRotation;
+assert.equal(speedDial.sweep,tachDial.sweep);
+assert.equal(speedStart+tachStart+tachDial.sweep,540);
+const tachEnd=(tachStart+tachDial.sweep)*Math.PI/180;
+assert(!geometry.intersect({x:tachDial.x+radius*Math.cos(tachEnd),y:tachDial.y+radius*Math.sin(tachEnd),w:1,h:1},geometry.centreWarning));
 for(const event of ['disconnected','refused','suspended','stale','timeout','stalled']){
  const {client,session,reports}=make();session.update(sample());session.start();
  if(event==='suspended')client.emit('layer',session.refs[0].ref,'suspended');
@@ -176,10 +183,16 @@ assert.equal(inputs.currentGear({value:'P',at:now-3000},now),null);
  const values=(ref,name)=>client.uniforms.filter(item=>item.ref===ref&&item.name===name).map(item=>item.values[0]);
  const tick=(value,mode,shiftLights=true,advance=33,boostValue=null)=>{
   now+=advance;
-  session.update(sample({rpm:value,mode:{value:mode,at:now},shiftLights,boost:{value:boostValue,at:now}}));
+  session.update(sample({speed:30,speedAt:now,rpm:value,mode:{value:mode,at:now},shiftLights,boost:{value:boostValue,at:now}}));
   session.tick();
  };
- tick(6600,'comfort');tick(6600,'eco');tick(6600,'sport',false);
+ tick(6600,'comfort');
+ assert.equal(values(rpm.ref,'u_sportMesh').at(-1),0);
+ tick(6600,'eco');
+ assert.equal(values(rpm.ref,'u_sportMesh').at(-1),0);
+ tick(6600,'sport',false);
+ assert.equal(values(rpm.ref,'u_sportMesh').at(-1),1);
+ assert.deepEqual(values(boost.ref,'u_sportMesh'),[]);
  assert.deepEqual(values(rpm.ref,'u_shiftStage'),[0]);
  assert.equal(values(boost.ref,'u_valid').at(-1),0);
  const temp=session.refs.find(layer=>layer.isTemperatureMask);
@@ -208,9 +221,13 @@ assert.equal(inputs.currentGear({value:'P',at:now-3000},now),null);
  assert.deepEqual(values(rpm.ref,'u_shiftStage'),[0,1,2,3,4,5,6,7,8,9,0,9,0]);
  const selected=inputs.driveMode({actualValueModeDrivingExperience:'SPORT_DYNAMIC'},now);
  now+=60000;
- session.update(sample({rpm:6150,mode:selected,shiftLights:true}));session.tick();
+ session.update(sample({speed:30,speedAt:now,rpm:6150,mode:selected,shiftLights:true}));session.tick();
  assert.equal(values(rpm.ref,'u_shiftStage').at(-1),7);
- session.update(sample({rpm:6150,mode:null,shiftLights:true}));session.tick();
+ session.update(sample({speed:0,speedAt:now,rpm:6150,mode:selected,shiftLights:true}));session.tick();
+ assert.equal(values(rpm.ref,'u_shiftStage').at(-1),0);
+ session.update(sample({speed:30,speedAt:now-501,rpm:6150,mode:selected,shiftLights:true}));session.tick();
+ assert.equal(values(rpm.ref,'u_shiftStage').at(-1),0);
+ session.update(sample({speed:30,speedAt:now,rpm:6150,mode:null,shiftLights:true}));session.tick();
  assert.equal(values(rpm.ref,'u_shiftStage').at(-1),0);
  session.stop();
 }

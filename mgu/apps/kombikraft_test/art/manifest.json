@@ -4,10 +4,10 @@
       "name": "left-face.rgba",
       "width": 688,
       "height": 688,
-      "sha256": "a8b7f0f0c82272e2d11ab2f74d58ad235f2fcc7b7d1fdbe626335b21f6d71c0f",
+      "sha256": "bf01b5d1e9ebef48e574cb26cd7526ed8fefe7a73f4b033f76f3d4f659914f83",
       "compressed": {
-        "sourceSha256": "a8b7f0f0c82272e2d11ab2f74d58ad235f2fcc7b7d1fdbe626335b21f6d71c0f",
-        "sha256": "1561e767baf4f13faaed87a187ecea3a73198cdfb2b9e27d295d69e924a75e01"
+        "sourceSha256": "bf01b5d1e9ebef48e574cb26cd7526ed8fefe7a73f4b033f76f3d4f659914f83",
+        "sha256": "85d93f2294d8905561408fb5a7c53bbb55759533b8631f8fa0fd55f8afaf6425"
       }
     },
     {
@@ -24,10 +24,10 @@
       "name": "right-face.rgba",
       "width": 688,
       "height": 688,
-      "sha256": "526e724ffb5209853998158ea7253fd84348c3e06e3b4524ccc9c107c2029712",
+      "sha256": "38849fcd0520855f9f232b8a690f52dc6ca1f76cdf5754ed3f8de5d6f442d0d4",
       "compressed": {
-        "sourceSha256": "526e724ffb5209853998158ea7253fd84348c3e06e3b4524ccc9c107c2029712",
-        "sha256": "91acddabfb012b63234209eaadc994994a3cd76f9da132fd7d7eedf0fda1ac41"
+        "sourceSha256": "38849fcd0520855f9f232b8a690f52dc6ca1f76cdf5754ed3f8de5d6f442d0d4",
+        "sha256": "f2567ce6c3891b8c253952f7d9d7a1c0e5b86d45c65023b07cd95dbc58f262b6"
       }
     },
     {
@@ -44,19 +44,19 @@
       "name": "oil-face.rgba",
       "width": 190,
       "height": 216,
-      "sha256": "d39ec1ffbaa04833228046af8961adc985f8b4700f097998085054793fd03707"
+      "sha256": "c10f68852e44122cfed8c6908a86ddb9d1d482989472df6fdc24a94dc39b474a"
     },
     {
       "name": "boost-face.rgba",
       "width": 190,
       "height": 216,
-      "sha256": "cd723239a69396764eceeb01c2967467038aee352e0cd160e799b0b9c9338400"
+      "sha256": "c60bc45715ccc568537b9cda639ac045d8b3c95a626c5fb5a617e4b825139f91"
     },
     {
       "name": "water-face.rgba",
       "width": 190,
       "height": 216,
-      "sha256": "46fcebda0bc0274c9a321feda43a741727b0d4f2db1023a3f0abd77914736aae"
+      "sha256": "bcbd2773ff801e97294d8aee900a4b8c659bcac4a762a18c11f6a61246adfcab"
     },
     {
       "name": "oil-needle.rgba",
@@ -176,5 +176,30 @@
     "badgePlacement": "Between the main dials",
     "gearGlyphSourceSha256": "8cc68c323fc0e4f719c08adcf39a6de98e80644081adb13aaa68144522db3011",
     "redlineAppearance": "Red starts at 6500 and blends in over 250 RPM; display styling"
+  },
+  "alignedMainFaces": {
+    "speedBezel": "Horizontal reflection of tachometer outer bezel",
+    "leftStartDegrees": 160,
+    "rightStartDegrees": 180,
+    "sweepDegrees": 200,
+    "sourceSha256": {
+      "left": "a8b7f0f0c82272e2d11ab2f74d58ad235f2fcc7b7d1fdbe626335b21f6d71c0f",
+      "right": "526e724ffb5209853998158ea7253fd84348c3e06e3b4524ccc9c107c2029712"
+    }
+  },
+  "mguMiniPictograms": {
+    "oil": "f0845d15fe36cf573aaee5760d135d1c1930286128c36b252c7f0426049c3592",
+    "water": "9ecc858d0fdc248c29c87ba5f22fd170395651996c0e0a540957d536c6f3ce7f",
+    "boost": "51713b1aa01922e3fe78c40a119e44d3477dbc1cd76571760b35082512ff6f5e"
+  },
+  "mguMiniFonts": {
+    "numerals": {
+      "name": "Fonts_ki_BMWMType_Condensed.ttf",
+      "sha256": "9a836f86e58aa5de4f98f48ffbd66305f89a2e5f8fa11a8074be1f1501041f21"
+    },
+    "units": {
+      "name": "Fonts_ki_BMWTA_BDCN_BdCn.ttf",
+      "sha256": "23f5b706673081122e327caa85b8937a370f5bf422bb7101ebf93f94f6e2baeb"
+    }
   }
 }

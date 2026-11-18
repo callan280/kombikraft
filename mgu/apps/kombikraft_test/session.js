@@ -85,7 +85,7 @@ class Session{
     const tachBand={x:d.x-200*panelScale,y:d.y-200*panelScale,w:400*panelScale,h:400*panelScale};
     for(const r of geometry.pieces(d)){
      const showShift=shift&&geometry.intersect(r,tachBand);
-     const defines=(d.optional?'#define MINI_GAUGE\n':'')+(showShift?'#define F97_SHIFT_LIGHTS\n':d.signal==='speed'?'#define F40_DIGITAL_SPEED\n':'');
+     const defines=(d.optional?'#define MINI_GAUGE\n':'#define MAIN_DIAL\n')+(showShift?'#define F97_SHIFT_LIGHTS\n':d.signal==='speed'?'#define F40_DIGITAL_SPEED\n':'');
      const ref=this.makeLayer(r,defines+shader,true);
      const layer={ref,d,needle:new Needle(28),path:null,t0:this.now()};
      this.refs.push(layer);
@@ -93,6 +93,7 @@ class Session{
      this.c.bind(ref,'u_needle',needle);
      if(d.signal==='speed'){
       this.c.bind(ref,'u_speedArt',speedArt);
+      this.c.uniform(ref,'u_speedRimCutout',geometry.speedRimCutout);
       this.c.uniform(ref,'u_speed',[this.sample.speed]);
       layer.speed=this.sample.speed;
      }
@@ -153,10 +154,13 @@ class Session{
   if(layer.accentMode===mode)return;
   layer.accentMode=mode;
   this.c.uniform(layer.ref,'u_modeTint',modeTints[mode]);
+  if(!layer.d.optional)this.c.uniform(layer.ref,'u_sportMesh',[mode==='sport'?1:0]);
  }
  updateShiftLights(layer,rpm,now){
   const mode=this.sample.mode;
-  const enabled=this.sample.shiftLights===true&&currentMode(mode,now)==='sport';
+  const {speed,speedAt}=this.sample;
+  const moving=speed>=1&&Number.isFinite(speedAt)&&now>=speedAt&&now-speedAt<=500;
+  const enabled=moving&&this.sample.shiftLights===true&&currentMode(mode,now)==='sport';
   let frame=enabled?SHIFT_STEPS.filter(threshold=>rpm>=threshold).length:0;
   if(frame===FINAL_SHIFT_FRAME){
    if(layer.flashAt===undefined)layer.flashAt=now;

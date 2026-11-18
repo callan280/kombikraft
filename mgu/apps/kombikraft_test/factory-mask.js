@@ -39,7 +39,7 @@ void main() {
         ${edgeCalls(trace)}
     }
     if (!inside) discard;
-    gl_FragColor = vec4(0.012,0.024,0.035,1.0);
+    gl_FragColor = vec4(vec3(3.0,6.0,9.0)/255.0,1.0);
 }`;
 
 const temperatureBounds=additionalReservations.find(r=>r.id==='temperature-gauge');
@@ -58,6 +58,6 @@ void main(){
     bool inside=false;
     ${edgeCalls(temperatureTrace)}
     if(!inside)discard;
-    gl_FragColor=vec4(.012,.024,.035,1.0);
+    gl_FragColor=vec4(vec3(3.0,6.0,9.0)/255.0,1.0);
 }`;
 module.exports = { pieces, reserves, shader, temperatureBounds, temperatureShader };

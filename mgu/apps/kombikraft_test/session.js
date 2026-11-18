@@ -3,19 +3,31 @@ const fs=require('fs'),path=require('path'),crypto=require('crypto');
 const {Needle,nextPath}=require('./needle-math');
 const geometry=require('./geometry'),shader=require('./shader'),{miniValue}=require('./inputs');
 const {instruments}=require('./touring');
-const LIMIT_MS=20000,STALE_MS=3500;
+const LIMIT_MS=20000,STALE_MS=3500,ACQUIRE_MS=9000;
 function valid(sample,now){return sample&&Number.isFinite(sample.speed)&&sample.speed>=0&&sample.speed<1&&Number.isFinite(sample.rpm)&&sample.rpm>=0&&sample.rpm<=8000&&Number.isFinite(sample.at)&&now>=sample.at&&now-sample.at<=STALE_MS;}
 class Session{
  constructor(client,opts){this.c=client;this.opts=opts||{};this.now=this.opts.now||(()=>{const t=process.hrtime();return t[0]*1000+t[1]/1e6;});this.report=this.opts.report||(()=>{});this.started=null;this.active=false;this.refs=[];this.sample=null;this.mode='live';this.faceAssets=[];
   client.on('ready',()=>{if(!this.active)return;if(client.backend!=='id7'||!/(^|,)panel:1920x720(,|$)/.test(client.targets||'')){this.stop('Unexpected renderer backend or panel geometry.');return;}try{this.attach();}catch(e){this.stop(e.message);}});
   client.on('disconnected',()=>this.stop('Renderer disconnected; explicit restart required.'));
   client.on('refused',(op,ref,reason)=>this.stop('Renderer refused '+op+': '+reason));
-  client.on('layer',(ref,state)=>{const layer=this.refs.find(l=>l.ref===ref);if(layer&&state==='shown'){layer.t0=this.now();layer.path=null;layer.shown=true;}if(layer&&(['suspended','error','stalled'].indexOf(state)>=0||state==='waiting'&&layer.shown))this.stop('Renderer '+state+'.');});
+  client.on('layer',(ref,state,reason)=>{
+   const layer=this.refs.find(entry=>entry.ref===ref);
+   if(!this.active||!layer)return;
+   layer.state=state;
+   layer.reason=reason;
+   if(state==='shown'){
+    if(!layer.shown){layer.t0=this.now();layer.path=null;layer.shown=true;}
+    return;
+   }
+   if(state==='error'||state==='suspended'||(this.showReported&&['waiting','stalled','hidden'].includes(state))){
+    this.stop('Renderer '+state+(reason?': '+reason:'.'));
+   }
+  });
  }
  update(sample){this.sample=sample;if(this.active&&!valid(sample,this.now()))this.stop('Speed, RPM or freshness check failed.');}
  start(mode,theme='round'){if(this.active)throw Error('Test already running');if(!valid(this.sample,this.now()))throw Error('Fresh stationary speed and RPM are required.');if(['live','sweep'].indexOf(mode)<0)throw Error('Unknown test mode');
   if(!['round','touring'].includes(theme)||theme==='touring'&&mode!=='live')throw Error('Unknown theme or mode');
-  this.started=this.now();this.active=true;this.mode=mode;this.theme=theme;this.refs=[];this.c.connect();
+  this.started=this.now();this.active=true;this.mode=mode;this.theme=theme;this.refs=[];this.showReported=false;this.c.connect();
  }
  loadTexture(dir, manifest, name, width, height) {
   const entry=manifest.images.find(row=>row.name===name);
@@ -60,7 +72,15 @@ class Session{
    }else{
     for(const d of geometry.dials.concat(geometry.minis)){
      const face=this.loadTexture(dir,manifest,d.side+'-face.rgba',d.w,d.h);
-     const needle=this.loadTexture(dir,manifest,d.side+'-needle.rgba',d.w,d.h);
+     const name=d.side+'-needle.rgba';
+     const crop=manifest.images.find(entry=>entry.name===name);
+     if(!crop||crop.sourceWidth!==d.w||crop.sourceHeight!==d.h||
+        ![crop.offsetX,crop.offsetY,crop.width,crop.height].every(Number.isInteger)||
+        crop.offsetX<0||crop.offsetY<0||crop.width<1||crop.height<1||
+        crop.offsetX+crop.width>d.w||crop.offsetY+crop.height>d.h){
+      throw Error('Invalid needle crop: '+name);
+     }
+     const needle=this.loadTexture(dir,manifest,name,crop.width,crop.height);
      for(const r of geometry.pieces(d)){
       const ref=this.makeLayer(r,shader,true);
       this.refs.push({ref,d,needle:new Needle(28),path:null,t0:this.now()});
@@ -70,6 +90,7 @@ class Session{
       this.c.uniform(ref,'u_origin',[r.x,r.y]);
       this.c.uniform(ref,'u_center',[d.x,d.y]);
       this.c.uniform(ref,'u_textureSize',[d.w,d.h]);
+      this.c.uniform(ref,'u_needleRect',[crop.offsetX,crop.offsetY,crop.width,crop.height]);
       this.c.uniform(ref,'u_times',[0,.06,.13,.13]);
       const value=mode==='sweep'?0:d.optional?miniValue(this.sample,d,this.now()):this.sample[d.signal];
       const angle=(value===null?0:value)/d.max*d.sweep;
@@ -78,10 +99,16 @@ class Session{
      }
     }
    }
-   this.report((this.theme==='touring'?'Map Touring':'M Round')+' · 20-second parked test active.');
+   this.report((this.theme==='touring'?'Map Touring':'M Round')+' · waiting for cluster graphics.');
   }catch(e){this.stop(e.message);throw e;}
  }
- tick(){if(!this.active)return;const now=this.now();if(now-this.started>=LIMIT_MS){this.stop('Test expired. Factory display released.');return;}if(!valid(this.sample,now)){this.stop('Stale data or vehicle moving.');return;}if(now-this.started>5000&&(!this.refs.length||this.refs.some(l=>!l.shown))){this.stop('Renderer did not show all layers.');return;}
+ tick(){if(!this.active)return;const now=this.now();if(now-this.started>=LIMIT_MS){this.stop('Test expired. Factory display released.');return;}if(!valid(this.sample,now)){this.stop('Stale data or vehicle moving.');return;}const allShown=this.refs.length>0&&this.refs.every(layer=>layer.state==='shown');
+  if(!allShown&&now-this.started>=ACQUIRE_MS){
+   const pending=this.refs.find(layer=>layer.state!=='shown');
+   const detail=pending&&(pending.reason||pending.state);
+   this.stop('Renderer startup timed out'+(detail?': '+detail:'.'));return;
+  }
+  if(allShown&&!this.showReported){this.showReported=true;this.report('Theme shown. Parked test in progress.');}
   for(const l of this.refs){
    if(this.theme==='touring'&&l.d.signal==='speed'){
     this.c.uniform(l.ref,'u_speed',[this.sample.speed]);

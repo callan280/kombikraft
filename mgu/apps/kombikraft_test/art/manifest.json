@@ -8,9 +8,13 @@
     },
     {
       "name": "left-needle.rgba",
-      "width": 688,
-      "height": 688,
-      "sha256": "82b3d0ba0009ff3b8c00965c7ccc4b3dd918c276708e6a6b79a9f0c9a57cfd42"
+      "width": 274,
+      "height": 363,
+      "sha256": "f7b1b310e15735b1c3f9ddc90304c8355c80d682d88528ca85479ae074e49b92",
+      "offsetX": 156,
+      "offsetY": 233,
+      "sourceWidth": 688,
+      "sourceHeight": 688
     },
     {
       "name": "right-face.rgba",
@@ -20,9 +24,13 @@
     },
     {
       "name": "right-needle.rgba",
-      "width": 688,
-      "height": 688,
-      "sha256": "0df996e4656c081d094e8f23b6f82b5d876e088df7c2b5077da5d3b851215b75"
+      "width": 432,
+      "height": 118,
+      "sha256": "f5da2acbb7807b3dff02a74164f42407c3949a317fd837df7358246c0ec91078",
+      "offsetX": 41,
+      "offsetY": 285,
+      "sourceWidth": 688,
+      "sourceHeight": 688
     },
     {
       "name": "oil-face.rgba",
@@ -44,21 +52,33 @@
     },
     {
       "name": "oil-needle.rgba",
-      "width": 190,
-      "height": 216,
-      "sha256": "afd4ae05cc9e7bf6d5aa389a35abb3f94aa6b4722d9f2b69633ac45aaf50f597"
+      "width": 69,
+      "height": 59,
+      "sha256": "fe87b252db31297f5e9b5d2c91a403cbfbb295017465fa45282dd56b9c422de3",
+      "offsetX": 48,
+      "offsetY": 89,
+      "sourceWidth": 190,
+      "sourceHeight": 216
     },
     {
       "name": "boost-needle.rgba",
-      "width": 190,
-      "height": 216,
-      "sha256": "afd4ae05cc9e7bf6d5aa389a35abb3f94aa6b4722d9f2b69633ac45aaf50f597"
+      "width": 69,
+      "height": 59,
+      "sha256": "fe87b252db31297f5e9b5d2c91a403cbfbb295017465fa45282dd56b9c422de3",
+      "offsetX": 48,
+      "offsetY": 89,
+      "sourceWidth": 190,
+      "sourceHeight": 216
     },
     {
       "name": "water-needle.rgba",
-      "width": 190,
-      "height": 216,
-      "sha256": "afd4ae05cc9e7bf6d5aa389a35abb3f94aa6b4722d9f2b69633ac45aaf50f597"
+      "width": 69,
+      "height": 59,
+      "sha256": "fe87b252db31297f5e9b5d2c91a403cbfbb295017465fa45282dd56b9c422de3",
+      "offsetX": 48,
+      "offsetY": 89,
+      "sourceWidth": 190,
+      "sourceHeight": 216
     },
     {
       "name": "touring-speed.rgba",

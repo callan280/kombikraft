@@ -51,3 +51,29 @@ a.s.stop();
 assert.equal(a.c.dropped.length,4);
 assert(a.c.closed);
 console.log('PASS Map Touring live speed/RPM, reserved region clearance and release.');
+
+for(const theme of ['round','touring']){
+ a=make();a.s.update({speed:0,rpm:900,at:now});a.s.start('live',theme);
+ const total=a.c.assets.reduce((sum,asset)=>sum+asset.w*asset.h*8,0);
+ const map=1088*480*1.5*4;
+ assert(total+map<16*1024*1024,theme+' leaves room for the observed map stream');
+ const layer=a.s.refs[0];
+ a.c.emit('layer',layer.ref,'stalled','asset pixels pending');
+ assert(a.s.active,'initial stalled state can be normal');
+ a.c.emit('layer',layer.ref,'waiting','target acquiring');
+ assert(a.s.active,'normal panel acquisition can finish');
+ a.s.refs.forEach(ref=>a.c.emit('layer',ref.ref,'shown'));
+ a.s.tick();
+ a.c.emit('layer',layer.ref,'stalled','asset pixels lost');
+ assert(!a.s.active);
+ assert.equal(a.messages[a.messages.length-1],'Renderer stalled: asset pixels lost');
+}
+
+a=make();a.s.update({speed:0,rpm:900,at:now});a.s.start('live','touring');
+const waiting=a.s.refs[0];
+a.c.emit('layer',waiting.ref,'waiting','target acquiring');
+now+=9000;
+a.s.update({speed:0,rpm:900,at:now});a.s.tick();
+assert(!a.s.active);
+assert.equal(a.messages[a.messages.length-1],'Renderer startup timed out: target acquiring');
+console.log('PASS shared pixel budget, startup stall and attach, runtime loss, and startup timeout.');

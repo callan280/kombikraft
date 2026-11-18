@@ -58,10 +58,13 @@ async function watch(iface, instance, handlers, log, opts) {
         const p = await nativeTick(() => someip.buildProxy(cfg, String(instance)).then((px) => px.init().then(() => px)));
         res.proxy = p;
         const fields = Object.keys(handlers || {});
-        let epoch = 0, sequence = 0, timer = null;
+        let epoch = 0, sequence = 0, timer = null, fastTimer = null;
+        const fast = opts && opts.fastPoll;
+        let fastReadPending = false, lastFastEvent = -Infinity;
         const latest = Object.create(null);
         res.shutdown = () => {
             clearInterval(timer);
+            clearInterval(fastTimer);
             res.available = false;
             epoch++;
             return Promise.resolve().then(() => p.shutdown && p.shutdown()).catch(() => {});
@@ -71,23 +74,34 @@ async function watch(iface, instance, handlers, log, opts) {
             latest[field] = order;
             handlers[field](value);
         };
-        const fetchAll = () => fields.forEach((f) => {
-            if (cfg.fields && cfg.fields[f] && cfg.fields[f].getter) {
-                const generation = epoch, order = ++sequence;
-                p.getValue(f, 3000).then((v) => deliver(f,v,generation,order)).catch(() => {});
-            }
-        });
+        const fetchField = f => {
+            if (!cfg.fields || !cfg.fields[f] || !cfg.fields[f].getter) return;
+            const isFastField = fast && fast.field === f;
+            if (isFastField && fastReadPending) return;
+            if (isFastField) fastReadPending = true;
+            const generation = epoch, order = ++sequence;
+            p.getValue(f, 3000).then(v => deliver(f, v, generation, order)).catch(() => {}).then(() => {
+                if (isFastField) fastReadPending = false;
+            });
+        };
+        const fetchAll = () => fields.forEach(fetchField);
         await nativeTick(() => {
             try { return p.subscribeToAvailability((a) => { if (res.available !== !!a) epoch++; res.available = !!a; if (!a && opts && opts.onUnavailable) opts.onUnavailable(); if (a) setImmediate(fetchAll); }); } catch (e) { return null; /* older binding */ }
         });
         for (const f of fields) {
             try {
-                await nativeTick(() => p.subscribe({ name: f, onReceive: (v) => { try { deliver(f,v,epoch,++sequence); } catch (e) { if (log) log.warn(iface + '.' + f + ': ' + e); } } }));
+                await nativeTick(() => p.subscribe({ name: f, onReceive: (v) => { try {
+                    if (fast && f === fast.field) lastFastEvent = Date.now();
+                    deliver(f,v,epoch,++sequence);
+                } catch (e) { if (log) log.warn(iface + '.' + f + ': ' + e); } } }));
             } catch (e) {
                 if (log) log.warn('subscribe ' + iface + '.' + f + ': ' + e);
             }
         }
         if (p.isAvailable && p.isAvailable()) { res.available = true; fetchAll(); }
+        if (fast) fastTimer = setInterval(() => {
+            if (res.available && fast.active() && Date.now() - lastFastEvent >= fast.ms) fetchField(fast.field);
+        }, fast.ms);
         if (opts && opts.pollMs) timer = setInterval(() => { if (res.available) setImmediate(fetchAll); }, opts.pollMs);
     } catch (e) {
         res.error = String(e);

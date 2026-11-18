@@ -47,12 +47,22 @@ Module._load=function(name){
  await new Promise(resolve=>setTimeout(resolve,150));
  assert.equal(child.sent.at(-1).sample.shiftLights,true);
  // A parked selection continues supplying live samples as the vehicle moves.
+ const motionFeeds=watches.filter(w=>w.opts.fastPoll);
+ assert.deepEqual(motionFeeds.map(w=>w.opts.fastPoll.field),['statusCarSpeed2','statusEngineSpeed2']);
+ assert(motionFeeds.every(w=>w.opts.fastPoll.active()&&w.opts.fastPoll.ms===125));
  const speedFeed=watches.find(w=>w.handlers.statusCarSpeed2).handlers;
  speedFeed.statusCarSpeed2({speedVehicleCentreOfGravity:5120});
  await new Promise(resolve=>setTimeout(resolve,150));
  assert.equal(child.sent.at(-1).op,'sample');
  assert.equal(child.sent.at(-1).sample.speed,80);
  assert.equal(children.length,1);
+ const fes=watches.find(w=>w.handlers.statusFESVehicleDynamicSwitchHMI);
+ fes.handlers.statusFESVehicleDynamicSwitchHMI({actualValueModeDrivingExperience:'SPORT_EXPERT'});
+ await new Promise(resolve=>setTimeout(resolve,150));
+ assert.equal(child.sent.at(-1).sample.mode.value,'sport');
+ fes.opts.onUnavailable();
+ await new Promise(resolve=>setTimeout(resolve,150));
+ assert.equal(child.sent.at(-1).sample.mode,null);
  rows.STOP.emit('action');assert.equal(child.sent.at(-1).op,'stop');
  assert.equal(watches.length,4);
  assert.equal(start.sample.gear.value,'P');

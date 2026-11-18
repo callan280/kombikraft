@@ -156,7 +156,7 @@ class Session{
  }
  updateShiftLights(layer,rpm,now){
   const mode=this.sample.mode;
-  const enabled=this.sample.shiftLights===true&&currentMode(mode,now)==='sport'&&now-mode.at<=STALE_MS;
+  const enabled=this.sample.shiftLights===true&&currentMode(mode,now)==='sport';
   let frame=enabled?SHIFT_STEPS.filter(threshold=>rpm>=threshold).length:0;
   if(frame===FINAL_SHIFT_FRAME){
    if(layer.flashAt===undefined)layer.flashAt=now;
@@ -209,10 +209,12 @@ class Session{
    if(layer.needleVisible!==needleVisible){
     layer.needleVisible=needleVisible;this.c.uniform(ref,'u_valid',[needleVisible?1:0]);
    }
-   if(value===null){layer.needle=new Needle(28);layer.path=null;continue;}
+   if(value===null){if(layer.path){layer.needle=new Needle(28);layer.path=null;}continue;}
    const angle=value/d.max*d.sweep;
+   if(layer.needle.still(angle)&&layer.path&&layer.path.a[3]===angle)continue;
    layer.needle.step(angle,now);
-   layer.path=nextPath(layer.path,(now-layer.t0)/1000,.06,.07,layer.needle.ahead(angle,130));
+   const settled=layer.needle.still(angle);
+   layer.path=nextPath(layer.path,(now-layer.t0)/1000,.06,.07,settled?angle:layer.needle.ahead(angle,130));
    this.c.uniform(ref,'u_times',layer.path.t);
    this.c.uniform(ref,'u_angles',layer.path.a);
   }

@@ -69,7 +69,6 @@ float angle(){float s=u_time-u_times.x;s-=3600.0*floor((s+1800.0)/3600.0);
  return mix(u_angles.z,u_angles.w,min(1.0,(s-u_times.z)/max(u_times.w-u_times.z,.0001)));}
 #ifdef F97_SHIFT_LIGHTS
 vec4 shiftLights(vec4 face,vec2 p){
- if(u_shiftStage<1.0)return face;
  vec2 mapPixel=floor(p-u_shiftMap.xy);
  if(any(lessThan(mapPixel,vec2(0.0)))||any(greaterThanEqual(mapPixel,u_shiftMap.zw)))return face;
  vec4 surface=texture2D(u_shiftArt,(mapPixel+.5)/u_shiftAtlasSize);
@@ -94,17 +93,20 @@ void main(){
  vec4 face=texture2D(u_face,uv);
  // Only recolour the saturated centre-ring material. Keep the scale,
  // original needle and the mini temperature bands in their source colours.
- float redInk=smoothstep(.02,.14,face.r-max(face.g,face.b));
- float ring=smoothstep(.12,.21,length(p)/u_textureSize.x)*(1.-smoothstep(.425,.454,length(p)/u_textureSize.x));
  if (dot(u_modeTint,u_modeTint)>0.0) {
+     float redInk=smoothstep(.02,.14,face.r-max(face.g,face.b));
+     float radial=length(p)/u_textureSize.x;
+     float ring=smoothstep(.12,.21,radial)*(1.-smoothstep(.425,.454,radial));
      face.rgb=mix(face.rgb, vec3(min(face.g,face.b)) + face.r*u_modeTint, redInk*ring);
  }
 #ifdef F97_SHIFT_LIGHTS
- float arc=mod(degrees(atan(p.y,p.x))-(180.0+u_arcRotation)+720.0,360.0);
- float sourceArc=arc<=u_arcSweep?arc*234.0/u_arcSweep:234.0+(arc-u_arcSweep)*126.0/(360.0-u_arcSweep);
- float r=radians(180.0+sourceArc);
- vec2 shiftPoint=vec2(cos(r),sin(r))*length(p);
- face=shiftLights(face,shiftPoint);
+ if(u_shiftStage>=1.0){
+  float arc=mod(degrees(atan(p.y,p.x))-(180.0+u_arcRotation)+720.0,360.0);
+  float sourceArc=arc<=u_arcSweep?arc*234.0/u_arcSweep:234.0+(arc-u_arcSweep)*126.0/(360.0-u_arcSweep);
+  float r=radians(180.0+sourceArc);
+  vec2 shiftPoint=vec2(cos(r),sin(r))*length(p);
+  face=shiftLights(face,shiftPoint);
+ }
  vec4 gear=gearReadout(p);
  face.rgb=mix(face.rgb,gear.rgb,gear.a);
 #endif

@@ -2,6 +2,7 @@
 const assert=require('assert'),{EventEmitter}=require('events'),path=require('path');
 const root=process.argv[2];
 const {Session,valid}=require(path.join(root,'javascript/session'));
+const {pathAt}=require(path.join(root,'javascript/needle-math'));
 const geometry=require(path.join(root,'javascript/geometry'));
 const mask=require(path.join(root,'javascript/factory-mask'));
 const inputs=require(path.join(root,'javascript/inputs'));
@@ -26,6 +27,30 @@ function make(){
 }
 const sample=(values={})=>Object.assign({speed:0,rpm:750,at:now},values);
 const shown=(client,session)=>session.refs.forEach(layer=>client.emit('layer',layer.ref,'shown'));
+{
+ const {client,session}=make();
+ session.update(sample());session.start();shown(client,session);session.tick();
+ const tach=session.refs.find(layer=>layer.d&&layer.d.signal==='rpm');
+ const pathMessages=()=>client.uniforms.filter(u=>u.ref===tach.ref&&u.name==='u_angles').length;
+ const idleCount=pathMessages();
+ for(let i=0;i<10;i++){now+=33;session.update(sample());session.tick();}
+ assert.equal(pathMessages(),idleCount);
+ const frames=[];
+ for(let i=0;i<25;i++){
+  now+=33;session.update(sample({rpm:3000}));session.tick();
+  for(const offset of [0,1000/60])frames.push(pathAt(tach.path,(now+offset-tach.t0)/1000));
+ }
+ const target=3000/tach.d.max*tach.d.sweep;
+ assert(frames.every((frame,index)=>index===0||frame>=frames[index-1]-0.02));
+ assert(new Set(frames.map(frame=>frame.toFixed(1))).size>12);
+ assert(Math.abs(frames.at(-1)-target)<0.02);
+ assert.equal(tach.path.a[3],target);
+ const movingCount=pathMessages();
+ assert(movingCount>idleCount);
+ for(let i=0;i<10;i++){now+=33;session.update(sample({rpm:3000}));session.tick();}
+ assert.equal(pathMessages(),movingCount);
+ session.stop();
+}
 for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed:331}),sample({at:now-4000}),sample({at:now+1})])assert(!valid(bad,now));
 {
  const {client,session}=make();
@@ -181,11 +206,12 @@ assert.equal(inputs.currentGear({value:'P',at:now-3000},now),null);
  assert(values(boost.ref,'u_angles').at(-1)>zeroAngle);
  tick(6500,'sport',true,200);tick(6500,'sport',true,200);tick(6500,'comfort');
  assert.deepEqual(values(rpm.ref,'u_shiftStage'),[0,1,2,3,4,5,6,7,8,9,0,9,0]);
- tick(6500,'sport');
- now+=3501;
- session.update(sample({rpm:6500,mode:{value:'sport',at:now-3501},shiftLights:true}));
- session.tick();
- assert.deepEqual(values(rpm.ref,'u_shiftStage').slice(-2),[9,0]);
+ const selected=inputs.driveMode({actualValueModeDrivingExperience:'SPORT_DYNAMIC'},now);
+ now+=60000;
+ session.update(sample({rpm:6150,mode:selected,shiftLights:true}));session.tick();
+ assert.equal(values(rpm.ref,'u_shiftStage').at(-1),7);
+ session.update(sample({rpm:6150,mode:null,shiftLights:true}));session.tick();
+ assert.equal(values(rpm.ref,'u_shiftStage').at(-1),0);
  session.stop();
 }
 console.log('PASS curved mini clearance/scaling, temperature fallback, driving without Check Control heartbeat, full dial/indicator clearance, shift lights, boost and stale-data recovery.');

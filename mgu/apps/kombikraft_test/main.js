@@ -6,6 +6,7 @@ const {temperatures,boost,fresh,selectBoost,driveMode,currentMode,stageGear,sele
 const {enginePressure}=require('./engine-pressure');
 const {Preferences}=require('./preferences');
 const {valid}=require('./session'),spec=require('./app-spec.json');
+const MOTION_UPDATE_MS=33, MOTION_POLL_MS=125;
 const clock=()=>{const t=process.hrtime();return t[0]*1000+t[1]/1e6;};
 
 async function start(options={}){
@@ -51,7 +52,7 @@ async function start(options={}){
    if(code!==0)status('Theme worker exited: '+(signal||code));
   });
   child.send({op:'start',sample:sample()});
-  heartbeat=setInterval(()=>{if(worker===child&&child.connected)child.send({op:'sample',sample:sample()});},100);
+  heartbeat=setInterval(()=>{if(worker===child&&child.connected)child.send({op:'sample',sample:sample()});},MOTION_UPDATE_MS);
  }
 
  app.on('appStatusProxyReady',()=>Promise.resolve(app.registerActive()).catch(warn));
@@ -78,15 +79,19 @@ async function start(options={}){
 
  subscriptions.push(await signals.watch('de.bmw.infotainment.vehicle.Vehicle2','1',{
   statusCarSpeed2:value=>{const n=value&&value.speedVehicleCentreOfGravity;speed=Number.isInteger(n)&&n>=0&&n<65535?n*.015625:null;speedAt=clock();}
- },logger,{pollMs:1000}));
+  },logger,{pollMs:1000,ordered:true,
+  fastPoll:{field:'statusCarSpeed2',ms:MOTION_POLL_MS,active:()=>!!worker}
+ }));
  subscriptions.push(await signals.watch('de.bmw.infotainment.vehicle.CDS','1',{
   statusEngineSpeed2:value=>{const n=value&&value.actualValueRPMEngineCrankshaft;rpm=Number.isInteger(n)&&n>=0&&n<65535?n*.25:null;rpmAt=clock();},
   statusEngineTemperature:value=>Object.assign(mini,temperatures(value,clock()))
- },logger,{pollMs:1000}));
+  },logger,{pollMs:1000,ordered:true,
+  fastPoll:{field:'statusEngineSpeed2',ms:MOTION_POLL_MS,active:()=>!!worker}
+ }));
  subscriptions.push(await signals.watch('de.bmw.infotainment.drivingexcitement.FES','1',{
   statusSwitchDriveDynamicSport2:value=>{fesBoost=boost(value,clock());},
   statusFESVehicleDynamicSwitchHMI:value=>{mini.mode=driveMode(value,clock());}
- },logger,{pollMs:1000}));
+ },logger,{pollMs:1000,ordered:true,onUnavailable:()=>{mini.mode=null;fesBoost=null;}}));
  subscriptions.push(await signals.watch('de.bmw.infrastructure.VehicleInformation','1',{
   statusGearboxDrive:value=>{stage=stageGear(value,clock());},
   DataPowerTrain2:value=>{selection=selectionGear(value,clock());}

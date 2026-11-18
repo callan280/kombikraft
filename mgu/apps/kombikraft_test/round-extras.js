@@ -1,6 +1,6 @@
 'use strict';
 
-const badgeBounds={x:607,y:119,w:184,h:52};
+const badgeBounds={x:538,y:80,w:322,h:91};
 const badgeShader=`
 precision mediump float;
 varying vec2 v_uv;

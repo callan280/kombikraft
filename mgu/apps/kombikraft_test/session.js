@@ -12,6 +12,22 @@ const modeTints={
  eco:[.15,.54,1]
 };
 const LIMIT_MS=20000,STALE_MS=3500,ACQUIRE_MS=9000;
+const DEMO_SHIFT_STEPS=[5200,5550,5900,6250];
+// Simulated warmed-up roll-on and upshift, independent of the live RPM input.
+const DEMO_PULL=[[0,2800],[900,2800],[2400,4350],[3500,5200],
+ [5000,6300],[5350,6300],[5680,4800],[6500,4950],[7700,2800],[9000,850]];
+function demoPullRpm(elapsed){
+ const index=DEMO_PULL.findIndex(([time])=>time>elapsed);
+ if(index<0)return DEMO_PULL[DEMO_PULL.length-1][1];
+ if(index===0)return DEMO_PULL[0][1];
+ const [fromTime,fromRpm]=DEMO_PULL[index-1];
+ const [toTime,toRpm]=DEMO_PULL[index];
+ return fromRpm+(toRpm-fromRpm)*(elapsed-fromTime)/(toTime-fromTime);
+}
+function demoShiftStage(rpm){
+ if(!Number.isFinite(rpm))return 0;
+ return DEMO_SHIFT_STEPS.filter(threshold=>rpm>=threshold).length;
+}
 function valid(sample,now){return sample&&Number.isFinite(sample.speed)&&sample.speed>=0&&sample.speed<1&&Number.isFinite(sample.rpm)&&sample.rpm>=0&&sample.rpm<=8000&&Number.isFinite(sample.at)&&now>=sample.at&&now-sample.at<=STALE_MS;}
 class Session{
  constructor(client,opts){this.c=client;this.opts=opts||{};this.now=this.opts.now||(()=>{const t=process.hrtime();return t[0]*1000+t[1]/1e6;});this.report=this.opts.report||(()=>{});this.started=null;this.active=false;this.refs=[];this.sample=null;this.mode='live';this.faceAssets=[];
@@ -33,9 +49,9 @@ class Session{
   });
  }
  update(sample){this.sample=sample;if(this.active&&!valid(sample,this.now()))this.stop('Speed, RPM or freshness check failed.');}
- start(mode,theme='round'){if(this.active)throw Error('Test already running');if(!valid(this.sample,this.now()))throw Error('Fresh stationary speed and RPM are required.');if(['live','sweep'].indexOf(mode)<0)throw Error('Unknown test mode');
+ start(mode,theme='round'){if(this.active)throw Error('Test already running');if(!valid(this.sample,this.now()))throw Error('Fresh stationary speed and RPM are required.');if(!['live','sweep','shift-demo'].includes(mode))throw Error('Unknown test mode');
   if(!['round','round-mask','round-stay','touring'].includes(theme)||(theme!=='round'&&mode!=='live'))throw Error('Unknown theme or mode');
-  this.started=this.now();this.active=true;this.mode=mode;this.theme=theme;this.refs=[];this.showReported=false;this.c.connect();
+  this.started=this.now();this.active=true;this.mode=mode;this.theme=theme;this.refs=[];this.showReported=false;this.demoStarted=null;this.c.connect();
  }
  loadTexture(dir, manifest, name, width, height) {
   const entry=manifest.images.find(row=>row.name===name);
@@ -91,19 +107,24 @@ class Session{
      const needle=this.loadTexture(dir,manifest,name,crop.width,crop.height);
      for(const r of geometry.pieces(d)){
       const ref=this.makeLayer(r,shader,true);
-      this.refs.push({ref,d,needle:new Needle(28),path:null,t0:this.now()});
+      const layer={ref,d,needle:new Needle(28),path:null,t0:this.now()};
+      this.refs.push(layer);
       this.c.bind(ref,'u_face',face);
       this.c.bind(ref,'u_needle',needle);
       this.c.uniform(ref,'u_size',[r.w,r.h]);
       this.c.uniform(ref,'u_origin',[r.x,r.y]);
       this.c.uniform(ref,'u_center',[d.x,d.y]);
       this.c.uniform(ref,'u_textureSize',[d.w,d.h]);
-      this.setModeAccent(this.refs[this.refs.length-1],this.now());
+      this.setModeAccent(layer,this.now());
       this.c.uniform(ref,'u_needleRect',[crop.offsetX,crop.offsetY,crop.width,crop.height]);
       this.c.uniform(ref,'u_times',[0,.06,.13,.13]);
-      const value=mode==='sweep'?0:d.optional?miniValue(this.sample,d,this.now()):this.sample[d.signal];
+      const shiftDemo=mode==='shift-demo'&&d.signal==='rpm';
+      const value=mode==='sweep'?0:shiftDemo?demoPullRpm(0):
+       d.optional?miniValue(this.sample,d,this.now()):this.sample[d.signal];
       const angle=(value===null?0:value)/d.max*d.sweep;
       this.c.uniform(ref,'u_valid',[value===null?0:1]);
+      layer.shiftStage=shiftDemo?0:-1;
+      this.c.uniform(ref,'u_shiftStage',[layer.shiftStage]);
       this.c.uniform(ref,'u_angles',[angle,angle,angle,angle]);
      }
     }
@@ -140,7 +161,15 @@ class Session{
    const detail=pending&&(pending.reason||pending.state);
    this.stop('Renderer startup timed out'+(detail?': '+detail:'.'));return;
   }
-  if(allShown&&!this.showReported){this.showReported=true;this.report('Theme shown. Parked test in progress.');}
+  if(allShown&&!this.showReported){
+   this.showReported=true;
+   if(this.mode==='shift-demo')this.demoStarted=now;
+   this.report(this.mode==='shift-demo'?'Simulated RPM. Parked shift-light demo in progress.':'Theme shown. Parked test in progress.');
+  }
+  const demoElapsed=this.demoStarted===null?0:now-this.demoStarted;
+  if(this.mode==='shift-demo'&&demoElapsed>=10000){this.stop('Shift-light demo complete. Factory display released.');return;}
+  const phase=Math.min(1,(now-this.started)/12000);
+  const sweepFraction=phase<=.5?phase*2:(1-phase)*2;
   for(const l of this.refs){
    if(l.isMask)continue;
    if(l.isFuel){this.c.uniform(l.ref,'u_level',[this.fuelLevel(now)]);continue;}
@@ -149,7 +178,14 @@ class Session{
     this.c.uniform(l.ref,'u_speed',[this.sample.speed]);
     continue;
    }
-   const phase=Math.min(1,(now-this.started)/12000),p=phase<=.5?phase*2:(1-phase)*2,value=this.mode==='sweep'?p*l.d.max:l.d.optional?miniValue(this.sample,l.d,now):this.sample[l.d.signal];if(this.theme!=='touring')this.c.uniform(l.ref,'u_valid',[value===null?0:1]);if(value===null){l.needle=new Needle(28);l.path=null;continue;}const angle=value/l.d.max*l.d.sweep;l.needle.step(angle,now);l.path=nextPath(l.path,(now-l.t0)/1000,.06,.07,l.needle.ahead(angle,130));this.c.uniform(l.ref,'u_times',l.path.t);this.c.uniform(l.ref,'u_angles',l.path.a);}
+   const shiftDemo=this.mode==='shift-demo'&&l.d.signal==='rpm';
+   const value=this.mode==='sweep'?sweepFraction*l.d.max:shiftDemo?demoPullRpm(demoElapsed):
+    l.d.optional?miniValue(this.sample,l.d,now):this.sample[l.d.signal];
+   if(shiftDemo){
+    const stage=demoShiftStage(value);
+    if(l.shiftStage!==stage){l.shiftStage=stage;this.c.uniform(l.ref,'u_shiftStage',[stage]);}
+   }
+   if(this.theme!=='touring')this.c.uniform(l.ref,'u_valid',[value===null?0:1]);if(value===null){l.needle=new Needle(28);l.path=null;continue;}const angle=value/l.d.max*l.d.sweep;l.needle.step(angle,now);l.path=nextPath(l.path,(now-l.t0)/1000,.06,.07,l.needle.ahead(angle,130));this.c.uniform(l.ref,'u_times',l.path.t);this.c.uniform(l.ref,'u_angles',l.path.a);}
  }
  stop(reason){const was=this.active;this.active=false;this.refs.forEach(l=>{try{this.c.drop(l.ref);}catch(e){}});this.faceAssets.forEach(ref=>{try{this.c.drop(ref);}catch(e){}});this.refs=[];this.faceAssets=[];this.c.close();if(was)this.report(reason||'Factory display released.');}
 }

@@ -1,7 +1,7 @@
 {
   "id": "kombikraft_test",
   "title": "KombiKraft Themes",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "F40 M Round with fuel and boost, plus attended parked layout comparisons.",
   "vendor": "KombiKraft",
   "loggingId": "KKTS",
@@ -39,6 +39,11 @@
           "button",
           "SWEEP",
           "M Round · demo needle sweep"
+        ],
+        [
+          "button",
+          "SHIFT",
+          "M Round · shift-light demo"
         ],
         [
           "text3",

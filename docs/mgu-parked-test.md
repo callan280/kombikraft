@@ -27,8 +27,13 @@ FES boost as fallback. The request set is fixed and read-only. The main dial
 centre rings follow Comfort orange, Sport red and Eco Pro blue from BMW FES.
 
 It requires fresh speed below 1 km/h and valid RPM to activate.
-The M Round sweep option is an explicit visual demo. It moves the artwork
-without sending vehicle signals.
+**M Round · shift-light demo** previews a simulated roll-on to 6,300 RPM,
+followed by a drop to 4,800 RPM on upshift, based on a roughly 24% RPM drop
+observed in a partial-load F40 data log. The tachometer shows two amber
+pairs at 5,200 and 5,550 RPM and two red pairs at 5,900 and 6,250 RPM. The
+sequence leaves the actual speed reading in place and releases the display
+after 10 seconds of output. The thresholds are for the preview only. The
+other M Round views keep the shift lights off.
 
 The layouts preserve space for the footer and modelled warning regions.
 The M Round warning reservation cuts into the lower tachometer artwork.

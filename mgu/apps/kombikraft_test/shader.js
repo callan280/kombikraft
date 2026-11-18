@@ -13,6 +13,7 @@ uniform vec2 u_center;
 uniform vec2 u_textureSize;
 uniform vec4 u_needleRect;
 uniform float u_valid;
+uniform float u_shiftStage;
 uniform vec3 u_modeTint;
 uniform sampler2D u_face;
 uniform sampler2D u_needle;
@@ -24,6 +25,22 @@ float angle(){float s=u_time-u_times.x;s-=3600.0*floor((s+1800.0)/3600.0);
  if(s<u_times.y)return mix(u_angles.x,u_angles.y,s/max(u_times.y,.0001));
  if(s<u_times.z)return mix(u_angles.y,u_angles.z,(s-u_times.y)/max(u_times.z-u_times.y,.0001));
  return mix(u_angles.z,u_angles.w,min(1.0,(s-u_times.z)/max(u_times.w-u_times.z,.0001)));}
+vec4 shiftLights(vec4 face, vec2 p){
+    if(u_shiftStage<0.0 || p.y>=0.0)return face;
+    float radius=length(p);
+    float angleFromTop=abs(degrees(atan(p.x,-p.y)));
+    if(radius<111.0 || radius>130.0 || angleFromTop>=72.0)return face;
+    float segment=floor(angleFromTop/18.0);
+    float radial=smoothstep(111.0,113.0,radius)*(1.0-smoothstep(128.0,130.0,radius));
+    float along=mod(angleFromTop,18.0);
+    float edge=smoothstep(1.0,2.0,along)*(1.0-smoothstep(16.0,17.0,along));
+    float order=4.0-segment;
+    vec3 tint=order<=2.0?vec3(1.,.57,.10):vec3(1.,.12,.08);
+    bool lit=u_shiftStage>=order;
+    vec3 ink=lit?tint:vec3(.17,.18,.20);
+    face.rgb=mix(face.rgb,ink,radial*edge);
+    return face;
+}
 void main(){vec2 p=v_uv*u_size+u_origin-u_center;
  vec2 uv=(p+u_textureSize*.5)/u_textureSize;
  vec4 face=texture2D(u_face,uv);
@@ -34,6 +51,7 @@ void main(){vec2 p=v_uv*u_size+u_origin-u_center;
  if (dot(u_modeTint,u_modeTint)>0.0) {
      face.rgb=mix(face.rgb, vec3(min(face.g,face.b)) + face.r*u_modeTint, redInk*ring);
  }
+ face=shiftLights(face,p);
  float a=radians(angle());float c=cos(a),s=sin(a);
  vec2 n=vec2(c*p.x+s*p.y,-s*p.x+c*p.y);
  vec2 nuv=(n+u_textureSize*.5-u_needleRect.xy)/u_needleRect.zw;

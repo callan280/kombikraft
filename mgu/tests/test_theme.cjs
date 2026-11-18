@@ -125,3 +125,32 @@ a.s.tick();a.s.tick();
 assert.deepEqual(a.c.uniforms.filter(u=>u.r===dial.ref&&u.k==='u_modeTint').map(u=>u.v),[[1,.45,.08],[.15,.54,1]]);
 a.s.stop();
 console.log('PASS drive-mode input variants, change-only uniform update and event-only mode retention.');
+
+// The parked shift demo starts its clock only after the renderer is visible.
+a=make();a.s.update({speed:0,rpm:750,at:now});a.s.start('shift-demo');
+now+=6000;
+a.s.update({speed:0,rpm:750,at:now});a.s.tick();
+const tach=a.s.refs.find(l=>l.d&&l.d.side==='right');
+const speedo=a.s.refs.find(l=>l.d&&l.d.side==='left');
+const stages=()=>a.c.uniforms.filter(u=>u.r===tach.ref&&u.k==='u_shiftStage').map(u=>u.v[0]);
+assert.deepEqual(stages(),[0]);
+a.s.refs.forEach(l=>a.c.emit('layer',l.ref,'shown'));
+const visibleAt=now;
+for(const elapsed of [0,3500,4000,4500,5250,5680,9000]){
+ now=visibleAt+elapsed;
+ a.s.update({speed:0,rpm:750,at:now});a.s.tick();
+}
+assert.deepEqual(stages(),[0,1,2,3,4,0]);
+assert(a.c.uniforms.filter(u=>u.r===speedo.ref&&u.k==='u_angles').every(u=>u.v.every(value=>value===0)));
+now=visibleAt+10000;a.s.update({speed:0,rpm:750,at:now});a.s.tick();
+assert(!a.s.active&&a.c.closed);
+assert.equal(a.messages.at(-1),'Shift-light demo complete. Factory display released.');
+
+for(const mode of ['live','sweep']){
+ a=make();a.s.update({speed:0,rpm:6400,at:now});a.s.start(mode);
+ a.s.refs.forEach(l=>a.c.emit('layer',l.ref,'shown'));
+ now+=6000;a.s.update({speed:0,rpm:6400,at:now});a.s.tick();
+ assert(a.c.uniforms.filter(u=>u.k==='u_shiftStage').every(u=>u.v[0]===-1));
+ a.s.stop();
+}
+console.log('PASS four mirrored shift-light stages, upshift clearing and timed factory release.');

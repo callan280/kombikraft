@@ -26,7 +26,7 @@ function make(){
 }
 const sample=(values={})=>Object.assign({speed:0,rpm:750,at:now},values);
 const shown=(client,session)=>session.refs.forEach(layer=>client.emit('layer',layer.ref,'shown'));
-for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed:2}),sample({at:now-4000}),sample({at:now+1})])assert(!valid(bad,now));
+for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed:331}),sample({at:now-4000}),sample({at:now+1})])assert(!valid(bad,now));
 {
  const {client,session}=make();
  assert.throws(()=>session.start());
@@ -51,7 +51,12 @@ for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed
  assert(pixelBytes+1088*480*1.5*4<16*1024*1024);
  shown(client,session);
  now+=50000;session.update(sample());session.tick();assert(session.active);
- session.update(sample({speed:1.1}));assert(!session.active&&client.closed);
+ for(const speed of [2,30,80]){
+  session.update(sample({speed,checkControl:{clear:true,at:now}}));session.tick();
+  assert(session.active);
+  assert(client.uniforms.some(entry=>entry.name==='u_speed'&&entry.values[0]===speed));
+ }
+ session.update(sample({speed:80,checkControl:{clear:false,at:now}}));assert(!session.active&&client.closed);
  assert.equal(client.dropped.length,client.assets.length+client.layers.length);
 }
 {
@@ -65,6 +70,12 @@ for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed
  assert(client.pixels(ref,null,frame));
  assert(!client.pixels(ref,null,frame));
  client.close();
+}
+for(const checkControl of [null,{clear:true,at:now-1501},{clear:true,at:now+1}]){
+ const {session}=make();
+ session.update(sample({speed:50,checkControl:{clear:true,at:now}}));assert.throws(()=>session.start());
+ session.update(sample());session.start();session.update(sample({speed:50,checkControl}));
+ assert(!session.active);
 }
 for(const dial of geometry.dials){
  const bounds=geometry.bounds(dial);
@@ -128,6 +139,11 @@ assert.equal(inputs.currentGear({value:'P',at:now-3000},now),null);
  tick(6600,'comfort');tick(6600,'eco');tick(6600,'sport',false);
  assert.deepEqual(values(rpm.ref,'u_shiftStage'),[0]);
  assert.equal(values(boost.ref,'u_valid').at(-1),0);
+ const temp=session.refs.find(layer=>layer.isTemperatureMask);
+ const tempReading={value:90,at:now};
+ session.update(sample({oil:tempReading,water:tempReading}));session.tick();
+ session.update(sample({oil:tempReading,water:{value:90,at:now-3000}}));session.tick();
+ assert.deepEqual(values(temp.ref,'u_show'),[0,1,0]);
  const gearMask=session.refs.find(layer=>layer.isGearMask);
  session.update(sample({gear:inputs.selectionGear({statusGearSelectionDrive:3},now)}));session.tick();
  assert.deepEqual(values(rpm.ref,'u_gearGlyphs').slice(-2),[-1,0]);

@@ -1,7 +1,7 @@
 {
   "id": "kombikraft_test",
   "title": "KombiKraft Themes",
-  "version": "0.1.12",
+  "version": "0.1.14",
   "description": "M Round for the F40 instrument cluster.",
   "vendor": "KombiKraft",
   "loggingId": "KKTS",
@@ -26,7 +26,7 @@
         [
           "text3",
           "MAIN_STATUS",
-          "Factory display active. M Round is available while parked."
+          "Select M Round while parked."
         ],
         [
           "text3",
@@ -55,6 +55,9 @@
     "de.bmw.infotainment.drivingexcitement.FES": [
       "statusSwitchDriveDynamicSport2",
       "statusFESVehicleDynamicSwitchHMI"
+    ],
+    "de.bmw.infotainment.checkcontrol.CheckControlMaster": [
+      "basicList"
     ]
   },
   "subscribeSignals": {

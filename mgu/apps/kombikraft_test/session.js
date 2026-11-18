@@ -3,7 +3,7 @@ const fs=require('fs'),path=require('path'),crypto=require('crypto');
 const {Needle,nextPath}=require('./needle-math');
 const geometry=require('./geometry'),shader=require('./shader');
 const mask=require('./factory-mask');
-const {miniValue,currentMode,currentGear,gearGlyphs}=require('./inputs');
+const {fresh,miniValue,currentMode,currentGear,gearGlyphs}=require('./inputs');
 const decorations=require('./round-extras');
 const modeTints={
  sport:[0,0,0],
@@ -14,7 +14,13 @@ const STALE_MS=3500,ACQUIRE_MS=9000;
 const SHIFT_STEPS=[5200,5350,5500,5650,5800,5950,6150,6350,6500];
 const FINAL_SHIFT_FRAME=SHIFT_STEPS.length;
 const FLASH_HALF_PERIOD_MS=200;
-function valid(sample,now){return sample&&Number.isFinite(sample.speed)&&sample.speed>=0&&sample.speed<1&&Number.isFinite(sample.rpm)&&sample.rpm>=0&&sample.rpm<=8000&&Number.isFinite(sample.at)&&now>=sample.at&&now-sample.at<=STALE_MS;}
+function valid(sample,now){return sample&&Number.isFinite(sample.speed)&&sample.speed>=0&&sample.speed<=330&&Number.isFinite(sample.rpm)&&sample.rpm>=0&&sample.rpm<=8000&&Number.isFinite(sample.at)&&now>=sample.at&&now-sample.at<=STALE_MS;}
+function canRender(sample,now){
+ if(!valid(sample,now))return false;
+ if(sample.speed<1)return true;
+ const check=sample.checkControl;
+ return !!check&&check.clear===true&&Number.isFinite(check.at)&&check.at<=now&&now-check.at<=1500;
+}
 class Session{
  constructor(client,opts){this.c=client;this.opts=opts||{};this.now=this.opts.now||(()=>{const t=process.hrtime();return t[0]*1000+t[1]/1e6;});this.report=this.opts.report||(()=>{});this.started=null;this.active=false;this.refs=[];this.sample=null;this.faceAssets=[];
   client.on('ready',()=>{if(!this.active)return;if(client.backend!=='id7'||!/(^|,)panel:1920x720(,|$)/.test(client.targets||'')){this.stop('Unexpected renderer backend or panel geometry.');return;}try{this.attach();}catch(e){this.stop(e.message);}});
@@ -34,10 +40,10 @@ class Session{
    }
   });
  }
- update(sample){this.sample=sample;if(this.active&&!valid(sample,this.now()))this.stop('Speed, RPM or freshness check failed.');}
+ update(sample){this.sample=sample;if(this.active&&!canRender(sample,this.now()))this.stop('Factory display restored. Check vehicle readings and Check Control status.');}
  start(){
   if(this.active)throw Error('M Round is already on');
-  if(!valid(this.sample,this.now()))throw Error('Fresh stationary speed and RPM are required.');
+  if(!valid(this.sample,this.now())||this.sample.speed>=1)throw Error('Fresh stationary speed and RPM are required.');
   this.started=this.now();this.active=true;this.refs=[];this.showReported=false;this.c.connect();
  }
  loadTexture(dir, manifest, name, width, height, sampling='bilinear') {
@@ -128,6 +134,11 @@ class Session{
     this.refs.push({ref,isMask:true});
     this.c.uniform(ref,'u_bounds',[rect.x,rect.y,rect.w,rect.h]);
    }
+   const t=mask.temperatureBounds;
+   const temperatureMask=this.makeLayer(t,mask.temperatureShader,false,5);
+   this.refs.push({ref:temperatureMask,isTemperatureMask:true,visible:false});
+   this.c.uniform(temperatureMask,'u_bounds',[t.x,t.y,t.w,t.h]);
+   this.c.uniform(temperatureMask,'u_show',[0]);
    const badge=this.makeLayer(decorations.badgeBounds,decorations.badgeShader,false,11);
    this.refs.push({ref:badge,isMask:true});
    this.c.bind(badge,'u_roundExtras',extras);
@@ -161,7 +172,7 @@ class Session{
  tick(){
   if(!this.active)return;
   const now=this.now();
-  if(!valid(this.sample,now)){this.stop('Stale data or vehicle moving.');return;}
+  if(!canRender(this.sample,now)){this.stop('Factory display restored. Vehicle or Check Control data unavailable, or a message is active.');return;}
   const allShown=this.refs.length>0&&this.refs.every(layer=>layer.state==='shown');
   if(!allShown&&now-this.started>=ACQUIRE_MS){
    const pending=this.refs.find(layer=>layer.state!=='shown');
@@ -171,6 +182,11 @@ class Session{
   if(allShown&&!this.showReported){this.showReported=true;this.report('M Round is on.');}
   const gear=currentGear(this.sample.gear,now);
   for(const layer of this.refs){
+   if(layer.isTemperatureMask){
+    const visible=allShown&&fresh(this.sample.oil,now,3000)!==null&&fresh(this.sample.water,now,3000)!==null;
+    if(visible!==layer.visible){layer.visible=visible;this.c.uniform(layer.ref,'u_show',[visible?1:0]);}
+    continue;
+   }
    if(layer.isGearMask){
     const visible=this.showReported&&gear!==null;
     if(visible!==layer.gearVisible){layer.gearVisible=visible;this.c.uniform(layer.ref,'u_show',[visible?1:0]);}

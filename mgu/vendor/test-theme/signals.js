@@ -57,25 +57,38 @@ async function watch(iface, instance, handlers, log, opts) {
         const cfg = loadConfig(iface);
         const p = await nativeTick(() => someip.buildProxy(cfg, String(instance)).then((px) => px.init().then(() => px)));
         res.proxy = p;
-        res.shutdown = () => Promise.resolve().then(() => p.shutdown && p.shutdown()).catch(() => {});
         const fields = Object.keys(handlers || {});
+        let epoch = 0, sequence = 0, timer = null;
+        const latest = Object.create(null);
+        res.shutdown = () => {
+            clearInterval(timer);
+            res.available = false;
+            epoch++;
+            return Promise.resolve().then(() => p.shutdown && p.shutdown()).catch(() => {});
+        };
+        const deliver = (field, value, generation, order) => {
+            if (opts && opts.ordered && (!res.available || epoch !== generation || order <= (latest[field] || 0))) return;
+            latest[field] = order;
+            handlers[field](value);
+        };
         const fetchAll = () => fields.forEach((f) => {
             if (cfg.fields && cfg.fields[f] && cfg.fields[f].getter) {
-                p.getValue(f, 3000).then((v) => handlers[f](v)).catch(() => {});
+                const generation = epoch, order = ++sequence;
+                p.getValue(f, 3000).then((v) => deliver(f,v,generation,order)).catch(() => {});
             }
         });
         await nativeTick(() => {
-            try { return p.subscribeToAvailability((a) => { res.available = !!a; if (a) setImmediate(fetchAll); }); } catch (e) { return null; /* older binding */ }
+            try { return p.subscribeToAvailability((a) => { if (res.available !== !!a) epoch++; res.available = !!a; if (!a && opts && opts.onUnavailable) opts.onUnavailable(); if (a) setImmediate(fetchAll); }); } catch (e) { return null; /* older binding */ }
         });
         for (const f of fields) {
             try {
-                await nativeTick(() => p.subscribe({ name: f, onReceive: (v) => { try { handlers[f](v); } catch (e) { if (log) log.warn(iface + '.' + f + ': ' + e); } } }));
+                await nativeTick(() => p.subscribe({ name: f, onReceive: (v) => { try { deliver(f,v,epoch,++sequence); } catch (e) { if (log) log.warn(iface + '.' + f + ': ' + e); } } }));
             } catch (e) {
                 if (log) log.warn('subscribe ' + iface + '.' + f + ': ' + e);
             }
         }
         if (p.isAvailable && p.isAvailable()) { res.available = true; fetchAll(); }
-        if (opts && opts.pollMs) setInterval(() => { if (res.available) setImmediate(fetchAll); }, opts.pollMs);
+        if (opts && opts.pollMs) timer = setInterval(() => { if (res.available) setImmediate(fetchAll); }, opts.pollMs);
     } catch (e) {
         res.error = String(e);
         if (log) log.warn('signals ' + iface + ': ' + e);

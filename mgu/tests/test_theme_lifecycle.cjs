@@ -47,7 +47,7 @@ Module._load=function(name){
  await new Promise(resolve=>setTimeout(resolve,150));
  assert.equal(child.sent.at(-1).sample.shiftLights,true);
  rows.STOP.emit('action');assert.equal(child.sent.at(-1).op,'stop');
- assert.equal(watches.length,4);
+ assert.equal(watches.length,5);
  assert.equal(start.sample.gear.value,'P');
  assert.deepEqual(Object.keys(rows).filter(name=>rows[name].listenerCount('action')),['PREF_SPORTSHIFTLIGHTS','LIVE','STOP']);
  console.log('PASS one M Round mode, persistent Sport light toggle, live source inputs and factory release.');

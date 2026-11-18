@@ -15,15 +15,16 @@ async function start(options={}){
  const subscriptions=[];
  let worker=null,heartbeat=null,monitor=null,ui=null;
  let speed=null,rpm=null,speedAt=-Infinity,rpmAt=-Infinity,fesBoost=null,dmeBoost=null,stage=null,selection=null;
+ let checkControl=null;
  const mini={};
- const sample=()=>Object.assign({speed,rpm,at:Math.min(speedAt,rpmAt),
+ const sample=()=>Object.assign({speed,rpm,checkControl,at:Math.min(speedAt,rpmAt),
   boost:selectBoost(dmeBoost,fesBoost,clock()),shiftLights:preferences.get('sportShiftLights'),
   gear:currentGear(stage,clock())?stage:selection},mini);
  const warn=error=>logger.warn('KombiKraft: '+String(error&&error.message||error));
  const text=(name,value)=>Promise.resolve(ui.getByName(name).setValue(0,'Text',value,'Text')).catch(warn);
  const status=value=>{logger.info(value);if(ui)text('MAIN_STATUS',value);};
  const pressure=enginePressure(signals,logger,clock,
-  ()=>!!worker&&valid(sample(),clock())&&rpm>0,value=>{dmeBoost=value;});
+  ()=>!!worker&&valid(sample(),clock())&&speed<1&&rpm>0,value=>{dmeBoost=value;});
 
  function stop(){
   if(worker){
@@ -36,7 +37,7 @@ async function start(options={}){
  }
  function run(){
   if(worker){status('M Round is already on.');return;}
-  if(!valid(sample(),clock())){status('Waiting for a fresh stationary speed and RPM reading.');return;}
+  if(!valid(sample(),clock())||speed>=1){status('Waiting for a fresh stationary speed and RPM reading.');return;}
   const child=fork(path.join(__dirname,'worker.js'),[],{stdio:['ignore','ignore','ignore','ipc']});
   worker=child;
   child.on('message',message=>{if(message.status&&worker===child)status(message.status);});
@@ -70,7 +71,7 @@ async function start(options={}){
  app.on('entryPointExecute',open);
  await ui.getByName('MAIN').updateResources();await refreshCheckbox();await app.initialized();
  const entry=app.getLastExecutedEntryPointUuid&&app.getLastExecutedEntryPointUuid();if(entry)open(entry);
- status('Factory display active. M Round is available while parked.');
+ status('Select M Round while parked.');
 
  subscriptions.push(await signals.watch('de.bmw.infotainment.vehicle.Vehicle2','1',{
   statusCarSpeed2:value=>{const n=value&&value.speedVehicleCentreOfGravity;speed=Number.isInteger(n)&&n>=0&&n<65535?n*.015625:null;speedAt=clock();}
@@ -87,6 +88,17 @@ async function start(options={}){
   statusGearboxDrive:value=>{stage=stageGear(value,clock());},
   DataPowerTrain2:value=>{selection=selectionGear(value,clock());}
  },logger,{pollMs:1000}));
+ subscriptions.push(await signals.watch('de.bmw.infotainment.checkcontrol.CheckControlMaster','1',{
+  basicList:entries=>{
+   const clear=Array.isArray(entries)&&entries.length<=45&&entries.every(entry=>
+    entry&&Number.isInteger(entry.ccmId)&&(entry.activeState===1||entry.activeState==='INAKTIV'));
+   checkControl={clear,at:clock()};
+   if(!clear&&worker&&worker.connected)worker.send({op:'sample',sample:sample()});
+  }
+ },logger,{pollMs:500,ordered:true,onUnavailable:()=>{
+  checkControl=null;
+  if(worker&&worker.connected)worker.send({op:'sample',sample:sample()});
+ }}));
  monitor=setInterval(()=>{
   pressure.poll();
   const current=sample(),now=clock();

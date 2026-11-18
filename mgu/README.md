@@ -1,5 +1,13 @@
 # KombiKraft for MGU Store
 
+
+Add **callan280/kombikraft** as an MGU Store source and select **Releases**.
+Install **KombiKraft Themes** for the M Round and Map Touring parked tests.
+The app declares cluster-render 0.6.9 and mgu-deploy 0.4.0 dependencies.
+[Parked test guide](../docs/mgu-parked-test.md)
+
+**KombiKraft Lab** is the separate preferences app described below.
+
 The app provides native iDrive menus for display preferences. It stores layout,
 map, unit and HUD choices in the app's own data directory. It does not replace a
 factory cluster scene, connect HUD graphics, change ambient lighting or operate
@@ -16,7 +24,7 @@ SDK-free application package. Alternatively use the direct HTTPS catalogue:
 https://raw.githubusercontent.com/callan280/kombikraft/main/catalog.json
 ```
 
-The app appears as **KombiKraft Lab · Offline prototype**. It is a preferences
+The preferences app appears as **KombiKraft Lab · Offline prototype**. It is a preferences
 prototype with the validation limits below; it does not activate a KOMBI skin.
 Use a compatible Store/deploy version with donor SDK linking.
 

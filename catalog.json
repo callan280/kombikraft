@@ -11,10 +11,31 @@
         "name": "kombikraft@0.1.0.tgz",
         "size": 9981,
         "sha256": "a0f8ba03c893c1e4b216030cea6a8d05e9e8efea2b79c233b263bbf5f8bf85f7",
-        "url": "https://github.com/callan280/kombikraft/releases/download/catalog/kombikraft@0.1.0.tgz"
+        "url": "https://github.com/callan280/kombikraft/releases/download/catalog/kombikraft%400.1.0.tgz"
       },
       "requires": {
         "mgu-deploy": "0.2.0"
+      },
+      "uninstallable": true,
+      "mguHmi": [
+        "ID7"
+      ]
+    },
+    {
+      "id": "kombikraft_test",
+      "kind": "app",
+      "title": "KombiKraft Themes",
+      "description": "Parked F40 previews for M Round and Map Touring. Map Touring leaves the centre open. Live navigation and factory warning visibility require on-car validation.",
+      "version": "0.1.1",
+      "artifact": {
+        "name": "kombikraft_test@0.1.1.tgz",
+        "size": 523499,
+        "sha256": "e530c39be30ba525a7dfcd288157ea63e0c5dbe45a5b4b5c316cf30beb7e92eb",
+        "url": "https://github.com/callan280/kombikraft/releases/download/catalog/kombikraft_test%400.1.1.tgz"
+      },
+      "requires": {
+        "mgu-deploy": "0.4.0",
+        "cluster-render": "0.6.9"
       },
       "uninstallable": true,
       "mguHmi": [

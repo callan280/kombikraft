@@ -21,7 +21,7 @@ native = ["Pillow==13.0.0"]
 kombikraft = "kombikraft.cli:main"
 
 [tool.setuptools]
-license-files = ["LICENSE", "ASSET-NOTICE.md"]
+license-files = ["LICENSE", "ASSET-NOTICE.md", "THIRD-PARTY-NEEDLES.txt"]
 
 [tool.setuptools.packages.find]
 where = ["src"]

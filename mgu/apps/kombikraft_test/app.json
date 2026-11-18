@@ -1,0 +1,64 @@
+{
+  "id": "kombikraft_test",
+  "title": "KombiKraft Themes",
+  "version": "0.1.1",
+  "description": "Parked F40 previews for M Round and Map Touring. Map Touring leaves the centre open. Live navigation and factory warning visibility require on-car validation.",
+  "vendor": "KombiKraft",
+  "loggingId": "KKTS",
+  "screens": [
+    {
+      "name": "MAIN",
+      "title": "KombiKraft Themes",
+      "items": [
+        [
+          "button",
+          "STOP",
+          "Show factory / stop test"
+        ],
+        [
+          "button",
+          "LIVE",
+          "M Round · 20-second test"
+        ],
+        [
+          "button",
+          "TOURING",
+          "Map Touring · 20-second test"
+        ],
+        [
+          "button",
+          "SWEEP",
+          "M Round · demo needle sweep"
+        ],
+        [
+          "text3",
+          "MAIN_STATUS",
+          "Output off. No automatic activation. Fresh stationary speed and RPM required."
+        ],
+        [
+          "text3",
+          "SENSORS",
+          "Oil — · Water — · Boost —"
+        ],
+        [
+          "text3",
+          "LIMITS",
+          "Parked tests expire after 20 seconds. Map Touring displays speed and RPM with the centre open for the factory view."
+        ]
+      ]
+    }
+  ],
+  "settings": [],
+  "readSignals": {
+    "de.bmw.infotainment.vehicle.Vehicle2": [
+      "statusCarSpeed2"
+    ],
+    "de.bmw.infotainment.vehicle.CDS": [
+      "statusEngineSpeed2",
+      "statusEngineTemperature"
+    ],
+    "de.bmw.infotainment.drivingexcitement.FES": [
+      "statusSwitchDriveDynamicSport2"
+    ]
+  }
+}

@@ -18,6 +18,9 @@ def known_inputs():
     manifest=ROOT/'assets/viewer-pack/manifest.json'
     for row in json.loads(manifest.read_text())['entries']:
         admitted['assets/viewer-pack/'+row['file']]=row['sha256']
+    theme=ROOT/'mgu/apps/kombikraft_test/art'
+    for texture in json.loads((theme/'manifest.json').read_text())['images']:
+        admitted['mgu/apps/kombikraft_test/art/'+texture['name']]=texture['sha256']
     library=json.loads((ROOT/'assets/library/export-receipt.json').read_text())
     for file,row in library['objects'].items():admitted['assets/library/'+file]=row['sha256']
     for file,row in library['detailShards'].items():admitted['assets/library/details/'+file]=row['sha256']

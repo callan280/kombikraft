@@ -132,6 +132,34 @@ def package_files(app_id, experimental=False):
         if source.is_symlink():
             raise ValueError('Source files must not be symlinks')
         files['javascript/' + ('app.js' if name == 'main.js' else name)] = source.read_bytes()
+    # The separate parked-test app is opt-in and never changes the preference app.
+    if app_id == 'kombikraft_test':
+        if experimental:
+            raise ValueError('Factory-menu injection is not part of the parked test')
+        manifest = json.loads(files['manifest.json'])
+        for iface, fields in spec.get('readSignals', {}).items():
+            manifest['proxies'][iface] = {'instances': '1', 'attributes': {field: 'rs' for field in fields}}
+        files['manifest.json'] = canonical(manifest)
+        for name in ['session.js', 'worker.js', 'geometry.js', 'shader.js', 'inputs.js', 'touring.js']:
+            files['javascript/' + name] = (folder / name).read_bytes()
+        for name, dest in [('cluster_render_client.js', 'cluster_render_client.js'), ('needle-math.js', 'needle-math.js'), ('signals.js', 'kit/signals.js')]:
+            files['javascript/' + dest] = (ROOT / 'vendor/test-theme' / name).read_bytes()
+        art_manifest = json.loads((folder / 'art/manifest.json').read_text())
+        if art_manifest.get('vehicleVerified') is not False or art_manifest.get('fixtureNumbersIncluded') is not False:
+            raise ValueError('Unexpected art provenance')
+        files['javascript/art/manifest.json'] = canonical(art_manifest)
+        for entry in art_manifest['images']:
+            name = entry['name']
+            if name not in [side+'-'+kind+'.rgba' for side in ['left','right','oil','boost','water'] for kind in ['face','needle']] + ['touring-speed.rgba', 'touring-rpm.rgba']:
+                raise ValueError('Unexpected art name')
+            raw = (folder / 'art' / name).read_bytes()
+            if hashlib.sha256(raw).hexdigest() != entry['sha256'] or len(raw) != entry['width'] * entry['height'] * 4:
+                raise ValueError('Art hash/size mismatch')
+            files['javascript/art/' + name] = raw
+        files['LICENSE.MPL-2.0'] = (ROOT / 'vendor/test-theme/LICENSE.MPL-2.0').read_bytes()
+        files['ASSET-NOTICE.md'] = (ROOT.parent / 'ASSET-NOTICE.md').read_bytes()
+        files['TEST-THEME-NOTICE.md'] = (ROOT / 'TEST-THEME-NOTICE.md').read_bytes()
+        files['THIRD-PARTY-NEEDLES.txt'] = (ROOT.parent / 'THIRD-PARTY-NEEDLES.txt').read_bytes()
     files['LICENSE'] = (ROOT.parent / 'LICENSE').read_bytes()
     files['THIRD_PARTY.md'] = (ROOT / 'THIRD_PARTY.md').read_bytes()
     files['LICENSE.bimmer-lab'] = (ROOT / 'vendor/LICENSE.bimmer-lab').read_bytes()

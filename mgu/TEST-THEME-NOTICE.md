@@ -1,0 +1,25 @@
+# Parked test sources and scope
+
+This package contains original KombiKraft glue plus:
+
+- `cluster_render_client.js`: unmodified MPL-2.0 source by Robert Nisipeanu,
+  from aidac/apps commit `27a6a7662d7243f2d5562829b5fe9628cac668f2`,
+  `shared/cluster_render_client.js`. Source is bundled. See LICENSE.MPL-2.0.
+- `kit/runtime/signals.js`: unmodified bimmer-lab MIT source from the same
+  commit, `kit/runtime/signals.js`. See LICENSE.bimmer-lab.
+- `needle-math.js`: adapted bimmer-lab MIT needle/path functions, same pin,
+  `shared/e36.js`. See THIRD-PARTY-NEEDLES.txt.
+- `art/*.rgba`: exported from the existing recovered BMW F97 mesh/texture
+  package using the viewer's custom material. These assets retain their
+  original ownership; see the repository ASSET-NOTICE.md. Map Touring uses
+  the viewer speed numerals and captured HUD M RPM graphics. They are not MIT
+  merely because the application code is MIT. No captured firmware or SDK
+  is in this archive.
+
+Upstream: https://github.com/aidac/apps/tree/27a6a7662d7243f2d5562829b5fe9628cac668f2
+Renderer: https://github.com/robertnisipeanu/idrive-apps/tree/main/native/cluster-render
+
+The bundled test does not patch firmware, issue UDS commands, operate vehicle
+controls, spoof CAN messages or synthesize warning lamps. Native lights and
+warnings remain the factory's responsibility. Geometry reservations avoid
+known/estimated regions; full F40 warning preservation is not proved.

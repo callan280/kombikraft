@@ -1,0 +1,24 @@
+{
+  "upstream": "https://github.com/aidac/apps",
+  "commit": "27a6a7662d7243f2d5562829b5fe9628cac668f2",
+  "files": [
+    {
+      "file": "cluster_render_client.js",
+      "source": "shared/cluster_render_client.js",
+      "license": "MPL-2.0",
+      "sha256": "3b88e1898da6e2dd4c00b9dda816cbe242edde102fab7fc4dc3cb881d6c369d9"
+    },
+    {
+      "file": "signals.js",
+      "source": "kit/runtime/signals.js",
+      "license": "MIT",
+      "sha256": "92e3e397aef9cd44fcef989c3802af7980b7f3340028dba3fd4a1741bc940e23"
+    },
+    {
+      "file": "needle-math.js",
+      "source": "shared/e36.js",
+      "license": "MIT, adapted",
+      "sha256": "a7e76e914a26925aa47e5e029c524862dc588bdce9d674fb921b5c03cfe1cd81"
+    }
+  ]
+}

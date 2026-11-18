@@ -5,3 +5,4 @@ native/data/** -diff -whitespace
 # These upstream/generated inputs retain their reviewed bytes.
 native/bridges/qemu/*.patch -whitespace
 native/source/abi.h -whitespace
+mgu/apps/kombikraft_test/art/*.rgba binary

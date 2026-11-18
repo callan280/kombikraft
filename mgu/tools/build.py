@@ -150,7 +150,7 @@ def package_files(app_id, experimental=False):
             'broadcasts': ['sendTasuResponse'],
         }
         files['manifest.json'] = canonical(manifest)
-        for name in ['session.js', 'worker.js', 'geometry.js', 'shader.js', 'inputs.js', 'factory-mask.js', 'mask-profile.json', 'engine-pressure.js']:
+        for name in ['session.js', 'worker.js', 'geometry.js', 'shader.js', 'inputs.js', 'factory-mask.js', 'mask-profile.json', 'engine-pressure.js', 'round-extras.js']:
             files['javascript/' + name] = (folder / name).read_bytes()
         for name, dest in [('cluster_render_client.js', 'cluster_render_client.js'), ('needle-math.js', 'needle-math.js'), ('signals.js', 'kit/signals.js')]:
             files['javascript/' + dest] = (ROOT / 'vendor/test-theme' / name).read_bytes()
@@ -164,7 +164,7 @@ def package_files(app_id, experimental=False):
         files['javascript/art/manifest.json'] = canonical(art_manifest)
         for entry in art_manifest['images']:
             name = entry['name']
-            if name not in [side+'-'+kind+'.rgba' for side in ['left','right','oil','boost','water'] for kind in ['face','needle']] + ['right-shift.rgba', 'touring-speed.rgba']:
+            if name not in [side+'-'+kind+'.rgba' for side in ['left','right','oil','boost','water'] for kind in ['face','needle']] + ['right-shift.rgba', 'touring-speed.rgba', 'round-extras.rgba']:
                 raise ValueError('Unexpected art name')
             raw = (folder / 'art' / name).read_bytes()
             if hashlib.sha256(raw).hexdigest() != entry['sha256'] or len(raw) != entry['width'] * entry['height'] * 4:

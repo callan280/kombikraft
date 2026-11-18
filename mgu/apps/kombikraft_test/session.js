@@ -3,7 +3,8 @@ const fs=require('fs'),path=require('path'),crypto=require('crypto');
 const {Needle,nextPath}=require('./needle-math');
 const geometry=require('./geometry'),shader=require('./shader');
 const mask=require('./factory-mask');
-const {miniValue,currentMode}=require('./inputs');
+const {miniValue,currentMode,currentGear,gearGlyphs}=require('./inputs');
+const decorations=require('./round-extras');
 const modeTints={
  sport:[0,0,0],
  comfort:[1,.45,.08],
@@ -62,6 +63,7 @@ class Session{
    const dir=this.opts.art||path.join(__dirname,'art');
    const manifest=JSON.parse(fs.readFileSync(path.join(dir,'manifest.json')));
    const speedArt=this.loadTexture(dir,manifest,'touring-speed.rgba',1056,108);
+   const extras=this.loadTexture(dir,manifest,'round-extras.rgba',896,116);
    for(const d of geometry.dials.concat(geometry.minis)){
     const face=this.loadTexture(dir,manifest,d.side+'-face.rgba',d.w,d.h);
     const name=d.side+'-needle.rgba';
@@ -77,12 +79,10 @@ class Session{
     const shift=tach&&manifest.images.find(entry=>entry.name==='right-shift.rgba');
     if(tach&&!shift)throw Error('F97 shift-ring artwork missing');
     const shiftArt=shift&&this.loadTexture(dir,manifest,shift.name,shift.width,shift.height,'nearest');
-    const panelScale=geometry.bounds(d).w/d.w;
+    const panelScale=(d.displaySize||d.w)/d.w;
+    const tachBand={x:d.x-200*panelScale,y:d.y-200*panelScale,w:400*panelScale,h:400*panelScale};
     for(const r of geometry.pieces(d)){
-     const showShift=shift&&geometry.intersect(r,{
-      x:d.x+shift.offsetX*panelScale,y:d.y+shift.offsetY*panelScale,
-      w:shift.width*panelScale,h:shift.mapHeight*panelScale
-     });
+     const showShift=shift&&geometry.intersect(r,tachBand);
      const defines=showShift?'#define F97_SHIFT_LIGHTS\n':d.signal==='speed'?'#define F40_DIGITAL_SPEED\n':'';
      const ref=this.makeLayer(r,defines+shader,true);
      const layer={ref,d,needle:new Needle(28),path:null,t0:this.now()};
@@ -92,26 +92,32 @@ class Session{
      if(d.signal==='speed'){
       this.c.bind(ref,'u_speedArt',speedArt);
       this.c.uniform(ref,'u_speed',[this.sample.speed]);
+      layer.speed=this.sample.speed;
      }
      this.c.uniform(ref,'u_size',[r.w,r.h]);
      this.c.uniform(ref,'u_origin',[r.x,r.y]);
      this.c.uniform(ref,'u_center',[d.x,d.y]);
-     this.c.uniform(ref,'u_artPerPixel',[1/panelScale]);
-     this.c.uniform(ref,'u_roundFace',[d.optional?0:1]);
+     this.c.uniform(ref,'u_arcRotation',[d.arcRotation||0]);
+     this.c.uniform(ref,'u_artPerPixel',[d.w/(d.displaySize||d.w)]);
      this.c.uniform(ref,'u_textureSize',[d.w,d.h]);
      this.setModeAccent(layer,this.now());
      this.c.uniform(ref,'u_needleRect',[crop.offsetX,crop.offsetY,crop.width,crop.height]);
      this.c.uniform(ref,'u_times',[0,.06,.13,.13]);
      if(showShift){
       this.c.bind(ref,'u_shiftArt',shiftArt);
+      this.c.bind(ref,'u_roundExtras',extras);
+      this.c.uniform(ref,'u_gearGlyphs',[-1,-1]);
+      layer.gear=null;
       this.c.uniform(ref,'u_shiftMap',[shift.offsetX,shift.offsetY,shift.width,shift.mapHeight]);
       this.c.uniform(ref,'u_shiftAtlasSize',[shift.width,shift.height]);
       this.c.uniform(ref,'u_shiftStage',[0]);
+      this.c.uniform(ref,'u_arcSweep',[d.sweep]);
       layer.shiftStage=0;
      }
      const value=d.optional?miniValue(this.sample,d,this.now()):this.sample[d.signal];
      const angle=(value===null?0:value)/d.max*d.sweep;
-     this.c.uniform(ref,'u_valid',[value===null?0:1]);
+     layer.needleVisible=value!==null;
+     this.c.uniform(ref,'u_valid',[layer.needleVisible?1:0]);
      this.c.uniform(ref,'u_angles',[angle,angle,angle,angle]);
     }
    }
@@ -120,6 +126,12 @@ class Session{
     this.refs.push({ref,isMask:true});
     this.c.uniform(ref,'u_bounds',[rect.x,rect.y,rect.w,rect.h]);
    }
+   const badge=this.makeLayer(decorations.badgeBounds,decorations.badgeShader,false,11);
+   this.refs.push({ref:badge,isMask:true});
+   this.c.bind(badge,'u_roundExtras',extras);
+   const gearMask=this.makeLayer(decorations.factoryGearBounds,decorations.factoryGearShader,false,5);
+   this.refs.push({ref:gearMask,isGearMask:true,gearVisible:false});
+   this.c.uniform(gearMask,'u_show',[0]);
    this.report('M Round · waiting for cluster graphics.');
   }catch(e){this.stop(e.message);throw e;}
  }
@@ -155,14 +167,26 @@ class Session{
    this.stop('Renderer startup timed out'+(detail?': '+detail:'.'));return;
   }
   if(allShown&&!this.showReported){this.showReported=true;this.report('M Round is on.');}
+  const gear=currentGear(this.sample.gear,now);
   for(const layer of this.refs){
+   if(layer.isGearMask){
+    const visible=this.showReported&&gear!==null;
+    if(visible!==layer.gearVisible){layer.gearVisible=visible;this.c.uniform(layer.ref,'u_show',[visible?1:0]);}
+    continue;
+   }
    if(layer.isMask)continue;
    this.setModeAccent(layer,now);
    const {d,ref}=layer;
    const value=d.optional?miniValue(this.sample,d,now):this.sample[d.signal];
-   if(layer.shiftStage!==undefined)this.updateShiftLights(layer,value,now);
-   if(d.signal==='speed')this.c.uniform(ref,'u_speed',[value]);
-   this.c.uniform(ref,'u_valid',[value===null?0:1]);
+   if(layer.shiftStage!==undefined){
+    this.updateShiftLights(layer,value,now);
+    if(layer.gear!==gear){layer.gear=gear;this.c.uniform(ref,'u_gearGlyphs',gearGlyphs(gear));}
+   }
+   if(d.signal==='speed'&&value!==layer.speed){layer.speed=value;this.c.uniform(ref,'u_speed',[value]);}
+   const needleVisible=value!==null;
+   if(layer.needleVisible!==needleVisible){
+    layer.needleVisible=needleVisible;this.c.uniform(ref,'u_valid',[needleVisible?1:0]);
+   }
    if(value===null){layer.needle=new Needle(28);layer.path=null;continue;}
    const angle=value/d.max*d.sweep;
    layer.needle.step(angle,now);

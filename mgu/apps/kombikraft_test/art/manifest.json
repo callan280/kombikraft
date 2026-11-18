@@ -20,7 +20,7 @@
       "name": "right-face.rgba",
       "width": 688,
       "height": 688,
-      "sha256": "fab6f75a1aedfc146bce2473c28d2c271717dd5f4f7503ed3a80b8a08fe2673c"
+      "sha256": "526e724ffb5209853998158ea7253fd84348c3e06e3b4524ccc9c107c2029712"
     },
     {
       "name": "right-needle.rgba",
@@ -101,6 +101,12 @@
       "offsetY": -193,
       "mapHeight": 344,
       "paletteWidth": 130
+    },
+    {
+      "name": "round-extras.rgba",
+      "width": 896,
+      "height": 116,
+      "sha256": "509502db359ddb685f77f6fff0481decda9d3e1659b535036727097723bc0361"
     }
   ],
   "geometry": {
@@ -154,9 +160,13 @@
       "left": "a1681c7db025acff478411c1987aaf81a33d3e148acf416d8592ceafb102ffe2",
       "right": "caf29114905f9656a2c3d8166eb459da1870cdb88d0049814e48f68244af7aaf"
     },
+    "tachStartDegrees": 158,
+    "tachSweepDegrees": 224,
+    "numeralMeshSha256": "ccf48e08f219acb477771355c2faf9ea79cd103be3dca8adb784c7b571111ff9",
     "badgeName": "KI_2D_MLogo_M135i_MSPORTShape_bitmap__KI_2D_MLogo_M135i_MSPORT",
     "badgePngSha256": "aa2d9a887e99a38fbe546598bbf68d80511ba26d275ca1dd2a9eec7f2ec2d1b2",
-    "badgePlacement": "Centered below the tachometer hub, under the moving needle",
+    "badgePlacement": "Between the main dials",
+    "gearGlyphSourceSha256": "8cc68c323fc0e4f719c08adcf39a6de98e80644081adb13aaa68144522db3011",
     "redlineAppearance": "Red starts at 6500 and blends in over 250 RPM; display styling"
   }
 }

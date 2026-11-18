@@ -1,7 +1,7 @@
 {
   "id": "kombikraft_test",
   "title": "KombiKraft Themes",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "M Round for the F40 instrument cluster.",
   "vendor": "KombiKraft",
   "loggingId": "KKTS",
@@ -9,24 +9,56 @@
     {
       "name": "MAIN",
       "title": "KombiKraft Themes",
-      "settings": ["sportShiftLights"],
+      "settings": [
+        "sportShiftLights"
+      ],
       "items": [
-        ["button", "LIVE", "M Round"],
-        ["button", "STOP", "Show factory"],
-        ["text3", "MAIN_STATUS", "Factory display active. M Round is available while parked."],
-        ["text3", "SENSORS", "Oil — · Water — · Boost unavailable"]
+        [
+          "button",
+          "LIVE",
+          "M Round"
+        ],
+        [
+          "button",
+          "STOP",
+          "Show factory"
+        ],
+        [
+          "text3",
+          "MAIN_STATUS",
+          "Factory display active. M Round is available while parked."
+        ],
+        [
+          "text3",
+          "SENSORS",
+          "Oil \u2014 \u00b7 Water \u2014 \u00b7 Boost unavailable"
+        ]
       ]
     }
   ],
   "settings": [
-    {"key": "sportShiftLights", "type": "bool", "label": "Shift lights in Sport", "default": true}
+    {
+      "key": "sportShiftLights",
+      "type": "bool",
+      "label": "Shift lights in Sport",
+      "default": true
+    }
   ],
   "readSignals": {
-    "de.bmw.infotainment.vehicle.Vehicle2": ["statusCarSpeed2"],
-    "de.bmw.infotainment.vehicle.CDS": ["statusEngineSpeed2", "statusEngineTemperature"],
+    "de.bmw.infotainment.vehicle.Vehicle2": [
+      "statusCarSpeed2"
+    ],
+    "de.bmw.infotainment.vehicle.CDS": [
+      "statusEngineSpeed2",
+      "statusEngineTemperature"
+    ],
     "de.bmw.infotainment.drivingexcitement.FES": [
       "statusSwitchDriveDynamicSport2",
       "statusFESVehicleDynamicSwitchHMI"
+    ],
+    "de.bmw.infrastructure.VehicleInformation": [
+      "statusGearboxDrive",
+      "DataPowerTrain2"
     ]
   }
 }

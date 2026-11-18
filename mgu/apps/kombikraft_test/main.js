@@ -2,7 +2,7 @@
 const fs=require('fs'),path=require('path'),{fork}=require('child_process');
 const {OnlineApp,logging}=require('oap-sdk');
 const signals=require('./kit/signals');
-const {temperatures,boost,fresh,selectBoost,driveMode,currentMode}=require('./inputs');
+const {temperatures,boost,fresh,selectBoost,driveMode,currentMode,stageGear,selectionGear,currentGear}=require('./inputs');
 const {enginePressure}=require('./engine-pressure');
 const {Preferences}=require('./preferences');
 const {valid}=require('./session'),spec=require('./app-spec.json');
@@ -14,10 +14,11 @@ async function start(options={}){
  const preferences=new Preferences(spec.settings,options.dataDir||(fs.existsSync(data)?data:process.cwd()));
  const subscriptions=[];
  let worker=null,heartbeat=null,monitor=null,ui=null;
- let speed=null,rpm=null,speedAt=-Infinity,rpmAt=-Infinity,fesBoost=null,dmeBoost=null;
+ let speed=null,rpm=null,speedAt=-Infinity,rpmAt=-Infinity,fesBoost=null,dmeBoost=null,stage=null,selection=null;
  const mini={};
  const sample=()=>Object.assign({speed,rpm,at:Math.min(speedAt,rpmAt),
-  boost:selectBoost(dmeBoost,fesBoost,clock()),shiftLights:preferences.get('sportShiftLights')},mini);
+  boost:selectBoost(dmeBoost,fesBoost,clock()),shiftLights:preferences.get('sportShiftLights'),
+  gear:currentGear(stage,clock())?stage:selection},mini);
  const warn=error=>logger.warn('KombiKraft: '+String(error&&error.message||error));
  const text=(name,value)=>Promise.resolve(ui.getByName(name).setValue(0,'Text',value,'Text')).catch(warn);
  const status=value=>{logger.info(value);if(ui)text('MAIN_STATUS',value);};
@@ -81,6 +82,10 @@ async function start(options={}){
  subscriptions.push(await signals.watch('de.bmw.infotainment.drivingexcitement.FES','1',{
   statusSwitchDriveDynamicSport2:value=>{fesBoost=boost(value,clock());},
   statusFESVehicleDynamicSwitchHMI:value=>{mini.mode=driveMode(value,clock());}
+ },logger,{pollMs:1000}));
+ subscriptions.push(await signals.watch('de.bmw.infrastructure.VehicleInformation','1',{
+  statusGearboxDrive:value=>{stage=stageGear(value,clock());},
+  DataPowerTrain2:value=>{selection=selectionGear(value,clock());}
  },logger,{pollMs:1000}));
  monitor=setInterval(()=>{
   pressure.poll();

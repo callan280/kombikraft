@@ -36,6 +36,7 @@ Module._load=function(name){
   if(handlers.statusEngineSpeed2)handlers.statusEngineSpeed2({actualValueRPMEngineCrankshaft:3200});
   if(handlers.statusEngineTemperature)handlers.statusEngineTemperature({temperatureEngineOilDrive:138,temperatureEngineDrive:148});
   if(handlers.statusSwitchDriveDynamicSport2)handlers.statusSwitchDriveDynamicSport2({displayBoostPressure:100});
+  if(handlers.DataPowerTrain2)handlers.DataPowerTrain2({statusGearSelectionDrive:'P'});
  }
  rows.LIVE.emit('action');assert.equal(children.length,1);
  const child=children[0],start=child.sent[0];
@@ -46,7 +47,8 @@ Module._load=function(name){
  await new Promise(resolve=>setTimeout(resolve,150));
  assert.equal(child.sent.at(-1).sample.shiftLights,true);
  rows.STOP.emit('action');assert.equal(child.sent.at(-1).op,'stop');
- assert.equal(watches.length,3);
+ assert.equal(watches.length,4);
+ assert.equal(start.sample.gear.value,'P');
  assert.deepEqual(Object.keys(rows).filter(name=>rows[name].listenerCount('action')),['PREF_SPORTSHIFTLIGHTS','LIVE','STOP']);
  console.log('PASS one M Round mode, persistent Sport light toggle, live source inputs and factory release.');
  app.emit('shutdown');

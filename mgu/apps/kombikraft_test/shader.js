@@ -10,8 +10,8 @@ varying vec2 v_uv;
 uniform vec2 u_size;
 uniform vec2 u_origin;
 uniform vec2 u_center;
+uniform float u_arcRotation;
 uniform float u_artPerPixel;
-uniform float u_roundFace;
 uniform vec2 u_textureSize;
 uniform vec4 u_needleRect;
 uniform float u_valid;
@@ -38,9 +38,20 @@ vec4 digitalSpeed(vec2 p){
 #endif
 #ifdef F97_SHIFT_LIGHTS
 uniform float u_shiftStage;
+uniform float u_arcSweep;
 uniform sampler2D u_shiftArt;
 uniform vec4 u_shiftMap;
 uniform vec2 u_shiftAtlasSize;
+uniform sampler2D u_roundExtras;
+uniform vec2 u_gearGlyphs;
+vec4 gearReadout(vec2 p){
+ if(u_gearGlyphs.x<0.0)return vec4(0.0);
+ vec2 cell=vec2(p.x/.92+(u_gearGlyphs.y<0.0?32.0:62.0),(p.y-62.0)/.92);
+ float index=u_gearGlyphs.x;
+ if(cell.x>=62.0&&u_gearGlyphs.y>=0.0){cell.x-=62.0;index=u_gearGlyphs.y;}
+ if(any(lessThan(cell,vec2(0.0)))||any(greaterThanEqual(cell,vec2(64.0))))return vec4(0.0);
+ return texture2D(u_roundExtras,(cell+vec2(index*64.0,0.0))/vec2(896.0,116.0));
+}
 #endif
 uniform vec3 u_modeTint;
 uniform sampler2D u_face;
@@ -72,7 +83,6 @@ vec4 shiftLights(vec4 face,vec2 p){
 }
 #endif
 void main(){vec2 p=(v_uv*u_size+u_origin-u_center)*u_artPerPixel;
- if(u_roundFace>.5 && length(p)>u_textureSize.x*.5)discard;
  vec2 uv=(p+u_textureSize*.5)/u_textureSize;
  vec4 face=texture2D(u_face,uv);
  // Only recolour the saturated centre-ring material. Keep the scale,
@@ -83,7 +93,13 @@ void main(){vec2 p=(v_uv*u_size+u_origin-u_center)*u_artPerPixel;
      face.rgb=mix(face.rgb, vec3(min(face.g,face.b)) + face.r*u_modeTint, redInk*ring);
  }
 #ifdef F97_SHIFT_LIGHTS
- face=shiftLights(face,p);
+ float arc=mod(degrees(atan(p.y,p.x))-(180.0+u_arcRotation)+720.0,360.0);
+ float sourceArc=arc<=u_arcSweep?arc*234.0/u_arcSweep:234.0+(arc-u_arcSweep)*126.0/(360.0-u_arcSweep);
+ float r=radians(180.0+sourceArc);
+ vec2 shiftPoint=vec2(cos(r),sin(r))*length(p);
+ face=shiftLights(face,shiftPoint);
+ vec4 gear=gearReadout(p);
+ face.rgb=mix(face.rgb,gear.rgb,gear.a);
 #endif
 #ifdef F40_DIGITAL_SPEED
  if(u_valid>.5){
@@ -91,7 +107,7 @@ void main(){vec2 p=(v_uv*u_size+u_origin-u_center)*u_artPerPixel;
   face.rgb=mix(face.rgb,reading.rgb,reading.a);
  }
 #endif
- float a=radians(angle());float c=cos(a),s=sin(a);
+ float a=radians(angle()+u_arcRotation);float c=cos(a),s=sin(a);
  vec2 n=vec2(c*p.x+s*p.y,-s*p.x+c*p.y);
  vec2 nuv=(n+u_textureSize*.5-u_needleRect.xy)/u_needleRect.zw;
  vec4 nd=texture2D(u_needle,nuv);nd.a*=u_valid;

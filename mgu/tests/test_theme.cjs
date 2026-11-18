@@ -5,6 +5,7 @@ const {Session,valid}=require(path.join(root,'javascript/session'));
 const geometry=require(path.join(root,'javascript/geometry'));
 const mask=require(path.join(root,'javascript/factory-mask'));
 const inputs=require(path.join(root,'javascript/inputs'));
+const extras=require(path.join(root,'javascript/round-extras'));
 class Client extends EventEmitter{
  constructor(){super();this.id=0;this.layers=[];this.assets=[];this.uniforms=[];this.dropped=[];}
  asset(options){this.assets.push(options);return ++this.id;}
@@ -29,15 +30,16 @@ for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed
  const {client,session}=make();
  assert.throws(()=>session.start());
  session.update(sample());session.start();
- assert.equal(client.assets.length,12);
+ assert.equal(client.assets.length,13);
  assert(client.uniforms.some(entry=>entry.name==='u_speed'&&entry.values[0]===0));
- assert.equal(client.layers.filter(layer=>layer.fs.startsWith('#define F40_DIGITAL_SPEED')).length,1);
- const maskLayers=client.layers.filter(layer=>layer.z===5);
+ assert(client.layers.some(layer=>layer.fs.startsWith('#define F40_DIGITAL_SPEED')));
+ const maskLayers=client.layers.filter(layer=>layer.z===5&&layer.fs===mask.shader);
  assert.equal(maskLayers.length,mask.pieces.length);
  assert(maskLayers.length>0);
  for(const layer of client.layers){
   assert(!layer.exclusive&&!layer.contend&&!layer.guide_hold);
-  assert(geometry.holes.every(hole=>!geometry.intersect(layer,hole)));
+  if(layer.fs!==extras.factoryGearShader)assert(geometry.holes.every(hole=>!geometry.intersect(layer,hole)));
+  else assert.deepEqual({x:layer.x,y:layer.y,w:layer.w,h:layer.h},extras.factoryGearBounds);
  }
  assert(maskLayers.every(layer=>mask.reserves.every(hole=>!geometry.intersect(layer,hole))));
  assert(client.assets.reduce((sum,asset)=>sum+asset.w*asset.h*8,0)+1088*480*1.5*4<16*1024*1024);
@@ -48,15 +50,17 @@ for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed
 }
 for(const dial of geometry.dials){
  const bounds=geometry.bounds(dial);
- assert(bounds.x>=0&&bounds.y>=0&&bounds.x+bounds.w<=1920&&bounds.y+bounds.h<=510);
- for(const box of geometry.turnIndicators){
-  const dx=Math.max(box.x-dial.x,dial.x-box.x-box.w,0);
-  const dy=Math.max(box.y-dial.y,dial.y-box.y-box.h,0);
-  assert(Math.hypot(dx,dy)>=dial.displaySize/2,'An indicator would clip the circular face');
- }
+ assert(bounds.y===80&&bounds.y+bounds.h===660);
+ assert(bounds.x>=0&&bounds.x+bounds.w<=1920);
 }
-assert.equal(geometry.dials[0].y,geometry.dials[1].y);
-assert.equal(geometry.dials[0].displaySize,geometry.dials[1].displaySize);
+const [speedDial,tachDial]=geometry.dials;
+assert.equal(speedDial.y,tachDial.y);
+assert.equal(speedDial.displaySize,700);
+assert.equal(tachDial.displaySize,700);
+assert(tachDial.x-speedDial.x>tachDial.displaySize);
+const radius=tachDial.displaySize/2;
+for(const endpoint of [180+tachDial.arcRotation,180+tachDial.sweep+tachDial.arcRotation])
+ assert(tachDial.y+radius*Math.sin(endpoint*Math.PI/180)<geometry.centreWarning.y,'A tach endpoint crosses the warning opening');
 for(const event of ['disconnected','refused','suspended','stale','timeout','stalled']){
  const {client,session,reports}=make();session.update(sample());session.start();
  if(event==='suspended')client.emit('layer',session.refs[0].ref,'suspended');
@@ -89,6 +93,10 @@ assert.equal(inputs.selectBoost(engine,sport,now+3000),null);
 assert.equal(inputs.driveMode({actualValueModeDrivingExperience:'SPORT_DYNAMIC'},now).value,'sport');
 assert.equal(inputs.driveMode({actualValueModeDrivingExperience:'ECO_PRO_EFFICIENT'},now).value,'eco');
 assert.equal(inputs.driveMode({actualValueModeDrivingExperience:'4'},now).value,'comfort');
+assert.equal(inputs.selectionGear({statusGearSelectionDrive:'NP'},now).value,null);
+assert.equal(inputs.selectionGear({statusGearSelectionDrive:'_3'},now).value,'D3');
+assert.equal(inputs.stageGear({statusActualStageDrive:'M',statusActualGearDrive:'G2'},now).value,'M2');
+assert.equal(inputs.currentGear({value:'P',at:now-3000},now),null);
 {
  const {client,session}=make();session.update(sample());session.start();shown(client,session);
  const rpm=session.refs.find(layer=>layer.shiftStage!==undefined);
@@ -102,6 +110,12 @@ assert.equal(inputs.driveMode({actualValueModeDrivingExperience:'4'},now).value,
  tick(6600,'comfort');tick(6600,'eco');tick(6600,'sport',false);
  assert.deepEqual(values(rpm.ref,'u_shiftStage'),[0]);
  assert.equal(values(boost.ref,'u_valid').at(-1),0);
+ const gearMask=session.refs.find(layer=>layer.isGearMask);
+ session.update(sample({gear:inputs.selectionGear({statusGearSelectionDrive:3},now)}));session.tick();
+ assert.deepEqual(values(rpm.ref,'u_gearGlyphs').slice(-2),[-1,0]);
+ assert.deepEqual(values(gearMask.ref,'u_show'),[0,1]);
+ session.update(sample({gear:inputs.selectionGear({statusGearSelectionDrive:4},now)}));session.tick();
+ assert.deepEqual(values(gearMask.ref,'u_show'),[0,1,0]);
  tick(5200,'sport',true,33,0);assert.equal(values(boost.ref,'u_valid').at(-1),1);
  const zeroAngle=values(boost.ref,'u_angles').at(-1);
  for(const threshold of [5350,5500,5650,5800,5950,6150,6350,6500])tick(threshold,'sport',true,33,16);

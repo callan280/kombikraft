@@ -8,12 +8,15 @@ fresh and stationary. **Show factory** releases both the dial and mask
 layers immediately. Movement, stale speed/RPM, or renderer loss also releases
 them. The display does not start on its own.
 
-Both round faces fit above the centre warning opening and clear the two
-turn-indicator boxes measured in the native F40 renderer. The original F40 M135i badge is enlarged
-below the tachometer hub. The speedometer shows the measured speed and BMW
-km/h label below its needle hub. The outer red sector starts at 6,500 RPM on the
-display. This is a visual marking, independent of the engine or tune limit.
-The factory fuel display remains visible where the layout leaves it open.
+The 700-pixel dials start beneath the factory indicator row and extend
+behind the footer.
+The factory turn indicators and centre warning opening remain reserved. The centre opening starts at y=574 on the 720-pixel panel,
+with clearance above the DSC banner observed during the parked test.
+The tachometer scale is re-spaced to fit all RPM marks above the opening.
+The red sector starts at 6,500 RPM on the display. This is a visual marking.
+The original M135i badge sits between the dials, and the BMW digital speed and
+gear glyphs sit below their needle hubs. The original lower gear letter is
+masked only while a current replacement gear reading is available.
 
 The **Shift lights in Sport** checkbox is saved by the app and defaults to
 on. The lights use the nine curved F97 frames and run only with current Sport
@@ -28,7 +31,7 @@ The FES and temperature values are read through existing vehicle interfaces.
 No boost or RPM is simulated by the head-unit app.
 
 The mask follows the captured factory dial scales. The factory digital speed
-reading and the fuel and speed-limit regions have separate reservations. The map and warning
+reading and fuel regions have separate reservations. The map and warning
 opening, footer, turn arrows, parking-brake lamp, warning triangle, and
 factory temperature gauge have reserved areas. The grey centre strip can
 remain visible through its opening. Full lamp and mask coverage still needs

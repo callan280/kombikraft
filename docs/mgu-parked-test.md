@@ -23,7 +23,8 @@ The app uses existing BMW speed, RPM, CDS temperature and FES sport display
 boost readers. M Round adds a visual fuel level strip using BMW's KombiIF tank
 litres, scaled to the M135i's 50 L specification. Boost prefers the engine
 pressure minus measured ambient pressure when both are available, with fresh
-FES boost as fallback. The request set is fixed and read-only.
+FES boost as fallback. The request set is fixed and read-only. The main dial
+centre rings follow Comfort orange, Sport red and Eco Pro blue from BMW FES.
 
 It requires fresh speed below 1 km/h and valid RPM to activate.
 The M Round sweep option is an explicit visual demo. It moves the artwork

@@ -22,4 +22,25 @@ function selectBoost(dme,fes,now){
  if(fresh(dme,now,3500)!==null)return dme;
  return fresh(fes,now,3000)!==null?fes:null;
 }
-module.exports={temperatures,boost,miniValue,fuel,fresh,pressureBoost,selectBoost,PSI_PER_BAR};
+// BMW's FES variants share the same visual group for this theme.
+function driveMode(v,at){
+ const raw=v&&v.actualValueModeDrivingExperience;
+ let value=null;
+ if(typeof raw==='number'||typeof raw==='string'&&/^\d+$/.test(raw.trim())){
+  const n=Number(raw);
+  if(Number.isInteger(n)&&n>=1&&n<=3)value='sport';
+  else if((Number.isInteger(n)&&n>=4&&n<=6)||n===10)value='comfort';
+  else if(Number.isInteger(n)&&n>=7&&n<=9)value='eco';
+ }else if(typeof raw==='string'){
+  const name=raw.trim().toUpperCase().replace(/[ +\-]+/g,'_');
+  if(/^SPORT(?:_|$)/.test(name))value='sport';
+  else if(/^ECO(?:_|$)/.test(name))value='eco';
+  else if(/^(?:COMFORT|KOMFORT|ADAPTIVE|ADAPTIV)(?:_|$)/.test(name))value='comfort';
+ }
+ return {value,at};
+}
+function currentMode(item,now){
+ // Mode is a discrete setting. Some FES variants notify only when it changes.
+ return item&&item.value&&Number.isFinite(item.at)&&now>=item.at?item.value:null;
+}
+module.exports={driveMode,currentMode,temperatures,boost,miniValue,fuel,fresh,pressureBoost,selectBoost,PSI_PER_BAR};

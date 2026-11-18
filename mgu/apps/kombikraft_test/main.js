@@ -2,7 +2,7 @@
 const path=require('path'),{fork}=require('child_process');
 const {OnlineApp,logging}=require('oap-sdk');
 const signals=require('./kit/signals');
-const {temperatures,boost,fuel,fresh,selectBoost}=require('./inputs');
+const {temperatures,boost,fuel,fresh,selectBoost,driveMode,currentMode}=require('./inputs');
 const {enginePressure}=require('./engine-pressure');
 const {valid}=require('./session'),spec=require('./app-spec.json');
 const clock=()=>{const t=process.hrtime();return t[0]*1000+t[1]/1e6;};
@@ -26,7 +26,7 @@ async function start(){const app=new OnlineApp(),logger=logging.getSDKLogger();l
  // Both readers only get/subscribe. No setters, diagnostic commands or inferred/demo fallback.
  subscriptions.push(await signals.watch('de.bmw.infotainment.vehicle.Vehicle2','1',{statusCarSpeed2:v=>{const n=v&&v.speedVehicleCentreOfGravity;speed=Number.isInteger(n)&&n>=0&&n<65535?n*.015625:null;speedAt=clock();}},logger,{pollMs:1000}));
  subscriptions.push(await signals.watch('de.bmw.infotainment.vehicle.CDS','1',{statusEngineSpeed2:v=>{const n=v&&v.actualValueRPMEngineCrankshaft;rpm=Number.isInteger(n)&&n>=0&&n<65535?n*.25:null;rpmAt=clock();},statusEngineTemperature:v=>Object.assign(mini,temperatures(v,clock()))},logger,{pollMs:1000}));
- subscriptions.push(await signals.watch('de.bmw.infotainment.drivingexcitement.FES','1',{statusSwitchDriveDynamicSport2:v=>{fesBoost=boost(v,clock());}},logger,{pollMs:1000}));
+ subscriptions.push(await signals.watch('de.bmw.infotainment.drivingexcitement.FES','1',{statusSwitchDriveDynamicSport2:v=>{fesBoost=boost(v,clock());},statusFESVehicleDynamicSwitchHMI:v=>{mini.mode=driveMode(v,clock());}},logger,{pollMs:1000}));
  subscriptions.push(await signals.watch('de.bmw.infotainment.KombiIF','1',
   {statusRangeTankStatus:v=>{mini.fuel=fuel(v,clock());}},logger,{pollMs:5000}));
  monitor=setInterval(()=>{
@@ -36,10 +36,11 @@ async function start(){const app=new OnlineApp(),logger=logging.getSDKLogger();l
    const n=fresh(current[key],clock(),maxAge);
    return n===null?'—':(key==='fuel'?Math.round(n*50):n.toFixed(1))+unit;
   };
+  const mode={sport:'Sport',comfort:'Comfort',eco:'Eco Pro'}[currentMode(current.mode,clock())]||'—';
   const origin=current.boost?(current.boost===dmeBoost?' DME':' Sport'):'';
   Promise.resolve(ui.getByName('SENSORS').setValue(0,'Text',
    'Oil '+describe('oil','°C')+' · Water '+describe('water','°C')+
-   ' · Boost '+describe('boost',' psi')+origin+' · Fuel '+describe('fuel',' L',15000),'Text')).catch(warn);
+   ' · Boost '+describe('boost',' psi')+origin+' · Fuel '+describe('fuel',' L',15000)+' · '+mode,'Text')).catch(warn);
  },1000);
  if(subscriptions.slice(0,2).some(s=>s.error))status('Signal subscription unavailable. Tests remain disabled.');return app;
 }

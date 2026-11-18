@@ -5,7 +5,12 @@ const geometry=require('./geometry'),shader=require('./shader'),{miniValue}=requ
 const {instruments}=require('./touring');
 const mask=require('./factory-mask');
 const fuel=require('./fuel-gauge');
-const {fresh}=require('./inputs');
+const {fresh,currentMode}=require('./inputs');
+const modeTints={
+ sport:[0,0,0],
+ comfort:[1,.45,.08],
+ eco:[.15,.54,1]
+};
 const LIMIT_MS=20000,STALE_MS=3500,ACQUIRE_MS=9000;
 function valid(sample,now){return sample&&Number.isFinite(sample.speed)&&sample.speed>=0&&sample.speed<1&&Number.isFinite(sample.rpm)&&sample.rpm>=0&&sample.rpm<=8000&&Number.isFinite(sample.at)&&now>=sample.at&&now-sample.at<=STALE_MS;}
 class Session{
@@ -93,6 +98,7 @@ class Session{
       this.c.uniform(ref,'u_origin',[r.x,r.y]);
       this.c.uniform(ref,'u_center',[d.x,d.y]);
       this.c.uniform(ref,'u_textureSize',[d.w,d.h]);
+      this.setModeAccent(this.refs[this.refs.length-1],this.now());
       this.c.uniform(ref,'u_needleRect',[crop.offsetX,crop.offsetY,crop.width,crop.height]);
       this.c.uniform(ref,'u_times',[0,.06,.13,.13]);
       const value=mode==='sweep'?0:d.optional?miniValue(this.sample,d,this.now()):this.sample[d.signal];
@@ -118,6 +124,12 @@ class Session{
    this.report((this.theme==='touring'?'Map Touring':'M Round')+' · waiting for cluster graphics.');
   }catch(e){this.stop(e.message);throw e;}
  }
+ setModeAccent(layer,now){
+  const mode=layer.d.optional?'sport':currentMode(this.sample.mode,now)||'comfort';
+  if(layer.accentMode===mode)return;
+  layer.accentMode=mode;
+  this.c.uniform(layer.ref,'u_modeTint',modeTints[mode]);
+ }
  fuelLevel(now){
   const value=fresh(this.sample&&this.sample.fuel,now,15000);
   return value===null?-1:value;
@@ -132,6 +144,7 @@ class Session{
   for(const l of this.refs){
    if(l.isMask)continue;
    if(l.isFuel){this.c.uniform(l.ref,'u_level',[this.fuelLevel(now)]);continue;}
+   if(this.theme!=='touring')this.setModeAccent(l,now);
    if(this.theme==='touring'&&l.d.signal==='speed'){
     this.c.uniform(l.ref,'u_speed',[this.sample.speed]);
     continue;

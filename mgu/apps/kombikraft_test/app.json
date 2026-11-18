@@ -1,7 +1,7 @@
 {
   "id": "kombikraft_test",
   "title": "KombiKraft Themes",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "F40 M Round with fuel and boost, plus attended parked layout comparisons.",
   "vendor": "KombiKraft",
   "loggingId": "KKTS",
@@ -68,7 +68,8 @@
       "statusEngineTemperature"
     ],
     "de.bmw.infotainment.drivingexcitement.FES": [
-      "statusSwitchDriveDynamicSport2"
+      "statusSwitchDriveDynamicSport2",
+      "statusFESVehicleDynamicSwitchHMI"
     ],
     "de.bmw.infotainment.KombiIF": [
       "statusRangeTankStatus"

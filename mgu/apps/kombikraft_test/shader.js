@@ -13,6 +13,7 @@ uniform vec2 u_center;
 uniform vec2 u_textureSize;
 uniform vec4 u_needleRect;
 uniform float u_valid;
+uniform vec3 u_modeTint;
 uniform sampler2D u_face;
 uniform sampler2D u_needle;
 uniform vec4 u_times;
@@ -26,6 +27,13 @@ float angle(){float s=u_time-u_times.x;s-=3600.0*floor((s+1800.0)/3600.0);
 void main(){vec2 p=v_uv*u_size+u_origin-u_center;
  vec2 uv=(p+u_textureSize*.5)/u_textureSize;
  vec4 face=texture2D(u_face,uv);
+ // Only recolour the saturated centre-ring material. Keep the scale,
+ // original needle and the mini temperature bands in their source colours.
+ float redInk=smoothstep(.02,.14,face.r-max(face.g,face.b));
+ float ring=smoothstep(.12,.21,length(p)/u_textureSize.x)*(1.-smoothstep(.425,.454,length(p)/u_textureSize.x));
+ if (dot(u_modeTint,u_modeTint)>0.0) {
+     face.rgb=mix(face.rgb, vec3(min(face.g,face.b)) + face.r*u_modeTint, redInk*ring);
+ }
  float a=radians(angle());float c=cos(a),s=sin(a);
  vec2 n=vec2(c*p.x+s*p.y,-s*p.x+c*p.y);
  vec2 nuv=(n+u_textureSize*.5-u_needleRect.xy)/u_needleRect.zw;

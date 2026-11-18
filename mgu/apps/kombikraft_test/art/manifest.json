@@ -91,6 +91,16 @@
       "width": 1880,
       "height": 300,
       "sha256": "5acfa15ac273696c97bdcb078c139dc586975b6f80379ac4f0d6184a56be8ec6"
+    },
+    {
+      "name": "right-shift.rgba",
+      "width": 384,
+      "height": 353,
+      "sha256": "5494b6f4acc7c0ec170a82ead27c6d56f37b0d211abf0a3b723d34116b809830",
+      "offsetX": -192,
+      "offsetY": -193,
+      "mapHeight": 344,
+      "paletteWidth": 130
     }
   ],
   "geometry": {
@@ -117,5 +127,22 @@
   "schema": 1,
   "vehicleVerified": false,
   "fixtureNumbersIncluded": false,
-  "touringRpmSource": "3542215e55a6d118de70eb233dc552d475a7710fafd98e7eedd44694d2384a03"
+  "touringRpmSource": "3542215e55a6d118de70eb233dc552d475a7710fafd98e7eedd44694d2384a03",
+  "shiftRingSource": {
+    "firmware": "F97 SWFL 4CEB/4CED/4CEE 045.009.002",
+    "meshSha256": "eddee2da3a11380c3a28ccaaf2d8855ed024584ad7cfbb82a30ea2567bd61d96",
+    "frameSha256": [
+      "096efca716c58969f18f658264ac107b78a1bce957c4a66698d5e60eed72b094",
+      "e07ce21dba4628fe0eaca9305ea6a8145422794afb6886cc8bfd0263cfeaf6ad",
+      "d0655c322c2240584f527ed0b05b67d1bda4fec55bf52ee7bf02d5abe458cb79",
+      "b049b78b3c81065c2a78efbc0b471df0643126fa1110fb3e84e8cde4199c041d",
+      "c0be599871fc8f0a14611994dec8afcf374fa86fb1e633de46ae4a3fa9a9a318",
+      "06b419b9d895ce2330ef2768f064a69959e3aee2afde37777c9a49fc8864a6ff",
+      "ab9c2630482cb3677a689612a7a338ae7b9f24d297bf9a3312dc2f5f3563219c",
+      "9673a226ddd42dd0ce60c6385fbba4ba7710557313f5e800c18dbb3f04e4ed07",
+      "68027ce5542e2a51f01107f5de6a135c125ef18bb69cf7f965d39c1e42119a17"
+    ],
+    "glowSha256": "ddad0e043e482a327073f9fa3d5052cde6a65a51392f5f2c898386c84b3d43fd",
+    "mapping": "Tach-relative source mesh with adapted strip sampling, inward fade and parked-demo timing"
+  }
 }

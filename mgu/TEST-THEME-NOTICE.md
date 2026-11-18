@@ -13,8 +13,12 @@ This package contains original KombiKraft glue plus:
   package using the viewer's custom material. These assets retain their
   original ownership; see the repository ASSET-NOTICE.md. Map Touring uses
   the viewer speed numerals and captured HUD M RPM graphics. They are not MIT
-  merely because the application code is MIT. No captured firmware or SDK
-  is in this archive.
+  merely because the application code is MIT. The shift demo packs the shared
+  225-vertex `ki_3d_shift_planes` mesh, nine `ki_dzm_shiftlights` frame strips
+  and their glow profile from F97 SWFL 4CEB/4CED/4CEE 045.009.002. The atlas
+  records source hashes. Placement uses the source tach-relative transforms.
+  Texture sampling, the inward fade and timing are adapted for the demo.
+  No captured firmware or SDK is in this archive.
 
 Upstream: https://github.com/aidac/apps/tree/27a6a7662d7243f2d5562829b5fe9628cac668f2
 Renderer: https://github.com/robertnisipeanu/idrive-apps/tree/main/native/cluster-render

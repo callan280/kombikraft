@@ -157,7 +157,7 @@ def package_files(app_id, experimental=False):
         files['javascript/art/manifest.json'] = canonical(art_manifest)
         for entry in art_manifest['images']:
             name = entry['name']
-            if name not in [side+'-'+kind+'.rgba' for side in ['left','right','oil','boost','water'] for kind in ['face','needle']] + ['touring-speed.rgba', 'touring-rpm.rgba']:
+            if name not in [side+'-'+kind+'.rgba' for side in ['left','right','oil','boost','water'] for kind in ['face','needle']] + ['touring-speed.rgba', 'touring-rpm.rgba', 'right-shift.rgba']:
                 raise ValueError('Unexpected art name')
             raw = (folder / 'art' / name).read_bytes()
             if hashlib.sha256(raw).hexdigest() != entry['sha256'] or len(raw) != entry['width'] * entry['height'] * 4:

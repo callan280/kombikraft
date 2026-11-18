@@ -38,7 +38,8 @@ for(const entry of exports.images){
 const manifestPath=path.join(root,'manifest.json');
 if(fs.existsSync(manifestPath)){
  const prior=JSON.parse(fs.readFileSync(manifestPath));
- exports.images.push(...prior.images.filter(row=>row.name.startsWith('touring-')));
+ exports.images.push(...prior.images.filter(row=>row.name.startsWith('touring-')||row.name==='right-shift.rgba'));
+ if(prior.shiftRingSource)exports.shiftRingSource=prior.shiftRingSource;
  if(prior.touringRpmSource)exports.touringRpmSource=prior.touringRpmSource;
 }
 exports.schema=1;exports.vehicleVerified=false;exports.fixtureNumbersIncluded=false;fs.writeFileSync(manifestPath,JSON.stringify(exports,null,2)+'\n');console.log('Exported ten source-art RGBA surfaces without mock telemetry.');

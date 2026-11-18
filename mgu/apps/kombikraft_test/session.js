@@ -12,10 +12,12 @@ const modeTints={
  eco:[.15,.54,1]
 };
 const LIMIT_MS=20000,STALE_MS=3500,ACQUIRE_MS=9000;
-const DEMO_SHIFT_STEPS=[5200,5550,5900,6250];
+const DEMO_SHIFT_STEPS=[5200,5300,5400,5500,5600,5700,5850,6025,6250];
+const RED_FRAME=DEMO_SHIFT_STEPS.length;
+const FLASH_START_MS=5000,FLASH_HALF_PERIOD_MS=200;
 // Simulated warmed-up roll-on and upshift, independent of the live RPM input.
 const DEMO_PULL=[[0,2800],[900,2800],[2400,4350],[3500,5200],
- [5000,6300],[5350,6300],[5680,4800],[6500,4950],[7700,2800],[9000,850]];
+ [5000,6250],[5100,6300],[5900,6300],[6230,4800],[7000,4950],[7700,2800],[9000,850]];
 function demoPullRpm(elapsed){
  const index=DEMO_PULL.findIndex(([time])=>time>elapsed);
  if(index<0)return DEMO_PULL[DEMO_PULL.length-1][1];
@@ -24,9 +26,10 @@ function demoPullRpm(elapsed){
  const [toTime,toRpm]=DEMO_PULL[index];
  return fromRpm+(toRpm-fromRpm)*(elapsed-fromTime)/(toTime-fromTime);
 }
-function demoShiftStage(rpm){
- if(!Number.isFinite(rpm))return 0;
- return DEMO_SHIFT_STEPS.filter(threshold=>rpm>=threshold).length;
+function demoShiftStage(rpm,elapsed){
+ const stage=DEMO_SHIFT_STEPS.filter(threshold=>rpm>=threshold).length;
+ const flashPhase=Math.floor((elapsed-FLASH_START_MS)/FLASH_HALF_PERIOD_MS);
+ return stage===RED_FRAME&&flashPhase%2===1?0:stage;
 }
 function valid(sample,now){return sample&&Number.isFinite(sample.speed)&&sample.speed>=0&&sample.speed<1&&Number.isFinite(sample.rpm)&&sample.rpm>=0&&sample.rpm<=8000&&Number.isFinite(sample.at)&&now>=sample.at&&now-sample.at<=STALE_MS;}
 class Session{
@@ -53,12 +56,12 @@ class Session{
   if(!['round','round-mask','round-stay','touring'].includes(theme)||(theme!=='round'&&mode!=='live'))throw Error('Unknown theme or mode');
   this.started=this.now();this.active=true;this.mode=mode;this.theme=theme;this.refs=[];this.showReported=false;this.demoStarted=null;this.c.connect();
  }
- loadTexture(dir, manifest, name, width, height) {
+ loadTexture(dir, manifest, name, width, height, sampling='bilinear') {
   const entry=manifest.images.find(row=>row.name===name);
   const bytes=fs.readFileSync(path.join(dir,name));
   if(!entry||entry.width!==width||entry.height!==height||bytes.length!==width*height*4||
      crypto.createHash('sha256').update(bytes).digest('hex')!==entry.sha256)throw Error('Art hash or size mismatch: '+name);
-  const ref=this.c.asset({target:'panel',format:'rgba8',w:width,h:height,sampling:'bilinear'});
+  const ref=this.c.asset({target:'panel',format:'rgba8',w:width,h:height,sampling});
   if(!ref)throw Error('Asset refused');
   this.faceAssets.push(ref);
   if(!this.c.pixels(ref,null,bytes))throw Error('Asset pixels refused');
@@ -105,8 +108,13 @@ class Session{
       throw Error('Invalid needle crop: '+name);
      }
      const needle=this.loadTexture(dir,manifest,name,crop.width,crop.height);
+     const shiftDemo=mode==='shift-demo'&&d.signal==='rpm';
+     const shift=shiftDemo&&manifest.images.find(entry=>entry.name==='right-shift.rgba');
+     if(shiftDemo&&!shift)throw Error('F97 shift-ring artwork missing');
+     const shiftArt=shift&&this.loadTexture(dir,manifest,shift.name,shift.width,shift.height,'nearest');
      for(const r of geometry.pieces(d)){
-      const ref=this.makeLayer(r,shader,true);
+      const showShift=shift&&geometry.intersect(r,{x:d.x+shift.offsetX,y:d.y+shift.offsetY,w:shift.width,h:shift.mapHeight});
+      const ref=this.makeLayer(r,showShift?'#define F97_SHIFT_DEMO\n'+shader:shader,true);
       const layer={ref,d,needle:new Needle(28),path:null,t0:this.now()};
       this.refs.push(layer);
       this.c.bind(ref,'u_face',face);
@@ -118,13 +126,17 @@ class Session{
       this.setModeAccent(layer,this.now());
       this.c.uniform(ref,'u_needleRect',[crop.offsetX,crop.offsetY,crop.width,crop.height]);
       this.c.uniform(ref,'u_times',[0,.06,.13,.13]);
-      const shiftDemo=mode==='shift-demo'&&d.signal==='rpm';
+      if(showShift){
+       this.c.bind(ref,'u_shiftArt',shiftArt);
+       this.c.uniform(ref,'u_shiftMap',[shift.offsetX,shift.offsetY,shift.width,shift.mapHeight]);
+       this.c.uniform(ref,'u_shiftAtlasSize',[shift.width,shift.height]);
+       this.c.uniform(ref,'u_shiftStage',[0]);
+       layer.shiftStage=0;
+      }
       const value=mode==='sweep'?0:shiftDemo?demoPullRpm(0):
        d.optional?miniValue(this.sample,d,this.now()):this.sample[d.signal];
       const angle=(value===null?0:value)/d.max*d.sweep;
       this.c.uniform(ref,'u_valid',[value===null?0:1]);
-      layer.shiftStage=shiftDemo?0:-1;
-      this.c.uniform(ref,'u_shiftStage',[layer.shiftStage]);
       this.c.uniform(ref,'u_angles',[angle,angle,angle,angle]);
      }
     }
@@ -181,8 +193,8 @@ class Session{
    const shiftDemo=this.mode==='shift-demo'&&l.d.signal==='rpm';
    const value=this.mode==='sweep'?sweepFraction*l.d.max:shiftDemo?demoPullRpm(demoElapsed):
     l.d.optional?miniValue(this.sample,l.d,now):this.sample[l.d.signal];
-   if(shiftDemo){
-    const stage=demoShiftStage(value);
+   if(l.shiftStage!==undefined){
+    const stage=demoShiftStage(value,demoElapsed);
     if(l.shiftStage!==stage){l.shiftStage=stage;this.c.uniform(l.ref,'u_shiftStage',[stage]);}
    }
    if(this.theme!=='touring')this.c.uniform(l.ref,'u_valid',[value===null?0:1]);if(value===null){l.needle=new Needle(28);l.path=null;continue;}const angle=value/l.d.max*l.d.sweep;l.needle.step(angle,now);l.path=nextPath(l.path,(now-l.t0)/1000,.06,.07,l.needle.ahead(angle,130));this.c.uniform(l.ref,'u_times',l.path.t);this.c.uniform(l.ref,'u_angles',l.path.a);}

@@ -136,11 +136,15 @@ const stages=()=>a.c.uniforms.filter(u=>u.r===tach.ref&&u.k==='u_shiftStage').ma
 assert.deepEqual(stages(),[0]);
 a.s.refs.forEach(l=>a.c.emit('layer',l.ref,'shown'));
 const visibleAt=now;
-for(const elapsed of [0,3500,4000,4500,5250,5680,9000]){
+for(const elapsed of [0,3500,3650,3800,3950,4090,4215,4430,4680,
+ 5000,5200,5400,5600,5800,6230,9000]){
  now=visibleAt+elapsed;
  a.s.update({speed:0,rpm:750,at:now});a.s.tick();
 }
-assert.deepEqual(stages(),[0,1,2,3,4,0]);
+assert.deepEqual(stages(),[0,1,2,3,4,5,6,7,8,9,0,9,0,9,0]);
+assert.equal(a.c.assets.length,11);
+assert.equal(a.c.layers.filter(l=>l.fs.startsWith('#define F97_SHIFT_DEMO')).length,1);
+assert(a.c.assets.reduce((sum,asset)=>sum+asset.w*asset.h*8,0)+1088*480*1.5*4<16*1024*1024);
 assert(a.c.uniforms.filter(u=>u.r===speedo.ref&&u.k==='u_angles').every(u=>u.v.every(value=>value===0)));
 now=visibleAt+10000;a.s.update({speed:0,rpm:750,at:now});a.s.tick();
 assert(!a.s.active&&a.c.closed);
@@ -150,7 +154,8 @@ for(const mode of ['live','sweep']){
  a=make();a.s.update({speed:0,rpm:6400,at:now});a.s.start(mode);
  a.s.refs.forEach(l=>a.c.emit('layer',l.ref,'shown'));
  now+=6000;a.s.update({speed:0,rpm:6400,at:now});a.s.tick();
- assert(a.c.uniforms.filter(u=>u.k==='u_shiftStage').every(u=>u.v[0]===-1));
+ assert(!a.c.uniforms.some(u=>u.k==='u_shiftStage'));
+ assert.equal(a.c.assets.length,10);
  a.s.stop();
 }
-console.log('PASS four mirrored shift-light stages, upshift clearing and timed factory release.');
+console.log('PASS nine F97 shift-light stages, red flashing, upshift clearing and timed factory release.');

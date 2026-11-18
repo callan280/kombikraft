@@ -4,7 +4,7 @@
       "name": "left-face.rgba",
       "width": 688,
       "height": 688,
-      "sha256": "716515acd65657c7443c0409649c24eaa683ccba59d1e454997e8d9a853e41c2"
+      "sha256": "a8b7f0f0c82272e2d11ab2f74d58ad235f2fcc7b7d1fdbe626335b21f6d71c0f"
     },
     {
       "name": "left-needle.rgba",
@@ -20,7 +20,7 @@
       "name": "right-face.rgba",
       "width": 688,
       "height": 688,
-      "sha256": "4246535b848eb07ae1ff4d92bd6ac9f5c512cc3db703827ae8392b41ad376b69"
+      "sha256": "9f099036d7b8bd674c736bc3ae5e09cd026985b49defbd96b33543c27bcdd23b"
     },
     {
       "name": "right-needle.rgba",
@@ -144,5 +144,19 @@
     ],
     "glowSha256": "ddad0e043e482a327073f9fa3d5052cde6a65a51392f5f2c898386c84b3d43fd",
     "mapping": "Tach-relative source mesh with adapted strip sampling, inward fade and parked-demo timing"
+  },
+  "dialTrimSource": {
+    "firmware": "F97 SWFL 4CEB/4CED/4CEE 045.009.002",
+    "coronaBitmapSha256": "dedb99e0b0a202d6e9d609ccbaf8776d953172cc1e6d39de9394c032be880697",
+    "warningBitmapSha256": "2e9e28ccad56fc174622bae46eb3fc3deb82cbe2e497795ba9c2d43d2e9a4ac8",
+    "warningMeshSha256": "3156ae3a5a83706292fcd26ce60f796f2d911843e0e76e6fe3d1518e5be8ed61",
+    "coronaMeshSha256": {
+      "left": "a1681c7db025acff478411c1987aaf81a33d3e148acf416d8592ceafb102ffe2",
+      "right": "caf29114905f9656a2c3d8166eb459da1870cdb88d0049814e48f68244af7aaf"
+    },
+    "badgeName": "KI_2D_MLogo_M135i_MSPORTShape_bitmap__KI_2D_MLogo_M135i_MSPORT",
+    "badgePngSha256": "aa2d9a887e99a38fbe546598bbf68d80511ba26d275ca1dd2a9eec7f2ec2d1b2",
+    "badgePlacement": "Centered below the tachometer hub, under the moving needle",
+    "redlineAppearance": "Reference transition at 6800\u20137050 on the 8000 RPM dial; preview styling"
   }
 }

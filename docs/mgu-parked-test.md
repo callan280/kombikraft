@@ -7,7 +7,9 @@ declares cluster-render 0.6.9 and mgu-deploy 0.4.0.
 With the car parked, open the app in iDrive and choose a 20-second test.
 
 - **M Round** uses large aligned BMW dial artwork and oil, coolant and boost
-  mini gauges. Missing or stale mini readings hide their needles.
+  mini gauges. The F97 bezels and outer tachometer redline are drawn into
+  the faces. The F40 M135i badge sits below the tachometer hub, behind the
+  needle. Missing or stale mini readings hide their needles.
 - **M Round · stay on while parked** holds the display until stopped, while
   stationary and receiving fresh core signals. Moving or losing data releases it.
 - **M Round · mask comparison** is a short comparison using the photo-based
@@ -36,7 +38,9 @@ log. Thresholds and 2.5 Hz flash timing are preview settings. The display
 returns to the factory view after 10 seconds. The speed reading stays live.
 
 The layouts preserve space for the footer and modelled warning regions.
-The M Round warning reservation cuts into the lower tachometer artwork.
+The M Round warning reservation cuts into the lower tachometer, including
+part of the redline sector. The redline artwork follows the donor dial
+reference. F40 engine or tune limits are unverified.
 Factory lamp visibility and recovery still need checking on the actual F40.
 Compare the displays before, during and after activation while parked. If the
 display does not return as expected, stop testing and remove the Themes app

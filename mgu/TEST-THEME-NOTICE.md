@@ -18,6 +18,9 @@ This package contains original KombiKraft glue plus:
   and their glow profile from F97 SWFL 4CEB/4CED/4CEE 045.009.002. The atlas
   records source hashes. Placement uses the source tach-relative transforms.
   Texture sampling, the inward fade and timing are adapted for the demo.
+  The M Round faces also use the F97 corona meshes and red warning-ring
+  material, plus the original F40 M135i designation. Trim shading and the
+  position of the redline transition are preview choices.
   No captured firmware or SDK is in this archive.
 
 Upstream: https://github.com/aidac/apps/tree/27a6a7662d7243f2d5562829b5fe9628cac668f2

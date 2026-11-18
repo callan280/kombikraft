@@ -164,15 +164,25 @@ def package_files(app_id, experimental=False):
             raise ValueError('Unexpected art provenance')
         art_manifest['images'] = [entry for entry in art_manifest['images'] if entry['name'] != 'touring-rpm.rgba']
         art_manifest.pop('touringRpmSource', None)
-        files['javascript/art/manifest.json'] = canonical(art_manifest)
-        for entry in art_manifest['images']:
+        for index, entry in enumerate(art_manifest['images']):
             name = entry['name']
             if name not in [side+'-'+kind+'.rgba' for side in ['left','right','oil','boost','water'] for kind in ['face','needle']] + ['right-shift.rgba', 'touring-speed.rgba', 'round-extras.rgba']:
                 raise ValueError('Unexpected art name')
             raw = (folder / 'art' / name).read_bytes()
             if hashlib.sha256(raw).hexdigest() != entry['sha256'] or len(raw) != entry['width'] * entry['height'] * 4:
                 raise ValueError('Art hash/size mismatch')
+            if name in ('left-face.rgba', 'right-face.rgba'):
+                variant = entry.get('compressed')
+                if not variant or variant['sourceSha256'] != entry['sha256']:
+                    raise ValueError('Re-encode the changed dial face: ' + name)
+                width, height = entry['width'], entry['height']
+                name = name.replace('.rgba', '.etc2rgba')
+                raw = (folder / 'art' / name).read_bytes()
+                if width % 4 or height % 4 or len(raw) != width * height or hashlib.sha256(raw).hexdigest() != variant['sha256']:
+                    raise ValueError('Compressed art hash/size mismatch: ' + name)
+                art_manifest['images'][index] = {'name': name, 'width': width, 'height': height, 'sha256': variant['sha256']}
             files['javascript/art/' + name] = raw
+        files['javascript/art/manifest.json'] = canonical(art_manifest)
         files['LICENSE.MPL-2.0'] = (ROOT / 'vendor/test-theme/LICENSE.MPL-2.0').read_bytes()
         files['ASSET-NOTICE.md'] = (ROOT.parent / 'ASSET-NOTICE.md').read_bytes()
         files['TEST-THEME-NOTICE.md'] = (ROOT / 'TEST-THEME-NOTICE.md').read_bytes()

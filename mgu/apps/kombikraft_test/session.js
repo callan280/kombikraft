@@ -43,9 +43,11 @@ class Session{
  loadTexture(dir, manifest, name, width, height, sampling='bilinear') {
   const entry=manifest.images.find(row=>row.name===name);
   const bytes=fs.readFileSync(path.join(dir,name));
-  if(!entry||entry.width!==width||entry.height!==height||bytes.length!==width*height*4||
+  const compressed=name.endsWith('.etc2rgba');
+  const format=compressed?'etc2rgba':'rgba8';
+  if(!entry||entry.width!==width||entry.height!==height||bytes.length!==width*height*(compressed?1:4)||
      crypto.createHash('sha256').update(bytes).digest('hex')!==entry.sha256)throw Error('Art hash or size mismatch: '+name);
-  const ref=this.c.asset({target:'panel',format:'rgba8',w:width,h:height,sampling});
+  const ref=this.c.asset({target:'panel',format,w:width,h:height,sampling});
   if(!ref)throw Error('Asset refused');
   this.faceAssets.push(ref);
   if(!this.c.pixels(ref,null,bytes))throw Error('Asset pixels refused');
@@ -65,7 +67,7 @@ class Session{
    const speedArt=this.loadTexture(dir,manifest,'touring-speed.rgba',1056,108);
    const extras=this.loadTexture(dir,manifest,'round-extras.rgba',896,116);
    for(const d of geometry.dials.concat(geometry.minis)){
-    const face=this.loadTexture(dir,manifest,d.side+'-face.rgba',d.w,d.h);
+    const face=this.loadTexture(dir,manifest,d.side+(d.optional?'-face.rgba':'-face.etc2rgba'),d.w,d.h);
     const name=d.side+'-needle.rgba';
     const crop=manifest.images.find(entry=>entry.name===name);
     if(!crop||crop.sourceWidth!==d.w||crop.sourceHeight!==d.h||

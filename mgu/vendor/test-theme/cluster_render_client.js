@@ -318,8 +318,10 @@ class ClusterRender extends EventEmitter {
             l.ih = o.ih;
             l.bpp = 4;
         } else if (kind === 'asset') {
-            l.bpp = o.format === 'r8' ? 1 : 4;
+            l.compressed = o.format === 'etc2rgba';
+            l.bpp = l.compressed || o.format === 'r8' ? 1 : 4;
             if (!(o.w > 0 && o.h > 0 && o.w <= 2048 && o.h <= 2048 && o.w * o.h * l.bpp <= 1920 * 720 * 4)) return 0;
+            if (l.compressed && (o.w % 4 || o.h % 4)) return 0;
             l.iw = o.w;
             l.ih = o.h;
         }
@@ -341,7 +343,7 @@ class ClusterRender extends EventEmitter {
     image(opts) { return this._add('image', opts); }
     effect(opts) { return this._add('effect', opts); }
     mesh(opts) { return this._add('mesh', opts); }
-    /* opts: target, format ('rgba8', 'r8'), w, h (up to 2048), sampling
+    /* opts: target, format ('rgba8', 'r8', 'etc2rgba'), w, h (up to 2048), sampling
      * ('nearest', 'bilinear'), wrap ('clamp', 'repeat'). */
     asset(opts) { return this._add('asset', opts); }
 
@@ -494,6 +496,7 @@ class ClusterRender extends EventEmitter {
     pixels(ref, rects, px) {
         const l = this.layers.get(ref);
         if (!l || !l.image) return false;
+        if (l.compressed && (l.have || (rects && rects.length))) return false;
         const iw = l.iw, ih = l.ih, bpp = l.bpp;
         if (!rects || !rects.length) {
             if (px.length !== l.image.length) return false;

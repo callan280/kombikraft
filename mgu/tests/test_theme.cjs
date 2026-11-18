@@ -6,6 +6,7 @@ const geometry=require(path.join(root,'javascript/geometry'));
 const mask=require(path.join(root,'javascript/factory-mask'));
 const inputs=require(path.join(root,'javascript/inputs'));
 const extras=require(path.join(root,'javascript/round-extras'));
+const {ClusterRender}=require(path.join(root,'javascript/cluster_render_client'));
 class Client extends EventEmitter{
  constructor(){super();this.id=0;this.layers=[];this.assets=[];this.uniforms=[];this.dropped=[];}
  asset(options){this.assets.push(options);return ++this.id;}
@@ -31,6 +32,9 @@ for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed
  assert.throws(()=>session.start());
  session.update(sample());session.start();
  assert.equal(client.assets.length,13);
+ const compressedFaces=client.assets.filter(asset=>asset.format==='etc2rgba');
+ assert.equal(compressedFaces.length,2);
+ assert(compressedFaces.every(asset=>asset.w===688&&asset.h===688));
  assert(client.uniforms.some(entry=>entry.name==='u_speed'&&entry.values[0]===0));
  assert(client.layers.some(layer=>layer.fs.startsWith('#define F40_DIGITAL_SPEED')));
  const maskLayers=client.layers.filter(layer=>layer.z===5&&layer.fs===mask.shader);
@@ -42,11 +46,25 @@ for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed
   else assert.deepEqual({x:layer.x,y:layer.y,w:layer.w,h:layer.h},extras.factoryGearBounds);
  }
  assert(maskLayers.every(layer=>mask.reserves.every(hole=>!geometry.intersect(layer,hole))));
- assert(client.assets.reduce((sum,asset)=>sum+asset.w*asset.h*8,0)+1088*480*1.5*4<16*1024*1024);
+ const pixelBytes=client.assets.reduce((sum,asset)=>sum+asset.w*asset.h*(asset.format==='etc2rgba'?1:8),0);
+ assert(pixelBytes<6*1024*1024);
+ assert(pixelBytes+1088*480*1.5*4<16*1024*1024);
  shown(client,session);
  now+=50000;session.update(sample());session.tick();assert(session.active);
  session.update(sample({speed:1.1}));assert(!session.active&&client.closed);
  assert.equal(client.dropped.length,client.assets.length+client.layers.length);
+}
+{
+ const client=new ClusterRender('asset-format-check');
+ const opts={target:'panel',format:'etc2rgba',w:8,h:4};
+ assert.equal(client.asset({...opts,w:7}),0);
+ const ref=client.asset(opts), frame=Buffer.alloc(32);
+ assert(ref);
+ assert(!client.pixels(ref,null,Buffer.alloc(128)));
+ assert(!client.pixels(ref,[{x:0,y:0,w:8,h:4}],frame));
+ assert(client.pixels(ref,null,frame));
+ assert(!client.pixels(ref,null,frame));
+ client.close();
 }
 for(const dial of geometry.dials){
  const bounds=geometry.bounds(dial);

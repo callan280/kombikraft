@@ -38,5 +38,7 @@ remain visible through its opening. Full lamp and mask coverage still needs
 an in-car comparison with the factory view.
 
 Build from the repo root with `python3 mgu/tools/build.py kombikraft_test`.
+After changing the main dial artwork, regenerate its ETC2 assets with
+`python3 mgu/tools/encode_cluster_faces.py` using `etcpak==0.9.15`.
 Source-art provenance and upstream licences are listed in the
 [app notice](../mgu/TEST-THEME-NOTICE.md).

@@ -4,7 +4,11 @@
       "name": "left-face.rgba",
       "width": 688,
       "height": 688,
-      "sha256": "a8b7f0f0c82272e2d11ab2f74d58ad235f2fcc7b7d1fdbe626335b21f6d71c0f"
+      "sha256": "a8b7f0f0c82272e2d11ab2f74d58ad235f2fcc7b7d1fdbe626335b21f6d71c0f",
+      "compressed": {
+        "sourceSha256": "a8b7f0f0c82272e2d11ab2f74d58ad235f2fcc7b7d1fdbe626335b21f6d71c0f",
+        "sha256": "1561e767baf4f13faaed87a187ecea3a73198cdfb2b9e27d295d69e924a75e01"
+      }
     },
     {
       "name": "left-needle.rgba",
@@ -20,7 +24,11 @@
       "name": "right-face.rgba",
       "width": 688,
       "height": 688,
-      "sha256": "526e724ffb5209853998158ea7253fd84348c3e06e3b4524ccc9c107c2029712"
+      "sha256": "526e724ffb5209853998158ea7253fd84348c3e06e3b4524ccc9c107c2029712",
+      "compressed": {
+        "sourceSha256": "526e724ffb5209853998158ea7253fd84348c3e06e3b4524ccc9c107c2029712",
+        "sha256": "91acddabfb012b63234209eaadc994994a3cd76f9da132fd7d7eedf0fda1ac41"
+      }
     },
     {
       "name": "right-needle.rgba",

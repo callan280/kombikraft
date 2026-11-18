@@ -44,19 +44,19 @@
       "name": "oil-face.rgba",
       "width": 190,
       "height": 216,
-      "sha256": "c10f68852e44122cfed8c6908a86ddb9d1d482989472df6fdc24a94dc39b474a"
+      "sha256": "885a76577e4051a14d737d7f31b5cb136af3f42ed315cabc998db05f3d9a87d3"
     },
     {
       "name": "boost-face.rgba",
       "width": 190,
       "height": 216,
-      "sha256": "c60bc45715ccc568537b9cda639ac045d8b3c95a626c5fb5a617e4b825139f91"
+      "sha256": "b5a9c43f49cf28a11600eeb79ff2fe7f8ee985adc2bea49cda641bc53e2017d9"
     },
     {
       "name": "water-face.rgba",
       "width": 190,
       "height": 216,
-      "sha256": "bcbd2773ff801e97294d8aee900a4b8c659bcac4a762a18c11f6a61246adfcab"
+      "sha256": "464ff4842f3164de43795c1e1526f1b67ed113f740ab4bd86dcf66ed10ba2dee"
     },
     {
       "name": "oil-needle.rgba",

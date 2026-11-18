@@ -133,9 +133,23 @@ def mini_art(role, numeral_font_path, unit_font_path, pictogram):
     arc(68, 0, 360, (38, 44, 52), 2.3)
     arc(67.5, 0, 360, (85, 95, 108), 1.1)
     arc(67.5, 197, 343, (143, 156, 170), 1.1)
-    if role != 'boost':
-        arc(61.5, start+5, start+54, (46, 93, 154), 2.2)
-        arc(61.5, end-50, end-5, (156, 62, 59), 2.2)
+    # Every segment uses the same radial profile for its shadow, body and bevel.
+    segment_profile = ((54.5, 7.8), (53.5, 5.9), (52.7, 3.5), (52.7, .95), (48.9, 1.1))
+    silver = ((20, 25, 32), (65, 75, 89), (133, 146, 165), (210, 223, 236), (56, 67, 82))
+    blue = ((5, 11, 32), (9, 28, 84), (13, 69, 186), (39, 121, 247), (7, 25, 78))
+    red = ((34, 4, 10), (83, 8, 17), (178, 13, 31), (243, 53, 66), (73, 7, 16))
+    bands = (
+        (start+4, degrees(.35), silver if role == 'boost' else blue),
+        (degrees(.35), degrees(.65), silver),
+        (degrees(.65), end-4, silver if role == 'boost' else red),
+    )
+    for first, last, palette in bands:
+        span = (last-first)/3
+        for segment in range(3):
+            begin = first+span*segment+1.3
+            finish = first+span*(segment+1)-1.3
+            for (radius, width), color in zip(segment_profile, palette):
+                arc(radius, begin, finish, color, width)
 
     # Follow the main dial's open scale: the line dips into each major mark
     # and returns to the rim. Minor marks sit just inside the rim.

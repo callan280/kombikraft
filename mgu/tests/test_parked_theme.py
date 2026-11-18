@@ -10,6 +10,9 @@ class ParkedThemeTests(unittest.TestCase):
   for iface in spec['readSignals']:
    self.assertEqual(set(manifest['proxies'][iface]['attributes'].values()),{'rs'})
    self.assertNotIn('methods',manifest['proxies'][iface])
+  self.assertEqual(manifest['proxies']['de.bmw.infrastructure.VehicleInformation'],{
+   'instances':'1','attributes':{'statusGearboxDrive':'s','DataPowerTrain2':'s'}
+  })
   self.assertNotIn(b'InternalTasu',files['javascript/app.js'])
   self.assertIn('LICENSE.MPL-2.0',files)
   self.assertEqual(len(json.loads(files['rhmiData/application.json'])['application']['entryPoints']),1)

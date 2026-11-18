@@ -144,6 +144,9 @@ def package_files(app_id, experimental=False):
         manifest = json.loads(files['manifest.json'])
         for iface, fields in spec.get('readSignals', {}).items():
             manifest['proxies'][iface] = {'instances': '1', 'attributes': {field: 'rs' for field in fields}}
+        for iface, fields in spec.get('subscribeSignals', {}).items():
+            proxy = manifest['proxies'].setdefault(iface, {'instances': '1', 'attributes': {}})
+            proxy['attributes'].update({field: 's' for field in fields})
         manifest['proxies']['com.harman.infotainment.systemfunctions.tasu.tasu.InternalTasu'] = {
             'instances': 'SystemFunctionsInternalTasuInst1',
             'methods': ['sendTasuRequest'],

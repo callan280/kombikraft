@@ -25,13 +25,13 @@
       "id": "kombikraft_test",
       "kind": "app",
       "title": "KombiKraft Themes",
-      "description": "F40 M Round parked test with full-size dials and a larger M135i badge. Factory warning visibility and mask fit still require on-car validation.",
-      "version": "0.1.11",
+      "description": "F40 M Round parked test. Lower renderer memory use at full dial size. Factory warning visibility still requires on-car validation.",
+      "version": "0.1.12",
       "artifact": {
-        "name": "kombikraft_test@0.1.11.tgz",
-        "size": 840325,
-        "sha256": "c65a8999aaf6efa163786d84bbab11d1095a9a382fe034b5bf786907d2fc8774",
-        "url": "https://github.com/callan280/kombikraft/releases/download/catalog/kombikraft_test%400.1.11.tgz"
+        "name": "kombikraft_test@0.1.12.tgz",
+        "size": 563840,
+        "sha256": "561aba1e87b050dbd4ffc7d49f362f5ea2be64423daf6858d9356d50798cc51e",
+        "url": "https://github.com/callan280/kombikraft/releases/download/catalog/kombikraft_test%400.1.12.tgz"
       },
       "requires": {
         "mgu-deploy": "0.4.0",

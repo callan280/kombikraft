@@ -11,8 +11,7 @@ This package contains original KombiKraft glue plus:
   `shared/e36.js`. See THIRD-PARTY-NEEDLES.txt.
 - `art/*.rgba`: exported from the existing recovered BMW F97 mesh/texture
   package using the viewer's custom material. These assets retain their
-  original ownership; see the repository ASSET-NOTICE.md. Map Touring uses
-  the viewer speed numerals and captured HUD M RPM graphics. They are not MIT
+  original ownership; see the repository ASSET-NOTICE.md. They are not MIT
   merely because the application code is MIT. The shift demo packs the shared
   225-vertex `ki_3d_shift_planes` mesh, nine `ki_dzm_shiftlights` frame strips
   and their glow profile from F97 SWFL 4CEB/4CED/4CEE 045.009.002. The atlas
@@ -26,7 +25,6 @@ This package contains original KombiKraft glue plus:
 Upstream: https://github.com/aidac/apps/tree/27a6a7662d7243f2d5562829b5fe9628cac668f2
 Renderer: https://github.com/robertnisipeanu/idrive-apps/tree/main/native/cluster-render
 
-The bundled test does not patch firmware, issue UDS commands, operate vehicle
-controls, spoof CAN messages or synthesize warning lamps. Native lights and
-warnings remain the factory's responsibility. Geometry reservations avoid
-known/estimated regions; full F40 warning preservation is not proved.
+The app uses fixed read-only pressure queries and vehicle signal subscriptions.
+The factory retains ownership of warning lights. Geometry reservations avoid
+known or estimated regions. Full F40 warning preservation remains unverified.

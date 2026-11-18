@@ -1,83 +1,32 @@
 {
   "id": "kombikraft_test",
   "title": "KombiKraft Themes",
-  "version": "0.1.7",
-  "description": "F40 M Round with fuel and boost, plus attended parked layout comparisons.",
+  "version": "0.1.8",
+  "description": "M Round for the F40 instrument cluster.",
   "vendor": "KombiKraft",
   "loggingId": "KKTS",
   "screens": [
     {
       "name": "MAIN",
       "title": "KombiKraft Themes",
+      "settings": ["sportShiftLights"],
       "items": [
-        [
-          "button",
-          "STOP",
-          "Show factory / stop test"
-        ],
-        [
-          "button",
-          "LIVE",
-          "M Round · 20-second test"
-        ],
-        [
-          "button",
-          "STAY",
-          "M Round · stay on while parked"
-        ],
-        [
-          "button",
-          "MASK",
-          "M Round · mask comparison"
-        ],
-        [
-          "button",
-          "TOURING",
-          "Map Touring · 20-second test"
-        ],
-        [
-          "button",
-          "SWEEP",
-          "M Round · demo needle sweep"
-        ],
-        [
-          "button",
-          "SHIFT",
-          "M Round · shift-light demo"
-        ],
-        [
-          "text3",
-          "MAIN_STATUS",
-          "Output off. No automatic activation. Fresh stationary speed and RPM required."
-        ],
-        [
-          "text3",
-          "SENSORS",
-          "Oil — · Water — · Boost —"
-        ],
-        [
-          "text3",
-          "LIMITS",
-          "Continuous M Round stays on while stationary. Select Show factory to stop. Boost shows DME pressure or the sport display signal. The fuel bar uses the F40 50 L tank."
-        ]
+        ["button", "LIVE", "M Round"],
+        ["button", "STOP", "Show factory"],
+        ["text3", "MAIN_STATUS", "Factory display active. M Round is available while parked."],
+        ["text3", "SENSORS", "Oil — · Water — · Boost unavailable"]
       ]
     }
   ],
-  "settings": [],
+  "settings": [
+    {"key": "sportShiftLights", "type": "bool", "label": "Shift lights in Sport", "default": true}
+  ],
   "readSignals": {
-    "de.bmw.infotainment.vehicle.Vehicle2": [
-      "statusCarSpeed2"
-    ],
-    "de.bmw.infotainment.vehicle.CDS": [
-      "statusEngineSpeed2",
-      "statusEngineTemperature"
-    ],
+    "de.bmw.infotainment.vehicle.Vehicle2": ["statusCarSpeed2"],
+    "de.bmw.infotainment.vehicle.CDS": ["statusEngineSpeed2", "statusEngineTemperature"],
     "de.bmw.infotainment.drivingexcitement.FES": [
       "statusSwitchDriveDynamicSport2",
       "statusFESVehicleDynamicSwitchHMI"
-    ],
-    "de.bmw.infotainment.KombiIF": [
-      "statusRangeTankStatus"
     ]
   }
 }

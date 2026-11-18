@@ -129,6 +129,11 @@ def package_files(app_id, experimental=False):
     files['javascript/app-spec.json'] = canonical(runtime_spec)
     for name in ['main.js', 'preferences.js', 'controller.js']:
         source = folder / name
+        if app_id == 'kombikraft_test':
+            if name == 'controller.js':
+                continue
+            if name == 'preferences.js':
+                source = folder.parent / 'kombikraft' / name
         if source.is_symlink():
             raise ValueError('Source files must not be symlinks')
         files['javascript/' + ('app.js' if name == 'main.js' else name)] = source.read_bytes()
@@ -145,7 +150,7 @@ def package_files(app_id, experimental=False):
             'broadcasts': ['sendTasuResponse'],
         }
         files['manifest.json'] = canonical(manifest)
-        for name in ['session.js', 'worker.js', 'geometry.js', 'shader.js', 'inputs.js', 'touring.js', 'factory-mask.js', 'mask-profile.json', 'fuel-gauge.js', 'engine-pressure.js']:
+        for name in ['session.js', 'worker.js', 'geometry.js', 'shader.js', 'inputs.js', 'factory-mask.js', 'mask-profile.json', 'engine-pressure.js']:
             files['javascript/' + name] = (folder / name).read_bytes()
         for name, dest in [('cluster_render_client.js', 'cluster_render_client.js'), ('needle-math.js', 'needle-math.js'), ('signals.js', 'kit/signals.js')]:
             files['javascript/' + dest] = (ROOT / 'vendor/test-theme' / name).read_bytes()
@@ -154,10 +159,12 @@ def package_files(app_id, experimental=False):
         art_manifest = json.loads((folder / 'art/manifest.json').read_text())
         if art_manifest.get('vehicleVerified') is not False or art_manifest.get('fixtureNumbersIncluded') is not False:
             raise ValueError('Unexpected art provenance')
+        art_manifest['images'] = [entry for entry in art_manifest['images'] if entry['name'] != 'touring-rpm.rgba']
+        art_manifest.pop('touringRpmSource', None)
         files['javascript/art/manifest.json'] = canonical(art_manifest)
         for entry in art_manifest['images']:
             name = entry['name']
-            if name not in [side+'-'+kind+'.rgba' for side in ['left','right','oil','boost','water'] for kind in ['face','needle']] + ['touring-speed.rgba', 'touring-rpm.rgba', 'right-shift.rgba']:
+            if name not in [side+'-'+kind+'.rgba' for side in ['left','right','oil','boost','water'] for kind in ['face','needle']] + ['right-shift.rgba', 'touring-speed.rgba']:
                 raise ValueError('Unexpected art name')
             raw = (folder / 'art' / name).read_bytes()
             if hashlib.sha256(raw).hexdigest() != entry['sha256'] or len(raw) != entry['width'] * entry['height'] * 4:

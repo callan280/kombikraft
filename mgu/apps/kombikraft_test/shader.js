@@ -10,10 +10,33 @@ varying vec2 v_uv;
 uniform vec2 u_size;
 uniform vec2 u_origin;
 uniform vec2 u_center;
+uniform float u_artPerPixel;
+uniform float u_roundFace;
 uniform vec2 u_textureSize;
 uniform vec4 u_needleRect;
 uniform float u_valid;
-#ifdef F97_SHIFT_DEMO
+#ifdef F40_DIGITAL_SPEED
+uniform sampler2D u_speedArt;
+uniform float u_speed;
+vec4 digitalSpeed(vec2 p){
+ float speed=floor(clamp(u_speed,0.0,330.0)+.5);
+ float digits=speed>=100.0?3.0:speed>=10.0?2.0:1.0;
+ vec2 pixel=vec2(p.x,p.y-62.0)/.78;
+ if(pixel.y>=0.0&&pixel.y<108.0){
+  float x=pixel.x+42.0*digits;
+  float column=floor(x/84.0);
+  if(column>=0.0&&column<digits){
+   float digit=mod(floor(speed/pow(10.0,digits-column-1.0)),10.0);
+   return texture2D(u_speedArt,vec2(digit*96.0+6.0+mod(x,84.0),pixel.y)/vec2(1056.0,108.0));
+  }
+ }
+ vec2 unit=vec2(p.x+30.0,p.y-143.0);
+ if(all(greaterThanEqual(unit,vec2(0.0)))&&all(lessThan(unit,vec2(60.0,28.0))))
+  return texture2D(u_speedArt,(vec2(963.0,68.0)+unit)/vec2(1056.0,108.0));
+ return vec4(0.0);
+}
+#endif
+#ifdef F97_SHIFT_LIGHTS
 uniform float u_shiftStage;
 uniform sampler2D u_shiftArt;
 uniform vec4 u_shiftMap;
@@ -30,7 +53,7 @@ float angle(){float s=u_time-u_times.x;s-=3600.0*floor((s+1800.0)/3600.0);
  if(s<u_times.y)return mix(u_angles.x,u_angles.y,s/max(u_times.y,.0001));
  if(s<u_times.z)return mix(u_angles.y,u_angles.z,(s-u_times.y)/max(u_times.z-u_times.y,.0001));
  return mix(u_angles.z,u_angles.w,min(1.0,(s-u_times.z)/max(u_times.w-u_times.z,.0001)));}
-#ifdef F97_SHIFT_DEMO
+#ifdef F97_SHIFT_LIGHTS
 vec4 shiftLights(vec4 face,vec2 p){
  if(u_shiftStage<1.0)return face;
  vec2 mapPixel=floor(p-u_shiftMap.xy);
@@ -48,7 +71,8 @@ vec4 shiftLights(vec4 face,vec2 p){
  return face;
 }
 #endif
-void main(){vec2 p=v_uv*u_size+u_origin-u_center;
+void main(){vec2 p=(v_uv*u_size+u_origin-u_center)*u_artPerPixel;
+ if(u_roundFace>.5 && length(p)>u_textureSize.x*.5)discard;
  vec2 uv=(p+u_textureSize*.5)/u_textureSize;
  vec4 face=texture2D(u_face,uv);
  // Only recolour the saturated centre-ring material. Keep the scale,
@@ -58,8 +82,14 @@ void main(){vec2 p=v_uv*u_size+u_origin-u_center;
  if (dot(u_modeTint,u_modeTint)>0.0) {
      face.rgb=mix(face.rgb, vec3(min(face.g,face.b)) + face.r*u_modeTint, redInk*ring);
  }
-#ifdef F97_SHIFT_DEMO
+#ifdef F97_SHIFT_LIGHTS
  face=shiftLights(face,p);
+#endif
+#ifdef F40_DIGITAL_SPEED
+ if(u_valid>.5){
+  vec4 reading=digitalSpeed(p);
+  face.rgb=mix(face.rgb,reading.rgb,reading.a);
+ }
 #endif
  float a=radians(angle());float c=cos(a),s=sin(a);
  vec2 n=vec2(c*p.x+s*p.y,-s*p.x+c*p.y);

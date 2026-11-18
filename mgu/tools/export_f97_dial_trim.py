@@ -67,7 +67,7 @@ def main(donor, branding, art):
         raise ValueError('F40 M135i badge hash mismatch')
     badge = Image.open(branding / 'm135i.png').convert('RGBA').transpose(Image.Transpose.FLIP_TOP_BOTTOM)
     badge = badge.crop(badge.getbbox())
-    badge_width = 150
+    badge_width = 270
     badge = badge.resize((badge_width, round(badge.height * badge_width / badge.width)), Image.Resampling.LANCZOS)
 
     def metallic(u, _v, y):
@@ -79,9 +79,9 @@ def main(donor, branding, art):
 
     def redline(u, v, _y):
         # The donor mesh's angular V goes from .5 at zero to 0 at 8,000.
-        # Place the preview transition beside the 7 mark as in the reference.
+        # Colour begins at the requested 6,500 RPM display marking.
         rpm_mark = (1 - 2 * v) * 8000
-        opacity = smooth((rpm_mark - 6800) / 250)
+        opacity = smooth((rpm_mark - 6500) / 250)
         red, green, blue, alpha = sample_row(warning, u)
         return (red, green, blue, round(alpha * opacity))
 
@@ -90,7 +90,7 @@ def main(donor, branding, art):
                   warningMeshSha256=warning_mesh['decodedSha256'], coronaMeshSha256={},
                   badgeName=badge_source['name'], badgePngSha256=sha(badge_data),
                   badgePlacement='Centered below the tachometer hub, under the moving needle',
-                  redlineAppearance='Reference transition at 6800–7050 on the 8000 RPM dial; preview styling')
+                  redlineAppearance='Red starts at 6500 and blends in over 250 RPM; display styling')
     for side, mesh_name in (('left', 'speedo'), ('right', 'dzm')):
         entry = next(row for row in manifest['images'] if row['name'] == f'{side}-face.rgba')
         path = art / entry['name']

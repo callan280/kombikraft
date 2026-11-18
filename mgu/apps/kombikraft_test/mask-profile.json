@@ -1,5 +1,5 @@
 {
-  "source": "Approximate projection of the parked F40 factory photo to the 1920x720 panel",
+  "source": "Approximate projections from the parked F40 factory photo to the 1920x720 panel",
   "trace": [
     [
       1210,
@@ -119,7 +119,141 @@
       "y": 547,
       "w": 152,
       "h": 106
+    },
+    {
+      "id": "factory-digital-speed",
+      "x": 480,
+      "y": 318,
+      "w": 248,
+      "h": 176
+    },
+    {
+      "id": "factory-speed-limit",
+      "x": 474,
+      "y": 550,
+      "w": 125,
+      "h": 110
+    },
+    {
+      "id": "factory-fuel-upper",
+      "x": 0,
+      "y": 402,
+      "w": 142,
+      "h": 258
+    },
+    {
+      "id": "factory-fuel-lower",
+      "x": 0,
+      "y": 560,
+      "w": 228,
+      "h": 100
     }
   ],
-  "coverageVerifiedOnCar": false
+  "coverageVerifiedOnCar": false,
+  "speedometerTrace": [
+    [
+      728,
+      16
+    ],
+    [
+      588,
+      15
+    ],
+    [
+      461,
+      21
+    ],
+    [
+      337,
+      44
+    ],
+    [
+      229,
+      81
+    ],
+    [
+      155,
+      135
+    ],
+    [
+      103,
+      190
+    ],
+    [
+      66,
+      255
+    ],
+    [
+      55,
+      325
+    ],
+    [
+      73,
+      392
+    ],
+    [
+      112,
+      453
+    ],
+    [
+      163,
+      528
+    ],
+    [
+      223,
+      604
+    ],
+    [
+      270,
+      645
+    ],
+    [
+      497,
+      649
+    ],
+    [
+      509,
+      552
+    ],
+    [
+      405,
+      522
+    ],
+    [
+      369,
+      477
+    ],
+    [
+      332,
+      415
+    ],
+    [
+      316,
+      345
+    ],
+    [
+      335,
+      274
+    ],
+    [
+      377,
+      217
+    ],
+    [
+      439,
+      166
+    ],
+    [
+      529,
+      133
+    ],
+    [
+      636,
+      118
+    ],
+    [
+      752,
+      115
+    ]
+  ]
 }

@@ -20,7 +20,7 @@
       "name": "right-face.rgba",
       "width": 688,
       "height": 688,
-      "sha256": "9f099036d7b8bd674c736bc3ae5e09cd026985b49defbd96b33543c27bcdd23b"
+      "sha256": "fab6f75a1aedfc146bce2473c28d2c271717dd5f4f7503ed3a80b8a08fe2673c"
     },
     {
       "name": "right-needle.rgba",
@@ -157,6 +157,6 @@
     "badgeName": "KI_2D_MLogo_M135i_MSPORTShape_bitmap__KI_2D_MLogo_M135i_MSPORT",
     "badgePngSha256": "aa2d9a887e99a38fbe546598bbf68d80511ba26d275ca1dd2a9eec7f2ec2d1b2",
     "badgePlacement": "Centered below the tachometer hub, under the moving needle",
-    "redlineAppearance": "Reference transition at 6800\u20137050 on the 8000 RPM dial; preview styling"
+    "redlineAppearance": "Red starts at 6500 and blends in over 250 RPM; display styling"
   }
 }

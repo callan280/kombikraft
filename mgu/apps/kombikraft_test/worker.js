@@ -6,6 +6,7 @@ const { Session } = require('./session');
 let session = null;
 let interval = null;
 let ending = false;
+let lastTelemetry = -Infinity;
 const startDeadline = setTimeout(() => end('No test requested.'),5000);
 
 function report(status) {
@@ -33,6 +34,13 @@ process.on('message', message => {
             session.start();
             interval = setInterval(() => {
                 session.tick();
+                const now=session.now();
+                if(session.active&&process.connected&&now-lastTelemetry>=5000){
+                    lastTelemetry=now;
+                    process.send({telemetry:{speedKmh:session.sample.speed,rpm:session.sample.rpm,
+                        ageMs:Math.round(now-session.sample.at),
+                        shown:session.refs.filter(layer=>layer.state==='shown').length,total:session.refs.length}});
+                }
                 if (!session.active) end();
             }, 33);
         } else if (message.op === 'stop') end('Factory display released.');

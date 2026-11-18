@@ -15,9 +15,8 @@ async function start(options={}){
  const subscriptions=[];
  let worker=null,heartbeat=null,monitor=null,ui=null;
  let speed=null,rpm=null,speedAt=-Infinity,rpmAt=-Infinity,fesBoost=null,dmeBoost=null,stage=null,selection=null;
- let checkControl=null;
  const mini={};
- const sample=()=>Object.assign({speed,rpm,checkControl,at:Math.min(speedAt,rpmAt),
+ const sample=()=>Object.assign({speed,rpm,at:Math.min(speedAt,rpmAt),
   boost:selectBoost(dmeBoost,fesBoost,clock()),shiftLights:preferences.get('sportShiftLights'),
   gear:currentGear(stage,clock())?stage:selection},mini);
  const warn=error=>logger.warn('KombiKraft: '+String(error&&error.message||error));
@@ -40,7 +39,11 @@ async function start(options={}){
   if(!valid(sample(),clock())||speed>=1){status('Waiting for a fresh stationary speed and RPM reading.');return;}
   const child=fork(path.join(__dirname,'worker.js'),[],{stdio:['ignore','ignore','ignore','ipc']});
   worker=child;
-  child.on('message',message=>{if(message.status&&worker===child)status(message.status);});
+  child.on('message',message=>{
+   if(worker!==child)return;
+   if(message.status)status(message.status);
+   if(message.telemetry)logger.info('KombiKraft live '+JSON.stringify(message.telemetry));
+  });
   child.on('error',error=>{warn(error);if(worker===child)stop();});
   child.on('exit',(code,signal)=>{
    if(worker!==child)return;
@@ -88,17 +91,6 @@ async function start(options={}){
   statusGearboxDrive:value=>{stage=stageGear(value,clock());},
   DataPowerTrain2:value=>{selection=selectionGear(value,clock());}
  },logger,{pollMs:1000}));
- subscriptions.push(await signals.watch('de.bmw.infotainment.checkcontrol.CheckControlMaster','1',{
-  basicList:entries=>{
-   const clear=Array.isArray(entries)&&entries.length<=45&&entries.every(entry=>
-    entry&&Number.isInteger(entry.ccmId)&&(entry.activeState===1||entry.activeState==='INAKTIV'));
-   checkControl={clear,at:clock()};
-   if(!clear&&worker&&worker.connected)worker.send({op:'sample',sample:sample()});
-  }
- },logger,{pollMs:500,ordered:true,onUnavailable:()=>{
-  checkControl=null;
-  if(worker&&worker.connected)worker.send({op:'sample',sample:sample()});
- }}));
  monitor=setInterval(()=>{
   pressure.poll();
   const current=sample(),now=clock();

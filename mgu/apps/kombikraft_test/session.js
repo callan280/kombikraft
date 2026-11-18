@@ -15,12 +15,6 @@ const SHIFT_STEPS=[5200,5350,5500,5650,5800,5950,6150,6350,6500];
 const FINAL_SHIFT_FRAME=SHIFT_STEPS.length;
 const FLASH_HALF_PERIOD_MS=200;
 function valid(sample,now){return sample&&Number.isFinite(sample.speed)&&sample.speed>=0&&sample.speed<=330&&Number.isFinite(sample.rpm)&&sample.rpm>=0&&sample.rpm<=8000&&Number.isFinite(sample.at)&&now>=sample.at&&now-sample.at<=STALE_MS;}
-function canRender(sample,now){
- if(!valid(sample,now))return false;
- if(sample.speed<1)return true;
- const check=sample.checkControl;
- return !!check&&check.clear===true&&Number.isFinite(check.at)&&check.at<=now&&now-check.at<=1500;
-}
 class Session{
  constructor(client,opts){this.c=client;this.opts=opts||{};this.now=this.opts.now||(()=>{const t=process.hrtime();return t[0]*1000+t[1]/1e6;});this.report=this.opts.report||(()=>{});this.started=null;this.active=false;this.refs=[];this.sample=null;this.faceAssets=[];
   client.on('ready',()=>{if(!this.active)return;if(client.backend!=='id7'||!/(^|,)panel:1920x720(,|$)/.test(client.targets||'')){this.stop('Unexpected renderer backend or panel geometry.');return;}try{this.attach();}catch(e){this.stop(e.message);}});
@@ -40,7 +34,7 @@ class Session{
    }
   });
  }
- update(sample){this.sample=sample;if(this.active&&!canRender(sample,this.now()))this.stop('Factory display restored. Check vehicle readings and Check Control status.');}
+ update(sample){this.sample=sample;if(this.active&&!valid(sample,this.now()))this.stop('Factory display restored. Speed or RPM data unavailable.');}
  start(){
   if(this.active)throw Error('M Round is already on');
   if(!valid(this.sample,this.now())||this.sample.speed>=1)throw Error('Fresh stationary speed and RPM are required.');
@@ -87,11 +81,11 @@ class Session{
     const shift=tach&&manifest.images.find(entry=>entry.name==='right-shift.rgba');
     if(tach&&!shift)throw Error('F97 shift-ring artwork missing');
     const shiftArt=shift&&this.loadTexture(dir,manifest,shift.name,shift.width,shift.height,'nearest');
-    const panelScale=(d.displaySize||d.w)/d.w;
+    const panelScale=geometry.scale(d);
     const tachBand={x:d.x-200*panelScale,y:d.y-200*panelScale,w:400*panelScale,h:400*panelScale};
     for(const r of geometry.pieces(d)){
      const showShift=shift&&geometry.intersect(r,tachBand);
-     const defines=showShift?'#define F97_SHIFT_LIGHTS\n':d.signal==='speed'?'#define F40_DIGITAL_SPEED\n':'';
+     const defines=(d.optional?'#define MINI_GAUGE\n':'')+(showShift?'#define F97_SHIFT_LIGHTS\n':d.signal==='speed'?'#define F40_DIGITAL_SPEED\n':'');
      const ref=this.makeLayer(r,defines+shader,true);
      const layer={ref,d,needle:new Needle(28),path:null,t0:this.now()};
      this.refs.push(layer);
@@ -106,7 +100,7 @@ class Session{
      this.c.uniform(ref,'u_origin',[r.x,r.y]);
      this.c.uniform(ref,'u_center',[d.x,d.y]);
      this.c.uniform(ref,'u_arcRotation',[d.arcRotation||0]);
-     this.c.uniform(ref,'u_artPerPixel',[d.w/(d.displaySize||d.w)]);
+     this.c.uniform(ref,'u_artPerPixel',[1/geometry.scale(d)]);
      this.c.uniform(ref,'u_textureSize',[d.w,d.h]);
      this.setModeAccent(layer,this.now());
      this.c.uniform(ref,'u_needleRect',[crop.offsetX,crop.offsetY,crop.width,crop.height]);
@@ -126,6 +120,7 @@ class Session{
      const angle=(value===null?0:value)/d.max*d.sweep;
      layer.needleVisible=value!==null;
      this.c.uniform(ref,'u_valid',[layer.needleVisible?1:0]);
+     if(d.optional){layer.miniVisible=this.miniVisible(d,this.now());this.c.uniform(ref,'u_visible',[layer.miniVisible?1:0]);}
      this.c.uniform(ref,'u_angles',[angle,angle,angle,angle]);
     }
    }
@@ -147,6 +142,11 @@ class Session{
    this.c.uniform(gearMask,'u_show',[0]);
    this.report('M Round · waiting for cluster graphics.');
   }catch(e){this.stop(e.message);throw e;}
+ }
+ miniVisible(d,now){
+  // Both temperature faces clear when their replacement readings are unavailable,
+  // so the restored factory temperature gauge is not covered by the lower mini.
+  return d.signal==='boost'||(fresh(this.sample.oil,now,3000)!==null&&fresh(this.sample.water,now,3000)!==null);
  }
  setModeAccent(layer,now){
   const mode=layer.d.optional?'sport':currentMode(this.sample.mode,now)||'comfort';
@@ -172,7 +172,7 @@ class Session{
  tick(){
   if(!this.active)return;
   const now=this.now();
-  if(!canRender(this.sample,now)){this.stop('Factory display restored. Vehicle or Check Control data unavailable, or a message is active.');return;}
+  if(!valid(this.sample,now)){this.stop('Factory display restored. Speed or RPM data unavailable.');return;}
   const allShown=this.refs.length>0&&this.refs.every(layer=>layer.state==='shown');
   if(!allShown&&now-this.started>=ACQUIRE_MS){
    const pending=this.refs.find(layer=>layer.state!=='shown');
@@ -195,6 +195,10 @@ class Session{
    if(layer.isMask)continue;
    this.setModeAccent(layer,now);
    const {d,ref}=layer;
+   if(d.optional){
+    const visible=this.miniVisible(d,now);
+    if(visible!==layer.miniVisible){layer.miniVisible=visible;this.c.uniform(ref,'u_visible',[visible?1:0]);}
+   }
    const value=d.optional?miniValue(this.sample,d,now):this.sample[d.signal];
    if(layer.shiftStage!==undefined){
     this.updateShiftLights(layer,value,now);

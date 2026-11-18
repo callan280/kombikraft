@@ -1,7 +1,7 @@
 {
   "id": "kombikraft_test",
   "title": "KombiKraft Themes",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "M Round for the F40 instrument cluster.",
   "vendor": "KombiKraft",
   "loggingId": "KKTS",
@@ -55,9 +55,6 @@
     "de.bmw.infotainment.drivingexcitement.FES": [
       "statusSwitchDriveDynamicSport2",
       "statusFESVehicleDynamicSwitchHMI"
-    ],
-    "de.bmw.infotainment.checkcontrol.CheckControlMaster": [
-      "basicList"
     ]
   },
   "subscribeSignals": {

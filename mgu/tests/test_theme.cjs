@@ -56,7 +56,11 @@ for(const bad of [null,{},sample({speed:null}),sample({rpm:65535}),sample({speed
   assert(session.active);
   assert(client.uniforms.some(entry=>entry.name==='u_speed'&&entry.values[0]===speed));
  }
- session.update(sample({speed:80,checkControl:{clear:false,at:now}}));assert(!session.active&&client.closed);
+ // Speed and an optional Check Control snapshot never change theme lifetime.
+ for(const checkControl of [null,{clear:false,at:now},{clear:true,at:now-60000}]){
+  now+=10000;session.update(sample({speed:80,checkControl}));session.tick();assert(session.active);
+ }
+ now+=3501;session.tick();assert(!session.active&&client.closed);
  assert.equal(client.dropped.length,client.assets.length+client.layers.length);
 }
 {
@@ -75,12 +79,26 @@ for(const checkControl of [null,{clear:true,at:now-1501},{clear:true,at:now+1}])
  const {session}=make();
  session.update(sample({speed:50,checkControl:{clear:true,at:now}}));assert.throws(()=>session.start());
  session.update(sample());session.start();session.update(sample({speed:50,checkControl}));
- assert(!session.active);
+ assert(session.active);session.stop();
 }
 for(const dial of geometry.dials){
  const bounds=geometry.bounds(dial);
  assert(bounds.y===80&&bounds.y+bounds.h===660);
  assert(bounds.x>=0&&bounds.x+bounds.w<=1920);
+}
+const parking=mask.reserves.find(r=>r.id==='parking-lamp');
+for(const mini of geometry.minis){
+ const bounds=geometry.bounds(mini);
+ assert(!geometry.intersect(bounds,geometry.box),'Mini overlaps black box');
+ assert(!geometry.intersect(bounds,parking),'Mini overlaps parking lamp');
+ assert(bounds.y>=0&&bounds.y+bounds.h<=660,'Mini clips footer');
+ assert.equal(bounds.h,Math.ceil(mini.y+mini.h*geometry.scale(mini)/2)-Math.floor(mini.y-mini.h*geometry.scale(mini)/2));
+ assert.equal(geometry.pieces(mini).length,1,'Mini gets split by reservation');
+ assert.equal(geometry.scale(mini),mini.side==='boost'?1:1.3);
+}
+for(let i=0;i<geometry.minis.length;i++)for(let j=i+1;j<geometry.minis.length;j++){
+ const a=geometry.minis[i],b=geometry.minis[j];
+ assert(Math.hypot(a.x-b.x,a.y-b.y)>a.radius+b.radius+30,'Mini dial faces collide');
 }
 const [speedDial,tachDial]=geometry.dials;
 assert.equal(speedDial.y,tachDial.y);
@@ -144,6 +162,13 @@ assert.equal(inputs.currentGear({value:'P',at:now-3000},now),null);
  session.update(sample({oil:tempReading,water:tempReading}));session.tick();
  session.update(sample({oil:tempReading,water:{value:90,at:now-3000}}));session.tick();
  assert.deepEqual(values(temp.ref,'u_show'),[0,1,0]);
+ for(const role of ['oil','water']){
+  const mini=session.refs.find(layer=>layer.d&&layer.d.signal===role);
+  assert.deepEqual(values(mini.ref,'u_visible'),[0,1,0]);
+  const scale=client.uniforms.find(u=>u.ref===mini.ref&&u.name==='u_artPerPixel');
+  assert.equal(scale.values[0],1/1.3);
+ }
+ assert.equal(values(boost.ref,'u_visible').at(-1),1);
  const gearMask=session.refs.find(layer=>layer.isGearMask);
  session.update(sample({gear:inputs.selectionGear({statusGearSelectionDrive:3},now)}));session.tick();
  assert.deepEqual(values(rpm.ref,'u_gearGlyphs').slice(-2),[-1,0]);
@@ -163,4 +188,4 @@ assert.equal(inputs.currentGear({value:'P',at:now-3000},now),null);
  assert.deepEqual(values(rpm.ref,'u_shiftStage').slice(-2),[9,0]);
  session.stop();
 }
-console.log('PASS full dial and turn indicator clearance, factory mask, Sport shift lights, boost and parked recovery.');
+console.log('PASS curved mini clearance/scaling, temperature fallback, driving without Check Control heartbeat, full dial/indicator clearance, shift lights, boost and stale-data recovery.');

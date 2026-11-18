@@ -46,8 +46,15 @@ Module._load=function(name){
  check.emit('action');assert.equal(check.value,true);
  await new Promise(resolve=>setTimeout(resolve,150));
  assert.equal(child.sent.at(-1).sample.shiftLights,true);
+ // A parked selection continues supplying live samples as the vehicle moves.
+ const speedFeed=watches.find(w=>w.handlers.statusCarSpeed2).handlers;
+ speedFeed.statusCarSpeed2({speedVehicleCentreOfGravity:5120});
+ await new Promise(resolve=>setTimeout(resolve,150));
+ assert.equal(child.sent.at(-1).op,'sample');
+ assert.equal(child.sent.at(-1).sample.speed,80);
+ assert.equal(children.length,1);
  rows.STOP.emit('action');assert.equal(child.sent.at(-1).op,'stop');
- assert.equal(watches.length,5);
+ assert.equal(watches.length,4);
  assert.equal(start.sample.gear.value,'P');
  assert.deepEqual(Object.keys(rows).filter(name=>rows[name].listenerCount('action')),['PREF_SPORTSHIFTLIGHTS','LIVE','STOP']);
  console.log('PASS one M Round mode, persistent Sport light toggle, live source inputs and factory release.');

@@ -15,6 +15,9 @@ uniform float u_artPerPixel;
 uniform vec2 u_textureSize;
 uniform vec4 u_needleRect;
 uniform float u_valid;
+#ifdef MINI_GAUGE
+uniform float u_visible;
+#endif
 #ifdef F40_DIGITAL_SPEED
 uniform sampler2D u_speedArt;
 uniform float u_speed;
@@ -82,7 +85,11 @@ vec4 shiftLights(vec4 face,vec2 p){
  return face;
 }
 #endif
-void main(){vec2 p=(v_uv*u_size+u_origin-u_center)*u_artPerPixel;
+void main(){
+#ifdef MINI_GAUGE
+ if(u_visible<.5)discard;
+#endif
+ vec2 p=(v_uv*u_size+u_origin-u_center)*u_artPerPixel;
  vec2 uv=(p+u_textureSize*.5)/u_textureSize;
  vec4 face=texture2D(u_face,uv);
  // Only recolour the saturated centre-ring material. Keep the scale,
